@@ -1,0 +1,740 @@
+\section{mu::ParserBase Class Reference}
+\label{classmu_1_1ParserBase}\index{mu::ParserBase@{mu::ParserBase}}
+{\tt \#include $<$muParserBase.h$>$}
+
+Inheritance diagram for mu::ParserBase::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classmu_1_1ParserBase}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+Mathematical expressions parser (base parser engine). 
+
+Version 1.30 (20080413)
+
+This is the implementation of a bytecode based mathematical expressions parser. The formula will be parsed from string and converted into a bytecode. Future calculations will be done with the bytecode instead the formula string resulting in a significant performance increase. Complementary to a set of internally implemented functions the parser is able to handle user defined functions and variables.
+
+\begin{Desc}
+\item[Author:](C) 2004-2008 Ingo Berg \end{Desc}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef {\bf ParserError} {\bf exception\_\-type}
+\begin{CompactList}\small\item\em Type of the error class. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserBase} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+{\bf ParserBase} (const {\bf ParserBase} \&a\_\-Parser)
+\item 
+{\bf ParserBase} \& {\bf operator=} (const {\bf ParserBase} \&a\_\-Parser)
+\begin{CompactList}\small\item\em Assignement operator. \item\end{CompactList}\item 
+virtual {\bf $\sim$ParserBase} ()
+\item 
+{\bf value\_\-type} {\bf Eval} () const 
+\begin{CompactList}\small\item\em Calculate the result. \item\end{CompactList}\item 
+void {\bf SetExpr} (const {\bf string\_\-type} \&a\_\-sExpr)
+\begin{CompactList}\small\item\em Set the formula. \item\end{CompactList}\item 
+void {\bf SetVarFactory} ({\bf facfun\_\-type} a\_\-pFactory, void $\ast$pUserData=NULL)
+\item 
+void {\bf EnableOptimizer} (bool a\_\-bIsOn=true)
+\begin{CompactList}\small\item\em Enable or disable the formula optimization feature. \item\end{CompactList}\item 
+void {\bf EnableByteCode} (bool a\_\-bIsOn=true)
+\begin{CompactList}\small\item\em Enable or disable parsing from Bytecode. \item\end{CompactList}\item 
+void {\bf EnableBuiltInOprt} (bool a\_\-bIsOn=true)
+\begin{CompactList}\small\item\em Enable or disable the built in binary operators. \item\end{CompactList}\item 
+bool {\bf HasBuiltInOprt} () const 
+\begin{CompactList}\small\item\em Query status of built in variables. \item\end{CompactList}\item 
+void {\bf AddValIdent} ({\bf identfun\_\-type} a\_\-pCallback)
+\item 
+void {\bf DefineOprt} (const {\bf string\_\-type} \&a\_\-strName, {\bf fun\_\-type2} a\_\-pFun, unsigned a\_\-iPri=0, bool a\_\-bAllowOpt=false)
+\begin{CompactList}\small\item\em Define a binary operator. \item\end{CompactList}\item 
+void {\bf DefineConst} (const {\bf string\_\-type} \&a\_\-sName, {\bf value\_\-type} a\_\-fVal)
+\begin{CompactList}\small\item\em Add a user defined constant. \item\end{CompactList}\item 
+void {\bf DefineStrConst} (const {\bf string\_\-type} \&a\_\-sName, const {\bf string\_\-type} \&a\_\-strVal)
+\begin{CompactList}\small\item\em Define a new string constant. \item\end{CompactList}\item 
+void {\bf DefineVar} (const {\bf string\_\-type} \&a\_\-sName, {\bf value\_\-type} $\ast$a\_\-fVar)
+\begin{CompactList}\small\item\em Add a user defined variable. \item\end{CompactList}\item 
+void {\bf DefinePostfixOprt} (const {\bf string\_\-type} \&a\_\-strFun, {\bf fun\_\-type1} a\_\-pOprt, bool a\_\-bAllowOpt=true)
+\begin{CompactList}\small\item\em Add a user defined operator. \item\end{CompactList}\item 
+void {\bf DefineInfixOprt} (const {\bf string\_\-type} \&a\_\-strName, {\bf fun\_\-type1} a\_\-pOprt, int a\_\-iPrec=prINFIX, bool a\_\-bAllowOpt=true)
+\begin{CompactList}\small\item\em Add a user defined operator. \item\end{CompactList}\item 
+void {\bf ClearVar} ()
+\begin{CompactList}\small\item\em Clear all user defined variables. \item\end{CompactList}\item 
+void {\bf ClearFun} ()
+\begin{CompactList}\small\item\em Clear all functions. \item\end{CompactList}\item 
+void {\bf ClearConst} ()
+\begin{CompactList}\small\item\em Clear all user defined constants. \item\end{CompactList}\item 
+void {\bf ClearInfixOprt} ()
+\begin{CompactList}\small\item\em Clear the user defined Prefix operators. \item\end{CompactList}\item 
+void {\bf ClearPostfixOprt} ()
+\begin{CompactList}\small\item\em Clear all user defined postfix operators. \item\end{CompactList}\item 
+void {\bf ClearOprt} ()
+\begin{CompactList}\small\item\em Clear all user defined binary operators. \item\end{CompactList}\item 
+void {\bf RemoveVar} (const {\bf string\_\-type} \&a\_\-strVarName)
+\begin{CompactList}\small\item\em Remove a variable from internal storage. \item\end{CompactList}\item 
+const {\bf varmap\_\-type} \& {\bf GetUsedVar} () const 
+\begin{CompactList}\small\item\em Return a map containing the used variables only. \item\end{CompactList}\item 
+const {\bf varmap\_\-type} \& {\bf GetVar} () const 
+\begin{CompactList}\small\item\em Return a map containing the used variables only. \item\end{CompactList}\item 
+const {\bf valmap\_\-type} \& {\bf GetConst} () const 
+\begin{CompactList}\small\item\em Return a map containing all parser constants. \item\end{CompactList}\item 
+const {\bf string\_\-type} \& {\bf GetExpr} () const 
+\begin{CompactList}\small\item\em Retrieve the formula. \item\end{CompactList}\item 
+const {\bf funmap\_\-type} \& {\bf GetFunDef} () const 
+\begin{CompactList}\small\item\em Return prototypes of all parser functions. \item\end{CompactList}\item 
+const {\bf char\_\-type} $\ast$$\ast$ {\bf GetOprtDef} () const 
+\begin{CompactList}\small\item\em Get the default symbols used for the built in operators. \item\end{CompactList}\item 
+void {\bf DefineNameChars} (const {\bf char\_\-type} $\ast$a\_\-szCharset)
+\begin{CompactList}\small\item\em Define the set of valid characters to be used in names of functions, variables, constants. \item\end{CompactList}\item 
+void {\bf DefineOprtChars} (const {\bf char\_\-type} $\ast$a\_\-szCharset)
+\begin{CompactList}\small\item\em Define the set of valid characters to be used in names of binary operators and postfix operators. \item\end{CompactList}\item 
+void {\bf DefineInfixOprtChars} (const {\bf char\_\-type} $\ast$a\_\-szCharset)
+\begin{CompactList}\small\item\em Define the set of valid characters to be used in names of infix operators. \item\end{CompactList}\item 
+const {\bf char\_\-type} $\ast$ {\bf ValidNameChars} () const 
+\begin{CompactList}\small\item\em Virtual function that defines the characters allowed in name identifiers. \item\end{CompactList}\item 
+const {\bf char\_\-type} $\ast$ {\bf ValidOprtChars} () const 
+\begin{CompactList}\small\item\em Virtual function that defines the characters allowed in operator definitions. \item\end{CompactList}\item 
+const {\bf char\_\-type} $\ast$ {\bf ValidInfixOprtChars} () const 
+\begin{CompactList}\small\item\em Virtual function that defines the characters allowed in infix operator definitions. \item\end{CompactList}\item 
+void {\bf SetArgSep} ({\bf char\_\-type} cArgSep)
+\begin{CompactList}\small\item\em Set argument separator. \item\end{CompactList}\item 
+{\bf char\_\-type} {\bf GetArgSep} () const 
+\begin{CompactList}\small\item\em Get the argument separator character. \item\end{CompactList}\item 
+void {\bf Error} ({\bf EErrorCodes} a\_\-iErrc, int a\_\-iPos=(int) mu::string\_\-type::npos, const {\bf string\_\-type} \&a\_\-strTok={\bf string\_\-type}()) const 
+\begin{CompactList}\small\item\em Create an error containing the parse error position. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf Init} ()
+\begin{CompactList}\small\item\em Initialize user defined functions. \item\end{CompactList}\item 
+virtual void {\bf InitCharSets} ()=0
+\item 
+virtual void {\bf InitFun} ()=0
+\item 
+virtual void {\bf InitConst} ()=0
+\item 
+virtual void {\bf InitOprt} ()=0
+\end{CompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{CompactItemize}
+\item 
+static {\bf char\_\-type} $\ast$ {\bf c\_\-DefaultOprt} [$\,$]
+\begin{CompactList}\small\item\em Identifiers for built in binary operators. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+class {\bf ParserTokenReader}
+\end{CompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\index{mu::ParserBase@{mu::ParserBase}!exception\_\-type@{exception\_\-type}}
+\index{exception\_\-type@{exception\_\-type}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[exception\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf ParserError} {\bf mu::ParserBase::exception\_\-type}}\label{classmu_1_1ParserBase_b385f37be00cee7d8a68c3c41f6a5b64}
+
+
+Type of the error class. 
+
+Included for backwards compatibility. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserBase@{mu::ParserBase}!ParserBase@{ParserBase}}
+\index{ParserBase@{ParserBase}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ParserBase]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserBase::ParserBase ()}\label{classmu_1_1ParserBase_41d13be909945b892777ee6773fa1f69}
+
+
+Constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-szFormula}]the formula to interpret. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParserException}]if a\_\-szFormula is null. \end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!ParserBase@{ParserBase}}
+\index{ParserBase@{ParserBase}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ParserBase]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserBase::ParserBase (const {\bf ParserBase} \& {\em a\_\-Parser})}\label{classmu_1_1ParserBase_88d9367e1a71bc07fe587633060223a0}
+
+
+\index{mu::ParserBase@{mu::ParserBase}!$\sim$ParserBase@{$\sim$ParserBase}}
+\index{$\sim$ParserBase@{$\sim$ParserBase}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[$\sim$ParserBase]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserBase::$\sim$ParserBase ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1ParserBase_94ec173a26a5ffc96325287830a44caa}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{mu::ParserBase@{mu::ParserBase}!operator=@{operator=}}
+\index{operator=@{operator=}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[operator=]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParserBase} \& mu::ParserBase::operator= (const {\bf ParserBase} \& {\em a\_\-Parser})}\label{classmu_1_1ParserBase_ca7cf1ea7f82dfb3066ada8427295a4c}
+
+
+Assignement operator. 
+
+Implemented by calling Assign(a\_\-Parser). Self assignement is suppressed. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-Parser}]Object to copy to this. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]$\ast$this \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!Eval@{Eval}}
+\index{Eval@{Eval}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[Eval]{\setlength{\rightskip}{0pt plus 5cm}{\bf value\_\-type} mu::ParserBase::Eval () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserBase_9f91f5d3c0acd2e30225eb97867dc651}
+
+
+Calculate the result. 
+
+A note on const correctness: I consider it important that Calc is a const function. Due to caching operations Calc changes only the state of internal variables with one exception m\_\-UsedVar this is reset during string parsing and accessible from the outside. Instead of making Calc non const GetUsedVar is non const because it explicitely calls \doxyref{Eval()}{p.}{classmu_1_1ParserBase_9f91f5d3c0acd2e30225eb97867dc651} forcing this update.
+
+\begin{Desc}
+\item[Precondition:]A formula must be set. 
+
+Variables must have been set (if needed)\end{Desc}
+\begin{Desc}
+\item[See also:]m\_\-pParseFormula \end{Desc}
+\begin{Desc}
+\item[Returns:]The evaluation result \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParseException}]if no Formula is set or in case of any other error related to the formula. \end{description}
+\end{Desc}
+
+
+Referenced by mu::Parser::Diff(), and mu::ParserComplex::Eval().\index{mu::ParserBase@{mu::ParserBase}!SetExpr@{SetExpr}}
+\index{SetExpr@{SetExpr}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[SetExpr]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::SetExpr (const {\bf string\_\-type} \& {\em a\_\-sExpr})}\label{classmu_1_1ParserBase_ed9d02dd04f8e163102f9a8e082c4b26}
+
+
+Set the formula. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-strFormula}]Formula as string\_\-type \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParserException}]in case of syntax errors.\end{description}
+\end{Desc}
+Triggers first time calculation thus the creation of the bytecode and scanning of used variables. 
+
+References mu::ecLOCALE, and Error().\index{mu::ParserBase@{mu::ParserBase}!SetVarFactory@{SetVarFactory}}
+\index{SetVarFactory@{SetVarFactory}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[SetVarFactory]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::SetVarFactory ({\bf facfun\_\-type} {\em a\_\-pFactory}, \/  void $\ast$ {\em pUserData} = {\tt NULL})}\label{classmu_1_1ParserBase_713d8ddf5371c346942d22fdac5adda7}
+
+
+\index{mu::ParserBase@{mu::ParserBase}!EnableOptimizer@{EnableOptimizer}}
+\index{EnableOptimizer@{EnableOptimizer}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[EnableOptimizer]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::EnableOptimizer (bool {\em a\_\-bIsOn} = {\tt true})}\label{classmu_1_1ParserBase_43221e10afd17efe8d32898707763cb4}
+
+
+Enable or disable the formula optimization feature. 
+
+\begin{Desc}
+\item[Postcondition:]Resets the parser to string parser mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!EnableByteCode@{EnableByteCode}}
+\index{EnableByteCode@{EnableByteCode}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[EnableByteCode]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::EnableByteCode (bool {\em a\_\-bIsOn} = {\tt true})}\label{classmu_1_1ParserBase_61f4495b8b1e89924f01fe392e2e521f}
+
+
+Enable or disable parsing from Bytecode. 
+
+\begin{Desc}
+\item[Attention:]There is no reason to disable bytecode. It will drastically decrease parsing speed. \end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!EnableBuiltInOprt@{EnableBuiltInOprt}}
+\index{EnableBuiltInOprt@{EnableBuiltInOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[EnableBuiltInOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::EnableBuiltInOprt (bool {\em a\_\-bIsOn} = {\tt true})}\label{classmu_1_1ParserBase_df5cb2ffd21f51fac2633a4976fe1e2d}
+
+
+Enable or disable the built in binary operators. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]m\_\-bBuiltInOp, ReInit()\end{Desc}
+If you disable the built in binary operators there will be no binary operators defined. Thus you must add them manually one by one. It is not possible to disable built in operators selectively. This function will Reinitialize the parser by calling ReInit(). 
+
+Referenced by mu::ParserInt::InitOprt().\index{mu::ParserBase@{mu::ParserBase}!HasBuiltInOprt@{HasBuiltInOprt}}
+\index{HasBuiltInOprt@{HasBuiltInOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[HasBuiltInOprt]{\setlength{\rightskip}{0pt plus 5cm}bool mu::ParserBase::HasBuiltInOprt () const}\label{classmu_1_1ParserBase_b1f44f5270153cefe9595f06581ffd29}
+
+
+Query status of built in variables. 
+
+\begin{Desc}
+\item[Returns:]m\_\-bBuiltInOp; true if built in operators are enabled. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!AddValIdent@{AddValIdent}}
+\index{AddValIdent@{AddValIdent}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[AddValIdent]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::AddValIdent ({\bf identfun\_\-type} {\em a\_\-pCallback})}\label{classmu_1_1ParserBase_0b49dbe051415f9d2a9d5564c38609e3}
+
+
+
+
+Referenced by mu::Parser::Parser(), mu::ParserComplex::ParserComplex(), and mu::ParserInt::ParserInt().\index{mu::ParserBase@{mu::ParserBase}!DefineOprt@{DefineOprt}}
+\index{DefineOprt@{DefineOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineOprt (const {\bf string\_\-type} \& {\em a\_\-sName}, \/  {\bf fun\_\-type2} {\em a\_\-pFun}, \/  unsigned {\em a\_\-iPrec} = {\tt 0}, \/  bool {\em a\_\-bAllowOpt} = {\tt false})}\label{classmu_1_1ParserBase_aabe9ed5581edf62ad51d02bb17c4f54}
+
+
+Define a binary operator. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em a\_\-pFun}]Pointer to the callback function. \item[\mbox{$\leftarrow$} {\em a\_\-iPrec}]Precedence of the operator. \item[\mbox{$\leftarrow$} {\em a\_\-bAllowOpt}]If this is true the operator may be optimized away. \end{description}
+\end{Desc}
+
+
+References c\_\-DefaultOprt, mu::cmARG\_\-SEP, mu::cmOPRT\_\-BIN, mu::ecBUILTIN\_\-OVERLOAD, Error(), and ValidOprtChars().
+
+Referenced by mu::ParserInt::InitOprt().\index{mu::ParserBase@{mu::ParserBase}!DefineConst@{DefineConst}}
+\index{DefineConst@{DefineConst}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineConst]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineConst (const {\bf string\_\-type} \& {\em a\_\-sName}, \/  {\bf value\_\-type} {\em a\_\-fVal})}\label{classmu_1_1ParserBase_8cbb0a5e193daeea647d80dc89f34c65}
+
+
+Add a user defined constant. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em a\_\-sName}]The name of the constant. \item[\mbox{$\leftarrow$} {\em a\_\-fVal}]the value of the constant. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Postcondition:]Will reset the \doxyref{Parser}{p.}{classmu_1_1Parser} to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParserException}]in case the name contains invalid signs. \end{description}
+\end{Desc}
+
+
+References ValidNameChars().
+
+Referenced by mu::Parser::InitConst().\index{mu::ParserBase@{mu::ParserBase}!DefineStrConst@{DefineStrConst}}
+\index{DefineStrConst@{DefineStrConst}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineStrConst]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineStrConst (const {\bf string\_\-type} \& {\em a\_\-strName}, \/  const {\bf string\_\-type} \& {\em a\_\-strVal})}\label{classmu_1_1ParserBase_64bc1de3b6db42140fe6f4860c30e40a}
+
+
+Define a new string constant. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em a\_\-strName}]The name of the constant. \item[\mbox{$\leftarrow$} {\em a\_\-strVal}]the value of the constant. \end{description}
+\end{Desc}
+
+
+References mu::ecNAME\_\-CONFLICT, Error(), and ValidNameChars().\index{mu::ParserBase@{mu::ParserBase}!DefineVar@{DefineVar}}
+\index{DefineVar@{DefineVar}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineVar]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineVar (const {\bf string\_\-type} \& {\em a\_\-sName}, \/  {\bf value\_\-type} $\ast$ {\em a\_\-pVar})}\label{classmu_1_1ParserBase_8350970819c77352af8d79ce3110393e}
+
+
+Add a user defined variable. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em a\_\-sName}]the variable name \item[\mbox{$\leftarrow$} {\em a\_\-pVar}]A pointer to the variable vaule. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Postcondition:]Will reset the \doxyref{Parser}{p.}{classmu_1_1Parser} to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Precondition:][assert] a\_\-fVar!=0 \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParserException}]in case the name contains invalid signs. \end{description}
+\end{Desc}
+
+
+References mu::ecINVALID\_\-VAR\_\-PTR, mu::ecNAME\_\-CONFLICT, Error(), and ValidNameChars().\index{mu::ParserBase@{mu::ParserBase}!DefinePostfixOprt@{DefinePostfixOprt}}
+\index{DefinePostfixOprt@{DefinePostfixOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefinePostfixOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefinePostfixOprt (const {\bf string\_\-type} \& {\em a\_\-sName}, \/  {\bf fun\_\-type1} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpt} = {\tt true})}\label{classmu_1_1ParserBase_e9fb4d2348213a0e42dc07a4589ac654}
+
+
+Add a user defined operator. 
+
+\begin{Desc}
+\item[Postcondition:]Will reset the \doxyref{Parser}{p.}{classmu_1_1Parser} to string parsing mode. \end{Desc}
+
+
+References mu::cmOPRT\_\-POSTFIX, mu::prPOSTFIX, and ValidOprtChars().\index{mu::ParserBase@{mu::ParserBase}!DefineInfixOprt@{DefineInfixOprt}}
+\index{DefineInfixOprt@{DefineInfixOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineInfixOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineInfixOprt (const {\bf string\_\-type} \& {\em a\_\-sName}, \/  {\bf fun\_\-type1} {\em a\_\-pFun}, \/  int {\em a\_\-iPrec} = {\tt prINFIX}, \/  bool {\em a\_\-bAllowOpt} = {\tt true})}\label{classmu_1_1ParserBase_5e26f06efc7564a85a5f5ab682ba5a23}
+
+
+Add a user defined operator. 
+
+\begin{Desc}
+\item[Postcondition:]Will reset the \doxyref{Parser}{p.}{classmu_1_1Parser} to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em a\_\-sName}]operator Identifier \item[\mbox{$\leftarrow$} {\em a\_\-pFun}]Operator callback function \item[\mbox{$\leftarrow$} {\em a\_\-iPrec}]Operator Precedence (default=prSIGN) \item[\mbox{$\leftarrow$} {\em a\_\-bAllowOpt}]True if operator is volatile (default=false) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]\doxyref{EPrec}{p.}{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea} \end{Desc}
+
+
+References mu::cmOPRT\_\-INFIX, and ValidOprtChars().
+
+Referenced by mu::ParserInt::InitOprt(), and mu::Parser::InitOprt().\index{mu::ParserBase@{mu::ParserBase}!ClearVar@{ClearVar}}
+\index{ClearVar@{ClearVar}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ClearVar]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::ClearVar ()}\label{classmu_1_1ParserBase_dd23e405d36de71de6b386bc0eb4b57c}
+
+
+Clear all user defined variables. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]Resets the parser to string parsing mode by calling ReInit. \end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!ClearFun@{ClearFun}}
+\index{ClearFun@{ClearFun}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ClearFun]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::ClearFun ()}\label{classmu_1_1ParserBase_bc296c44f8a9522b2cf12a9ad36071b2}
+
+
+Clear all functions. 
+
+\begin{Desc}
+\item[Postcondition:]Resets the parser to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!ClearConst@{ClearConst}}
+\index{ClearConst@{ClearConst}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ClearConst]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::ClearConst ()}\label{classmu_1_1ParserBase_dbc445632a056820ff722ca18c1331e9}
+
+
+Clear all user defined constants. 
+
+Both numeric and string constants will be removed from the internal storage. \begin{Desc}
+\item[Postcondition:]Resets the parser to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!ClearInfixOprt@{ClearInfixOprt}}
+\index{ClearInfixOprt@{ClearInfixOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ClearInfixOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::ClearInfixOprt ()}\label{classmu_1_1ParserBase_7485eccf3281c879dad059966e3cbe22}
+
+
+Clear the user defined Prefix operators. 
+
+\begin{Desc}
+\item[Postcondition:]Resets the parser to string parser mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!ClearPostfixOprt@{ClearPostfixOprt}}
+\index{ClearPostfixOprt@{ClearPostfixOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ClearPostfixOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::ClearPostfixOprt ()}\label{classmu_1_1ParserBase_b8a8356532f0047d8a33a46bc77f4bc5}
+
+
+Clear all user defined postfix operators. 
+
+\begin{Desc}
+\item[Postcondition:]Resets the parser to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!ClearOprt@{ClearOprt}}
+\index{ClearOprt@{ClearOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ClearOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::ClearOprt ()}\label{classmu_1_1ParserBase_a5fd05a7bb2b8bc9f9745c5377c0ebf3}
+
+
+Clear all user defined binary operators. 
+
+\begin{Desc}
+\item[Postcondition:]Resets the parser to string parsing mode. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!RemoveVar@{RemoveVar}}
+\index{RemoveVar@{RemoveVar}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[RemoveVar]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::RemoveVar (const {\bf string\_\-type} \& {\em a\_\-strVarName})}\label{classmu_1_1ParserBase_8e5a54620200dfbd42ec084c29249d94}
+
+
+Remove a variable from internal storage. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]Removes a variable if it exists. If the Variable does not exist nothing will be done. \end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!GetUsedVar@{GetUsedVar}}
+\index{GetUsedVar@{GetUsedVar}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetUsedVar]{\setlength{\rightskip}{0pt plus 5cm}const {\bf varmap\_\-type} \& mu::ParserBase::GetUsedVar () const}\label{classmu_1_1ParserBase_42cd9be355fea027e5c11acaf1c40767}
+
+
+Return a map containing the used variables only. 
+
+\index{mu::ParserBase@{mu::ParserBase}!GetVar@{GetVar}}
+\index{GetVar@{GetVar}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetVar]{\setlength{\rightskip}{0pt plus 5cm}const {\bf varmap\_\-type} \& mu::ParserBase::GetVar () const}\label{classmu_1_1ParserBase_aad6f7b4889b843111f18510f4f5253b}
+
+
+Return a map containing the used variables only. 
+
+\index{mu::ParserBase@{mu::ParserBase}!GetConst@{GetConst}}
+\index{GetConst@{GetConst}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetConst]{\setlength{\rightskip}{0pt plus 5cm}const {\bf valmap\_\-type} \& mu::ParserBase::GetConst () const}\label{classmu_1_1ParserBase_0175999f0834125322a615f0b2926be6}
+
+
+Return a map containing all parser constants. 
+
+\index{mu::ParserBase@{mu::ParserBase}!GetExpr@{GetExpr}}
+\index{GetExpr@{GetExpr}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetExpr]{\setlength{\rightskip}{0pt plus 5cm}const {\bf string\_\-type} \& mu::ParserBase::GetExpr () const}\label{classmu_1_1ParserBase_c7fda9e26aaf03d06d5342a10e03d18c}
+
+
+Retrieve the formula. 
+
+\index{mu::ParserBase@{mu::ParserBase}!GetFunDef@{GetFunDef}}
+\index{GetFunDef@{GetFunDef}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetFunDef]{\setlength{\rightskip}{0pt plus 5cm}const {\bf funmap\_\-type} \& mu::ParserBase::GetFunDef () const}\label{classmu_1_1ParserBase_326eaefb5a2c9c14aa8d34213690a22f}
+
+
+Return prototypes of all parser functions. 
+
+\begin{Desc}
+\item[Returns:]m\_\-FunDef \end{Desc}
+\begin{Desc}
+\item[See also:]FunProt \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]The return type is a map of the public type \doxyref{funmap\_\-type}{p.}{namespacemu_a38fb627ca71e44a49de0f2fe4d9031d} containing the prototype definitions for all numerical parser functions. String functions are not part of this map. The Prototype definition is encapsulated in objects of the class FunProt one per parser function each associated with function names via a map construct. \end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!GetOprtDef@{GetOprtDef}}
+\index{GetOprtDef@{GetOprtDef}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetOprtDef]{\setlength{\rightskip}{0pt plus 5cm}const {\bf char\_\-type} $\ast$$\ast$ mu::ParserBase::GetOprtDef () const}\label{classmu_1_1ParserBase_5d1973c228e5b51bb700fbe145cd678c}
+
+
+Get the default symbols used for the built in operators. 
+
+\begin{Desc}
+\item[See also:]\doxyref{c\_\-DefaultOprt}{p.}{classmu_1_1ParserBase_5a191f373ac5bb1118564822eb12854e} \end{Desc}
+
+
+References c\_\-DefaultOprt.\index{mu::ParserBase@{mu::ParserBase}!DefineNameChars@{DefineNameChars}}
+\index{DefineNameChars@{DefineNameChars}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineNameChars]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineNameChars (const {\bf char\_\-type} $\ast$ {\em a\_\-szCharset})}\label{classmu_1_1ParserBase_df259477bbaa85e8dd7cb69ef4aa0a7a}
+
+
+Define the set of valid characters to be used in names of functions, variables, constants. 
+
+
+
+Referenced by mu::ParserInt::InitCharSets(), and mu::Parser::InitCharSets().\index{mu::ParserBase@{mu::ParserBase}!DefineOprtChars@{DefineOprtChars}}
+\index{DefineOprtChars@{DefineOprtChars}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineOprtChars]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineOprtChars (const {\bf char\_\-type} $\ast$ {\em a\_\-szCharset})}\label{classmu_1_1ParserBase_afd21c418397d5412a75e5b2c1d6db58}
+
+
+Define the set of valid characters to be used in names of binary operators and postfix operators. 
+
+
+
+Referenced by mu::ParserInt::InitCharSets(), and mu::Parser::InitCharSets().\index{mu::ParserBase@{mu::ParserBase}!DefineInfixOprtChars@{DefineInfixOprtChars}}
+\index{DefineInfixOprtChars@{DefineInfixOprtChars}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[DefineInfixOprtChars]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::DefineInfixOprtChars (const {\bf char\_\-type} $\ast$ {\em a\_\-szCharset})}\label{classmu_1_1ParserBase_c76d0ceb4ee58babc4f1d0a9ca1e4240}
+
+
+Define the set of valid characters to be used in names of infix operators. 
+
+
+
+Referenced by mu::ParserInt::InitCharSets(), and mu::Parser::InitCharSets().\index{mu::ParserBase@{mu::ParserBase}!ValidNameChars@{ValidNameChars}}
+\index{ValidNameChars@{ValidNameChars}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ValidNameChars]{\setlength{\rightskip}{0pt plus 5cm}const {\bf char\_\-type} $\ast$ mu::ParserBase::ValidNameChars () const}\label{classmu_1_1ParserBase_0a6b593d97cb020ac2bd9c6a1a65d818}
+
+
+Virtual function that defines the characters allowed in name identifiers. 
+
+\begin{Desc}
+\item[See also:]\doxyref{ValidOprtChars}{p.}{classmu_1_1ParserBase_633d799bd4434079eef4de486dde21bc}, ValidPrefixOprtChars \end{Desc}
+
+
+Referenced by DefineConst(), DefineStrConst(), DefineVar(), and mu::ParserTokenReader::ReadNextToken().\index{mu::ParserBase@{mu::ParserBase}!ValidOprtChars@{ValidOprtChars}}
+\index{ValidOprtChars@{ValidOprtChars}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ValidOprtChars]{\setlength{\rightskip}{0pt plus 5cm}const {\bf char\_\-type} $\ast$ mu::ParserBase::ValidOprtChars () const}\label{classmu_1_1ParserBase_633d799bd4434079eef4de486dde21bc}
+
+
+Virtual function that defines the characters allowed in operator definitions. 
+
+\begin{Desc}
+\item[See also:]\doxyref{ValidNameChars}{p.}{classmu_1_1ParserBase_0a6b593d97cb020ac2bd9c6a1a65d818}, ValidPrefixOprtChars \end{Desc}
+
+
+Referenced by DefineInfixOprt(), DefineOprt(), and DefinePostfixOprt().\index{mu::ParserBase@{mu::ParserBase}!ValidInfixOprtChars@{ValidInfixOprtChars}}
+\index{ValidInfixOprtChars@{ValidInfixOprtChars}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ValidInfixOprtChars]{\setlength{\rightskip}{0pt plus 5cm}const {\bf char\_\-type} $\ast$ mu::ParserBase::ValidInfixOprtChars () const}\label{classmu_1_1ParserBase_0e8e9cca6ad084a1c55e38fcdd574d5c}
+
+
+Virtual function that defines the characters allowed in infix operator definitions. 
+
+\begin{Desc}
+\item[See also:]\doxyref{ValidNameChars}{p.}{classmu_1_1ParserBase_0a6b593d97cb020ac2bd9c6a1a65d818}, \doxyref{ValidOprtChars}{p.}{classmu_1_1ParserBase_633d799bd4434079eef4de486dde21bc} \end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!SetArgSep@{SetArgSep}}
+\index{SetArgSep@{SetArgSep}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[SetArgSep]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::SetArgSep ({\bf char\_\-type} {\em cArgSep})}\label{classmu_1_1ParserBase_de4090449c9fd55759fffb933e0f92e3}
+
+
+Set argument separator. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cArgSep}]the argument separator character. \end{description}
+\end{Desc}
+\index{mu::ParserBase@{mu::ParserBase}!GetArgSep@{GetArgSep}}
+\index{GetArgSep@{GetArgSep}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[GetArgSep]{\setlength{\rightskip}{0pt plus 5cm}{\bf char\_\-type} mu::ParserBase::GetArgSep () const}\label{classmu_1_1ParserBase_a007f27faff0a254e9628d197dc98492}
+
+
+Get the argument separator character. 
+
+\index{mu::ParserBase@{mu::ParserBase}!Error@{Error}}
+\index{Error@{Error}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[Error]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::Error ({\bf EErrorCodes} {\em a\_\-iErrc}, \/  int {\em a\_\-iPos} = {\tt (int)mu::string\_\-type::npos}, \/  const {\bf string\_\-type} \& {\em a\_\-sTok} = {\tt {\bf string\_\-type}()}) const}\label{classmu_1_1ParserBase_43bf7541771e918d32a1992e566394dc}
+
+
+Create an error containing the parse error position. 
+
+This function will create an \doxyref{Parser}{p.}{classmu_1_1Parser} Exception object containing the error text and its position.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-iErrc}][in] The error code of type \doxyref{EErrorCodes}{p.}{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a}. \item[{\em a\_\-iPos}][in] The position where the error was detected. \item[{\em a\_\-sTok}][in] The token string representation associated with the error. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParserException}]always throws thats the only purpose of this function. \end{description}
+\end{Desc}
+
+
+Referenced by DefineOprt(), DefineStrConst(), DefineVar(), and SetExpr().\index{mu::ParserBase@{mu::ParserBase}!Init@{Init}}
+\index{Init@{Init}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[Init]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserBase::Init ()\hspace{0.3cm}{\tt  [protected]}}\label{classmu_1_1ParserBase_2741c5cc27b9de19af04ab5627abed5f}
+
+
+Initialize user defined functions. 
+
+Calls the virtual functions \doxyref{InitFun()}{p.}{classmu_1_1ParserBase_1f94305e7b7e9abff6d41242dcf188ed}, \doxyref{InitConst()}{p.}{classmu_1_1ParserBase_ad904fb3df8f28659f36d7ce7db4a28c} and \doxyref{InitOprt()}{p.}{classmu_1_1ParserBase_4df16813c9002ff08c96929ba8f0d32b}. 
+
+References InitCharSets(), InitConst(), InitFun(), and InitOprt().\index{mu::ParserBase@{mu::ParserBase}!InitCharSets@{InitCharSets}}
+\index{InitCharSets@{InitCharSets}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[InitCharSets]{\setlength{\rightskip}{0pt plus 5cm}virtual void mu::ParserBase::InitCharSets ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classmu_1_1ParserBase_3f5c53ef3cba6ab939261677dc2d9709}
+
+
+
+
+Implemented in {\bf mu::Parser} \doxyref{}{p.}{classmu_1_1Parser_3279e2cf701ba8c2f850f5826a147f75}, and {\bf mu::ParserInt} \doxyref{}{p.}{classmu_1_1ParserInt_a9589acaa68c3341490ae51bca9b0e78}.
+
+Referenced by Init().\index{mu::ParserBase@{mu::ParserBase}!InitFun@{InitFun}}
+\index{InitFun@{InitFun}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[InitFun]{\setlength{\rightskip}{0pt plus 5cm}virtual void mu::ParserBase::InitFun ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classmu_1_1ParserBase_1f94305e7b7e9abff6d41242dcf188ed}
+
+
+
+
+Implemented in {\bf mu::Parser} \doxyref{}{p.}{classmu_1_1Parser_9da582fd5385acfd97ec99a8790f8c6d}, and {\bf mu::ParserInt} \doxyref{}{p.}{classmu_1_1ParserInt_f7aa0bcbee6abf01676a3615206f14de}.
+
+Referenced by Init().\index{mu::ParserBase@{mu::ParserBase}!InitConst@{InitConst}}
+\index{InitConst@{InitConst}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[InitConst]{\setlength{\rightskip}{0pt plus 5cm}virtual void mu::ParserBase::InitConst ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classmu_1_1ParserBase_ad904fb3df8f28659f36d7ce7db4a28c}
+
+
+
+
+Implemented in {\bf mu::Parser} \doxyref{}{p.}{classmu_1_1Parser_efd1da7ba62d20d7276b1e70c8cb6a02}, and {\bf mu::ParserInt} \doxyref{}{p.}{classmu_1_1ParserInt_4c59df078eecbe6ac79749271463b400}.
+
+Referenced by Init().\index{mu::ParserBase@{mu::ParserBase}!InitOprt@{InitOprt}}
+\index{InitOprt@{InitOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[InitOprt]{\setlength{\rightskip}{0pt plus 5cm}virtual void mu::ParserBase::InitOprt ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classmu_1_1ParserBase_4df16813c9002ff08c96929ba8f0d32b}
+
+
+
+
+Implemented in {\bf mu::Parser} \doxyref{}{p.}{classmu_1_1Parser_4ed9bdd0565bd57325bc49c12cf73e06}, and {\bf mu::ParserInt} \doxyref{}{p.}{classmu_1_1ParserInt_9bc5fc5f5be541a2329952138ad933e9}.
+
+Referenced by Init().
+
+\subsection{Friends And Related Function Documentation}
+\index{mu::ParserBase@{mu::ParserBase}!ParserTokenReader@{ParserTokenReader}}
+\index{ParserTokenReader@{ParserTokenReader}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[ParserTokenReader]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf ParserTokenReader}\hspace{0.3cm}{\tt  [friend]}}\label{classmu_1_1ParserBase_4a4908a2dc2cc3723b45602a3e722f79}
+
+
+
+
+\subsection{Member Data Documentation}
+\index{mu::ParserBase@{mu::ParserBase}!c\_\-DefaultOprt@{c\_\-DefaultOprt}}
+\index{c\_\-DefaultOprt@{c\_\-DefaultOprt}!mu::ParserBase@{mu::ParserBase}}
+\subsubsection[c\_\-DefaultOprt]{\setlength{\rightskip}{0pt plus 5cm}{\bf char\_\-type} $\ast$ {\bf mu::ParserBase::c\_\-DefaultOprt}\hspace{0.3cm}{\tt  [static, protected]}}\label{classmu_1_1ParserBase_5a191f373ac5bb1118564822eb12854e}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+  { 
+    _T("<="), _T(">="),  _T("!="), 
+    _T("=="), _T("<"),   _T(">"), 
+    _T("+"),  _T("-"),   _T("*"), 
+    _T("/"),  _T("^"),   _T("and"), 
+    _T("or"), _T("xor"), _T("="), 
+    _T("("),  _T(")"), 0 
+  }
+\end{verbatim}
+\end{Code}
+Identifiers for built in binary operators. 
+
+When defining custom binary operators with AddOprt(...) make sure not to choose names conflicting with these definitions. 
+
+Referenced by DefineOprt(), and GetOprtDef().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParserBase.h}\item 
+{\bf muParserBase.cpp}\end{CompactItemize}

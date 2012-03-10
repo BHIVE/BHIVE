@@ -1,0 +1,51 @@
+\section{muParserBase.h File Reference}
+\label{muParserBase_8h}\index{muParserBase.h@{muParserBase.h}}
+
+
+\subsection{Detailed Description}
+This file contains the class definition of the muparser engine. 
+
+
+
+{\tt \#include $<$cmath$>$}\par
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include $<$memory$>$}\par
+{\tt \#include \char`\"{}muParserDef.h\char`\"{}}\par
+{\tt \#include \char`\"{}muParserStack.h\char`\"{}}\par
+{\tt \#include \char`\"{}muParserTokenReader.h\char`\"{}}\par
+{\tt \#include \char`\"{}muParserBytecode.h\char`\"{}}\par
+{\tt \#include \char`\"{}muParserError.h\char`\"{}}\par
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace {\bf mu}
+\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf mu::ParserBase}
+\begin{CompactList}\small\item\em Mathematical expressions parser (base parser engine). \item\end{CompactList}\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf MUP\_\-DEFINE\_\-FUNC}(TYPE)
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{muParserBase.h@{muParserBase.h}!MUP\_\-DEFINE\_\-FUNC@{MUP\_\-DEFINE\_\-FUNC}}
+\index{MUP\_\-DEFINE\_\-FUNC@{MUP\_\-DEFINE\_\-FUNC}!muParserBase.h@{muParserBase.h}}
+\subsubsection[MUP\_\-DEFINE\_\-FUNC]{\setlength{\rightskip}{0pt plus 5cm}\#define MUP\_\-DEFINE\_\-FUNC(TYPE)}\label{muParserBase_8h_f2dfa18864cf91426f80969960372761}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}inline void DefineFun(const string_type &a_strName, TYPE a_pFun, bool a_bAllowOpt = true)  \
+    {                                                                                   \
+      AddCallback( a_strName, ParserCallback(a_pFun, a_bAllowOpt),                      \
+                   m_FunDef, ValidNameChars() );                                        \
+    }
+\end{verbatim}
+\end{Code}

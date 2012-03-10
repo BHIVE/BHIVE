@@ -1,0 +1,145 @@
+\section{Action Class Reference}
+\label{classAction}\index{Action@{Action}}
+{\tt \#include $<$arnie.hh$>$}
+
+Inheritance diagram for Action::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classAction}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+action class for working on an agent 
+
+actions are standardised methods that manipulate the dataset of an agent. a message tells the agent to perform an action.
+
+\begin{Desc}
+\item[See also:]message\end{Desc}
+\begin{Desc}
+\item[{\bf Todo}]everything\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 13th, 2009 last edited: Oct 14th, 2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Action} ()
+\begin{CompactList}\small\item\em default constructor \item\end{CompactList}\item 
+{\bf Action} (int i)
+\item 
+virtual {\bf $\sim$Action} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf setAgent} ({\bf Agent} $\ast$ag)
+\item 
+void {\bf setIdentifyer} (int id)
+\item 
+virtual void {\bf fire} ({\bf Data} $\ast$d)=0
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf unique\_\-identifyer}
+\begin{CompactList}\small\item\em identifyer of an action \item\end{CompactList}\item 
+{\bf Agent} $\ast$ {\bf agent}
+\begin{CompactList}\small\item\em pointer to agent on which action works \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Action@{Action}!Action@{Action}}
+\index{Action@{Action}!Action@{Action}}
+\subsubsection[Action]{\setlength{\rightskip}{0pt plus 5cm}Action::Action ()\hspace{0.3cm}{\tt  [inline]}}\label{classAction_4f457ccfc8336b565cadca56b36e0271}
+
+
+default constructor 
+
+\index{Action@{Action}!Action@{Action}}
+\index{Action@{Action}!Action@{Action}}
+\subsubsection[Action]{\setlength{\rightskip}{0pt plus 5cm}Action::Action (int {\em i})\hspace{0.3cm}{\tt  [inline]}}\label{classAction_7f9f3595b25e3339c07d9368cf8b3b8b}
+
+
+constructor \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]unique\_\-identifyer \end{description}
+\end{Desc}
+
+
+References unique\_\-identifyer.\index{Action@{Action}!$\sim$Action@{$\sim$Action}}
+\index{$\sim$Action@{$\sim$Action}!Action@{Action}}
+\subsubsection[$\sim$Action]{\setlength{\rightskip}{0pt plus 5cm}virtual Action::$\sim$Action ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classAction_bcf4c6358f53a666631ace11b325a7cd}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Action@{Action}!setAgent@{setAgent}}
+\index{setAgent@{setAgent}!Action@{Action}}
+\subsubsection[setAgent]{\setlength{\rightskip}{0pt plus 5cm}void Action::setAgent ({\bf Agent} $\ast$ {\em ag})\hspace{0.3cm}{\tt  [inline]}}\label{classAction_60adbfdfbe319313c85343b3ba0d99a9}
+
+
+set agent on which this action is supposed to work. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$ag}]pointer to agent \end{description}
+\end{Desc}
+
+
+References agent.
+
+Referenced by DummyComposer::createAgent().\index{Action@{Action}!setIdentifyer@{setIdentifyer}}
+\index{setIdentifyer@{setIdentifyer}!Action@{Action}}
+\subsubsection[setIdentifyer]{\setlength{\rightskip}{0pt plus 5cm}void Action::setIdentifyer (int {\em id})\hspace{0.3cm}{\tt  [inline]}}\label{classAction_60e81568840b5d4ee45dfb3ad14616c6}
+
+
+sets identifyer of this action \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id}]identifyer \end{description}
+\end{Desc}
+
+
+References unique\_\-identifyer.\index{Action@{Action}!fire@{fire}}
+\index{fire@{fire}!Action@{Action}}
+\subsubsection[fire]{\setlength{\rightskip}{0pt plus 5cm}virtual void Action::fire ({\bf Data} $\ast$ {\em d})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classAction_f7ac606d48c797d543ff2c460c44b927}
+
+
+executes an action \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em d}]pointer to data-object containing the argument for the action \end{description}
+\end{Desc}
+
+
+Implemented in {\bf DummyWaveAction} \doxyref{}{p.}{classDummyWaveAction_da12711cb5d2ff3f5df637dbb28ebeff}.
+
+\subsection{Member Data Documentation}
+\index{Action@{Action}!unique\_\-identifyer@{unique\_\-identifyer}}
+\index{unique\_\-identifyer@{unique\_\-identifyer}!Action@{Action}}
+\subsubsection[unique\_\-identifyer]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Action::unique\_\-identifyer}\hspace{0.3cm}{\tt  [protected]}}\label{classAction_61aae79537e7cc6c00324cb59d4c6c88}
+
+
+identifyer of an action 
+
+
+
+Referenced by Action(), and setIdentifyer().\index{Action@{Action}!agent@{agent}}
+\index{agent@{agent}!Action@{Action}}
+\subsubsection[agent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$ {\bf Action::agent}\hspace{0.3cm}{\tt  [protected]}}\label{classAction_9058d33fda7185b2edc6b0e60d267f5b}
+
+
+pointer to agent on which action works 
+
+
+
+Referenced by DummyWaveAction::fire(), and setAgent().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf arnie.hh}\end{CompactItemize}

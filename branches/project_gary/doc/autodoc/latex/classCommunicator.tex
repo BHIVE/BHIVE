@@ -1,0 +1,65 @@
+\section{Communicator Class Reference}
+\label{classCommunicator}\index{Communicator@{Communicator}}
+{\tt \#include $<$communicator.hh$>$}
+
+Inheritance diagram for Communicator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classCommunicator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Communicator} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+virtual {\bf $\sim$Communicator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual void {\bf receiveMessages} ()=0
+\begin{CompactList}\small\item\em method for receiving messages \item\end{CompactList}\item 
+virtual void {\bf sendMessages} ({\bf Message} m, int dest)=0
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Communicator@{Communicator}!Communicator@{Communicator}}
+\index{Communicator@{Communicator}!Communicator@{Communicator}}
+\subsubsection[Communicator]{\setlength{\rightskip}{0pt plus 5cm}Communicator::Communicator ()\hspace{0.3cm}{\tt  [inline]}}\label{classCommunicator_bd4c26c6a901e571bc9cfc4259e65de3}
+
+
+constructor 
+
+\index{Communicator@{Communicator}!$\sim$Communicator@{$\sim$Communicator}}
+\index{$\sim$Communicator@{$\sim$Communicator}!Communicator@{Communicator}}
+\subsubsection[$\sim$Communicator]{\setlength{\rightskip}{0pt plus 5cm}virtual Communicator::$\sim$Communicator ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classCommunicator_8c406b6e6bcaf39fcee8bf0c094f8eca}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Communicator@{Communicator}!receiveMessages@{receiveMessages}}
+\index{receiveMessages@{receiveMessages}!Communicator@{Communicator}}
+\subsubsection[receiveMessages]{\setlength{\rightskip}{0pt plus 5cm}virtual void Communicator::receiveMessages ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classCommunicator_f394e4e8072947e14bc3699a2613fe77}
+
+
+method for receiving messages 
+
+
+
+Implemented in {\bf SerialCommunicator} \doxyref{}{p.}{classSerialCommunicator_020ed57d330b13e4919357dedc72d2f0}.\index{Communicator@{Communicator}!sendMessages@{sendMessages}}
+\index{sendMessages@{sendMessages}!Communicator@{Communicator}}
+\subsubsection[sendMessages]{\setlength{\rightskip}{0pt plus 5cm}virtual void Communicator::sendMessages ({\bf Message} {\em m}, \/  int {\em dest})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classCommunicator_ead9f714ffcc0c6c37c880474fce1cd2}
+
+
+method for sending messages \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]message to be send \item[{\em dest}]identifyer of destination \end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf communicator.hh}\end{CompactItemize}

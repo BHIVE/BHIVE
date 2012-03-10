@@ -1,0 +1,91 @@
+\section{mu::ParserInt Class Reference}
+\label{classmu_1_1ParserInt}\index{mu::ParserInt@{mu::ParserInt}}
+{\tt \#include $<$muParserInt.h$>$}
+
+Inheritance diagram for mu::ParserInt::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classmu_1_1ParserInt}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+Mathematical expressions parser. 
+
+This version of the parser handles only integer numbers. It disables the built in operators thus it is slower than muParser. Integer values are stored in the double value\_\-type and converted if needed. \subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserInt} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual void {\bf InitFun} ()
+\begin{CompactList}\small\item\em Initialize the default functions. \item\end{CompactList}\item 
+virtual void {\bf InitOprt} ()
+\begin{CompactList}\small\item\em Initialize operators. \item\end{CompactList}\item 
+virtual void {\bf InitConst} ()
+\item 
+virtual void {\bf InitCharSets} ()
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserInt@{mu::ParserInt}!ParserInt@{ParserInt}}
+\index{ParserInt@{ParserInt}!mu::ParserInt@{mu::ParserInt}}
+\subsubsection[ParserInt]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserInt::ParserInt ()}\label{classmu_1_1ParserInt_2e2776f16a30d3f1aa698437f7c4cb5f}
+
+
+Constructor. 
+
+Call \doxyref{ParserBase}{p.}{classmu_1_1ParserBase} class constructor and trigger Function, Operator and Constant initialization. 
+
+References mu::ParserBase::AddValIdent(), InitCharSets(), InitFun(), and InitOprt().
+
+\subsection{Member Function Documentation}
+\index{mu::ParserInt@{mu::ParserInt}!InitFun@{InitFun}}
+\index{InitFun@{InitFun}!mu::ParserInt@{mu::ParserInt}}
+\subsubsection[InitFun]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserInt::InitFun ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1ParserInt_f7aa0bcbee6abf01676a3615206f14de}
+
+
+Initialize the default functions. 
+
+
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_1f94305e7b7e9abff6d41242dcf188ed}.
+
+Referenced by ParserInt().\index{mu::ParserInt@{mu::ParserInt}!InitOprt@{InitOprt}}
+\index{InitOprt@{InitOprt}!mu::ParserInt@{mu::ParserInt}}
+\subsubsection[InitOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserInt::InitOprt ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1ParserInt_9bc5fc5f5be541a2329952138ad933e9}
+
+
+Initialize operators. 
+
+
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_4df16813c9002ff08c96929ba8f0d32b}.
+
+References mu::ParserBase::DefineInfixOprt(), mu::ParserBase::DefineOprt(), mu::ParserBase::EnableBuiltInOprt(), mu::prADD\_\-SUB, mu::prCMP, mu::prLOGIC, and mu::prMUL\_\-DIV.
+
+Referenced by ParserInt().\index{mu::ParserInt@{mu::ParserInt}!InitConst@{InitConst}}
+\index{InitConst@{InitConst}!mu::ParserInt@{mu::ParserInt}}
+\subsubsection[InitConst]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserInt::InitConst ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1ParserInt_4c59df078eecbe6ac79749271463b400}
+
+
+
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_ad904fb3df8f28659f36d7ce7db4a28c}.\index{mu::ParserInt@{mu::ParserInt}!InitCharSets@{InitCharSets}}
+\index{InitCharSets@{InitCharSets}!mu::ParserInt@{mu::ParserInt}}
+\subsubsection[InitCharSets]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserInt::InitCharSets ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1ParserInt_a9589acaa68c3341490ae51bca9b0e78}
+
+
+
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_3f5c53ef3cba6ab939261677dc2d9709}.
+
+References mu::ParserBase::DefineInfixOprtChars(), mu::ParserBase::DefineNameChars(), and mu::ParserBase::DefineOprtChars().
+
+Referenced by ParserInt().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParserInt.h}\item 
+{\bf muParserInt.cpp}\end{CompactItemize}

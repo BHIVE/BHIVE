@@ -1,0 +1,68 @@
+\section{Dummy::DummyMessageGenerator Class Reference}
+\label{classDummy_1_1DummyMessageGenerator}\index{Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}}
+{\tt \#include $<$dummymessagegenerator.hh$>$}
+
+Inheritance diagram for Dummy::DummyMessageGenerator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classDummy_1_1DummyMessageGenerator}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+this class implements the messagegenerator 
+
+\begin{Desc}
+\item[{\bf Todo}]\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 15, 2009 last edited 10-15-2009 \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf DummyMessageGenerator} ()
+\item 
+{\bf DummyMessageGenerator} ({\bf Agent} $\ast$)
+\item 
+{\bf $\sim$DummyMessageGenerator} ()
+\item 
+void {\bf placeMessage} ()
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}!DummyMessageGenerator@{DummyMessageGenerator}}
+\index{DummyMessageGenerator@{DummyMessageGenerator}!Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}}
+\subsubsection[DummyMessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}DummyMessageGenerator::DummyMessageGenerator ()}\label{classDummy_1_1DummyMessageGenerator_8f7b33594612f29af957b4a364d2a224}
+
+
+\index{Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}!DummyMessageGenerator@{DummyMessageGenerator}}
+\index{DummyMessageGenerator@{DummyMessageGenerator}!Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}}
+\subsubsection[DummyMessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}DummyMessageGenerator::DummyMessageGenerator ({\bf Agent} $\ast$ {\em ag})}\label{classDummy_1_1DummyMessageGenerator_7a7c13e499142e79927209c0e29135c7}
+
+
+\index{Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}!$\sim$DummyMessageGenerator@{$\sim$DummyMessageGenerator}}
+\index{$\sim$DummyMessageGenerator@{$\sim$DummyMessageGenerator}!Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}}
+\subsubsection[$\sim$DummyMessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}DummyMessageGenerator::$\sim$DummyMessageGenerator ()}\label{classDummy_1_1DummyMessageGenerator_0542d216ef2dc0c0b522e9185c5c20c1}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}!placeMessage@{placeMessage}}
+\index{placeMessage@{placeMessage}!Dummy::DummyMessageGenerator@{Dummy::DummyMessageGenerator}}
+\subsubsection[placeMessage]{\setlength{\rightskip}{0pt plus 5cm}void DummyMessageGenerator::placeMessage ()\hspace{0.3cm}{\tt  [virtual]}}\label{classDummy_1_1DummyMessageGenerator_5a7af3c76d74a53211e440fc86514d0c}
+
+
+generate message and puts it into the outbox of the source agent 
+
+Implements {\bf Hive::MessageGenerator} \doxyref{}{p.}{classHive_1_1MessageGenerator_874d881a3aeff02ca53391714f659a20}.
+
+References Hive::Agent::placeMessageOnMessageQueue(), Hive::Message::setAction(), Hive::Message::setArgument(), and Hive::MessageGenerator::source.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf dummymessagegenerator.hh}\item 
+{\bf dummymessagegenerator.cpp}\end{CompactItemize}

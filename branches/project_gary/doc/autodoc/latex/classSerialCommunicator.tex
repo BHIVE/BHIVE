@@ -1,0 +1,86 @@
+\section{SerialCommunicator Class Reference}
+\label{classSerialCommunicator}\index{SerialCommunicator@{SerialCommunicator}}
+{\tt \#include $<$serialcommunicator.hh$>$}
+
+Inheritance diagram for SerialCommunicator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classSerialCommunicator}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+serialcommunicator implements the communicator 
+
+a serial communicator is needed to exchange messages among agent for the case that the entire simulation lives on a single cpu.
+
+\begin{Desc}
+\item[{\bf Todo}]\end{Desc}
+\begin{Desc}
+\item[Author:]garrit jentsch \end{Desc}
+\begin{Desc}
+\item[Date:]Oct 14, 2009, last edited 10-15-2009 \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf SerialCommunicator} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$SerialCommunicator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf receiveMessages} ()
+\begin{CompactList}\small\item\em method for receiving messages \item\end{CompactList}\item 
+void {\bf sendMessage} ({\bf Message} m, int dest)
+\item 
+void {\bf setupCommunicationMap} (map$<$ int, {\bf Agent} $\ast$ $>$ \&c)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{SerialCommunicator@{SerialCommunicator}!SerialCommunicator@{SerialCommunicator}}
+\index{SerialCommunicator@{SerialCommunicator}!SerialCommunicator@{SerialCommunicator}}
+\subsubsection[SerialCommunicator]{\setlength{\rightskip}{0pt plus 5cm}SerialCommunicator::SerialCommunicator ()}\label{classSerialCommunicator_58aecf7401bc3cb9005d5d7f0f85d5c6}
+
+
+constructor 
+
+\index{SerialCommunicator@{SerialCommunicator}!$\sim$SerialCommunicator@{$\sim$SerialCommunicator}}
+\index{$\sim$SerialCommunicator@{$\sim$SerialCommunicator}!SerialCommunicator@{SerialCommunicator}}
+\subsubsection[$\sim$SerialCommunicator]{\setlength{\rightskip}{0pt plus 5cm}SerialCommunicator::$\sim$SerialCommunicator ()}\label{classSerialCommunicator_df113eec4ac2a38d007616c7231c5033}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{SerialCommunicator@{SerialCommunicator}!receiveMessages@{receiveMessages}}
+\index{receiveMessages@{receiveMessages}!SerialCommunicator@{SerialCommunicator}}
+\subsubsection[receiveMessages]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::receiveMessages ()\hspace{0.3cm}{\tt  [virtual]}}\label{classSerialCommunicator_020ed57d330b13e4919357dedc72d2f0}
+
+
+method for receiving messages 
+
+
+
+Implements {\bf Communicator} \doxyref{}{p.}{classCommunicator_f394e4e8072947e14bc3699a2613fe77}.\index{SerialCommunicator@{SerialCommunicator}!sendMessage@{sendMessage}}
+\index{sendMessage@{sendMessage}!SerialCommunicator@{SerialCommunicator}}
+\subsubsection[sendMessage]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::sendMessage ({\bf Message} {\em m}, \/  int {\em dest})}\label{classSerialCommunicator_3a50ba8f646e6b63d44707d7bf9e345b}
+
+
+\index{SerialCommunicator@{SerialCommunicator}!setupCommunicationMap@{setupCommunicationMap}}
+\index{setupCommunicationMap@{setupCommunicationMap}!SerialCommunicator@{SerialCommunicator}}
+\subsubsection[setupCommunicationMap]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::setupCommunicationMap (map$<$ int, {\bf Agent} $\ast$ $>$ \& {\em c})}\label{classSerialCommunicator_32689ccc1a3f0e5ae206086240543a7a}
+
+
+sets up the lookup table \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]lookup table \end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf serialcommunicator.hh}\item 
+{\bf serialcommunicator.cpp}\end{CompactItemize}

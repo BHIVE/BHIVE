@@ -1,0 +1,178 @@
+\section{mu::ParserError Class Reference}
+\label{classmu_1_1ParserError}\index{mu::ParserError@{mu::ParserError}}
+{\tt \#include $<$muParserError.h$>$}
+
+
+
+\subsection{Detailed Description}
+Error class of the parser. 
+
+Part of the math parser package.
+
+\begin{Desc}
+\item[Author:]Ingo Berg \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserError} ()
+\begin{CompactList}\small\item\em Default constructor. \item\end{CompactList}\item 
+{\bf ParserError} ({\bf EErrorCodes} a\_\-iErrc)
+\begin{CompactList}\small\item\em This Constructor is used for internal exceptions only. \item\end{CompactList}\item 
+{\bf ParserError} (const {\bf string\_\-type} \&sMsg)
+\begin{CompactList}\small\item\em Construct an error from a message text. \item\end{CompactList}\item 
+{\bf ParserError} ({\bf EErrorCodes} a\_\-iErrc, const {\bf string\_\-type} \&sTok, const {\bf string\_\-type} \&sFormula={\bf string\_\-type}(\_\-T(\char`\"{}(formula is not available)\char`\"{})), int a\_\-iPos=-1)
+\begin{CompactList}\small\item\em Construct an error object. \item\end{CompactList}\item 
+{\bf ParserError} ({\bf EErrorCodes} a\_\-iErrc, int a\_\-iPos, const {\bf string\_\-type} \&sTok)
+\begin{CompactList}\small\item\em Construct an error object. \item\end{CompactList}\item 
+{\bf ParserError} (const {\bf char\_\-type} $\ast$a\_\-szMsg, int a\_\-iPos=-1, const {\bf string\_\-type} \&sTok={\bf string\_\-type}())
+\begin{CompactList}\small\item\em Construct an error object. \item\end{CompactList}\item 
+{\bf ParserError} (const {\bf ParserError} \&a\_\-Obj)
+\begin{CompactList}\small\item\em Copy constructor. \item\end{CompactList}\item 
+{\bf ParserError} \& {\bf operator=} (const {\bf ParserError} \&a\_\-Obj)
+\begin{CompactList}\small\item\em Assignment operator. \item\end{CompactList}\item 
+{\bf $\sim$ParserError} ()
+\item 
+void {\bf SetFormula} (const {\bf string\_\-type} \&a\_\-strFormula)
+\begin{CompactList}\small\item\em Set the expression related to this error. \item\end{CompactList}\item 
+const {\bf string\_\-type} \& {\bf GetExpr} () const 
+\begin{CompactList}\small\item\em gets the expression related tp this error. \item\end{CompactList}\item 
+const {\bf string\_\-type} \& {\bf GetMsg} () const 
+\begin{CompactList}\small\item\em Returns the message string for this error. \item\end{CompactList}\item 
+std::size\_\-t {\bf GetPos} () const 
+\begin{CompactList}\small\item\em Return the formula position related to the error. \item\end{CompactList}\item 
+const {\bf string\_\-type} \& {\bf GetToken} () const 
+\begin{CompactList}\small\item\em Return string related with this token (if available). \item\end{CompactList}\item 
+{\bf EErrorCodes} {\bf GetCode} () const 
+\begin{CompactList}\small\item\em Return the error code. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError ()}\label{classmu_1_1ParserError_d7f1fb7501d606308cf41c3eeab49348}
+
+
+Default constructor. 
+
+\index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError ({\bf EErrorCodes} {\em a\_\-iErrc})\hspace{0.3cm}{\tt  [explicit]}}\label{classmu_1_1ParserError_3f37c865f1c609337114f19525f4e625}
+
+
+This Constructor is used for internal exceptions only. 
+
+It does not contain any information but the error code. \index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError (const {\bf string\_\-type} \& {\em sMsg})\hspace{0.3cm}{\tt  [explicit]}}\label{classmu_1_1ParserError_67297c47b34173e5a331b3ff964d1bfc}
+
+
+Construct an error from a message text. 
+
+\index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError ({\bf EErrorCodes} {\em iErrc}, \/  const {\bf string\_\-type} \& {\em sTok}, \/  const {\bf string\_\-type} \& {\em sExpr} = {\tt {\bf string\_\-type}(\_\-T(\char`\"{}(formula~is~not~available)\char`\"{}))}, \/  int {\em iPos} = {\tt -1})}\label{classmu_1_1ParserError_c727d75f4c4f4f4269f0075c47288fe1}
+
+
+Construct an error object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em iErrc}]the error code. \item[\mbox{$\leftarrow$} {\em sTok}]The token string related to this error. \item[\mbox{$\leftarrow$} {\em sExpr}]The expression related to the error. \item[\mbox{$\leftarrow$} {\em iPos}]the position in the expression where the error occured. \end{description}
+\end{Desc}
+\index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError ({\bf EErrorCodes} {\em iErrc}, \/  int {\em iPos}, \/  const {\bf string\_\-type} \& {\em sTok})}\label{classmu_1_1ParserError_b21ddceddd5ae816abc1060873a245b0}
+
+
+Construct an error object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em iErrc}]the error code. \item[\mbox{$\leftarrow$} {\em iPos}]the position in the expression where the error occured. \item[\mbox{$\leftarrow$} {\em sTok}]The token string related to this error. \end{description}
+\end{Desc}
+\index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError (const {\bf char\_\-type} $\ast$ {\em szMsg}, \/  int {\em iPos} = {\tt -1}, \/  const {\bf string\_\-type} \& {\em sTok} = {\tt {\bf string\_\-type}()})}\label{classmu_1_1ParserError_c4f83d23ad5875683d4100a85f0fbdfc}
+
+
+Construct an error object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em szMsg}]The error message text. \item[\mbox{$\leftarrow$} {\em iPos}]the position related to the error. \item[\mbox{$\leftarrow$} {\em sTok}]The token string related to this error. \end{description}
+\end{Desc}
+\index{mu::ParserError@{mu::ParserError}!ParserError@{ParserError}}
+\index{ParserError@{ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::ParserError (const {\bf ParserError} \& {\em a\_\-Obj})}\label{classmu_1_1ParserError_0820d687ae9ed8eed5bad962b40d006c}
+
+
+Copy constructor. 
+
+\index{mu::ParserError@{mu::ParserError}!$\sim$ParserError@{$\sim$ParserError}}
+\index{$\sim$ParserError@{$\sim$ParserError}!mu::ParserError@{mu::ParserError}}
+\subsubsection[$\sim$ParserError]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserError::$\sim$ParserError ()}\label{classmu_1_1ParserError_ee52babeeffcf663365b551c3ea61e1f}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{mu::ParserError@{mu::ParserError}!operator=@{operator=}}
+\index{operator=@{operator=}!mu::ParserError@{mu::ParserError}}
+\subsubsection[operator=]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParserError} \& mu::ParserError::operator= (const {\bf ParserError} \& {\em a\_\-Obj})}\label{classmu_1_1ParserError_e2c28377fa08e425a5f3df2cfa221b33}
+
+
+Assignment operator. 
+
+
+
+References m\_\-iErrc, m\_\-iPos, m\_\-strFormula, m\_\-strMsg, and m\_\-strTok.\index{mu::ParserError@{mu::ParserError}!SetFormula@{SetFormula}}
+\index{SetFormula@{SetFormula}!mu::ParserError@{mu::ParserError}}
+\subsubsection[SetFormula]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserError::SetFormula (const {\bf string\_\-type} \& {\em a\_\-strFormula})}\label{classmu_1_1ParserError_1b7b4b511525f13f728c9c2942983b19}
+
+
+Set the expression related to this error. 
+
+\index{mu::ParserError@{mu::ParserError}!GetExpr@{GetExpr}}
+\index{GetExpr@{GetExpr}!mu::ParserError@{mu::ParserError}}
+\subsubsection[GetExpr]{\setlength{\rightskip}{0pt plus 5cm}const {\bf string\_\-type} \& mu::ParserError::GetExpr () const}\label{classmu_1_1ParserError_845ae0a3276f1f0326c6b9f4d946bcbf}
+
+
+gets the expression related tp this error. 
+
+\index{mu::ParserError@{mu::ParserError}!GetMsg@{GetMsg}}
+\index{GetMsg@{GetMsg}!mu::ParserError@{mu::ParserError}}
+\subsubsection[GetMsg]{\setlength{\rightskip}{0pt plus 5cm}const {\bf string\_\-type} \& mu::ParserError::GetMsg () const}\label{classmu_1_1ParserError_f03a4eb049e106be1dbc957ab4c90ee8}
+
+
+Returns the message string for this error. 
+
+\index{mu::ParserError@{mu::ParserError}!GetPos@{GetPos}}
+\index{GetPos@{GetPos}!mu::ParserError@{mu::ParserError}}
+\subsubsection[GetPos]{\setlength{\rightskip}{0pt plus 5cm}std::size\_\-t mu::ParserError::GetPos () const}\label{classmu_1_1ParserError_38fa45df3312a8258b58fa0b25550618}
+
+
+Return the formula position related to the error. 
+
+If the error is not related to a distinct position this will return -1 \index{mu::ParserError@{mu::ParserError}!GetToken@{GetToken}}
+\index{GetToken@{GetToken}!mu::ParserError@{mu::ParserError}}
+\subsubsection[GetToken]{\setlength{\rightskip}{0pt plus 5cm}const {\bf string\_\-type} \& mu::ParserError::GetToken () const}\label{classmu_1_1ParserError_3ddb4de710a8b0485e1b4060ccc7f08f}
+
+
+Return string related with this token (if available). 
+
+\index{mu::ParserError@{mu::ParserError}!GetCode@{GetCode}}
+\index{GetCode@{GetCode}!mu::ParserError@{mu::ParserError}}
+\subsubsection[GetCode]{\setlength{\rightskip}{0pt plus 5cm}{\bf EErrorCodes} mu::ParserError::GetCode () const}\label{classmu_1_1ParserError_ad82b1aeb00b5e64a56956490febd2ec}
+
+
+Return the error code. 
+
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParserError.h}\item 
+{\bf muParserError.cpp}\end{CompactItemize}

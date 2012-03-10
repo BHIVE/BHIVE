@@ -1,0 +1,88 @@
+\section{Hive::DoubleData Class Reference}
+\label{classHive_1_1DoubleData}\index{Hive::DoubleData@{Hive::DoubleData}}
+{\tt \#include $<$primitiveData.hh$>$}
+
+Inheritance diagram for Hive::DoubleData::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1DoubleData}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+A data object to store double values. 
+
+\begin{Desc}
+\item[Date:]Oct 14, 2009 Last edited: Oct 14, 2009 by Garrit and Michael \end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf DoubleData} (string dataName, double value)
+\begin{CompactList}\small\item\em default-constructor \item\end{CompactList}\item 
+virtual {\bf $\sim$DoubleData} ()
+\item 
+void {\bf printContent} (ostream \&out)
+\begin{CompactList}\small\item\em virtual method for print the content of a data item on sterr. \item\end{CompactList}\item 
+string {\bf getDataName} () const 
+\item 
+double {\bf getDouble} () const 
+\item 
+void {\bf setDouble} (double newValue)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::DoubleData@{Hive::DoubleData}!DoubleData@{DoubleData}}
+\index{DoubleData@{DoubleData}!Hive::DoubleData@{Hive::DoubleData}}
+\subsubsection[DoubleData]{\setlength{\rightskip}{0pt plus 5cm}DoubleData::DoubleData (string {\em dataName}, \/  double {\em value})}\label{classHive_1_1DoubleData_aa84969490e7856fc4ff6187c9e5b19b}
+
+
+default-constructor 
+
+\index{Hive::DoubleData@{Hive::DoubleData}!$\sim$DoubleData@{$\sim$DoubleData}}
+\index{$\sim$DoubleData@{$\sim$DoubleData}!Hive::DoubleData@{Hive::DoubleData}}
+\subsubsection[$\sim$DoubleData]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::DoubleData::$\sim$DoubleData ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1DoubleData_f3b135b1ca71f08340bd56931923056c}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::DoubleData@{Hive::DoubleData}!printContent@{printContent}}
+\index{printContent@{printContent}!Hive::DoubleData@{Hive::DoubleData}}
+\subsubsection[printContent]{\setlength{\rightskip}{0pt plus 5cm}void DoubleData::printContent (ostream \& {\em out})\hspace{0.3cm}{\tt  [virtual]}}\label{classHive_1_1DoubleData_96e0192b6ee96ac57fde048f7e854432}
+
+
+virtual method for print the content of a data item on sterr. 
+
+
+
+Implements {\bf Hive::Data} \doxyref{}{p.}{classHive_1_1Data_a168edcfa6efd38fe88d72c5162fd8d1}.
+
+References Hive::Data::datatype.\index{Hive::DoubleData@{Hive::DoubleData}!getDataName@{getDataName}}
+\index{getDataName@{getDataName}!Hive::DoubleData@{Hive::DoubleData}}
+\subsubsection[getDataName]{\setlength{\rightskip}{0pt plus 5cm}string Hive::DoubleData::getDataName () const\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1DoubleData_9360adfdd19463002eff09ec618ad967}
+
+
+\index{Hive::DoubleData@{Hive::DoubleData}!getDouble@{getDouble}}
+\index{getDouble@{getDouble}!Hive::DoubleData@{Hive::DoubleData}}
+\subsubsection[getDouble]{\setlength{\rightskip}{0pt plus 5cm}double Hive::DoubleData::getDouble () const\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1DoubleData_a40c251af1b20a46cfc67eeafd5c1b2f}
+
+
+
+
+Referenced by Hive::DummySimulator::synchroniseWithDatabase().\index{Hive::DoubleData@{Hive::DoubleData}!setDouble@{setDouble}}
+\index{setDouble@{setDouble}!Hive::DoubleData@{Hive::DoubleData}}
+\subsubsection[setDouble]{\setlength{\rightskip}{0pt plus 5cm}void Hive::DoubleData::setDouble (double {\em newValue})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1DoubleData_85addb821caf045b2dca4d1f8930a234}
+
+
+
+
+Referenced by Hive::DummySimulator::step().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf primitiveData.hh}\item 
+{\bf primitiveData.cpp}\end{CompactItemize}

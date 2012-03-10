@@ -1,0 +1,188 @@
+\section{Database Class Reference}
+\label{classDatabase}\index{Database@{Database}}
+{\tt \#include $<$database.hh$>$}
+
+
+
+\subsection{Detailed Description}
+\doxyref{Database}{p.}{classDatabase} of an agent. 
+
+The database of the agent class stores all of the agent's data. This is the most radical way for a generic database in that a database is a vector of void pointers.
+
+\begin{Desc}
+\item[{\bf Todo}]Implementation\end{Desc}
+\begin{Desc}
+\item[Date:]Started: Oct 7th, 2009 Last edited: Oct 14th, 2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Database} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+{\bf $\sim$Database} ()
+\begin{CompactList}\small\item\em Destructor. \item\end{CompactList}\item 
+void {\bf setup} ()
+\item 
+void {\bf dumpDataBase} ({\bf OutputWriter} $\ast$ow)
+\item 
+void {\bf addData} (string name, {\bf Data} $\ast$data)
+\item 
+void {\bf eraseDataItem} (string name)
+\item 
+{\bf Data} $\ast$ {\bf getDataItem} (string name)
+\item 
+void {\bf readDataBase} ({\bf InputDataReader} $\ast$ir)
+\item 
+void {\bf returnPointerToData} (string name, {\bf Data} $\ast$\&ptr)
+\item 
+bool {\bf existsDataItem} (string name)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf Data} $\ast$ $>$ {\bf real\_\-database}
+\begin{CompactList}\small\item\em the database is really nothing else but a vector of pointers to data objects \item\end{CompactList}\item 
+map$<$ string, int $>$ {\bf data\_\-position\_\-identifyer}
+\begin{CompactList}\small\item\em map to give a name to the data items stored in the database \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Database@{Database}!Database@{Database}}
+\index{Database@{Database}!Database@{Database}}
+\subsubsection[Database]{\setlength{\rightskip}{0pt plus 5cm}Database::Database ()}\label{classDatabase_4703c80e6969d33565ea340f768fdadf}
+
+
+Constructor. 
+
+\index{Database@{Database}!$\sim$Database@{$\sim$Database}}
+\index{$\sim$Database@{$\sim$Database}!Database@{Database}}
+\subsubsection[$\sim$Database]{\setlength{\rightskip}{0pt plus 5cm}Database::$\sim$Database ()}\label{classDatabase_84d399a2ad58d69daab9b05330e1316d}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{Database@{Database}!setup@{setup}}
+\index{setup@{setup}!Database@{Database}}
+\subsubsection[setup]{\setlength{\rightskip}{0pt plus 5cm}void Database::setup ()}\label{classDatabase_8aa21b2c14a496033b90030dbef746b7}
+
+
+outputs the entire database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ow}]Pointer to the \doxyref{OutputWriter}{p.}{classOutputWriter} that outputs the database \end{description}
+\end{Desc}
+\index{Database@{Database}!dumpDataBase@{dumpDataBase}}
+\index{dumpDataBase@{dumpDataBase}!Database@{Database}}
+\subsubsection[dumpDataBase]{\setlength{\rightskip}{0pt plus 5cm}void Database::dumpDataBase ({\bf OutputWriter} $\ast$ {\em ow})}\label{classDatabase_b5a71b1729cdda881c9240f7cc1c2b98}
+
+
+outputs the entire database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ow}]Pointer to the \doxyref{OutputWriter}{p.}{classOutputWriter} that outputs the database \end{description}
+\end{Desc}
+\index{Database@{Database}!addData@{addData}}
+\index{addData@{addData}!Database@{Database}}
+\subsubsection[addData]{\setlength{\rightskip}{0pt plus 5cm}void Database::addData (string {\em name}, \/  {\bf Data} $\ast$ {\em data})}\label{classDatabase_203a8eb871aeffd3310bb73d263ff5a9}
+
+
+adds data to the database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]Name of the variable to be added \item[{\em ptr}]Pointer to the data to be added \end{description}
+\end{Desc}
+
+
+References data\_\-position\_\-identifyer, and real\_\-database.
+
+Referenced by DummyAgentFactory::createAgent().\index{Database@{Database}!eraseDataItem@{eraseDataItem}}
+\index{eraseDataItem@{eraseDataItem}!Database@{Database}}
+\subsubsection[eraseDataItem]{\setlength{\rightskip}{0pt plus 5cm}void Database::eraseDataItem (string {\em name})}\label{classDatabase_da3c540517d0d858d925c92efbca1ee6}
+
+
+removes data item form the database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]Name of data item to be removed. \end{description}
+\end{Desc}
+\index{Database@{Database}!getDataItem@{getDataItem}}
+\index{getDataItem@{getDataItem}!Database@{Database}}
+\subsubsection[getDataItem]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data} $\ast$ Database::getDataItem (string {\em name})}\label{classDatabase_f5b70a3d1c09f91e8116a299ead84874}
+
+
+returns a data item \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]identifyer of data item \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to data item \end{Desc}
+
+
+References data\_\-position\_\-identifyer, and real\_\-database.
+
+Referenced by DummyComposer::createAgent(), and DummyWaveAction::fire().\index{Database@{Database}!readDataBase@{readDataBase}}
+\index{readDataBase@{readDataBase}!Database@{Database}}
+\subsubsection[readDataBase]{\setlength{\rightskip}{0pt plus 5cm}void Database::readDataBase ({\bf InputDataReader} $\ast$ {\em ir})}\label{classDatabase_820a6511feee01ab831deabc187c2262}
+
+
+set up a database by using an input reader \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ir}]Pointer to an InputReader \end{description}
+\end{Desc}
+\index{Database@{Database}!returnPointerToData@{returnPointerToData}}
+\index{returnPointerToData@{returnPointerToData}!Database@{Database}}
+\subsubsection[returnPointerToData]{\setlength{\rightskip}{0pt plus 5cm}void Database::returnPointerToData (string {\em name}, \/  {\bf Data} $\ast$\& {\em ptr})}\label{classDatabase_46896d00038c00ca0ed8671656a27344}
+
+
+returns pointer to data item \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]Name of variable that one wishes to obtain a pointer to. \item[{\em ptr}]Pointer to the desired variable. \end{description}
+\end{Desc}
+
+
+References data\_\-position\_\-identifyer, and real\_\-database.\index{Database@{Database}!existsDataItem@{existsDataItem}}
+\index{existsDataItem@{existsDataItem}!Database@{Database}}
+\subsubsection[existsDataItem]{\setlength{\rightskip}{0pt plus 5cm}bool Database::existsDataItem (string {\em name})}\label{classDatabase_b8e62e5705be8b286775576271b5e1f2}
+
+
+ask for existence of a data\_\-item \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]name of dataitem \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]existence \end{Desc}
+
+
+References data\_\-position\_\-identifyer.
+
+\subsection{Member Data Documentation}
+\index{Database@{Database}!real\_\-database@{real\_\-database}}
+\index{real\_\-database@{real\_\-database}!Database@{Database}}
+\subsubsection[real\_\-database]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Data} $\ast$$>$ {\bf Database::real\_\-database}\hspace{0.3cm}{\tt  [protected]}}\label{classDatabase_7dd95b2da84802ccd612a385cb484879}
+
+
+the database is really nothing else but a vector of pointers to data objects 
+
+
+
+Referenced by addData(), getDataItem(), and returnPointerToData().\index{Database@{Database}!data\_\-position\_\-identifyer@{data\_\-position\_\-identifyer}}
+\index{data\_\-position\_\-identifyer@{data\_\-position\_\-identifyer}!Database@{Database}}
+\subsubsection[data\_\-position\_\-identifyer]{\setlength{\rightskip}{0pt plus 5cm}map$<$string, int$>$ {\bf Database::data\_\-position\_\-identifyer}\hspace{0.3cm}{\tt  [protected]}}\label{classDatabase_35295ccdd97fa06efdd7452ad0027c8e}
+
+
+map to give a name to the data items stored in the database 
+
+
+
+Referenced by addData(), existsDataItem(), getDataItem(), and returnPointerToData().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf database.hh}\item 
+{\bf database.cpp}\end{CompactItemize}

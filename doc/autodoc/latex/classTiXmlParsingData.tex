@@ -1,0 +1,46 @@
+\section{TiXmlParsingData Class Reference}
+\label{classTiXmlParsingData}\index{TiXmlParsingData@{TiXmlParsingData}}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf Stamp} (const char $\ast$now, {\bf TiXmlEncoding} encoding)
+\item 
+const {\bf TiXmlCursor} \& {\bf Cursor} ()
+\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+class {\bf TiXmlDocument}
+\end{CompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{TiXmlParsingData@{TiXmlParsingData}!Stamp@{Stamp}}
+\index{Stamp@{Stamp}!TiXmlParsingData@{TiXmlParsingData}}
+\subsubsection[Stamp]{\setlength{\rightskip}{0pt plus 5cm}void TiXmlParsingData::Stamp (const char $\ast$ {\em now}, \/  {\bf TiXmlEncoding} {\em encoding})}\label{classTiXmlParsingData_65cee8ab77a36c605db08c84b4c30a7d}
+
+
+
+
+References TiXmlCursor::col, TiXmlCursor::row, TIXML\_\-ENCODING\_\-UTF8, TIXML\_\-UTF\_\-LEAD\_\-0, TIXML\_\-UTF\_\-LEAD\_\-1, TIXML\_\-UTF\_\-LEAD\_\-2, and TiXmlBase::utf8ByteTable.
+
+Referenced by TiXmlDeclaration::Parse(), TiXmlText::Parse(), TiXmlAttribute::Parse(), TiXmlComment::Parse(), TiXmlUnknown::Parse(), TiXmlElement::Parse(), and TiXmlDocument::SetError().\index{TiXmlParsingData@{TiXmlParsingData}!Cursor@{Cursor}}
+\index{Cursor@{Cursor}!TiXmlParsingData@{TiXmlParsingData}}
+\subsubsection[Cursor]{\setlength{\rightskip}{0pt plus 5cm}const {\bf TiXmlCursor}\& TiXmlParsingData::Cursor ()\hspace{0.3cm}{\tt  [inline]}}\label{classTiXmlParsingData_56908a17d7d7a6b2e511e62cf1d40d05}
+
+
+
+
+Referenced by TiXmlDeclaration::Parse(), TiXmlText::Parse(), TiXmlAttribute::Parse(), TiXmlComment::Parse(), TiXmlUnknown::Parse(), TiXmlElement::Parse(), TiXmlDocument::Parse(), and TiXmlDocument::SetError().
+
+\subsection{Friends And Related Function Documentation}
+\index{TiXmlParsingData@{TiXmlParsingData}!TiXmlDocument@{TiXmlDocument}}
+\index{TiXmlDocument@{TiXmlDocument}!TiXmlParsingData@{TiXmlParsingData}}
+\subsubsection[TiXmlDocument]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf TiXmlDocument}\hspace{0.3cm}{\tt  [friend]}}\label{classTiXmlParsingData_173617f6dfe902cf484ce5552b950475}
+
+
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf tinyxmlparser.cpp}\end{CompactItemize}

@@ -1,0 +1,88 @@
+\section{IntegerData Class Reference}
+\label{classIntegerData}\index{IntegerData@{IntegerData}}
+{\tt \#include $<$primitiveData.hh$>$}
+
+Inheritance diagram for IntegerData::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classIntegerData}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+A data object to store integer values. 
+
+\begin{Desc}
+\item[Date:]Oct 14, 2009 Last edited: Oct 14, 2009 by Garrit and Michael \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf IntegerData} (string dataName, int value)
+\begin{CompactList}\small\item\em default-constructor \item\end{CompactList}\item 
+virtual {\bf $\sim$IntegerData} ()
+\item 
+void {\bf printContent} (ostream \&out)
+\begin{CompactList}\small\item\em virtual method for print the content of a data item on sterr. \item\end{CompactList}\item 
+string {\bf getDataName} () const 
+\item 
+int {\bf getInteger} () const 
+\item 
+void {\bf setInteger} (int newValue)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{IntegerData@{IntegerData}!IntegerData@{IntegerData}}
+\index{IntegerData@{IntegerData}!IntegerData@{IntegerData}}
+\subsubsection[IntegerData]{\setlength{\rightskip}{0pt plus 5cm}IntegerData::IntegerData (string {\em dataName}, \/  int {\em value})}\label{classIntegerData_746aec52ee5800f9d1f665c0551ac550}
+
+
+default-constructor 
+
+\index{IntegerData@{IntegerData}!$\sim$IntegerData@{$\sim$IntegerData}}
+\index{$\sim$IntegerData@{$\sim$IntegerData}!IntegerData@{IntegerData}}
+\subsubsection[$\sim$IntegerData]{\setlength{\rightskip}{0pt plus 5cm}virtual IntegerData::$\sim$IntegerData ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classIntegerData_907bd009595e8908eb7db44b68eb567c}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{IntegerData@{IntegerData}!printContent@{printContent}}
+\index{printContent@{printContent}!IntegerData@{IntegerData}}
+\subsubsection[printContent]{\setlength{\rightskip}{0pt plus 5cm}void IntegerData::printContent (ostream \& {\em out})\hspace{0.3cm}{\tt  [virtual]}}\label{classIntegerData_c8b7d3312b0335c50a0e74aa8bf6a2c0}
+
+
+virtual method for print the content of a data item on sterr. 
+
+
+
+Implements {\bf Data} \doxyref{}{p.}{classData_2168cd6e0e8806938f036c28be8bc041}.
+
+References Data::datatype.\index{IntegerData@{IntegerData}!getDataName@{getDataName}}
+\index{getDataName@{getDataName}!IntegerData@{IntegerData}}
+\subsubsection[getDataName]{\setlength{\rightskip}{0pt plus 5cm}string IntegerData::getDataName () const\hspace{0.3cm}{\tt  [inline]}}\label{classIntegerData_63d867de9326c37974c0f45672f554a2}
+
+
+
+
+Referenced by DummyAgentFactory::createAgent().\index{IntegerData@{IntegerData}!getInteger@{getInteger}}
+\index{getInteger@{getInteger}!IntegerData@{IntegerData}}
+\subsubsection[getInteger]{\setlength{\rightskip}{0pt plus 5cm}int IntegerData::getInteger () const\hspace{0.3cm}{\tt  [inline]}}\label{classIntegerData_00035adc387a891894d06fe513396f3a}
+
+
+
+
+Referenced by DummyWaveAction::fire().\index{IntegerData@{IntegerData}!setInteger@{setInteger}}
+\index{setInteger@{setInteger}!IntegerData@{IntegerData}}
+\subsubsection[setInteger]{\setlength{\rightskip}{0pt plus 5cm}void IntegerData::setInteger (int {\em newValue})\hspace{0.3cm}{\tt  [inline]}}\label{classIntegerData_be225b3952a0b6905d0d797e8d21a413}
+
+
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf primitiveData.hh}\item 
+{\bf primitiveData.cpp}\end{CompactItemize}

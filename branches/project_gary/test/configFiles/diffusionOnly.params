@@ -1,0 +1,10 @@
+<?xml version="1.0">
+<opt>
+  <World xLen="10" blockSize="1" yLen="10" zLen="10">
+    <Compound name="cpd1" diffusion="0.1" defaultconc="1">
+      <Voxel x="5" y="5" z="5">
+        <Concentration>10</Concentration>
+      </Voxel>
+    </Compound>
+  </World>
+</opt>

@@ -1,0 +1,94 @@
+\section{System Class Reference}
+\label{classSystem}\index{System@{System}}
+{\tt \#include $<$system.hh$>$}
+
+
+
+\subsection{Detailed Description}
+system class 
+
+The system maintains the types of agents that can exist in the simulation. Types of objects allow for the on the fly creation of new agents.
+
+\begin{Desc}
+\item[{\bf Todo}]everything, more conceptional work needed. will we have prototypes of agents in here?! it should be a database of types ... whatever ...\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 13th, 2009 last edited 10-14 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf System} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual {\bf $\sim$System} ()=0
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+int {\bf getSystemType} ()
+\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static const int {\bf network\_\-free\_\-type} = 0
+\begin{CompactList}\small\item\em system type network\_\-free\_\-type \item\end{CompactList}\item 
+static const int {\bf kinetic\_\-type} = 1
+\begin{CompactList}\small\item\em system type kinetic network \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf system\_\-type}
+\begin{CompactList}\small\item\em system type of this system \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{System@{System}!System@{System}}
+\index{System@{System}!System@{System}}
+\subsubsection[System]{\setlength{\rightskip}{0pt plus 5cm}System::System ()}\label{classSystem_e317936c9bcf1374d61745572e0f2f8a}
+
+
+Constructor. 
+
+\index{System@{System}!$\sim$System@{$\sim$System}}
+\index{$\sim$System@{$\sim$System}!System@{System}}
+\subsubsection[$\sim$System]{\setlength{\rightskip}{0pt plus 5cm}virtual System::$\sim$System ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classSystem_c5260040d183b1e22001d6c17fdf9e9e}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{System@{System}!getSystemType@{getSystemType}}
+\index{getSystemType@{getSystemType}!System@{System}}
+\subsubsection[getSystemType]{\setlength{\rightskip}{0pt plus 5cm}int System::getSystemType ()}\label{classSystem_699b1f28b3799c1a6ada738d11ebe9b8}
+
+
+
+
+\subsection{Member Data Documentation}
+\index{System@{System}!network\_\-free\_\-type@{network\_\-free\_\-type}}
+\index{network\_\-free\_\-type@{network\_\-free\_\-type}!System@{System}}
+\subsubsection[network\_\-free\_\-type]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf System::network\_\-free\_\-type} = 0\hspace{0.3cm}{\tt  [static]}}\label{classSystem_25cba1323d32896bbea696f768ae3ffa}
+
+
+system type network\_\-free\_\-type 
+
+\index{System@{System}!kinetic\_\-type@{kinetic\_\-type}}
+\index{kinetic\_\-type@{kinetic\_\-type}!System@{System}}
+\subsubsection[kinetic\_\-type]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf System::kinetic\_\-type} = 1\hspace{0.3cm}{\tt  [static]}}\label{classSystem_11acc6ac27f92d4a3c96551712206ed2}
+
+
+system type kinetic network 
+
+\index{System@{System}!system\_\-type@{system\_\-type}}
+\index{system\_\-type@{system\_\-type}!System@{System}}
+\subsubsection[system\_\-type]{\setlength{\rightskip}{0pt plus 5cm}int {\bf System::system\_\-type}\hspace{0.3cm}{\tt  [protected]}}\label{classSystem_47960ee19a7317ccfe0a45425b616e87}
+
+
+system type of this system 
+
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf system.hh}\end{CompactItemize}

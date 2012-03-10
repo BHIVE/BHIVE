@@ -1,0 +1,161 @@
+\section{mu::Parser Class Reference}
+\label{classmu_1_1Parser}\index{mu::Parser@{mu::Parser}}
+{\tt \#include $<$muParser.h$>$}
+
+Inheritance diagram for mu::Parser::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classmu_1_1Parser}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+Mathematical expressions parser. 
+
+Standard implementation of the mathematical expressions parser. Can be used as a reference implementation for subclassing the parser.
+
+
+\footnotesize  (C) 2004-2008 Ingo Berg\par
+ ingo\_\-berg(at)gmx.de 
+\normalsize  \subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Parser} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual void {\bf InitCharSets} ()
+\begin{CompactList}\small\item\em Define the character sets. \item\end{CompactList}\item 
+virtual void {\bf InitFun} ()
+\begin{CompactList}\small\item\em Initialize the default functions. \item\end{CompactList}\item 
+virtual void {\bf InitConst} ()
+\begin{CompactList}\small\item\em Initialize constants. \item\end{CompactList}\item 
+virtual void {\bf InitOprt} ()
+\begin{CompactList}\small\item\em Initialize operators. \item\end{CompactList}\item 
+void {\bf SetDecSep} ({\bf char\_\-type} cDecSep)
+\begin{CompactList}\small\item\em Set the decimal separator. \item\end{CompactList}\item 
+void {\bf SetThousandsSep} ({\bf char\_\-type} cThousandsSep)
+\begin{CompactList}\small\item\em Sets the thousands operator. \item\end{CompactList}\item 
+{\bf value\_\-type} {\bf Diff} ({\bf value\_\-type} $\ast$a\_\-Var, {\bf value\_\-type} a\_\-fPos, {\bf value\_\-type} a\_\-fEpsilon=0.00074) const 
+\begin{CompactList}\small\item\em Numerically differentiate with regard to a variable. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class \textbf{change\_\-dec\_\-sep}
+\begin{CompactList}\small\item\em A facet class used to change decimal and thousands separator. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::Parser@{mu::Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!mu::Parser@{mu::Parser}}
+\subsubsection[Parser]{\setlength{\rightskip}{0pt plus 5cm}mu::Parser::Parser ()}\label{classmu_1_1Parser_76747bbf8c232e488e15f846e1b4ed34}
+
+
+Constructor. 
+
+Call \doxyref{ParserBase}{p.}{classmu_1_1ParserBase} class constructor and trigger Function, Operator and Constant initialization. 
+
+References mu::ParserBase::AddValIdent(), InitCharSets(), InitConst(), InitFun(), and InitOprt().
+
+\subsection{Member Function Documentation}
+\index{mu::Parser@{mu::Parser}!InitCharSets@{InitCharSets}}
+\index{InitCharSets@{InitCharSets}!mu::Parser@{mu::Parser}}
+\subsubsection[InitCharSets]{\setlength{\rightskip}{0pt plus 5cm}void mu::Parser::InitCharSets ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1Parser_3279e2cf701ba8c2f850f5826a147f75}
+
+
+Define the character sets. 
+
+\begin{Desc}
+\item[See also:]\doxyref{DefineNameChars}{p.}{classmu_1_1ParserBase_df259477bbaa85e8dd7cb69ef4aa0a7a}, \doxyref{DefineOprtChars}{p.}{classmu_1_1ParserBase_afd21c418397d5412a75e5b2c1d6db58}, \doxyref{DefineInfixOprtChars}{p.}{classmu_1_1ParserBase_c76d0ceb4ee58babc4f1d0a9ca1e4240}\end{Desc}
+This function is used for initializing the default character sets that define the characters to be useable in function and variable names and operators. 
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_3f5c53ef3cba6ab939261677dc2d9709}.
+
+References mu::ParserBase::DefineInfixOprtChars(), mu::ParserBase::DefineNameChars(), and mu::ParserBase::DefineOprtChars().
+
+Referenced by Parser().\index{mu::Parser@{mu::Parser}!InitFun@{InitFun}}
+\index{InitFun@{InitFun}!mu::Parser@{mu::Parser}}
+\subsubsection[InitFun]{\setlength{\rightskip}{0pt plus 5cm}void mu::Parser::InitFun ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1Parser_9da582fd5385acfd97ec99a8790f8c6d}
+
+
+Initialize the default functions. 
+
+
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_1f94305e7b7e9abff6d41242dcf188ed}.
+
+Referenced by Parser().\index{mu::Parser@{mu::Parser}!InitConst@{InitConst}}
+\index{InitConst@{InitConst}!mu::Parser@{mu::Parser}}
+\subsubsection[InitConst]{\setlength{\rightskip}{0pt plus 5cm}void mu::Parser::InitConst ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1Parser_efd1da7ba62d20d7276b1e70c8cb6a02}
+
+
+Initialize constants. 
+
+By default the parser recognizes two constants. Pi (\char`\"{}pi\char`\"{}) and the eulerian number (\char`\"{}\_\-e\char`\"{}). 
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_ad904fb3df8f28659f36d7ce7db4a28c}.
+
+References mu::ParserBase::DefineConst(), PARSER\_\-CONST\_\-E, and PARSER\_\-CONST\_\-PI.
+
+Referenced by Parser().\index{mu::Parser@{mu::Parser}!InitOprt@{InitOprt}}
+\index{InitOprt@{InitOprt}!mu::Parser@{mu::Parser}}
+\subsubsection[InitOprt]{\setlength{\rightskip}{0pt plus 5cm}void mu::Parser::InitOprt ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmu_1_1Parser_4ed9bdd0565bd57325bc49c12cf73e06}
+
+
+Initialize operators. 
+
+By default only the unary minus operator is added. 
+
+Implements {\bf mu::ParserBase} \doxyref{}{p.}{classmu_1_1ParserBase_4df16813c9002ff08c96929ba8f0d32b}.
+
+References mu::ParserBase::DefineInfixOprt().
+
+Referenced by Parser().\index{mu::Parser@{mu::Parser}!SetDecSep@{SetDecSep}}
+\index{SetDecSep@{SetDecSep}!mu::Parser@{mu::Parser}}
+\subsubsection[SetDecSep]{\setlength{\rightskip}{0pt plus 5cm}void mu::Parser::SetDecSep ({\bf char\_\-type} {\em cDecSep})}\label{classmu_1_1Parser_8f7441d77774d6bbb5b6a260985b5e8e}
+
+
+Set the decimal separator. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cDecSep}]Decimal separator as a character value. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]\doxyref{SetThousandsSep}{p.}{classmu_1_1Parser_a844b84c174a91afa6e339102f362b81}\end{Desc}
+By default muparser uses the \char`\"{}C\char`\"{} locale. The decimal separator of this locale is overwritten by the one provided here. \index{mu::Parser@{mu::Parser}!SetThousandsSep@{SetThousandsSep}}
+\index{SetThousandsSep@{SetThousandsSep}!mu::Parser@{mu::Parser}}
+\subsubsection[SetThousandsSep]{\setlength{\rightskip}{0pt plus 5cm}void mu::Parser::SetThousandsSep ({\bf char\_\-type} {\em cThousandsSep})}\label{classmu_1_1Parser_a844b84c174a91afa6e339102f362b81}
+
+
+Sets the thousands operator. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cThousandsSep}]The thousands separator as a character \end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]\doxyref{SetDecSep}{p.}{classmu_1_1Parser_8f7441d77774d6bbb5b6a260985b5e8e}\end{Desc}
+By default muparser uses the \char`\"{}C\char`\"{} locale. The thousands separator of this locale is overwritten by the one provided here. \index{mu::Parser@{mu::Parser}!Diff@{Diff}}
+\index{Diff@{Diff}!mu::Parser@{mu::Parser}}
+\subsubsection[Diff]{\setlength{\rightskip}{0pt plus 5cm}{\bf value\_\-type} mu::Parser::Diff ({\bf value\_\-type} $\ast$ {\em a\_\-Var}, \/  {\bf value\_\-type} {\em a\_\-fPos}, \/  {\bf value\_\-type} {\em a\_\-fEpsilon} = {\tt 0.00074}) const}\label{classmu_1_1Parser_cc00dfac0da35d3b844f08a62984b197}
+
+
+Numerically differentiate with regard to a variable. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em a\_\-Var}]Pointer to the differentiation variable. \item[\mbox{$\leftarrow$} {\em a\_\-fPos}]Position at which the differentiation should take place. \item[\mbox{$\leftarrow$} {\em a\_\-fEpsilon}]Epsilon used for the numerical differentiation.\end{description}
+\end{Desc}
+Numerical differentiation uses a 5 point operator yielding a 4th order formula. The default value for epsilon is 0.00074 which is numerical\_\-limits$<$double$>$::epsilon() $^\wedge$ (1/5) as suggested in the muparser forum:
+
+{\tt http://sourceforge.net/forum/forum.php?thread\_\-id=1994611\&forum\_\-id=462843} 
+
+References mu::ParserBase::Eval().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParser.h}\item 
+{\bf muParser.cpp}\end{CompactItemize}

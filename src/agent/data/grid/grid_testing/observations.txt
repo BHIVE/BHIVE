@@ -1,0 +1,55 @@
+first we check whether the coveringVoxel method works:
+does it work, if ...
+- the voxel is completely inside the node .... YES
+- all the voxel's points fall onto points of the node ... NO
+  (see missed cases 0)
+- one of the voxel's points is identical to one of the node's
+  points and all the other points of the voxel lie on the edges of the
+  node ... NO
+  (see missed cases 1)
+- one of the voxel's points lies on one of the edges of the node
+  ... NO
+  (see missed cases 2)
+- at least one point of the voxel lies inside the node ... YES
+- three points of the the voxel lies on three points of the node and
+  one point lies outside of the node ... NO
+  (see missed cases 3)
+- all points of the voxel lie outside the node such as in missed cases
+  04 ... NO
+  However missed cases 5 works!
+
+
+Next stop: 
+- why doesn't the lineIntersectingPlane method in octtree work
+  correctly?      
+  the last bit in checking whether the point lies inside the plane was
+  wrong. ... Corrected. 
+- 
+
+recheck the coveringVoxel method:
+- missed cases 5 works ... YES
+- missed cases 4 works ... YES
+- missed cases 3 works ... YES
+- missed cases 2 works ... YES
+
+- missed cases 6 does not work ... NO
+- missed cases 1 does not work ... NO
+- missed cases 0 does not work ... NO
+
+... common to these cases is that the point always lie on the surfaces
+    of the node! how can we check for that? it is a very degenerate
+    case which i do not expect to happen very often, but hey it could
+    happen and must be treated
+
+moreover we deal with the case in which part of the node lies inside
+of the voxel without any of the node's points being inside the voxel
+and any of the voxel's edges cutting any of the sideplanes of the
+voxel. this will have to check for this by asking whether any of the
+edges of the node cut one of the sideplanes of the voxel. for this we
+again need to identify the intersection point. then we have to check
+whether that point lies within the triangular plane. for this we have
+implemented a method. 
+
+
+
+

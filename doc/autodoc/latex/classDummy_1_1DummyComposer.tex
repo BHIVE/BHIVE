@@ -1,0 +1,112 @@
+\section{Dummy::DummyComposer Class Reference}
+\label{classDummy_1_1DummyComposer}\index{Dummy::DummyComposer@{Dummy::DummyComposer}}
+{\tt \#include $<$dummycomposer.hh$>$}
+
+Inheritance diagram for Dummy::DummyComposer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classDummy_1_1DummyComposer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf DummyComposer} ()
+\item 
+{\bf $\sim$DummyComposer} ()
+\item 
+void {\bf setupSimulation} ()
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf initializeAgentFactories} ()
+\item 
+void {\bf setupAgentHierarchy} ()
+\item 
+{\bf Agent} $\ast$ {\bf getTopLevelAgent} ()
+\item 
+{\bf Agent} $\ast$ {\bf createAgent} ({\bf AgentFactory} \&)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Dummy::DummyComposer@{Dummy::DummyComposer}!DummyComposer@{DummyComposer}}
+\index{DummyComposer@{DummyComposer}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[DummyComposer]{\setlength{\rightskip}{0pt plus 5cm}DummyComposer::DummyComposer ()}\label{classDummy_1_1DummyComposer_e6414916b858290875f9af4864d70444}
+
+
+\index{Dummy::DummyComposer@{Dummy::DummyComposer}!$\sim$DummyComposer@{$\sim$DummyComposer}}
+\index{$\sim$DummyComposer@{$\sim$DummyComposer}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[$\sim$DummyComposer]{\setlength{\rightskip}{0pt plus 5cm}DummyComposer::$\sim$DummyComposer ()}\label{classDummy_1_1DummyComposer_897383f39ffa180b8b014bc06af69854}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{Dummy::DummyComposer@{Dummy::DummyComposer}!setupSimulation@{setupSimulation}}
+\index{setupSimulation@{setupSimulation}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[setupSimulation]{\setlength{\rightskip}{0pt plus 5cm}void DummyComposer::setupSimulation ()\hspace{0.3cm}{\tt  [virtual]}}\label{classDummy_1_1DummyComposer_c41abf23b1b256ea7a1bdc90d41ab0c7}
+
+
+top level method for constructing the simulation. for the beginning we will re-implement this method for each new simulation 
+
+Implements {\bf Hive::Composer} \doxyref{}{p.}{classHive_1_1Composer_78092e6e6298ee36ca99ad2aa4daf14e}.
+
+References createAgent(), Hive::Composer::factories, initializeAgentFactories(), Hive::Composer::maestro, Hive::Composer::orchestra, and setupAgentHierarchy().\index{Dummy::DummyComposer@{Dummy::DummyComposer}!initializeAgentFactories@{initializeAgentFactories}}
+\index{initializeAgentFactories@{initializeAgentFactories}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[initializeAgentFactories]{\setlength{\rightskip}{0pt plus 5cm}void DummyComposer::initializeAgentFactories ()\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classDummy_1_1DummyComposer_cb07bc11db1d12676a8552a60af7a89a}
+
+
+prepare agent factories for agent setup 
+
+Implements {\bf Hive::Composer} \doxyref{}{p.}{classHive_1_1Composer_3e01c2d9e3317b13bb56954e8b574a5f}.
+
+References Hive::Composer::factories.
+
+Referenced by setupSimulation().\index{Dummy::DummyComposer@{Dummy::DummyComposer}!setupAgentHierarchy@{setupAgentHierarchy}}
+\index{setupAgentHierarchy@{setupAgentHierarchy}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[setupAgentHierarchy]{\setlength{\rightskip}{0pt plus 5cm}void DummyComposer::setupAgentHierarchy ()\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classDummy_1_1DummyComposer_ed2fc12d5c5141cb3df0f496772123f8}
+
+
+establishes child parent relationships among agents 
+
+Implements {\bf Hive::Composer} \doxyref{}{p.}{classHive_1_1Composer_6e79138677a66e554b61b52132bb2e1c}.
+
+References Hive::SerialCommunicator::addAgent(), and Hive::Composer::orchestra.
+
+Referenced by setupSimulation().\index{Dummy::DummyComposer@{Dummy::DummyComposer}!getTopLevelAgent@{getTopLevelAgent}}
+\index{getTopLevelAgent@{getTopLevelAgent}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[getTopLevelAgent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent} $\ast$ DummyComposer::getTopLevelAgent ()\hspace{0.3cm}{\tt  [protected]}}\label{classDummy_1_1DummyComposer_cc2ae43b60524d23de72bd9905beaeac}
+
+
+returns pointer to the top level agent \begin{Desc}
+\item[Returns:]maestro \end{Desc}
+
+
+Reimplemented from {\bf Hive::Composer} \doxyref{}{p.}{classHive_1_1Composer_92ed69614640227031451c47c70729a6}.
+
+References Hive::Composer::maestro.\index{Dummy::DummyComposer@{Dummy::DummyComposer}!createAgent@{createAgent}}
+\index{createAgent@{createAgent}!Dummy::DummyComposer@{Dummy::DummyComposer}}
+\subsubsection[createAgent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent} $\ast$ DummyComposer::createAgent ({\bf AgentFactory} \& {\em af})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classDummy_1_1DummyComposer_6c2c70c853ab18940fc8afb7cc6f5521}
+
+
+creates an agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em af}]agentfactory that does the actual creation of agents. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to created agent \end{Desc}
+
+
+Implements {\bf Hive::Composer} \doxyref{}{p.}{classHive_1_1Composer_cb6ac88b92f7c7c4b5f618fd3fb13e27}.
+
+References Hive::AgentFactory::createAgent().
+
+Referenced by setupSimulation().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf dummycomposer.hh}\item 
+{\bf dummyComposer.cpp}\end{CompactItemize}

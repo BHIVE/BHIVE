@@ -1,0 +1,118 @@
+\section{Hive::SerialCommunicator Class Reference}
+\label{classHive_1_1SerialCommunicator}\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+{\tt \#include $<$serialcommunicator.hh$>$}
+
+Inheritance diagram for Hive::SerialCommunicator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1SerialCommunicator}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+serialcommunicator implements the communicator 
+
+a serial communicator is needed to exchange messages among agent for the case that the entire simulation lives on a single cpu.
+
+\begin{Desc}
+\item[{\bf Todo}]\end{Desc}
+\begin{Desc}
+\item[Author:]garrit jentsch \end{Desc}
+\begin{Desc}
+\item[Date:]Oct 14, 2009, last edited 10-15-2009 \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf SerialCommunicator} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$SerialCommunicator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf receiveMessages} ()
+\begin{CompactList}\small\item\em method for receiving messages \item\end{CompactList}\item 
+void {\bf sendMessage} ({\bf Message} m, int dest)
+\item 
+void {\bf addAgent} ({\bf Agent} $\ast$a)
+\item 
+void {\bf setupCommunicationMap} (map$<$ int, {\bf Agent} $\ast$ $>$ \&c)
+\item 
+void {\bf propogateAgent} (int agentId, double time)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!SerialCommunicator@{SerialCommunicator}}
+\index{SerialCommunicator@{SerialCommunicator}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[SerialCommunicator]{\setlength{\rightskip}{0pt plus 5cm}SerialCommunicator::SerialCommunicator ()}\label{classHive_1_1SerialCommunicator_58aecf7401bc3cb9005d5d7f0f85d5c6}
+
+
+constructor 
+
+\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!$\sim$SerialCommunicator@{$\sim$SerialCommunicator}}
+\index{$\sim$SerialCommunicator@{$\sim$SerialCommunicator}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[$\sim$SerialCommunicator]{\setlength{\rightskip}{0pt plus 5cm}SerialCommunicator::$\sim$SerialCommunicator ()}\label{classHive_1_1SerialCommunicator_df113eec4ac2a38d007616c7231c5033}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!receiveMessages@{receiveMessages}}
+\index{receiveMessages@{receiveMessages}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[receiveMessages]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::receiveMessages ()\hspace{0.3cm}{\tt  [virtual]}}\label{classHive_1_1SerialCommunicator_020ed57d330b13e4919357dedc72d2f0}
+
+
+method for receiving messages 
+
+
+
+Implements {\bf Hive::Communicator} \doxyref{}{p.}{classHive_1_1Communicator_987b52b99ca4639a198f45c0c74db179}.\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!sendMessage@{sendMessage}}
+\index{sendMessage@{sendMessage}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[sendMessage]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::sendMessage ({\bf Message} {\em m}, \/  int {\em dest})\hspace{0.3cm}{\tt  [virtual]}}\label{classHive_1_1SerialCommunicator_3a50ba8f646e6b63d44707d7bf9e345b}
+
+
+method for sending messages \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]message to be send \item[{\em dest}]identifyer of destination \end{description}
+\end{Desc}
+
+
+Implements {\bf Hive::Communicator} \doxyref{}{p.}{classHive_1_1Communicator_7781e9b8494ed71c91769640bef5e6a3}.\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!addAgent@{addAgent}}
+\index{addAgent@{addAgent}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[addAgent]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::addAgent ({\bf Agent} $\ast$ {\em a})}\label{classHive_1_1SerialCommunicator_1df1993211935f5663a306e5c20e8f9d}
+
+
+adds an agent to the communication map \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]pointer to agent to be added to map \end{description}
+\end{Desc}
+
+
+References Hive::Agent::getAgentId().
+
+Referenced by Dummy::DummyComposer::setupAgentHierarchy().\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!setupCommunicationMap@{setupCommunicationMap}}
+\index{setupCommunicationMap@{setupCommunicationMap}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[setupCommunicationMap]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::setupCommunicationMap (map$<$ int, {\bf Agent} $\ast$ $>$ \& {\em c})}\label{classHive_1_1SerialCommunicator_32689ccc1a3f0e5ae206086240543a7a}
+
+
+sets up the lookup table \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]lookup table \end{description}
+\end{Desc}
+\index{Hive::SerialCommunicator@{Hive::SerialCommunicator}!propogateAgent@{propogateAgent}}
+\index{propogateAgent@{propogateAgent}!Hive::SerialCommunicator@{Hive::SerialCommunicator}}
+\subsubsection[propogateAgent]{\setlength{\rightskip}{0pt plus 5cm}void SerialCommunicator::propogateAgent (int {\em agentId}, \/  double {\em time})\hspace{0.3cm}{\tt  [virtual]}}\label{classHive_1_1SerialCommunicator_54021e56fa2936e82c0e9e3d6287cf28}
+
+
+
+
+Implements {\bf Hive::Communicator} \doxyref{}{p.}{classHive_1_1Communicator_8d803da79f8f88bf75a9a306e7676f73}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf serialcommunicator.hh}\item 
+{\bf serialcommunicator.cpp}\end{CompactItemize}

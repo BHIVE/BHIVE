@@ -1,0 +1,68 @@
+\section{Dummy::DummyWaveAction Class Reference}
+\label{classDummy_1_1DummyWaveAction}\index{Dummy::DummyWaveAction@{Dummy::DummyWaveAction}}
+{\tt \#include $<$dummywaveaction.hh$>$}
+
+Inheritance diagram for Dummy::DummyWaveAction::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classDummy_1_1DummyWaveAction}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+this is a dummy implementation of the action class 
+
+a dummywaveaction prints out 'wave' on cerr and adds the number of waves to the agents database item ...
+
+\begin{Desc}
+\item[{\bf Todo}]error-checking whether the counter exists in the agent\end{Desc}
+\begin{Desc}
+\item[Author:]garrit jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 14, 2009 last edited 10-15-2009 by garrit \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf DummyWaveAction} ()
+\item 
+{\bf DummyWaveAction} (int id)
+\item 
+void {\bf fire} ({\bf Data} $\ast$d)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Dummy::DummyWaveAction@{Dummy::DummyWaveAction}!DummyWaveAction@{DummyWaveAction}}
+\index{DummyWaveAction@{DummyWaveAction}!Dummy::DummyWaveAction@{Dummy::DummyWaveAction}}
+\subsubsection[DummyWaveAction]{\setlength{\rightskip}{0pt plus 5cm}DummyWaveAction::DummyWaveAction ()}\label{classDummy_1_1DummyWaveAction_29c6d4182671fbe212fea9b435460f9d}
+
+
+\index{Dummy::DummyWaveAction@{Dummy::DummyWaveAction}!DummyWaveAction@{DummyWaveAction}}
+\index{DummyWaveAction@{DummyWaveAction}!Dummy::DummyWaveAction@{Dummy::DummyWaveAction}}
+\subsubsection[DummyWaveAction]{\setlength{\rightskip}{0pt plus 5cm}DummyWaveAction::DummyWaveAction (int {\em id})}\label{classDummy_1_1DummyWaveAction_13ba34d7f3aee5436b9a196296ef13d1}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{Dummy::DummyWaveAction@{Dummy::DummyWaveAction}!fire@{fire}}
+\index{fire@{fire}!Dummy::DummyWaveAction@{Dummy::DummyWaveAction}}
+\subsubsection[fire]{\setlength{\rightskip}{0pt plus 5cm}void DummyWaveAction::fire ({\bf Data} $\ast$ {\em d})\hspace{0.3cm}{\tt  [virtual]}}\label{classDummy_1_1DummyWaveAction_da12711cb5d2ff3f5df637dbb28ebeff}
+
+
+executes an action \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em d}]pointer to data-object containing the argument for the action \end{description}
+\end{Desc}
+
+
+Implements {\bf Hive::Action} \doxyref{}{p.}{classHive_1_1Action_b49f6239755b61cd057b7024d739e8ba}.
+
+References Hive::Action::agent, Hive::Agent::getDatabase(), Hive::Database::getDataItem(), Hive::IntegerData::getInteger(), and Hive::Data::getType().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf dummywaveaction.hh}\item 
+{\bf dummywaveaction.cpp}\end{CompactItemize}

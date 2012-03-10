@@ -1,0 +1,88 @@
+\section{Hive::IntegerData Class Reference}
+\label{classHive_1_1IntegerData}\index{Hive::IntegerData@{Hive::IntegerData}}
+{\tt \#include $<$primitiveData.hh$>$}
+
+Inheritance diagram for Hive::IntegerData::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1IntegerData}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+A data object to store integer values. 
+
+\begin{Desc}
+\item[Date:]Oct 14, 2009 Last edited: Oct 14, 2009 by Garrit and Michael \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf IntegerData} (string dataName, int value)
+\begin{CompactList}\small\item\em default-constructor \item\end{CompactList}\item 
+virtual {\bf $\sim$IntegerData} ()
+\item 
+void {\bf printContent} (ostream \&out)
+\begin{CompactList}\small\item\em virtual method for print the content of a data item on sterr. \item\end{CompactList}\item 
+string {\bf getDataName} () const 
+\item 
+int {\bf getInteger} () const 
+\item 
+void {\bf setInteger} (int newValue)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::IntegerData@{Hive::IntegerData}!IntegerData@{IntegerData}}
+\index{IntegerData@{IntegerData}!Hive::IntegerData@{Hive::IntegerData}}
+\subsubsection[IntegerData]{\setlength{\rightskip}{0pt plus 5cm}IntegerData::IntegerData (string {\em dataName}, \/  int {\em value})}\label{classHive_1_1IntegerData_746aec52ee5800f9d1f665c0551ac550}
+
+
+default-constructor 
+
+\index{Hive::IntegerData@{Hive::IntegerData}!$\sim$IntegerData@{$\sim$IntegerData}}
+\index{$\sim$IntegerData@{$\sim$IntegerData}!Hive::IntegerData@{Hive::IntegerData}}
+\subsubsection[$\sim$IntegerData]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::IntegerData::$\sim$IntegerData ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1IntegerData_fe3c1be18fa73a3d0e15524e48189990}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::IntegerData@{Hive::IntegerData}!printContent@{printContent}}
+\index{printContent@{printContent}!Hive::IntegerData@{Hive::IntegerData}}
+\subsubsection[printContent]{\setlength{\rightskip}{0pt plus 5cm}void IntegerData::printContent (ostream \& {\em out})\hspace{0.3cm}{\tt  [virtual]}}\label{classHive_1_1IntegerData_c8b7d3312b0335c50a0e74aa8bf6a2c0}
+
+
+virtual method for print the content of a data item on sterr. 
+
+
+
+Implements {\bf Hive::Data} \doxyref{}{p.}{classHive_1_1Data_a168edcfa6efd38fe88d72c5162fd8d1}.
+
+References Hive::Data::datatype.\index{Hive::IntegerData@{Hive::IntegerData}!getDataName@{getDataName}}
+\index{getDataName@{getDataName}!Hive::IntegerData@{Hive::IntegerData}}
+\subsubsection[getDataName]{\setlength{\rightskip}{0pt plus 5cm}string Hive::IntegerData::getDataName () const\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1IntegerData_4907987df5bd909decc6b433517fa71f}
+
+
+
+
+Referenced by Dummy::DummyAgentFactory::createAgent().\index{Hive::IntegerData@{Hive::IntegerData}!getInteger@{getInteger}}
+\index{getInteger@{getInteger}!Hive::IntegerData@{Hive::IntegerData}}
+\subsubsection[getInteger]{\setlength{\rightskip}{0pt plus 5cm}int Hive::IntegerData::getInteger () const\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1IntegerData_229292da4f10cb1532a311129d300889}
+
+
+
+
+Referenced by Dummy::DummyWaveAction::fire().\index{Hive::IntegerData@{Hive::IntegerData}!setInteger@{setInteger}}
+\index{setInteger@{setInteger}!Hive::IntegerData@{Hive::IntegerData}}
+\subsubsection[setInteger]{\setlength{\rightskip}{0pt plus 5cm}void Hive::IntegerData::setInteger (int {\em newValue})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1IntegerData_9f99706b847cdb75a9abab0b1bb51f0b}
+
+
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf primitiveData.hh}\item 
+{\bf primitiveData.cpp}\end{CompactItemize}

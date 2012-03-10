@@ -1,0 +1,35 @@
+\section{conversion.hh File Reference}
+\label{conversion_8hh}\index{conversion.hh@{conversion.hh}}
+
+
+\subsection{Detailed Description}
+A library of standard converstions between primitive types and STL objects, such as converting between std::string and double.
+
+\begin{Desc}
+\item[Date:]Oct 14th, 2009 last edited: Oct 14th, 2009\end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$exception$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$stdexcept$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace {\bf Util}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+double {\bf Util::convertToDouble} (const std::string \&s)
+\begin{CompactList}\small\item\em Parses and converts std::string objects to double values. \item\end{CompactList}\item 
+int {\bf Util::convertToInt} (const std::string \&s)
+\begin{CompactList}\small\item\em Parses and converts std::string objects to int values. \item\end{CompactList}\item 
+string {\bf Util::toString} (double x)
+\begin{CompactList}\small\item\em Converts double values to their string representations. \item\end{CompactList}\item 
+string {\bf Util::toString} (int x)
+\begin{CompactList}\small\item\em Converts integer values to their string representations. \item\end{CompactList}\end{CompactItemize}

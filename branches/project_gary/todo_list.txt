@@ -1,0 +1,30 @@
+
+
+
+
+
+==========================================
+==  Priority Updates
+==========================================
+
+ * Incorporate ODE solver library
+ * Add new simulators and default agent factories for BNG based ODE and SSA simulation
+
+
+
+
+
+
+
+
+
+
+
+==========================================
+==  Performance Updates
+==========================================
+
+ * Switch Database representation of Data elements from Map to an indexed-array, but keep
+   the map around for matching Data names (which we now use as unique identifiers of data)
+   to array index locations (which should not change during a simulation).  this will save
+   computation time during each time step when database elements are accessed.

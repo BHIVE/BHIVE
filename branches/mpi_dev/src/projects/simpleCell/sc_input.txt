@@ -1,0 +1,11 @@
+environment envParameter1 envParameter2
+1,0,0
+CheYp timescale noise numOfMotors numOfCells isCorrelated
+2.7, 30, 0.15, 4, 1, 1
+2.7, 30, 0.01, 4, 1, 1
+2.7, 30, 0.15, 4, 1, 1
+2.7, 30, 0.01, 4, 1, 1
+2.7, 30, 0.15, 4, 1, 1
+2.7, 30, 0.01, 4, 1, 1
+2.7, 30, 0.15, 4, 1, 1
+2.7, 30, 0.01, 4, 1, 1

@@ -1,0 +1,131 @@
+\section{Hive::Message Class Reference}
+\label{classHive_1_1Message}\index{Hive::Message@{Hive::Message}}
+{\tt \#include $<$message.hh$>$}
+
+
+
+\subsection{Detailed Description}
+message for agent communication. 
+
+messages are exchanged by agents to communicate with one another. with the help of a message agents tell each other which action they should take.
+
+\begin{Desc}
+\item[See also:]action\end{Desc}
+\begin{Desc}
+\item[{\bf Todo}]everything. how do we specify the parameters ?!\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 13th, 2009 last edited: 10-14-2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Message} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+{\bf $\sim$Message} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+int {\bf getActionId} ()
+\item 
+void {\bf setAction} (int a)
+\item 
+void {\bf setArgument} ({\bf Data} \&d)
+\item 
+void {\bf setArgument} ({\bf Data} $\ast$d)
+\item 
+void {\bf getArgument} ({\bf Data} $\ast$\&d, int i=0)
+\item 
+void {\bf getAllParameter} (vector$<$ {\bf Data} $\ast$ $>$ \&d)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::Message@{Hive::Message}!Message@{Message}}
+\index{Message@{Message}!Hive::Message@{Hive::Message}}
+\subsubsection[Message]{\setlength{\rightskip}{0pt plus 5cm}Message::Message ()}\label{classHive_1_1Message_4fc4f717b634e66070366cb7722d7761}
+
+
+Constructor. 
+
+\index{Hive::Message@{Hive::Message}!$\sim$Message@{$\sim$Message}}
+\index{$\sim$Message@{$\sim$Message}!Hive::Message@{Hive::Message}}
+\subsubsection[$\sim$Message]{\setlength{\rightskip}{0pt plus 5cm}Message::$\sim$Message ()}\label{classHive_1_1Message_3f7275462831f787a861271687bcad67}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::Message@{Hive::Message}!getActionId@{getActionId}}
+\index{getActionId@{getActionId}!Hive::Message@{Hive::Message}}
+\subsubsection[getActionId]{\setlength{\rightskip}{0pt plus 5cm}int Message::getActionId ()}\label{classHive_1_1Message_b432b3eee3b03fb5b7b25b530898fa96}
+
+
+returns actionid of the action to be taken by the destination agent \begin{Desc}
+\item[Returns:]actionid \end{Desc}
+
+
+Referenced by Hive::Agent::evaluateMessageQueue().\index{Hive::Message@{Hive::Message}!setAction@{setAction}}
+\index{setAction@{setAction}!Hive::Message@{Hive::Message}}
+\subsubsection[setAction]{\setlength{\rightskip}{0pt plus 5cm}void Message::setAction (int {\em a})}\label{classHive_1_1Message_6cc1ac636810840ebeef7f78234fed93}
+
+
+set action which has to be communicated \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]action to be broadcasted. \end{description}
+\end{Desc}
+
+
+Referenced by Dummy::DummyMessageGenerator::placeMessage().\index{Hive::Message@{Hive::Message}!setArgument@{setArgument}}
+\index{setArgument@{setArgument}!Hive::Message@{Hive::Message}}
+\subsubsection[setArgument]{\setlength{\rightskip}{0pt plus 5cm}void Hive::Message::setArgument ({\bf Data} \& {\em d})}\label{classHive_1_1Message_cc22028635f3bffdb5b5187e3cd3b052}
+
+
+adds an arbitrary data item to the parameter list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em d}]data item \end{description}
+\end{Desc}
+
+
+Referenced by Dummy::DummyMessageGenerator::placeMessage().\index{Hive::Message@{Hive::Message}!setArgument@{setArgument}}
+\index{setArgument@{setArgument}!Hive::Message@{Hive::Message}}
+\subsubsection[setArgument]{\setlength{\rightskip}{0pt plus 5cm}void Message::setArgument ({\bf Data} $\ast$ {\em d})}\label{classHive_1_1Message_975ed4851d03e7ab133845f3853eb16a}
+
+
+adds a pointer to an arbitrary data item to the parameter list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$d}]pointer to data item \end{description}
+\end{Desc}
+\index{Hive::Message@{Hive::Message}!getArgument@{getArgument}}
+\index{getArgument@{getArgument}!Hive::Message@{Hive::Message}}
+\subsubsection[getArgument]{\setlength{\rightskip}{0pt plus 5cm}void Message::getArgument ({\bf Data} $\ast$\& {\em d}, \/  int {\em i} = {\tt 0})}\label{classHive_1_1Message_29285c0e99174654d44ca2b7388ad9f5}
+
+
+return data item at a certain position \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$d}]return parameter \item[{\em i}]position \end{description}
+\end{Desc}
+
+
+Referenced by Hive::Agent::evaluateMessageQueue().\index{Hive::Message@{Hive::Message}!getAllParameter@{getAllParameter}}
+\index{getAllParameter@{getAllParameter}!Hive::Message@{Hive::Message}}
+\subsubsection[getAllParameter]{\setlength{\rightskip}{0pt plus 5cm}void Hive::Message::getAllParameter (vector$<$ {\bf Data} $\ast$ $>$ \& {\em d})}\label{classHive_1_1Message_172c036ad596e7cd92892b5c318d0ff9}
+
+
+return data item vector \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$$\ast$d}]return parameter \end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf message.hh}\item 
+{\bf message.cpp}\end{CompactItemize}

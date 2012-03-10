@@ -1,0 +1,179 @@
+\section{Hive::AgentFactory Class Reference}
+\label{classHive_1_1AgentFactory}\index{Hive::AgentFactory@{Hive::AgentFactory}}
+{\tt \#include $<$agent\_\-factory.hh$>$}
+
+Inheritance diagram for Hive::AgentFactory::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1AgentFactory}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+agent factory 
+
+agent factory for constructing agents.
+
+\begin{Desc}
+\item[{\bf Todo}]Everything\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]who know's?\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]13th of October, 2009 last edited: 10-14-2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf AgentFactory} ()
+\begin{CompactList}\small\item\em default constructor \item\end{CompactList}\item 
+{\bf AgentFactory} ({\bf InputSystemReader} $\ast${\bf isr})
+\item 
+virtual {\bf $\sim$AgentFactory} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual {\bf Agent} $\ast$ {\bf createAgent} ()=0
+\item 
+virtual {\bf Agent} $\ast$ {\bf createAgent} ({\bf Action} $\ast$$\ast$as)=0
+\item 
+virtual {\bf Agent} $\ast$ {\bf duplicateAgent} ({\bf Agent} $\ast$ag)=0
+\item 
+void {\bf setInputSystemReader} ({\bf InputSystemReader} $\ast${\bf isr})
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf addActionToAgentsActionSet} ({\bf Action} $\ast$a)=0
+\item 
+virtual void {\bf addSimulatorToAgent} ({\bf Simulator} $\ast$s)=0
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf System} $\ast$ {\bf sys}
+\begin{CompactList}\small\item\em system \item\end{CompactList}\item 
+{\bf InputSystemReader} $\ast$ {\bf isr}
+\begin{CompactList}\small\item\em input\_\-reader \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::AgentFactory@{Hive::AgentFactory}!AgentFactory@{AgentFactory}}
+\index{AgentFactory@{AgentFactory}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[AgentFactory]{\setlength{\rightskip}{0pt plus 5cm}Hive::AgentFactory::AgentFactory ()\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1AgentFactory_60004ca9ecbad370b569cae207b55c61}
+
+
+default constructor 
+
+\index{Hive::AgentFactory@{Hive::AgentFactory}!AgentFactory@{AgentFactory}}
+\index{AgentFactory@{AgentFactory}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[AgentFactory]{\setlength{\rightskip}{0pt plus 5cm}Hive::AgentFactory::AgentFactory ({\bf InputSystemReader} $\ast$ {\em isr})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1AgentFactory_9db85c48d7daa60900f42384b0627560}
+
+
+constructor \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$isr}]pointer to inputsystemreader \end{description}
+\end{Desc}
+\index{Hive::AgentFactory@{Hive::AgentFactory}!$\sim$AgentFactory@{$\sim$AgentFactory}}
+\index{$\sim$AgentFactory@{$\sim$AgentFactory}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[$\sim$AgentFactory]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::AgentFactory::$\sim$AgentFactory ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1AgentFactory_72d8240038c2669ba66797654640be29}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::AgentFactory@{Hive::AgentFactory}!createAgent@{createAgent}}
+\index{createAgent@{createAgent}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[createAgent]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Agent}$\ast$ Hive::AgentFactory::createAgent ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1AgentFactory_a1e148a842b3f0e2dd11de0ef61bf877}
+
+
+create agent of a certain type. encapsulates everything that has to be done, i.e. it adds actions, simulator, messagegenerators, and communicator to the agent. the simulator is also told to connect to the database and initialize itself. \begin{Desc}
+\item[Returns:]pointer to constructed agent \end{Desc}
+
+
+Implemented in {\bf Dummy::DummyAgentFactory} \doxyref{}{p.}{classDummy_1_1DummyAgentFactory_0aec7238d1758a98d59817f49ae1c2c0}.
+
+Referenced by Dummy::DummyComposer::createAgent().\index{Hive::AgentFactory@{Hive::AgentFactory}!createAgent@{createAgent}}
+\index{createAgent@{createAgent}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[createAgent]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Agent}$\ast$ Hive::AgentFactory::createAgent ({\bf Action} $\ast$$\ast$ {\em as})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1AgentFactory_40e828a8b7c397c11a3c0ed24e22932d}
+
+
+create an agent and provide actionset as an argument \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em as}]pointer to actionset \end{description}
+\end{Desc}
+
+
+Implemented in {\bf Dummy::DummyAgentFactory} \doxyref{}{p.}{classDummy_1_1DummyAgentFactory_939e7c2ccee8945187801e6cd92da0df}.\index{Hive::AgentFactory@{Hive::AgentFactory}!duplicateAgent@{duplicateAgent}}
+\index{duplicateAgent@{duplicateAgent}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[duplicateAgent]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Agent}$\ast$ Hive::AgentFactory::duplicateAgent ({\bf Agent} $\ast$ {\em ag})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1AgentFactory_ea99bc08ec4fa2a262244362e7de03f6}
+
+
+copies an agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$ag}]pointer to agent to be copied \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to copy \end{Desc}
+
+
+Implemented in {\bf Dummy::DummyAgentFactory} \doxyref{}{p.}{classDummy_1_1DummyAgentFactory_8ddeb4e5090dac67d921e8a4b89275a7}.\index{Hive::AgentFactory@{Hive::AgentFactory}!setInputSystemReader@{setInputSystemReader}}
+\index{setInputSystemReader@{setInputSystemReader}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[setInputSystemReader]{\setlength{\rightskip}{0pt plus 5cm}void Hive::AgentFactory::setInputSystemReader ({\bf InputSystemReader} $\ast$ {\em isr})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1AgentFactory_8f3f49944a65e04224a903f90622fcdc}
+
+
+sets up inputsystemreader \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$isr}]inputsystemreader for this factory \end{description}
+\end{Desc}
+\index{Hive::AgentFactory@{Hive::AgentFactory}!addActionToAgentsActionSet@{addActionToAgentsActionSet}}
+\index{addActionToAgentsActionSet@{addActionToAgentsActionSet}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[addActionToAgentsActionSet]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::AgentFactory::addActionToAgentsActionSet ({\bf Action} $\ast$ {\em a})\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classHive_1_1AgentFactory_978d73e56c472e6ecce59282fa80852e}
+
+
+adds an action to the agents action set \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$a}]pointer to action \end{description}
+\end{Desc}
+
+
+Implemented in {\bf Dummy::DummyAgentFactory} \doxyref{}{p.}{classDummy_1_1DummyAgentFactory_f469c5c34c6d26c944d9272c3bff6cb5}.\index{Hive::AgentFactory@{Hive::AgentFactory}!addSimulatorToAgent@{addSimulatorToAgent}}
+\index{addSimulatorToAgent@{addSimulatorToAgent}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[addSimulatorToAgent]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::AgentFactory::addSimulatorToAgent ({\bf Simulator} $\ast$ {\em s})\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classHive_1_1AgentFactory_e10d7f9aeb994662565de5fa7d074e87}
+
+
+adds a simulator to the agents simulator set \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$s}]pointer to simulator \end{description}
+\end{Desc}
+
+
+Implemented in {\bf Dummy::DummyAgentFactory} \doxyref{}{p.}{classDummy_1_1DummyAgentFactory_52894893fc20746c63949ee62ff875af}.
+
+\subsection{Member Data Documentation}
+\index{Hive::AgentFactory@{Hive::AgentFactory}!sys@{sys}}
+\index{sys@{sys}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[sys]{\setlength{\rightskip}{0pt plus 5cm}{\bf System}$\ast$ {\bf Hive::AgentFactory::sys}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1AgentFactory_8e26672aeb4acfb444dc5cd3c0aeea01}
+
+
+system 
+
+\index{Hive::AgentFactory@{Hive::AgentFactory}!isr@{isr}}
+\index{isr@{isr}!Hive::AgentFactory@{Hive::AgentFactory}}
+\subsubsection[isr]{\setlength{\rightskip}{0pt plus 5cm}{\bf InputSystemReader}$\ast$ {\bf Hive::AgentFactory::isr}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1AgentFactory_0cc73c17d670dd1a1497a089d00a346c}
+
+
+input\_\-reader 
+
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf agent\_\-factory.hh}\end{CompactItemize}
