@@ -1,0 +1,73 @@
+\section{commandLineParser.cpp File Reference}
+\label{commandLineParser_8cpp}\index{commandLineParser.cpp@{commandLineParser.cpp}}
+
+
+{\tt \#include \char`\"{}commandLineParser.hh\char`\"{}}\par
+{\tt \#include $<$iostream$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf parseArguments} (int argc, const char $\ast$argv[$\,$], map$<$ string, string $>$ \&argMap)
+\begin{CompactList}\small\item\em Parses command line arguments from the console into an argMap. \item\end{CompactList}\item 
+int {\bf parseAsInt} (map$<$ string, string $>$ \&argMap, string argName, int defaultValue)
+\begin{CompactList}\small\item\em Looks up the argument in the argMap and tries to parse the value as an integer. \item\end{CompactList}\item 
+double {\bf parseAsDouble} (map$<$ string, string $>$ \&argMap, string argName, double defaultValue)
+\begin{CompactList}\small\item\em Looks up the argument in the argMap and tries to parse the value as a double. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{commandLineParser.cpp@{commandLineParser.cpp}!parseArguments@{parseArguments}}
+\index{parseArguments@{parseArguments}!commandLineParser.cpp@{commandLineParser.cpp}}
+\subsubsection[parseArguments]{\setlength{\rightskip}{0pt plus 5cm}bool parseArguments (int {\em argc}, \/  const char $\ast$ {\em argv}[$\,$], \/  std::map$<$ std::string, std::string $>$ \& {\em argMap})}\label{commandLineParser_8cpp_db6c1353f5ffe64f1c40d49ddf1f4b74}
+
+
+Parses command line arguments from the console into an argMap. 
+
+Given the vector of strings taken from the command line, this function parses out all strings that start with a dash and identifies them as parameters, and attatches the parameter value to whatever string follows. For example, -file help.txt would add an entry to the argMap as a parameter named \char`\"{}file\char`\"{} with value \char`\"{}help.txt\char`\"{}. You can take a look at parseAsInt and parseAsDouble functions that can interpret the value as integers or doubles
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argc}]the number of arguments \item[{\em argv}]the array of character arrays (strings) \item[{\em argMap}]the map that will be set when this function is called \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]bool true if successful, false if something went wrong \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+\index{commandLineParser.cpp@{commandLineParser.cpp}!parseAsDouble@{parseAsDouble}}
+\index{parseAsDouble@{parseAsDouble}!commandLineParser.cpp@{commandLineParser.cpp}}
+\subsubsection[parseAsDouble]{\setlength{\rightskip}{0pt plus 5cm}double parseAsDouble (map$<$ string, string $>$ \& {\em argMap}, \/  string {\em argName}, \/  double {\em defaultValue})}\label{commandLineParser_8cpp_412e89bbcc308c634d3911a49280bbbc}
+
+
+Looks up the argument in the argMap and tries to parse the value as a double. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argMap}]the argMap to lookup, generally created by the parseArguments function \item[{\em string}]the name of the parameter to look up \item[{\em defaultValue}]the default value to return if the value was empty \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int the parsed double if successful, otherwise the defaultValue given \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+References Util::convertToDouble().\index{commandLineParser.cpp@{commandLineParser.cpp}!parseAsInt@{parseAsInt}}
+\index{parseAsInt@{parseAsInt}!commandLineParser.cpp@{commandLineParser.cpp}}
+\subsubsection[parseAsInt]{\setlength{\rightskip}{0pt plus 5cm}int parseAsInt (map$<$ string, string $>$ \& {\em argMap}, \/  string {\em argName}, \/  int {\em defaultValue})}\label{commandLineParser_8cpp_7e2b760fe8b56a663c12352037277dd0}
+
+
+Looks up the argument in the argMap and tries to parse the value as an integer. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argMap}]the argMap to lookup, generally created by the parseArguments function \item[{\em string}]the name of the parameter to look up \item[{\em defaultValue}]the default value to return if the value was empty \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int the parsed int if successful, otherwise the defaultValue given \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+References Util::convertToInt().

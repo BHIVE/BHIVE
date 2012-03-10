@@ -1,0 +1,211 @@
+\section{mu::ParserCallback Class Reference}
+\label{classmu_1_1ParserCallback}\index{mu::ParserCallback@{mu::ParserCallback}}
+{\tt \#include $<$muParserCallback.h$>$}
+
+
+
+\subsection{Detailed Description}
+Encapsulation of prototypes for a numerical parser function. 
+
+Encapsulates the prototyp for numerical parser functions. The class stores the number of arguments for parser functions as well as additional flags indication the function is non optimizeable. The pointer to the callback function pointer is stored as void$\ast$ and needs to be casted according to the argument count. Negative argument counts indicate a parser function with a variable number of arguments. This class is not used for string function prototyping.
+
+\begin{Desc}
+\item[Author:](C) 2004-2007 Ingo Berg \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserCallback} ({\bf fun\_\-type0} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf fun\_\-type1} a\_\-pFun, bool a\_\-bAllowOpti, int a\_\-iPrec=-1, {\bf ECmdCode} a\_\-iCode=cmFUNC)
+\item 
+{\bf ParserCallback} ({\bf fun\_\-type2} a\_\-pFun, bool a\_\-bAllowOpti, int a\_\-iPrec=-1, {\bf ECmdCode} a\_\-iCode=cmFUNC)
+\item 
+{\bf ParserCallback} ({\bf fun\_\-type3} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf fun\_\-type4} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf fun\_\-type5} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf multfun\_\-type} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf strfun\_\-type1} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf strfun\_\-type2} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ({\bf strfun\_\-type3} a\_\-pFun, bool a\_\-bAllowOpti)
+\item 
+{\bf ParserCallback} ()
+\begin{CompactList}\small\item\em Default constructor. \item\end{CompactList}\item 
+{\bf ParserCallback} (const {\bf ParserCallback} \&a\_\-Fun)
+\begin{CompactList}\small\item\em Copy constructor. \item\end{CompactList}\item 
+{\bf ParserCallback} $\ast$ {\bf Clone} () const 
+\begin{CompactList}\small\item\em Clone this instance and return a pointer to the new instance. \item\end{CompactList}\item 
+bool {\bf IsOptimizable} () const 
+\begin{CompactList}\small\item\em Return tru if the function is conservative. \item\end{CompactList}\item 
+void $\ast$ {\bf GetAddr} () const 
+\begin{CompactList}\small\item\em Get the callback address for the parser function. \item\end{CompactList}\item 
+{\bf ECmdCode} {\bf GetCode} () const 
+\begin{CompactList}\small\item\em Return the callback code. \item\end{CompactList}\item 
+{\bf ETypeCode} {\bf GetType} () const 
+\item 
+int {\bf GetPri} () const 
+\begin{CompactList}\small\item\em Return the operator priority. \item\end{CompactList}\item 
+int {\bf GetArgc} () const 
+\begin{CompactList}\small\item\em Returns the number of function Arguments. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf fun\_\-type0} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_3f203039da4fe6deaabd7ea289a82386}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf fun\_\-type1} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti}, \/  int {\em a\_\-iPrec} = {\tt -1}, \/  {\bf ECmdCode} {\em a\_\-iCode} = {\tt cmFUNC})}\label{classmu_1_1ParserCallback_4efbbc71ad2b29987e569afa1451bbd1}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf fun\_\-type2} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti}, \/  int {\em a\_\-iPrec} = {\tt -1}, \/  {\bf ECmdCode} {\em a\_\-iCode} = {\tt cmFUNC})}\label{classmu_1_1ParserCallback_9fe16de4048e438e89e6806d3ede23f5}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf fun\_\-type3} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_9d151844c0da252efe528b39f5f2c401}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf fun\_\-type4} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_349b0be9ad797a629fa1bff1141fc03e}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf fun\_\-type5} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_eba7f6318f9efcadd2adc9a0aa9a6b90}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf multfun\_\-type} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_fd7a7863138953853ad08c49cb781ca9}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf strfun\_\-type1} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_027d02e29d93c0cfccc0a3780b59b9fb}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf strfun\_\-type2} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_e875518b280a457291178a204e538bcf}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ({\bf strfun\_\-type3} {\em a\_\-pFun}, \/  bool {\em a\_\-bAllowOpti})}\label{classmu_1_1ParserCallback_5fcbcd39382aaa95b4bfd39c83f03be6}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback ()}\label{classmu_1_1ParserCallback_2c460fd6954bfcb8416275cf660e5160}
+
+
+Default constructor. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+Referenced by Clone().\index{mu::ParserCallback@{mu::ParserCallback}!ParserCallback@{ParserCallback}}
+\index{ParserCallback@{ParserCallback}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[ParserCallback]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserCallback::ParserCallback (const {\bf ParserCallback} \& {\em a\_\-Fun})}\label{classmu_1_1ParserCallback_689eab6da426078ed50e2794865f8cf9}
+
+
+Copy constructor. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+References m\_\-bAllowOpti, m\_\-iArgc, m\_\-iCode, m\_\-iPri, m\_\-iType, and m\_\-pFun.
+
+\subsection{Member Function Documentation}
+\index{mu::ParserCallback@{mu::ParserCallback}!Clone@{Clone}}
+\index{Clone@{Clone}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[Clone]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParserCallback} $\ast$ mu::ParserCallback::Clone () const}\label{classmu_1_1ParserCallback_a78005daec4187a7843871911585629e}
+
+
+Clone this instance and return a pointer to the new instance. 
+
+
+
+References ParserCallback().\index{mu::ParserCallback@{mu::ParserCallback}!IsOptimizable@{IsOptimizable}}
+\index{IsOptimizable@{IsOptimizable}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[IsOptimizable]{\setlength{\rightskip}{0pt plus 5cm}bool mu::ParserCallback::IsOptimizable () const}\label{classmu_1_1ParserCallback_b899146ccc02b1a7a7245694821ba618}
+
+
+Return tru if the function is conservative. 
+
+Conservative functions return always the same result for the same argument. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserCallback@{mu::ParserCallback}!GetAddr@{GetAddr}}
+\index{GetAddr@{GetAddr}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[GetAddr]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ mu::ParserCallback::GetAddr () const}\label{classmu_1_1ParserCallback_509c3106a4adea192e3f8044898e18a7}
+
+
+Get the callback address for the parser function. 
+
+The type of the address is void. It needs to be recasted according to the argument number to the right type.
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pFun \end{Desc}
+
+
+Referenced by mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::Set().\index{mu::ParserCallback@{mu::ParserCallback}!GetCode@{GetCode}}
+\index{GetCode@{GetCode}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[GetCode]{\setlength{\rightskip}{0pt plus 5cm}{\bf ECmdCode} mu::ParserCallback::GetCode () const}\label{classmu_1_1ParserCallback_8aba600cfcc29227674ec367f6dca6dd}
+
+
+Return the callback code. 
+
+
+
+Referenced by mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::Set().\index{mu::ParserCallback@{mu::ParserCallback}!GetType@{GetType}}
+\index{GetType@{GetType}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[GetType]{\setlength{\rightskip}{0pt plus 5cm}{\bf ETypeCode} mu::ParserCallback::GetType () const}\label{classmu_1_1ParserCallback_6744d48241d12c0643141764184bb373}
+
+
+\index{mu::ParserCallback@{mu::ParserCallback}!GetPri@{GetPri}}
+\index{GetPri@{GetPri}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[GetPri]{\setlength{\rightskip}{0pt plus 5cm}int mu::ParserCallback::GetPri () const}\label{classmu_1_1ParserCallback_09b1100b5b0f69b6258a0412ad0f108e}
+
+
+Return the operator priority. 
+
+Only valid if the callback token is an operator token (binary or infix). \index{mu::ParserCallback@{mu::ParserCallback}!GetArgc@{GetArgc}}
+\index{GetArgc@{GetArgc}!mu::ParserCallback@{mu::ParserCallback}}
+\subsubsection[GetArgc]{\setlength{\rightskip}{0pt plus 5cm}int mu::ParserCallback::GetArgc () const}\label{classmu_1_1ParserCallback_a37c90de1b1110639484ac9d139210a2}
+
+
+Returns the number of function Arguments. 
+
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParserCallback.h}\item 
+{\bf muParserCallback.cpp}\end{CompactItemize}

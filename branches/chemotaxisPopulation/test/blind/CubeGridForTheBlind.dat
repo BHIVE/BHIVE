@@ -1,0 +1,66 @@
+TYPE
+
+# for cube_grid environment, the args are:
+#  cube_grid [X] [Y] [INIT_TYPE] [INIT_PARAM ... ]
+#
+#  where [X] = dimensions of the cube
+#        [Y] = the discritization of each side (dL)
+#        [INIT_TYPE] = string that gives the type of initialization
+#                       supported types are UNIFORM, RANDOM
+#        [INIT_PARAM] = extra parameters needed for the particular environment
+#
+#  for UNIFORM, parameters are:  1: concentration to start with in each voxel
+#  for RANDOM,  parameters are:  1: number of sources
+#                                2: min value of the source
+#                                3: max value of the source
+#
+#
+#  example:
+#    cube_grid 4 0.5 UNIFORM 1
+#
+#    will create a cube environement of size 4x4x4, with a voxel size of 0.5x0.5x0.5.
+#    thus, there will be (4/0.5)^3 = 512 voxels.  The nutrient will start with a uniform
+#    concentration set to a value of 1.  (remember, concentration should range from 0 to
+#    1 in nondimensional units.  Also note that if you change the discretization, without
+#    changing any other parameter, it will effectively change the world size because of how
+#    the blind agents consume from their world.  So if we change the discretization, then
+#    we have to rescale the other parameters.  The easier way is just to pick the discretization
+#    now, and never change it...).
+
+
+
+
+cube_grid 4 1 UNIFORM 1
+#cube_grid 10 1 RANDOM 300 0.5 1
+
+
+# other environments implemented before for the e.coli model
+# linear 0.0 0.0
+# exponential 5.0 1.0
+# pointsource 1.0 1000.0 1.0 1.0 1.0
+# yuhaissine 10.0 25.0 1.0
+END
+
+
+
+
+CELLPOSITIONS
+
+#all_same_position 1.0 1.0 1.0
+#start all cells at the same position, given there
+
+random_in_cube
+#start cells randomly in the cube, requires that the environment is a cube_grid
+
+# around_position 1.0 1.0 1.0 1.0
+# around_positon x y z r
+# gives cells randomly positioned about the position
+# x,y,z with a radius of r
+
+END
+
+
+NUM_STEPS
+5001 0.01
+END
+

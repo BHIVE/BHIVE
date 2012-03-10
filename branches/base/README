@@ -1,0 +1,6 @@
+README
+
+for running chemotaxis-simulation, first update path in
+rbmetafiletest_new110810.dat, then use following command:
+
+jentsch@host chemo_with_core > ./Debug/base -metafile rbmetafiletest_new110810.dat -outputinterval 10.0 -outputSuffix data -binary false -blockworldoutput true

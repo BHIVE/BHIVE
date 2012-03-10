@@ -1,0 +1,33 @@
+code snippet for testing the quad tree
+
+try {
+		// for testing the GridReaderForMicroFluidic ... can be removed ... i am leaving it for the moment
+		GridReaderForMicroFluidic *grfmf  = new GridReaderForMicroFluidic();
+		// i guess we need to get the resolution from the inptu reader ?!
+		grfmf->setResolution(1);
+		grfmf->setInputFile("/home/jentsch/workspace/chemotaxisPopulation2/microtestII.txt");
+		grfmf->addSpecies("hans",1.0);
+		Grid *g = grfmf->returnGrid();
+		grfmf->readInitialConcentrations("/home/jentsch/workspace/chemotaxisPopulation2/testconcII.txt");
+		//		g->outputGridForValidation();
+
+		QuadTreeForMicroFluidic quad;
+		quad.constructTree(g);
+		quad.printContent(cerr);
+		// testing whether coordinates are correctly found
+		Coordinate c;
+		for (int i=0; i<100; i++) {
+			double x = Util::RANDOM(5);
+			double y = Util::RANDOM(5);
+			double z = 0;
+			c.setCoordinates(x,-y,z);
+		    cerr << x << " " << -y << " " << quad.getVoxelIndex(c) << endl;
+		}
+	} catch (HiveException& e) {
+		cout.flush();
+		cerr<<"# ERROR! :  "<<e.getFullMessage()<<endl;
+		exit(1);
+	}
+	cerr << "Successfully Done!" << endl;
+	exit(1);
+	

@@ -1,0 +1,80 @@
+\section{Hive::Communicator Class Reference}
+\label{classHive_1_1Communicator}\index{Hive::Communicator@{Hive::Communicator}}
+{\tt \#include $<$communicator.hh$>$}
+
+Inheritance diagram for Hive::Communicator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1Communicator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Communicator} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+virtual {\bf $\sim$Communicator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual void {\bf receiveMessages} ()=0
+\begin{CompactList}\small\item\em method for receiving messages \item\end{CompactList}\item 
+virtual void {\bf sendMessage} ({\bf Message} m, int dest)=0
+\item 
+virtual void {\bf propogateAgent} (int agentId, double time)=0
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::Communicator@{Hive::Communicator}!Communicator@{Communicator}}
+\index{Communicator@{Communicator}!Hive::Communicator@{Hive::Communicator}}
+\subsubsection[Communicator]{\setlength{\rightskip}{0pt plus 5cm}Hive::Communicator::Communicator ()\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1Communicator_34c54aee2bf45015c7146ead7d85615a}
+
+
+constructor 
+
+\index{Hive::Communicator@{Hive::Communicator}!$\sim$Communicator@{$\sim$Communicator}}
+\index{$\sim$Communicator@{$\sim$Communicator}!Hive::Communicator@{Hive::Communicator}}
+\subsubsection[$\sim$Communicator]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::Communicator::$\sim$Communicator ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1Communicator_e0395137accdfcbc7cc85e6999eaffe4}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::Communicator@{Hive::Communicator}!receiveMessages@{receiveMessages}}
+\index{receiveMessages@{receiveMessages}!Hive::Communicator@{Hive::Communicator}}
+\subsubsection[receiveMessages]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Communicator::receiveMessages ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Communicator_987b52b99ca4639a198f45c0c74db179}
+
+
+method for receiving messages 
+
+
+
+Implemented in {\bf Hive::SerialCommunicator} \doxyref{}{p.}{classHive_1_1SerialCommunicator_020ed57d330b13e4919357dedc72d2f0}.\index{Hive::Communicator@{Hive::Communicator}!sendMessage@{sendMessage}}
+\index{sendMessage@{sendMessage}!Hive::Communicator@{Hive::Communicator}}
+\subsubsection[sendMessage]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Communicator::sendMessage ({\bf Message} {\em m}, \/  int {\em dest})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Communicator_7781e9b8494ed71c91769640bef5e6a3}
+
+
+method for sending messages \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]message to be send \item[{\em dest}]identifyer of destination \end{description}
+\end{Desc}
+
+
+Implemented in {\bf Hive::SerialCommunicator} \doxyref{}{p.}{classHive_1_1SerialCommunicator_3a50ba8f646e6b63d44707d7bf9e345b}.
+
+Referenced by Hive::Agent::propagate().\index{Hive::Communicator@{Hive::Communicator}!propogateAgent@{propogateAgent}}
+\index{propogateAgent@{propogateAgent}!Hive::Communicator@{Hive::Communicator}}
+\subsubsection[propogateAgent]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Communicator::propogateAgent (int {\em agentId}, \/  double {\em time})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Communicator_8d803da79f8f88bf75a9a306e7676f73}
+
+
+
+
+Implemented in {\bf Hive::SerialCommunicator} \doxyref{}{p.}{classHive_1_1SerialCommunicator_54021e56fa2936e82c0e9e3d6287cf28}.
+
+Referenced by Hive::Agent::propagate().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf communicator.hh}\end{CompactItemize}

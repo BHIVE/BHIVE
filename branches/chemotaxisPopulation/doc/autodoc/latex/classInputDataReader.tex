@@ -1,0 +1,75 @@
+\section{InputDataReader Class Reference}
+\label{classInputDataReader}\index{InputDataReader@{InputDataReader}}
+{\tt \#include $<$inputdatareader.hh$>$}
+
+
+
+\subsection{Detailed Description}
+reads input from filestream 
+
+by introducing an input data reader class we separate the storage of a database from its use.
+
+\begin{Desc}
+\item[{\bf Todo}]Everything\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]unknown as of yet\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 13, 2009 last edited: Oct 13, 2009 by Garrit \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf InputDataReader} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$InputDataReader} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf read} (ifstream \&input)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Data} $\ast$ {\bf getNextDataItem} ()
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{InputDataReader@{InputDataReader}!InputDataReader@{InputDataReader}}
+\index{InputDataReader@{InputDataReader}!InputDataReader@{InputDataReader}}
+\subsubsection[InputDataReader]{\setlength{\rightskip}{0pt plus 5cm}InputDataReader::InputDataReader ()}\label{classInputDataReader_38a066c668e7e293c8aa4dd5aca0fb74}
+
+
+constructor 
+
+\index{InputDataReader@{InputDataReader}!$\sim$InputDataReader@{$\sim$InputDataReader}}
+\index{$\sim$InputDataReader@{$\sim$InputDataReader}!InputDataReader@{InputDataReader}}
+\subsubsection[$\sim$InputDataReader]{\setlength{\rightskip}{0pt plus 5cm}InputDataReader::$\sim$InputDataReader ()}\label{classInputDataReader_404f102d2fae6f7badb2414d6ead295f}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{InputDataReader@{InputDataReader}!read@{read}}
+\index{read@{read}!InputDataReader@{InputDataReader}}
+\subsubsection[read]{\setlength{\rightskip}{0pt plus 5cm}void InputDataReader::read (ifstream \& {\em input})}\label{classInputDataReader_07f0e518c523b08f5cff2f326d27ead3}
+
+
+read data from file \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em input}]input file stream \end{description}
+\end{Desc}
+\index{InputDataReader@{InputDataReader}!getNextDataItem@{getNextDataItem}}
+\index{getNextDataItem@{getNextDataItem}!InputDataReader@{InputDataReader}}
+\subsubsection[getNextDataItem]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data}$\ast$ InputDataReader::getNextDataItem ()\hspace{0.3cm}{\tt  [protected]}}\label{classInputDataReader_b1f6fbe3be17deac62fd3e705ef0c1f1}
+
+
+reads the next element from the input file-stream \begin{Desc}
+\item[Returns:]pointer to data element \end{Desc}
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf inputdatareader.hh}\end{CompactItemize}

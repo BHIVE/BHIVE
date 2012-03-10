@@ -1,0 +1,160 @@
+\section{Composer Class Reference}
+\label{classComposer}\index{Composer@{Composer}}
+{\tt \#include $<$composer.hh$>$}
+
+Inheritance diagram for Composer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classComposer}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+this class sets up the entire simulation. 
+
+the composer sets up the entire simulation by coordinating all file reading, agent construction and agent initialisation. the setup of a simulation starts with the initialisation of the agentfactories. subsequently the agents are produced and the hierarchy among the agents is established.
+
+\begin{Desc}
+\item[{\bf Todo}]Everything\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]13th of Oct, 2009 last edited: 10-14-2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Composer} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+virtual {\bf $\sim$Composer} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+{\bf Agent} $\ast$ {\bf getTopLevelAgent} ()
+\item 
+virtual void {\bf setupSimulation} ()=0
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf initializeAgentFactories} ()=0
+\item 
+virtual void {\bf setupAgentHierarchy} ()=0
+\item 
+virtual {\bf Agent} $\ast$ {\bf createAgent} ({\bf AgentFactory} \&af)=0
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Agent} $\ast$ {\bf maestro}
+\begin{CompactList}\small\item\em top level agent \item\end{CompactList}\item 
+{\bf Agent} $\ast$$\ast$ {\bf orchestra}
+\begin{CompactList}\small\item\em vector of agents \item\end{CompactList}\item 
+{\bf System} $\ast$ {\bf sys}
+\begin{CompactList}\small\item\em system containing the information about the types of agents which can exist in the simulation \item\end{CompactList}\item 
+{\bf AgentFactory} $\ast$$\ast$ {\bf factories}
+\begin{CompactList}\small\item\em vector of agentfactories for agent setup \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Composer@{Composer}!Composer@{Composer}}
+\index{Composer@{Composer}!Composer@{Composer}}
+\subsubsection[Composer]{\setlength{\rightskip}{0pt plus 5cm}Composer::Composer ()\hspace{0.3cm}{\tt  [inline]}}\label{classComposer_8d19c02e89e02acb5b937e8b7b5f8203}
+
+
+constructor 
+
+\index{Composer@{Composer}!$\sim$Composer@{$\sim$Composer}}
+\index{$\sim$Composer@{$\sim$Composer}!Composer@{Composer}}
+\subsubsection[$\sim$Composer]{\setlength{\rightskip}{0pt plus 5cm}virtual Composer::$\sim$Composer ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classComposer_ce6a542631ddd565137c6634d6668970}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Composer@{Composer}!getTopLevelAgent@{getTopLevelAgent}}
+\index{getTopLevelAgent@{getTopLevelAgent}!Composer@{Composer}}
+\subsubsection[getTopLevelAgent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$ Composer::getTopLevelAgent ()\hspace{0.3cm}{\tt  [inline]}}\label{classComposer_87c677f9cda0971ff16ce10f03fccd41}
+
+
+returns pointer to the top level agent \begin{Desc}
+\item[Returns:]maestro \end{Desc}
+
+
+Reimplemented in {\bf DummyComposer} \doxyref{}{p.}{classDummyComposer_cc2ae43b60524d23de72bd9905beaeac}.
+
+References maestro.\index{Composer@{Composer}!setupSimulation@{setupSimulation}}
+\index{setupSimulation@{setupSimulation}!Composer@{Composer}}
+\subsubsection[setupSimulation]{\setlength{\rightskip}{0pt plus 5cm}virtual void Composer::setupSimulation ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classComposer_2ea6ded3d1b775537a8c6ab5b6c5c03c}
+
+
+top level method for constructing the simulation. for the beginning we will re-implement this method for each new simulation 
+
+Implemented in {\bf DummyComposer} \doxyref{}{p.}{classDummyComposer_c41abf23b1b256ea7a1bdc90d41ab0c7}.
+
+Referenced by main().\index{Composer@{Composer}!initializeAgentFactories@{initializeAgentFactories}}
+\index{initializeAgentFactories@{initializeAgentFactories}!Composer@{Composer}}
+\subsubsection[initializeAgentFactories]{\setlength{\rightskip}{0pt plus 5cm}virtual void Composer::initializeAgentFactories ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classComposer_1b0390791283884d615a964836c8bdff}
+
+
+prepare agent factories for agent setup 
+
+Implemented in {\bf DummyComposer} \doxyref{}{p.}{classDummyComposer_cb07bc11db1d12676a8552a60af7a89a}.\index{Composer@{Composer}!setupAgentHierarchy@{setupAgentHierarchy}}
+\index{setupAgentHierarchy@{setupAgentHierarchy}!Composer@{Composer}}
+\subsubsection[setupAgentHierarchy]{\setlength{\rightskip}{0pt plus 5cm}virtual void Composer::setupAgentHierarchy ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classComposer_abac5cf0e0e1906037a302d4eee93cae}
+
+
+establishes child parent relationships among agents 
+
+Implemented in {\bf DummyComposer} \doxyref{}{p.}{classDummyComposer_ed2fc12d5c5141cb3df0f496772123f8}.\index{Composer@{Composer}!createAgent@{createAgent}}
+\index{createAgent@{createAgent}!Composer@{Composer}}
+\subsubsection[createAgent]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Agent}$\ast$ Composer::createAgent ({\bf AgentFactory} \& {\em af})\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classComposer_5e1eed9b96563438df9134ff975ec5ce}
+
+
+creates an agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em af}]agentfactory that does the actual creation of agents. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to created agent \end{Desc}
+
+
+Implemented in {\bf DummyComposer} \doxyref{}{p.}{classDummyComposer_6c2c70c853ab18940fc8afb7cc6f5521}.
+
+\subsection{Member Data Documentation}
+\index{Composer@{Composer}!maestro@{maestro}}
+\index{maestro@{maestro}!Composer@{Composer}}
+\subsubsection[maestro]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$ {\bf Composer::maestro}\hspace{0.3cm}{\tt  [protected]}}\label{classComposer_dde76a65dfa402f060288bf93fd3d40e}
+
+
+top level agent 
+
+
+
+Referenced by DummyComposer::getTopLevelAgent(), getTopLevelAgent(), and DummyComposer::setupSimulation().\index{Composer@{Composer}!orchestra@{orchestra}}
+\index{orchestra@{orchestra}!Composer@{Composer}}
+\subsubsection[orchestra]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$$\ast$ {\bf Composer::orchestra}\hspace{0.3cm}{\tt  [protected]}}\label{classComposer_5971163156481f372a7724c0111aa903}
+
+
+vector of agents 
+
+\index{Composer@{Composer}!sys@{sys}}
+\index{sys@{sys}!Composer@{Composer}}
+\subsubsection[sys]{\setlength{\rightskip}{0pt plus 5cm}{\bf System}$\ast$ {\bf Composer::sys}\hspace{0.3cm}{\tt  [protected]}}\label{classComposer_d44c13ea466d09475aa6542ef8ffcfc1}
+
+
+system containing the information about the types of agents which can exist in the simulation 
+
+\index{Composer@{Composer}!factories@{factories}}
+\index{factories@{factories}!Composer@{Composer}}
+\subsubsection[factories]{\setlength{\rightskip}{0pt plus 5cm}{\bf AgentFactory}$\ast$$\ast$ {\bf Composer::factories}\hspace{0.3cm}{\tt  [protected]}}\label{classComposer_ee13eec3a3591ffb92c72b588595aae2}
+
+
+vector of agentfactories for agent setup 
+
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf composer.hh}\end{CompactItemize}

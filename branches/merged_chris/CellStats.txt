@@ -1,0 +1,2 @@
+Time	CPU	ID	tau	meanCheYp	sigma
+0	0	-1163005939	15	2.9	0.1

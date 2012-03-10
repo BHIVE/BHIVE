@@ -1,0 +1,77 @@
+\section{OutputWriter Class Reference}
+\label{classOutputWriter}\index{OutputWriter@{OutputWriter}}
+{\tt \#include $<$outputwriter.hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf OutputWriter} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$OutputWriter} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf dumbDatabase} ()
+\item 
+void {\bf setDatabase} ({\bf Database} $\ast$db)
+\item 
+void {\bf setOutputFileStream} (ofstream \&output)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf outputNextItem} ()
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{OutputWriter@{OutputWriter}!OutputWriter@{OutputWriter}}
+\index{OutputWriter@{OutputWriter}!OutputWriter@{OutputWriter}}
+\subsubsection[OutputWriter]{\setlength{\rightskip}{0pt plus 5cm}OutputWriter::OutputWriter ()}\label{classOutputWriter_e4f43da005288c939e6471cc777c92ce}
+
+
+constructor 
+
+\index{OutputWriter@{OutputWriter}!$\sim$OutputWriter@{$\sim$OutputWriter}}
+\index{$\sim$OutputWriter@{$\sim$OutputWriter}!OutputWriter@{OutputWriter}}
+\subsubsection[$\sim$OutputWriter]{\setlength{\rightskip}{0pt plus 5cm}OutputWriter::$\sim$OutputWriter ()}\label{classOutputWriter_71dbdbda45b86730f78df2b08095ee64}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{OutputWriter@{OutputWriter}!dumbDatabase@{dumbDatabase}}
+\index{dumbDatabase@{dumbDatabase}!OutputWriter@{OutputWriter}}
+\subsubsection[dumbDatabase]{\setlength{\rightskip}{0pt plus 5cm}void OutputWriter::dumbDatabase ()}\label{classOutputWriter_f664a428bb441a196c26392daa87f07e}
+
+
+dumb database \index{OutputWriter@{OutputWriter}!setDatabase@{setDatabase}}
+\index{setDatabase@{setDatabase}!OutputWriter@{OutputWriter}}
+\subsubsection[setDatabase]{\setlength{\rightskip}{0pt plus 5cm}void OutputWriter::setDatabase ({\bf Database} $\ast$ {\em db})}\label{classOutputWriter_fe4c02f7ba88124d12a08c8fd718ec5d}
+
+
+give database to outputwriter \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em db}]pointer to database \end{description}
+\end{Desc}
+\index{OutputWriter@{OutputWriter}!setOutputFileStream@{setOutputFileStream}}
+\index{setOutputFileStream@{setOutputFileStream}!OutputWriter@{OutputWriter}}
+\subsubsection[setOutputFileStream]{\setlength{\rightskip}{0pt plus 5cm}void OutputWriter::setOutputFileStream (ofstream \& {\em output})}\label{classOutputWriter_de185d0277e22accdc64e0ea13029596}
+
+
+give outputfile to outputwriter \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em output}]output filestream \end{description}
+\end{Desc}
+\index{OutputWriter@{OutputWriter}!outputNextItem@{outputNextItem}}
+\index{outputNextItem@{outputNextItem}!OutputWriter@{OutputWriter}}
+\subsubsection[outputNextItem]{\setlength{\rightskip}{0pt plus 5cm}void OutputWriter::outputNextItem ()\hspace{0.3cm}{\tt  [protected]}}\label{classOutputWriter_c3a96d5b72dd7db1c832fa8b0ec4c746}
+
+
+outputs items of the database 
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf outputwriter.hh}\end{CompactItemize}

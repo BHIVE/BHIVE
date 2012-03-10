@@ -1,0 +1,68 @@
+
+
+
+SimpleCell Model Specifications
+
+
+
+
+  [[   Environment Agent   ]]
+       
+       
+       Simulators:
+          -environment simulator (either PDE or hard coded)
+       
+       Database:
+          -cells and positions?
+       
+       Actions:
+          -try to update cell position
+          
+       MessageGenerators:
+          -update cell position (to handle reflections on boundaries
+          -update cell chemical concentration (in this case, aspartate)
+
+
+  [[    Cell Agent   ]]
+  
+       Simulators:
+           (1) Signaling
+           (2) Flagella Model
+           (3) Movement Simulator
+
+       Database:
+          -Position (DoubleVectorData) - [cellId, Xpos, Ypos, Zpos]
+          -Direction (DoubleVectorData) - [cellId, Xdir, Ydir, Zdir]
+          -LastPosition (DoubleVectorData) - [cellId, Xpos, Ypos, Zpos]
+          -LastDirection (DoubleVectorData) - [cellId, Xdir, Ydir, Zdir]
+          
+          -CurrentMovementState (IntegerData) - Tumble (1) or Run (0)
+          -LastMovementState (IntegerData) - Tumble (1) or Run (0)
+          
+          -MovementDt (DoubleData) - time step of each movement in seconds
+          -CellSpeed (DoubleData) - speed in um/s
+          -RotDiffConst (DoubleData) - rotational diffusion constant in radians/s?
+        
+        
+          -Chemical (DoubleVectorData) - Only length one containing attractant 
+                                         concentration, but is a vector for future 
+                                         possible ligands/chemicals.
+          -CheYp (DoubleData) - concentration of CheYp in the cell in uM
+          -NumMotorsInCW (IntegerData) - number of motors in CW state
+          -NumMotorsInCCW (IntegerData) - number of motors in CCW state
+          
+
+       
+       Actions:
+          -update ligand concentration
+          -update current position / direction
+          -update equilibrate vs simulate status
+          
+       MessageGenerators:
+          -update cell position (to handle reflections on boundaries
+          -update cell chemical concentration (in this case, aspartate)
+
+
+
+
+

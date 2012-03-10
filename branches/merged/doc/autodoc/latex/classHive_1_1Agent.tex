@@ -1,0 +1,424 @@
+\section{Hive::Agent Class Reference}
+\label{classHive_1_1Agent}\index{Hive::Agent@{Hive::Agent}}
+{\tt \#include $<$agent.hh$>$}
+
+
+
+\subsection{Detailed Description}
+central class of the hive 
+
+the agent is the central class of the hive. an agent contains a database in which it stores its knowledge. its simulators operate on the data stored within the database. communication among agents is accomplished with the communicator. when agents communicate they place messages on to the message queue of another agent. a message tells the agent to perform an action from its actionset.
+
+\begin{Desc}
+\item[{\bf Todo}]Everything\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 12th, 2009 last edited: Oct 14h, 2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Agent} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf Agent} (int {\bf agent\_\-id})
+\item 
+{\bf $\sim$Agent} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf setParent} (int {\bf parent\_\-id})
+\item 
+void {\bf addChild} (int child\_\-id)
+\item 
+void {\bf addAction} ({\bf Action} $\ast$a)
+\item 
+void {\bf addCommunicator} ({\bf Communicator} $\ast${\bf c})
+\item 
+void {\bf addMessageGenerator} ({\bf MessageGenerator} $\ast$msg)
+\item 
+void {\bf addSimulator} ({\bf Simulator} $\ast$s)
+\item 
+{\bf Database} $\ast$ {\bf getDatabase} ()
+\item 
+int {\bf getParentId} ()
+\item 
+int {\bf getAgentId} ()
+\item 
+int {\bf getNumOfChildren} ()
+\item 
+int {\bf getChildAgentId} (int childIndex)
+\item 
+bool {\bf isChildAgent} (int agentId)
+\item 
+void {\bf outputCurrentState} ({\bf OutputWriter} $\ast$ow)
+\item 
+void {\bf placeMessageOnMessageQueue} ({\bf Message} $\ast$m)
+\item 
+void {\bf propagate} (double time)
+\begin{CompactList}\small\item\em propagates the agent for a timestep \item\end{CompactList}\item 
+void {\bf setupDatabase} ()
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf evaluateMessageQueue} ()
+\begin{CompactList}\small\item\em causes the agent to perform the actions placed on the message queue. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf agent\_\-id}
+\begin{CompactList}\small\item\em unique identifyer of this agent \item\end{CompactList}\item 
+int {\bf parent\_\-id}
+\begin{CompactList}\small\item\em unique identifyer of the parent agent \item\end{CompactList}\item 
+vector$<$ int $>$ {\bf children\_\-id}
+\begin{CompactList}\small\item\em unique identifyers of the child agents \item\end{CompactList}\item 
+{\bf Database} $\ast$ {\bf db}
+\begin{CompactList}\small\item\em database of the agent \item\end{CompactList}\item 
+{\bf Communicator} $\ast$ {\bf c}
+\begin{CompactList}\small\item\em communicator for exchanging messages with the agent's parent agent andchildren \item\end{CompactList}\item 
+queue$<$ {\bf Message} $\ast$ $>$ {\bf message\_\-queue}
+\begin{CompactList}\small\item\em message queue; inbox of an agent \item\end{CompactList}\item 
+vector$<$ {\bf Simulator} $\ast$ $>$ {\bf simulators}
+\begin{CompactList}\small\item\em vector of simulators \item\end{CompactList}\item 
+vector$<$ {\bf Action} $\ast$ $>$ {\bf action\_\-set}
+\begin{CompactList}\small\item\em actionset. a message tells the agent to execute an action from this set \item\end{CompactList}\item 
+vector$<$ {\bf Message} $\ast$ $>$ {\bf outbox}
+\begin{CompactList}\small\item\em message outbox of agent. \item\end{CompactList}\item 
+vector$<$ {\bf MessageGenerator} $\ast$ $>$ {\bf message\_\-generators}
+\begin{CompactList}\small\item\em vector of pointers to message\_\-generators \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::Agent@{Hive::Agent}!Agent@{Agent}}
+\index{Agent@{Agent}!Hive::Agent@{Hive::Agent}}
+\subsubsection[Agent]{\setlength{\rightskip}{0pt plus 5cm}Agent::Agent ()}\label{classHive_1_1Agent_24a60f1d260bf19a4f7f8a5f36881d3f}
+
+
+constructor 
+
+
+
+unique identifyer of this agent
+
+database of the agent
+
+communicator for exchanging messages with the agent's parent agent andchildren
+
+message queue; inbox of an agent
+
+vector of simulators
+
+actionset. a message tells the agent to execute an action from this set
+
+message outbox of agent.
+
+vector of pointers to message\_\-generators 
+
+References agent\_\-id, db, and parent\_\-id.\index{Hive::Agent@{Hive::Agent}!Agent@{Agent}}
+\index{Agent@{Agent}!Hive::Agent@{Hive::Agent}}
+\subsubsection[Agent]{\setlength{\rightskip}{0pt plus 5cm}Agent::Agent (int {\em agent\_\-id})}\label{classHive_1_1Agent_9bdb60eaf7b1967cb0e77665af1d0d4e}
+
+
+
+
+References db.\index{Hive::Agent@{Hive::Agent}!$\sim$Agent@{$\sim$Agent}}
+\index{$\sim$Agent@{$\sim$Agent}!Hive::Agent@{Hive::Agent}}
+\subsubsection[$\sim$Agent]{\setlength{\rightskip}{0pt plus 5cm}Agent::$\sim$Agent ()}\label{classHive_1_1Agent_b8dd8d152605cf1339fed595376e83cb}
+
+
+destructor 
+
+
+
+References agent\_\-id.
+
+\subsection{Member Function Documentation}
+\index{Hive::Agent@{Hive::Agent}!setParent@{setParent}}
+\index{setParent@{setParent}!Hive::Agent@{Hive::Agent}}
+\subsubsection[setParent]{\setlength{\rightskip}{0pt plus 5cm}void Agent::setParent (int {\em parent\_\-id})}\label{classHive_1_1Agent_a6731cfdbcd8fd882e3f49a93c73dad8}
+
+
+set the parent of this agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em parent\_\-id}]id of the parent \end{description}
+\end{Desc}
+\index{Hive::Agent@{Hive::Agent}!addChild@{addChild}}
+\index{addChild@{addChild}!Hive::Agent@{Hive::Agent}}
+\subsubsection[addChild]{\setlength{\rightskip}{0pt plus 5cm}void Agent::addChild (int {\em child\_\-id})}\label{classHive_1_1Agent_9635010b401c5249d974a8a071d49261}
+
+
+add a child of this agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em child\_\-id}]id of child to add \end{description}
+\end{Desc}
+
+
+References children\_\-id.\index{Hive::Agent@{Hive::Agent}!addAction@{addAction}}
+\index{addAction@{addAction}!Hive::Agent@{Hive::Agent}}
+\subsubsection[addAction]{\setlength{\rightskip}{0pt plus 5cm}void Agent::addAction ({\bf Action} $\ast$ {\em a})}\label{classHive_1_1Agent_f03cb3281f45d966a5df796d9922e955}
+
+
+adds an action to the actionset \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]action to be added to actionset \end{description}
+\end{Desc}
+
+
+References action\_\-set.
+
+Referenced by Dummy::DummyAgentFactory::createAgent().\index{Hive::Agent@{Hive::Agent}!addCommunicator@{addCommunicator}}
+\index{addCommunicator@{addCommunicator}!Hive::Agent@{Hive::Agent}}
+\subsubsection[addCommunicator]{\setlength{\rightskip}{0pt plus 5cm}void Agent::addCommunicator ({\bf Communicator} $\ast$ {\em c})}\label{classHive_1_1Agent_4d1723cd30329f5da052fee0dc6fa5ef}
+
+
+adds communicator to the system \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]communicator to be added \end{description}
+\end{Desc}
+\index{Hive::Agent@{Hive::Agent}!addMessageGenerator@{addMessageGenerator}}
+\index{addMessageGenerator@{addMessageGenerator}!Hive::Agent@{Hive::Agent}}
+\subsubsection[addMessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}void Agent::addMessageGenerator ({\bf MessageGenerator} $\ast$ {\em msg})}\label{classHive_1_1Agent_f2414a0dacdc08419a4cc1b2c5d0276f}
+
+
+adds a message generator to the agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em msg}]messagegenerator \end{description}
+\end{Desc}
+
+
+References message\_\-generators.
+
+Referenced by Dummy::DummyAgentFactory::createAgent().\index{Hive::Agent@{Hive::Agent}!addSimulator@{addSimulator}}
+\index{addSimulator@{addSimulator}!Hive::Agent@{Hive::Agent}}
+\subsubsection[addSimulator]{\setlength{\rightskip}{0pt plus 5cm}void Agent::addSimulator ({\bf Simulator} $\ast$ {\em s})}\label{classHive_1_1Agent_5c0b83894065bd48801026269297c7d4}
+
+
+adds a simulator to the simulators vector \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em s}]simulator to be added \end{description}
+\end{Desc}
+
+
+References simulators.
+
+Referenced by Dummy::DummyAgentFactory::createAgent().\index{Hive::Agent@{Hive::Agent}!getDatabase@{getDatabase}}
+\index{getDatabase@{getDatabase}!Hive::Agent@{Hive::Agent}}
+\subsubsection[getDatabase]{\setlength{\rightskip}{0pt plus 5cm}{\bf Hive::Database} $\ast$ Agent::getDatabase ()}\label{classHive_1_1Agent_a2e9e670185a1cc43c392dd3d3450bca}
+
+
+method for accessing database of an agent \begin{Desc}
+\item[Returns:]pointer to database \end{Desc}
+
+
+References db.
+
+Referenced by Dummy::DummyAgentFactory::createAgent(), Hive::DummySimulator::DummySimulator(), and Dummy::DummyWaveAction::fire().\index{Hive::Agent@{Hive::Agent}!getParentId@{getParentId}}
+\index{getParentId@{getParentId}!Hive::Agent@{Hive::Agent}}
+\subsubsection[getParentId]{\setlength{\rightskip}{0pt plus 5cm}int Agent::getParentId ()}\label{classHive_1_1Agent_bf305ea102ca79f0619e4ee30b856868}
+
+
+return parent agent ID \begin{Desc}
+\item[Returns:]ID of the parent agent \end{Desc}
+
+
+References parent\_\-id.\index{Hive::Agent@{Hive::Agent}!getAgentId@{getAgentId}}
+\index{getAgentId@{getAgentId}!Hive::Agent@{Hive::Agent}}
+\subsubsection[getAgentId]{\setlength{\rightskip}{0pt plus 5cm}int Agent::getAgentId ()}\label{classHive_1_1Agent_3b6ebc7294216a2f8e7e0d4cbfdfd33b}
+
+
+return this agent ID \begin{Desc}
+\item[Returns:]ID of the parent agent \end{Desc}
+
+
+References agent\_\-id.
+
+Referenced by Hive::SerialCommunicator::addAgent(), Hive::DummySimulator::prepare(), and Hive::DummySimulator::synchroniseWithDatabase().\index{Hive::Agent@{Hive::Agent}!getNumOfChildren@{getNumOfChildren}}
+\index{getNumOfChildren@{getNumOfChildren}!Hive::Agent@{Hive::Agent}}
+\subsubsection[getNumOfChildren]{\setlength{\rightskip}{0pt plus 5cm}int Agent::getNumOfChildren ()}\label{classHive_1_1Agent_9b67da3082d21e119943e0ff43642b56}
+
+
+get the number of child agents \begin{Desc}
+\item[Returns:]the number of children \end{Desc}
+
+
+References children\_\-id.\index{Hive::Agent@{Hive::Agent}!getChildAgentId@{getChildAgentId}}
+\index{getChildAgentId@{getChildAgentId}!Hive::Agent@{Hive::Agent}}
+\subsubsection[getChildAgentId]{\setlength{\rightskip}{0pt plus 5cm}int Agent::getChildAgentId (int {\em childIndex})}\label{classHive_1_1Agent_7ad69e92da1d4dcee56680f3da3aba66}
+
+
+return the ID of the child agent at the given index \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em childIndex}]index of the child agent ID to return \end{description}
+\end{Desc}
+
+
+References children\_\-id.\index{Hive::Agent@{Hive::Agent}!isChildAgent@{isChildAgent}}
+\index{isChildAgent@{isChildAgent}!Hive::Agent@{Hive::Agent}}
+\subsubsection[isChildAgent]{\setlength{\rightskip}{0pt plus 5cm}bool Agent::isChildAgent (int {\em agentId})}\label{classHive_1_1Agent_d9f2480125d9382dbde4b59cbeeb2f5b}
+
+
+check if the given ID is a child of this \begin{Desc}
+\item[Returns:]true if the agentID given is a child, false otherwise childIndex index of the child agent ID to return \end{Desc}
+
+
+References children\_\-id.\index{Hive::Agent@{Hive::Agent}!outputCurrentState@{outputCurrentState}}
+\index{outputCurrentState@{outputCurrentState}!Hive::Agent@{Hive::Agent}}
+\subsubsection[outputCurrentState]{\setlength{\rightskip}{0pt plus 5cm}void Agent::outputCurrentState ({\bf OutputWriter} $\ast$ {\em ow})}\label{classHive_1_1Agent_6904cc83add9827300b9830e45239abc}
+
+
+outputs the current state of the agent by dumbing its database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ow}]pointer to outputwriter who does the actual job \end{description}
+\end{Desc}
+
+
+References agent\_\-id.\index{Hive::Agent@{Hive::Agent}!placeMessageOnMessageQueue@{placeMessageOnMessageQueue}}
+\index{placeMessageOnMessageQueue@{placeMessageOnMessageQueue}!Hive::Agent@{Hive::Agent}}
+\subsubsection[placeMessageOnMessageQueue]{\setlength{\rightskip}{0pt plus 5cm}void Hive::Agent::placeMessageOnMessageQueue ({\bf Message} $\ast$ {\em m})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1Agent_8d977f6dd7877a04da48c9325e89fada}
+
+
+
+
+References message\_\-queue.
+
+Referenced by Dummy::DummyMessageGenerator::placeMessage().\index{Hive::Agent@{Hive::Agent}!propagate@{propagate}}
+\index{propagate@{propagate}!Hive::Agent@{Hive::Agent}}
+\subsubsection[propagate]{\setlength{\rightskip}{0pt plus 5cm}void Agent::propagate (double {\em time})}\label{classHive_1_1Agent_6eb011086d7ad1640a466affe952b78f}
+
+
+propagates the agent for a timestep 
+
+
+
+References agent\_\-id, c, children\_\-id, evaluateMessageQueue(), message\_\-generators, outbox, Hive::Communicator::propogateAgent(), Hive::Communicator::sendMessage(), and simulators.
+
+Referenced by main().\index{Hive::Agent@{Hive::Agent}!setupDatabase@{setupDatabase}}
+\index{setupDatabase@{setupDatabase}!Hive::Agent@{Hive::Agent}}
+\subsubsection[setupDatabase]{\setlength{\rightskip}{0pt plus 5cm}void Agent::setupDatabase ()}\label{classHive_1_1Agent_0bf4d254bc310eb8eb9ea16b50571ee3}
+
+
+method for initializing the database. again the actual job is being done by the database-initializer \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$db\_\-init}]pointer to database initializer \end{description}
+\end{Desc}
+
+
+References agent\_\-id.\index{Hive::Agent@{Hive::Agent}!evaluateMessageQueue@{evaluateMessageQueue}}
+\index{evaluateMessageQueue@{evaluateMessageQueue}!Hive::Agent@{Hive::Agent}}
+\subsubsection[evaluateMessageQueue]{\setlength{\rightskip}{0pt plus 5cm}void Agent::evaluateMessageQueue ()\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_1da352e749752c141c4b3c4566c2023d}
+
+
+causes the agent to perform the actions placed on the message queue. 
+
+
+
+References action\_\-set, agent\_\-id, Hive::Message::getActionId(), Hive::Message::getArgument(), and message\_\-queue.
+
+Referenced by propagate().
+
+\subsection{Member Data Documentation}
+\index{Hive::Agent@{Hive::Agent}!agent\_\-id@{agent\_\-id}}
+\index{agent\_\-id@{agent\_\-id}!Hive::Agent@{Hive::Agent}}
+\subsubsection[agent\_\-id]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Hive::Agent::agent\_\-id}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_91c9681062f0b75a8f3cc38a8752f2c4}
+
+
+unique identifyer of this agent 
+
+
+
+Referenced by Agent(), evaluateMessageQueue(), getAgentId(), outputCurrentState(), propagate(), setupDatabase(), and $\sim$Agent().\index{Hive::Agent@{Hive::Agent}!parent\_\-id@{parent\_\-id}}
+\index{parent\_\-id@{parent\_\-id}!Hive::Agent@{Hive::Agent}}
+\subsubsection[parent\_\-id]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Hive::Agent::parent\_\-id}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_b6ab3584f5ff74d9a8c498cd4a26a491}
+
+
+unique identifyer of the parent agent 
+
+
+
+Referenced by Agent(), and getParentId().\index{Hive::Agent@{Hive::Agent}!children\_\-id@{children\_\-id}}
+\index{children\_\-id@{children\_\-id}!Hive::Agent@{Hive::Agent}}
+\subsubsection[children\_\-id]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ {\bf Hive::Agent::children\_\-id}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_a9b335d3bd4a0040931ec8a91741ea53}
+
+
+unique identifyers of the child agents 
+
+
+
+Referenced by addChild(), getChildAgentId(), getNumOfChildren(), isChildAgent(), and propagate().\index{Hive::Agent@{Hive::Agent}!db@{db}}
+\index{db@{db}!Hive::Agent@{Hive::Agent}}
+\subsubsection[db]{\setlength{\rightskip}{0pt plus 5cm}{\bf Database}$\ast$ {\bf Hive::Agent::db}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_4b74705c85d99d50c455e09f69ba01b3}
+
+
+database of the agent 
+
+
+
+Referenced by Agent(), and getDatabase().\index{Hive::Agent@{Hive::Agent}!c@{c}}
+\index{c@{c}!Hive::Agent@{Hive::Agent}}
+\subsubsection[c]{\setlength{\rightskip}{0pt plus 5cm}{\bf Communicator}$\ast$ {\bf Hive::Agent::c}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_e33ddbcb078d89fd49914966e1c2edff}
+
+
+communicator for exchanging messages with the agent's parent agent andchildren 
+
+
+
+Referenced by propagate().\index{Hive::Agent@{Hive::Agent}!message\_\-queue@{message\_\-queue}}
+\index{message\_\-queue@{message\_\-queue}!Hive::Agent@{Hive::Agent}}
+\subsubsection[message\_\-queue]{\setlength{\rightskip}{0pt plus 5cm}queue$<${\bf Message}$\ast$ $>$ {\bf Hive::Agent::message\_\-queue}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_e9ad453f7e0d71252685f5b20ab268dd}
+
+
+message queue; inbox of an agent 
+
+
+
+Referenced by evaluateMessageQueue(), and placeMessageOnMessageQueue().\index{Hive::Agent@{Hive::Agent}!simulators@{simulators}}
+\index{simulators@{simulators}!Hive::Agent@{Hive::Agent}}
+\subsubsection[simulators]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Simulator} $\ast$$>$ {\bf Hive::Agent::simulators}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_ffc50f2e6b27ea7af8525f9f080e89c9}
+
+
+vector of simulators 
+
+
+
+Referenced by addSimulator(), and propagate().\index{Hive::Agent@{Hive::Agent}!action\_\-set@{action\_\-set}}
+\index{action\_\-set@{action\_\-set}!Hive::Agent@{Hive::Agent}}
+\subsubsection[action\_\-set]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Action} $\ast$$>$ {\bf Hive::Agent::action\_\-set}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_03600d794b244ad8aeb88507f74a9370}
+
+
+actionset. a message tells the agent to execute an action from this set 
+
+
+
+Referenced by addAction(), and evaluateMessageQueue().\index{Hive::Agent@{Hive::Agent}!outbox@{outbox}}
+\index{outbox@{outbox}!Hive::Agent@{Hive::Agent}}
+\subsubsection[outbox]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Message} $\ast$$>$ {\bf Hive::Agent::outbox}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_50264a5ea66534167831275f7d6e819b}
+
+
+message outbox of agent. 
+
+
+
+Referenced by propagate().\index{Hive::Agent@{Hive::Agent}!message\_\-generators@{message\_\-generators}}
+\index{message\_\-generators@{message\_\-generators}!Hive::Agent@{Hive::Agent}}
+\subsubsection[message\_\-generators]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf MessageGenerator}$\ast$ $>$ {\bf Hive::Agent::message\_\-generators}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Agent_416f0406ae78863aa45d4fbfd570ad68}
+
+
+vector of pointers to message\_\-generators 
+
+
+
+Referenced by addMessageGenerator(), and propagate().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf agent.hh}\item 
+{\bf agent.cpp}\end{CompactItemize}

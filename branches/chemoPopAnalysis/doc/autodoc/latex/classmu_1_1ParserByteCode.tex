@@ -1,0 +1,303 @@
+\section{mu::ParserByteCode Class Reference}
+\label{classmu_1_1ParserByteCode}\index{mu::ParserByteCode@{mu::ParserByteCode}}
+{\tt \#include $<$muParserBytecode.h$>$}
+
+
+
+\subsection{Detailed Description}
+Bytecode implementation of the Math \doxyref{Parser}{p.}{classmu_1_1Parser}. 
+
+The bytecode contains the formula converted to revers polish notation stored in a continious memory area. Associated with this data are operator codes, variable pointers, constant values and function pointers. Those are necessary in order to calculate the result. All those data items will be casted to the underlying datatype of the bytecode.
+
+\begin{Desc}
+\item[Author:](C) 2004, 2005 Ingo Berg \end{Desc}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef {\bf bytecode\_\-type} {\bf map\_\-type}
+\begin{CompactList}\small\item\em Underlying type of the container. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserByteCode} ()
+\item 
+{\bf $\sim$ParserByteCode} ()
+\begin{CompactList}\small\item\em Destructor (trivial). \item\end{CompactList}\item 
+{\bf ParserByteCode} (const {\bf ParserByteCode} \&a\_\-ByteCode)
+\begin{CompactList}\small\item\em Copy constructor. \item\end{CompactList}\item 
+{\bf ParserByteCode} \& {\bf operator=} (const {\bf ParserByteCode} \&a\_\-ByteCode)
+\begin{CompactList}\small\item\em Assignment operator. \item\end{CompactList}\item 
+void {\bf Assign} (const {\bf ParserByteCode} \&a\_\-ByteCode)
+\begin{CompactList}\small\item\em Copy state of another object to this. \item\end{CompactList}\item 
+void {\bf AddVar} ({\bf value\_\-type} $\ast$a\_\-pVar)
+\begin{CompactList}\small\item\em Add a Variable pointer to bytecode. \item\end{CompactList}\item 
+void {\bf AddVal} ({\bf value\_\-type} a\_\-fVal)
+\begin{CompactList}\small\item\em Add a Variable pointer to bytecode. \item\end{CompactList}\item 
+void {\bf AddOp} ({\bf ECmdCode} a\_\-Oprt)
+\begin{CompactList}\small\item\em Add an operator identifier to bytecode. \item\end{CompactList}\item 
+void {\bf AddAssignOp} ({\bf value\_\-type} $\ast$a\_\-pVar)
+\begin{CompactList}\small\item\em Add an assignement operator. \item\end{CompactList}\item 
+void {\bf AddFun} (void $\ast$a\_\-pFun, int a\_\-iArgc)
+\begin{CompactList}\small\item\em Add function to bytecode. \item\end{CompactList}\item 
+void {\bf AddStrFun} (void $\ast$a\_\-pFun, int a\_\-iArgc, int a\_\-iIdx)
+\begin{CompactList}\small\item\em Add Strung function entry to the parser bytecode. \item\end{CompactList}\item 
+void {\bf Finalize} ()
+\begin{CompactList}\small\item\em Add end marker to bytecode. \item\end{CompactList}\item 
+void {\bf clear} ()
+\begin{CompactList}\small\item\em Delete the bytecode. \item\end{CompactList}\item 
+std::size\_\-t {\bf GetBufSize} () const 
+\item 
+const {\bf map\_\-type} $\ast$ {\bf GetRawData} () const 
+\begin{CompactList}\small\item\em Get Pointer to bytecode data storage. \item\end{CompactList}\item 
+unsigned {\bf GetValSize} () const 
+\begin{CompactList}\small\item\em Return size of a value entry. \item\end{CompactList}\item 
+unsigned {\bf GetPtrSize} () const 
+\begin{CompactList}\small\item\em Return size of a pointer entry. \item\end{CompactList}\item 
+void {\bf RemoveValEntries} (unsigned a\_\-iNumber)
+\begin{CompactList}\small\item\em Remove a value number of entries from the bytecode. \item\end{CompactList}\item 
+void {\bf AsciiDump} ()
+\begin{CompactList}\small\item\em Dump bytecode (for debugging only!). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!map\_\-type@{map\_\-type}}
+\index{map\_\-type@{map\_\-type}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[map\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf bytecode\_\-type} {\bf mu::ParserByteCode::map\_\-type}}\label{classmu_1_1ParserByteCode_74222d2a82f46cc22cea009bcf178c59}
+
+
+Underlying type of the container. 
+
+The bytecode is a vector of this type containing control codes, values and pointers. Values and pointer will be casted to this type before their storage. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!ParserByteCode@{ParserByteCode}}
+\index{ParserByteCode@{ParserByteCode}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[ParserByteCode]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserByteCode::ParserByteCode ()}\label{classmu_1_1ParserByteCode_9b03ff607c429dcad0a4d01eb155cb55}
+
+
+Bytecode default constructor. \index{mu::ParserByteCode@{mu::ParserByteCode}!$\sim$ParserByteCode@{$\sim$ParserByteCode}}
+\index{$\sim$ParserByteCode@{$\sim$ParserByteCode}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[$\sim$ParserByteCode]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserByteCode::$\sim$ParserByteCode ()}\label{classmu_1_1ParserByteCode_c003df876b4e51c339a52a1fa6ba419a}
+
+
+Destructor (trivial). 
+
+\index{mu::ParserByteCode@{mu::ParserByteCode}!ParserByteCode@{ParserByteCode}}
+\index{ParserByteCode@{ParserByteCode}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[ParserByteCode]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserByteCode::ParserByteCode (const {\bf ParserByteCode} \& {\em a\_\-ByteCode})}\label{classmu_1_1ParserByteCode_c95bc49b5a31cfe2647f2bfc8b05b4c9}
+
+
+Copy constructor. 
+
+Implemented in Terms of \doxyref{Assign(const ParserByteCode \&a\_\-ByteCode)}{p.}{classmu_1_1ParserByteCode_8331da2289733a302233439e48e59bc7} 
+
+References Assign().
+
+\subsection{Member Function Documentation}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!operator=@{operator=}}
+\index{operator=@{operator=}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[operator=]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParserByteCode} \& mu::ParserByteCode::operator= (const {\bf ParserByteCode} \& {\em a\_\-ByteCode})}\label{classmu_1_1ParserByteCode_10f20b14b190f65fbf854761308fabae}
+
+
+Assignment operator. 
+
+Implemented in Terms of \doxyref{Assign(const ParserByteCode \&a\_\-ByteCode)}{p.}{classmu_1_1ParserByteCode_8331da2289733a302233439e48e59bc7} 
+
+References Assign().\index{mu::ParserByteCode@{mu::ParserByteCode}!Assign@{Assign}}
+\index{Assign@{Assign}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[Assign]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::Assign (const {\bf ParserByteCode} \& {\em a\_\-ByteCode})}\label{classmu_1_1ParserByteCode_8331da2289733a302233439e48e59bc7}
+
+
+Copy state of another object to this. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nowthrow}]\end{description}
+\end{Desc}
+
+
+References m\_\-iStackPos, and m\_\-vBase.
+
+Referenced by operator=(), and ParserByteCode().\index{mu::ParserByteCode@{mu::ParserByteCode}!AddVar@{AddVar}}
+\index{AddVar@{AddVar}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AddVar]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AddVar ({\bf value\_\-type} $\ast$ {\em a\_\-pVar})}\label{classmu_1_1ParserByteCode_ca82e62831e3f62b1b0086b64622938b}
+
+
+Add a Variable pointer to bytecode. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-pVar}]Pointer to be added. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+References mu::cmVAR.\index{mu::ParserByteCode@{mu::ParserByteCode}!AddVal@{AddVal}}
+\index{AddVal@{AddVal}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AddVal]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AddVal ({\bf value\_\-type} {\em a\_\-fVal})}\label{classmu_1_1ParserByteCode_8d24daef40331ddb1b69d3fe631181b0}
+
+
+Add a Variable pointer to bytecode. 
+
+Value entries in byte code consist of: \begin{itemize}
+\item value array position of the value \item the operator code according to ParserToken::cmVAL \item the value stored in mc\_\-iSizeVal number of bytecode entries. \end{itemize}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-fVal}]Value to be added. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+References mu::cmVAL.\index{mu::ParserByteCode@{mu::ParserByteCode}!AddOp@{AddOp}}
+\index{AddOp@{AddOp}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AddOp]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AddOp ({\bf ECmdCode} {\em a\_\-Oprt})}\label{classmu_1_1ParserByteCode_28c5a8c3be833f6fbb5e8036b1504ad6}
+
+
+Add an operator identifier to bytecode. 
+
+Operator entries in byte code consist of: \begin{itemize}
+\item value array position of the result \item the operator code according to ParserToken::ECmdCode \end{itemize}
+
+
+\begin{Desc}
+\item[See also:]ParserToken::ECmdCode \end{Desc}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!AddAssignOp@{AddAssignOp}}
+\index{AddAssignOp@{AddAssignOp}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AddAssignOp]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AddAssignOp ({\bf value\_\-type} $\ast$ {\em a\_\-pVar})}\label{classmu_1_1ParserByteCode_f9e447fca3942ee5b145415dae78a821}
+
+
+Add an assignement operator. 
+
+Operator entries in byte code consist of: \begin{itemize}
+\item cmASSIGN code \item the pointer of the destination variable \end{itemize}
+
+
+\begin{Desc}
+\item[See also:]ParserToken::ECmdCode \end{Desc}
+
+
+References mu::cmASSIGN.\index{mu::ParserByteCode@{mu::ParserByteCode}!AddFun@{AddFun}}
+\index{AddFun@{AddFun}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AddFun]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AddFun (void $\ast$ {\em a\_\-pFun}, \/  int {\em a\_\-iArgc})}\label{classmu_1_1ParserByteCode_ff501a9f4f59f05d6b976253405ebc9b}
+
+
+Add function to bytecode. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-iArgc}]Number of arguments, negative numbers indicate multiarg functions. \item[{\em a\_\-pFun}]Pointer to function callback. \end{description}
+\end{Desc}
+
+
+References mu::cmFUNC.\index{mu::ParserByteCode@{mu::ParserByteCode}!AddStrFun@{AddStrFun}}
+\index{AddStrFun@{AddStrFun}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AddStrFun]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AddStrFun (void $\ast$ {\em a\_\-pFun}, \/  int {\em a\_\-iArgc}, \/  int {\em a\_\-iIdx})}\label{classmu_1_1ParserByteCode_ca4c1fefe8a8e060df7de27d4b6139a8}
+
+
+Add Strung function entry to the parser bytecode. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]A string function entry consists of the stack position of the return value, followed by a cmSTRFUNC code, the function pointer and an index into the string buffer maintained by the parser. \end{description}
+\end{Desc}
+
+
+References mu::cmFUNC\_\-STR.\index{mu::ParserByteCode@{mu::ParserByteCode}!Finalize@{Finalize}}
+\index{Finalize@{Finalize}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[Finalize]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::Finalize ()}\label{classmu_1_1ParserByteCode_f68af4cb08ebaf3b12559574319dbb1c}
+
+
+Add end marker to bytecode. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+References mu::cmEND.\index{mu::ParserByteCode@{mu::ParserByteCode}!clear@{clear}}
+\index{clear@{clear}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[clear]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::clear ()}\label{classmu_1_1ParserByteCode_9cec7c19c5ebbc1eac31d3b93edae1e4}
+
+
+Delete the bytecode. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]The name of this function is a violation of my own coding guidelines but this way it's more in line with the STL functions thus more intuitive. \end{description}
+\end{Desc}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!GetBufSize@{GetBufSize}}
+\index{GetBufSize@{GetBufSize}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[GetBufSize]{\setlength{\rightskip}{0pt plus 5cm}std::size\_\-t mu::ParserByteCode::GetBufSize () const}\label{classmu_1_1ParserByteCode_26d3ad35337c54b78d3e769288dfc8eb}
+
+
+\index{mu::ParserByteCode@{mu::ParserByteCode}!GetRawData@{GetRawData}}
+\index{GetRawData@{GetRawData}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[GetRawData]{\setlength{\rightskip}{0pt plus 5cm}const {\bf ParserByteCode::map\_\-type} $\ast$ mu::ParserByteCode::GetRawData () const}\label{classmu_1_1ParserByteCode_b223c5b3aedccddff624d88702f7e3ab}
+
+
+Get Pointer to bytecode data storage. 
+
+\index{mu::ParserByteCode@{mu::ParserByteCode}!GetValSize@{GetValSize}}
+\index{GetValSize@{GetValSize}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[GetValSize]{\setlength{\rightskip}{0pt plus 5cm}unsigned mu::ParserByteCode::GetValSize () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserByteCode_5806fa918cd49cf8da637b53f5435e74}
+
+
+Return size of a value entry. 
+
+That many bytecode entries are necessary to store a value.
+
+\begin{Desc}
+\item[See also:]mc\_\-iSizeVal \end{Desc}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!GetPtrSize@{GetPtrSize}}
+\index{GetPtrSize@{GetPtrSize}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[GetPtrSize]{\setlength{\rightskip}{0pt plus 5cm}unsigned mu::ParserByteCode::GetPtrSize () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserByteCode_df06f981b0de15abeb195ac06de7c8f6}
+
+
+Return size of a pointer entry. 
+
+That many bytecode entries are necessary to store a pointer.
+
+\begin{Desc}
+\item[See also:]mc\_\-iSizePtr \end{Desc}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!RemoveValEntries@{RemoveValEntries}}
+\index{RemoveValEntries@{RemoveValEntries}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[RemoveValEntries]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::RemoveValEntries (unsigned {\em a\_\-iNumber})}\label{classmu_1_1ParserByteCode_9157a18d6d8a580764d792fee2245d07}
+
+
+Remove a value number of entries from the bytecode. 
+
+\begin{Desc}
+\item[Attention:]Currently I don't test if the entries are really value entries. \end{Desc}
+\index{mu::ParserByteCode@{mu::ParserByteCode}!AsciiDump@{AsciiDump}}
+\index{AsciiDump@{AsciiDump}!mu::ParserByteCode@{mu::ParserByteCode}}
+\subsubsection[AsciiDump]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserByteCode::AsciiDump ()}\label{classmu_1_1ParserByteCode_be87dce6ba88f5ed87cfff70dfd6d035}
+
+
+Dump bytecode (for debugging only!). 
+
+
+
+References mu::cmADD, mu::cmAND, mu::cmASSIGN, mu::cmDIV, mu::cmEND, mu::cmEQ, mu::cmFUNC, mu::cmFUNC\_\-STR, mu::cmGE, mu::cmGT, mu::cmLE, mu::cmLT, mu::cmMUL, mu::cmNEQ, mu::cmOR, mu::cmPOW, mu::cmSUB, mu::cmVAL, mu::cmVAR, and mu::cmXOR.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParserBytecode.h}\item 
+{\bf muParserBytecode.cpp}\end{CompactItemize}

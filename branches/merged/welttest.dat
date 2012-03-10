@@ -1,0 +1,17 @@
+TYPE
+#linear 0.0 0.0
+linear 3e-8 0.000001
+# exponential 5.0 1.0
+# pointsource 1.0 1000.0 1.0 1.0 1.0
+# yuhaissine 10.0 25.0 1.0
+END
+
+CELLPOSITIONS
+all_same_position 0.0 0.0 0.0
+#around_position 1.0 1.0 1.0 1.0
+END
+
+NUM_STEPS
+10 1
+END
+

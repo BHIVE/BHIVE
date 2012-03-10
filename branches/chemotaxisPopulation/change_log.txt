@@ -1,0 +1,266 @@
+Log file for remembering the changes done to the Hive project:
+--------------------------------------------------------------------
+
+Tuesday, December 8th, 2009:  (garrit)
+----------------------------
+- implemented classes for the grid and octtree. they live in
+  agent/data/grid 
+  overall we have the following classes (which all derive from data)
+  Coordinate, NVoxel (should maybe be renamed to voxel?), OctTreeNode,
+  OctTree, and Grid 
+- directory agent/data/grid contains folder grid_testing for
+  code-checking. NOTE THAT OCTTREE IS NOT WORKING COMPLETELY. OCTTREE
+  HAS NOT BEEN TESTED TO THE END AS OF TODAY!
+- moved meshinputreader to netgenmeshinputreader. lives now in
+  input/meshinputreader  
+- added folder transwell under projects
+- created class TranswellGeometryConstructor 
+  working on its implementation ... 
+  create a subfolder called testing, in which we will test the
+  construction of the grid ...
+- changed grid to have a setupTetraGrid and setupQuadGrid method 
+- use setupQuadGrid method of grid to setup the grid for transwell
+
+
+Wednesday, December 9th, 2009:  (garrit)
+------------------------------
+- finished TranswellGeometryConstructor class. 
+- Transwell::WorldAgentFactory set up of the grid is done.  
+
+
+Thursday, December 10th, 2009:  (garrit)
+------------------------------
+- included SparseLib++ and Iml++ for linear algebra calculations in /util
+- tested sparselib. works. 
+- start working on class CrankNicoloson pde solver
+- WHY DOESN'T THE SIMULATOR CLASS HAVE A SETAGENT METHOD?
+- WHY DO WE NEED THE METHODS PREPARE AND INITIALISE? ONE SEEMS ENOUGH
+  FOR ME. SMELLS LIKE REDUNDENCY.   
+- in CrankNicolson::initialise() we have no choice of which species is
+  to diffuse on the grid ... we will want to change this later on.
+- WE NEED TO TEST THE METHOD INITIALISE IN CRANK_NICOLSON
+- WE NEED TO THE SYNCHRONISEWITHDATABASE METHOD 
+- started setting up the transwellcomposer class 
+
+    
+Friday, December 11th, 2009 - sunday december 13th, 2009:  (garrit)
+---------------------------------------------------------
+- we need to test the methods of the CrankNicolson class. 
+- WHY DOES THE CHEMOTAXISCOMPOSER HOUSE THE OUTPUT ROUTINES? 
+- WHY ARE THE METHODS IN CHEMOTAXISCOMPOSER DECLARED VIRTUAL? DOES
+  THAT MAKE SENSE? 
+- DO WE NEED TO REIMPLEMENT THE CREATEAGENT METHOD IN EACH COMPOSER?!
+  SAME QUESTION FOR ADDSERIALCOMMUNICATOR?
+
+
+Saturday & Sunday, December 12th and 13th, 2009:   (garrit)
+------------------------------------------------
+- tested construction of geometry, which works correctly.
+- tested construction of rhs and lhs matrices for crank-nicolson
+  pde-solver. seems to work correctly. 
+
+
+Monday, December 14th, 2009:  (garrit)
+----------------------------
+-> some preliminary functionality for adding the capabilities to
+   integrate chemical reaction systems. 
+-> we need a greactionparser class which reads a simple reaction
+   file. it returns a reaction-rate vector and a stochiometric
+   matrix. 
+   - how are we dealing with different compartments? il2 will live on
+     the world-agent's grid but it will be produced by the cells.
+     this is meta information and does not need to be treated here.
+   - what about functional rate laws? -> michael's mu parser. how does
+     it work? would be nice to have this in order to deal with
+     slightly more complex reactions 
+-> in the data directory i inserted a subfolder g_reaction_dat
+   1. we need a stochiometric matrix ... for this we will use the
+      DoubleMatrixData from /agent/data/primitive/primitiveData.hh
+   2. we need a reaction-rate class
+      the reaction rate class must return the reaction rate. for the
+      runge kutta it must be possible to give it a vector of the
+      concentrations. 
+      more complex reaction rates should be easliy derivable from this
+      class. 
+-> a simple runge-kutta ode solver called grkodesolver will be
+   initialized with the stochiometric matrix and the rate vector.
+   (write down how a generalized runge-kutta step would look like ...)
+-> IT WOULD BE NICE, IF WE COULD USE A TEMPLATE DATA CLASS. AFTER ALL,
+   DO NOT WANT TO REDEFINE THE VECTOR DATA EACH TIME I HAVE TO DESIGN
+   A NEW VECTOR:
+   DONE under agent/data/template/tdata.hh we will define primitive t 
+   implementation of template vector class from tvector.hh
+-> introduced a new subfolder in data called rate in which reaction
+   rates are stored
+-> the stoichiometric matrix and the rate vector are stored as
+   stoch_matrix and rate_vector in the future cell agent 
+-> build a simple runge-kutta integrator called grkode (garrit's runge
+   kutta ode). lives in simulators/ode/ not very sophisticated. should
+   do the job though.
+-> runge-kutta / grate / grkode / tdata compile. they need to be 
+ 
+
+Tuesday, December 15th, 2009:  (garrit)
+-----------------------------
+-> set up agent-factory for t-cells. we should call it tcell factory ... 
+-> THE CHEMOTAXIS-CELL-FACTORY SHOULD NOT LIVE IN AGENTFACTORY. THIS
+   IS SPECIFIC TO THE THE CHEMOTAXIS PROJECT!
+-> WHY DON'T WE USE THE SYSTEM AND SYSTEMPARSER UP TO NOW? ANY
+   REASONS?
+-> update sytem and inputsystemreader classes
+-> set up gsystem for storing information about the simple kinetic
+   system for this we designed the class gsystemreader in
+   input/systemParser/gSystemParser
+-> DO NOT FORGET THE DEFAULT CONSTRUCTORS STUPID!
+
+
+Wednesday, December 16th, 2009:  (garrit)
+-------------------------------
+-> IT IS RETARDED TO HAVE THE AGENTS STORE THEIR CHEMICAL
+   CONCENTRATIONS NOT AS POINTERS. YOU ARE WASTING TOO MUCH TIME THAT
+   WAY BECAUSE EACH STEP YOU HAVE TO COPY THE DATA FROM THE AGENTS
+   DATABASE UNTO THE LOCAL VARIABLES OF THE SIMULATORS. 
+   THERE IS A LOT OF ROOM FOR IMPROVEMENT IN YOUR RUNGE-KUTTA METHOD!
+-> we need a genetic regulation agent. for this we need a stochastic
+   simulation algorithm of the simplest kind. started implementing
+   direct_ssa in simulators/ssa/. 
+
+
+Monday, December 21st, 2009:  (garrit)
+----------------------------
+-> Database::dumbDataBase has an outputwriter as an argument but uses
+   stdout to dumb the data. otherwise i changed the output channel to
+   cerr for the debugging output. 
+-> 
+
+
+Wednesday, January 13th, 2010:  (garrit)
+------------------------------
+-> added a simple gillespie algorithm to the hive. this one uses the
+   direct method for simplicity.  
+-> WE STILL NEED AN EFFICIENT WAY FOR DETERMINING IN WHICH VOXEL AN
+   ARBITRARY COORDINATE LIES. i have a rudimentary (inefficient)
+   method in the grid (for the case that the voxels are quads).
+-> added nucleus-agent-factory.
+-> adding message generators to the world / cell / and nucleus
+   ... done
+   NOTE: we make a couple of assumption in the message generators with
+   respect to which chemical species live in which position in the
+   respective data structures. also check which positions are occupied
+   by the mesh, i.e. how is the mesh constructed. is 0,0,0 the center?
+-> use messages to initialise the system!
+
+
+Thursday, January 14th, 2010:  (garrit)
+-----------------------------
+-> WHY don't the messages have a sender id? any reason? would just be
+   another int that is send around ... 
+-> Note: during the construction of the world in the worldagentfactory
+   we need to know the number of cells that will exist.
+-> i do not like the coupling between the actions/messages and the
+   reaction files. the actions need to know where which molecule is
+   stored in the agent's respective vectors. this depends on when they
+   were mentioned in the reaction files. 
+-> Receptor Ligand reactions need to be rescaled by the voxel
+   volume. since all voxels have the same size, i make the constant
+   correct by having it correctly stated in the reaction-file. 
+
+
+Friday, January 15th, 2010:  (garrit)
+---------------------------
+-> we should think of a good way for initialising the particle numbers
+   in the nucleus and tcellagents. in particular, we should have an
+   own class doing that!
+-> when running the simulations with a large number of cells, we need
+   a better way for initialising the number of cells. 
+
+-> ReactionSystems for the cells and the nucleus are specified in
+   test/
+-> diffusion coefficient for il2 is set in the
+   worldagentfactory::createAgent method. what kind of diff
+   coefficient is this? this is the dimensional diffusion
+   coefficient. it has to be in the correct dimension mm**2/s. crank
+   nicholson takes care of calculating the correct diffusion rate. 
+-> there is the possibility to set the initial il2 number in each
+   voxel in the worldagentfactory::createAgent method 
+
+
+Monday, January 18th, 2010:  (garrit)
+---------------------------
+-> WE SHOULD THINK ABOUT ADDING A TESTING ROUTINE TO EACH SIMULATOR,
+   I.E. WE SHOULD MAKE TESTING A METHOD OF SIMULATOR.HH
+-> inserted a routine for testing the direct stochastic simulation
+   algorithm, DirectSSA::testing(). this sets up a lotka volterra
+   system and simulates it. the system is taken from andrews and bray
+   2004. the output is written to the file
+   'gillespie_test_output.txt'. 
+-> inserted a routine for testing the runge-kutta
+   algorithm, GRKOde::testing(). again, this sets the same lotka
+   volterra system as the one used in DirectSSA::testing(). the output
+   is written to the file 'runge_test_output.txt'. the system works
+   just fine. 
+-> inserted a routine for testing the crank nicholson
+   algorithm. method sets up a cylindrical grid and simulates the
+   spread of a point source. results look satisfactory.
+-> ALGORITHM TESTS ... PASSED.
+
+
+Tuesday, January 19th, 2010:  (garrit)
+----------------------------
+-> how about introducing special agents to the simulation environment?
+   for the beginning a special agent will do the output. later we
+   could think about the special agents also to do fitting and
+   parameter scanning. 
+   agent will get an extra field. 
+
+- special agent as new class derived from agent class. 
+  we want to have a single special agent for each task such as output/
+  fitting etc. the special agents are also constructed by a factory
+  within the composer. the composer must be able to return the special
+  agents. in the main propagation loop within the main function, the
+  special agents will be called independently from the rest. 
+  SO WIRD ES GEMACHT!
+
+- database has now a member function called clearData() ... ATTENTION:
+  this can lead to potential leaks, if the data items do not have
+  working destructors!
+
+- changed propagate: at the end of propagate, the agents now send
+  messages to the specialagents, if any message generators return true
+  when asked, if they are a specialAgentMessageGenerator ... 
+  
+  NOTE: THE ID OF THE AGENT FOR WHICH A MESSAGE-GENERATOR GENERATES A
+  MESSAGE CAN BE USED AS A FLAG TO CHECK WHETHER A MESSAGE SHOULD BE
+  GENERATED OR NOT. 
+
+- we use the SpecialAgent's metadatabase for storing relevant
+  information about the state of the special agent. that way we do not
+  need to add this to the special agent and a special agent remains as
+  general as possible. 
+
+- is it that good an idea to have an outputagent? it surely is, if you
+  want to integrate the data of multiple agents for the
+  output. however, we certainly do not want to send the entire grid
+  around. that would be way too large of a data structure. 
+
+  
+- WHY DO WE USE A BUFFER WHEN SENDING THE MESSAGES?
+  ANY REASONS? IT IS MORE ELEGANT BUT ELSE .... WHY DOES A MESSAGE
+  ONLY GET A POINTER TO THE DATA TO BE SENT AND NOT THE REAL DATA?
+
+- TO DO URGENT: DESTRUCTORS. THEY DON'T EXIST AS OF YET. THAT IS VERY
+  VERY NAUGHTY!!!
+  
+Wednesday, January 20th, 2010:  (garrit)
+------------------------------
+-> NOTE: WE ARE ALWAYS PASSING A POINTER TO THE SAME RATE-VECTOR DATA
+   IN THE TCELLFACTORY.  
+-> we have a problem deleting the serial communicator. 
+
+
+Thursday, January 21th, 2010:  (garrit)
+-----------------------------
+-> finished fixing the memory leaks.
+-> corrected Agent::evaluateMessageQueue()
+-> valgrind says that there are no errors and no memory leaks
+-> 

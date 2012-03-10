@@ -1,0 +1,47 @@
+\section{hive.cpp File Reference}
+\label{hive_8cpp}\index{hive.cpp@{hive.cpp}}
+
+
+\subsection{Detailed Description}
+The main entry point for hive. 
+
+This file contains the main function and some other things.
+
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+\begin{Desc}
+\item[Date:]Started: Oct 7, 2009 Last edited: Oct 14, 2009 by Michael and Garrit\end{Desc}
+\begin{Desc}
+\item[{\bf Todo}]Fill in the details.\end{Desc}
+
+
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$time.h$>$}\par
+{\tt \#include \char`\"{}agent/agent.hh\char`\"{}}\par
+{\tt \#include \char`\"{}projects/dummyAgent/dummycomposer.hh\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf main} (int argc, char $\ast$argv[$\,$])
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{hive.cpp@{hive.cpp}!main@{main}}
+\index{main@{main}!hive.cpp@{hive.cpp}}
+\subsubsection[main]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}[$\,$])}\label{hive_8cpp_0ddf1224851353fc92bfbff6f499fa97}
+
+
+Main method for hive.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argc}]number of arguments (this is the length of argv) \item[{\em argv\mbox{[}$\,$\mbox{]}}]pointer to char arrays (strings) that were passed as arguments \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]zero if hive ran successfully, an error code if it did not \end{Desc}
+
+
+References Hive::Composer::getTopLevelAgent(), Hive::Agent::propagate(), and Hive::Composer::setupSimulation().

@@ -1,0 +1,101 @@
+\section{Hive::Data Class Reference}
+\label{classHive_1_1Data}\index{Hive::Data@{Hive::Data}}
+{\tt \#include $<$data.hh$>$}
+
+Inheritance diagram for Hive::Data::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1Data}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+individual element of the database 
+
+abstract class data. all data items stored in the database will have to comply with this interface.
+
+\begin{Desc}
+\item[{\bf Todo}]\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 7, 2009 Last edited: Oct 14, 2009 by Garrit and Michael\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Data} (string type)
+\item 
+virtual {\bf $\sim$Data} ()
+\begin{CompactList}\small\item\em Destructor. \item\end{CompactList}\item 
+virtual void {\bf printContent} (ostream \&out)=0
+\begin{CompactList}\small\item\em virtual method for print the content of a data item on sterr. \item\end{CompactList}\item 
+string {\bf getType} () const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+string {\bf datatype}
+\begin{CompactList}\small\item\em name of type of data \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::Data@{Hive::Data}!Data@{Data}}
+\index{Data@{Data}!Hive::Data@{Hive::Data}}
+\subsubsection[Data]{\setlength{\rightskip}{0pt plus 5cm}Hive::Data::Data (string {\em type})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1Data_6cea772bb6505ce3cb43a210ad7833e7}
+
+
+constructor \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em s}]typename \end{description}
+\end{Desc}
+
+
+References datatype.\index{Hive::Data@{Hive::Data}!$\sim$Data@{$\sim$Data}}
+\index{$\sim$Data@{$\sim$Data}!Hive::Data@{Hive::Data}}
+\subsubsection[$\sim$Data]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::Data::$\sim$Data ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1Data_5c1113a060d8e715409f042b8d261742}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::Data@{Hive::Data}!printContent@{printContent}}
+\index{printContent@{printContent}!Hive::Data@{Hive::Data}}
+\subsubsection[printContent]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Data::printContent (ostream \& {\em out})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Data_a168edcfa6efd38fe88d72c5162fd8d1}
+
+
+virtual method for print the content of a data item on sterr. 
+
+
+
+Implemented in {\bf Hive::IntegerData} \doxyref{}{p.}{classHive_1_1IntegerData_c8b7d3312b0335c50a0e74aa8bf6a2c0}, {\bf Hive::DoubleData} \doxyref{}{p.}{classHive_1_1DoubleData_96e0192b6ee96ac57fde048f7e854432}, and {\bf Hive::BoolData} \doxyref{}{p.}{classHive_1_1BoolData_4480d929f6baf36ac991c346e4a4b3ea}.\index{Hive::Data@{Hive::Data}!getType@{getType}}
+\index{getType@{getType}!Hive::Data@{Hive::Data}}
+\subsubsection[getType]{\setlength{\rightskip}{0pt plus 5cm}string Hive::Data::getType () const\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1Data_3c2bfec7dc73db3139f75923417517c5}
+
+
+returns type name of data \begin{Desc}
+\item[Returns:]typename \end{Desc}
+
+
+References datatype.
+
+Referenced by Dummy::DummyWaveAction::fire().
+
+\subsection{Member Data Documentation}
+\index{Hive::Data@{Hive::Data}!datatype@{datatype}}
+\index{datatype@{datatype}!Hive::Data@{Hive::Data}}
+\subsubsection[datatype]{\setlength{\rightskip}{0pt plus 5cm}string {\bf Hive::Data::datatype}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Data_26773fc7de37e57ea0b216d766027204}
+
+
+name of type of data 
+
+
+
+Referenced by Data(), getType(), Hive::BoolData::printContent(), Hive::DoubleData::printContent(), and Hive::IntegerData::printContent().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf data.hh}\end{CompactItemize}

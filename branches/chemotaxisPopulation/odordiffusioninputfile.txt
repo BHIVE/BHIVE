@@ -1,0 +1,44 @@
+# this is a metafile for specifying the simulation
+# comments are given by the lattenzaun 
+# for testing the diffusion we do some simulations for c.
+# namely diffusion of odors. 
+# G.J. 10-25-2010
+
+
+# flags for the simulation. although we won't have any cells in the 
+# simulation we need to specify the celltype. i will change this in 
+# a later version. 
+FLAGS
+# specifying which cell type will be used in the simulation. the value 
+# can either be ecoli or blindagent. the value is followed by the filename 
+# specifying the parameters for the agent initialiser.  
+CELLTYPE ecoli /home/jentsch/workspace/chemotaxisPopulation2/nocells.dat
+# specifying whether metabolism will be modeled
+END
+
+# we need to specify the environmenttype 
+ENVIRONMENTTYPE
+# the environmenttype is a grid
+GRID
+# in particular a microfluidic grid with a resolution of 0.1 cm and file specifying the geometry and initial ligand concentration 
+# of a ligand with Diffusion coefficient of 0.08 cm**2/sec 
+MICROFLUIDIC 0.1 /home/jentsch/workspace/chemotaxisPopulation2/comp_geo.dat /home/jentsch/workspace/chemotaxisPopulation2/comp_init.dat 0.08
+END
+END
+
+# next we specify the initial cell positions: we do not need to do this here 
+# as there are no cells in this simulation
+# CELL_POSITIONS
+# read initial cell positions from the file below
+# FROM_FILE_FOR_MICROFLUIDIC /home/jentsch/workspace/chemotaxisPopulation2/cellsmicrotest.txt
+# END
+
+# finally we specify the number of steps. 
+NUM_STEPS
+# we want to simulate the system for 5 minutes. hence there will be 3000 
+# steps of length 0.1 sec. the initial local world time is 0.0 and no time
+# for equilibration is needed.
+6000 0.05 0.0 0.0
+END
+
+

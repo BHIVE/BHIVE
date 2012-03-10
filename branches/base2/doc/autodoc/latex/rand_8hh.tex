@@ -1,0 +1,31 @@
+\section{rand.hh File Reference}
+\label{rand_8hh}\index{rand.hh@{rand.hh}}
+
+
+\subsection{Detailed Description}
+A library to generate random numbers. The functions here use the MTrand library, a fast and small c++ Mersene Twister random number generator.
+
+\begin{Desc}
+\item[Date:]Oct 14th, 2009 last edited: Oct 14th, 2009\end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace {\bf Util}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf Util::SEED\_\-RANDOM} (unsigned long seed)
+\begin{CompactList}\small\item\em Seeds the random number generator used in all simulations. \item\end{CompactList}\item 
+double {\bf Util::RANDOM} (double max)
+\begin{CompactList}\small\item\em Uniform random number on the interval (0,max]. \item\end{CompactList}\item 
+double {\bf Util::RANDOM\_\-CLOSED} ()
+\begin{CompactList}\small\item\em Uniform random number on the interval (0,1). \item\end{CompactList}\item 
+int {\bf Util::RANDOM\_\-INT} (unsigned long min, unsigned long max)
+\begin{CompactList}\small\item\em Uniform random number on the interval [min,max]. \item\end{CompactList}\item 
+double {\bf Util::RANDOM\_\-GAUSSIAN} ()
+\begin{CompactList}\small\item\em Normally distributed random number with mean 0 and variance 1. \item\end{CompactList}\end{CompactItemize}

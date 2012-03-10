@@ -1,0 +1,52 @@
+# flags for the simulation: we will only be
+# specifying which cell type will be used. this can either
+# take on the value ecoli or blindagent. this is followed by the 
+# filename that the agent initialiser will be using 
+FLAGS
+CELLTYPE ecoli /home/jentsch/workspace/chemo_with_core/rbmodelcelltest_new110810.dat
+END
+
+# first we specify the environmenttype 
+# here we will use the random drop simulator
+# rds with time parameter, space parameter, mu, sigma, and D. mu and sigma
+# are used for determining the initial value of a new drop according to a
+# a log normal distribution. the last item is a flag can be used to switch 
+# this off. hence, if this flag is set to FALSE, the initial value will always
+# be equal to mu.
+# 2.6 micro molar with diffusion coefficient of 890
+#ENVIRONMENTTYPE
+#SIMULATOR
+#RANDOM_DROP_SIMULATOR 100.0 1000.0 2.6 1 890 FALSE
+#END
+#END
+#ENVIRONMENTTYPE
+#MATH
+#step 0 (200,0.000002) (600, 0.000008) (1000, 0.000032) (1400, 0.000128) (1800, 0.000512)
+#END
+#END
+ENVIRONMENTTYPE
+MATH
+step 0 (200, 0.00005) (800,0.0)
+END
+END
+#ENVIRONMENTTYPE
+#MATH
+#linear 0 0
+#END
+#END
+
+# next we specify the initial cell positions
+# initialise all cells at the same postion 0,0,0. there are two cells in
+# the world
+CELL_POSITIONS
+ALL_SAME_POSITION 0.0 0.0 0.0 100
+END
+
+# finally we specify the time steps 
+# there will be 1000 steps of length 0.1 local world time is 0.0 
+# and equilibration time is equal to 100.0
+NUM_STEPS
+22000 0.1 0.0 100.0
+END
+
+

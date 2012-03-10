@@ -1,0 +1,14 @@
+#
+# flagellaModel = 0 voting
+#                 1 conformation
+#                 2 sourjick
+#
+# first flag saying that it is will's methylation model 
+#
+# kr, Kr, kb, Kb, noise_parameter, meth_init, numOfMotors isCoordinated flagellaModel minFlagellaToRun semiWaitingTime numOfCells isChemotactic
+
+WILLS_MODEL
+# high noise explorer cell
+0.056, 0.8, 2.1, 3, 6.4e-5, 2.13, 4, 1, 1, 2, 0.2, 25, 1000, 1
+# low noise, high cw bias
+0.24, 0.8, 2.1, 3, 5e-5, 2.24, 4, 1, 1, 2, 0.2, 25, 1000, 1

@@ -1,0 +1,75 @@
+\section{Hive::InputDataReader Class Reference}
+\label{classHive_1_1InputDataReader}\index{Hive::InputDataReader@{Hive::InputDataReader}}
+{\tt \#include $<$inputdatareader.hh$>$}
+
+
+
+\subsection{Detailed Description}
+reads input from filestream 
+
+by introducing an input data reader class we separate the storage of a database from its use.
+
+\begin{Desc}
+\item[{\bf Todo}]Everything\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]unknown as of yet\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 13, 2009 last edited: Oct 13, 2009 by Garrit \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf InputDataReader} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$InputDataReader} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+void {\bf read} (ifstream \&input)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Data} $\ast$ {\bf getNextDataItem} ()
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::InputDataReader@{Hive::InputDataReader}!InputDataReader@{InputDataReader}}
+\index{InputDataReader@{InputDataReader}!Hive::InputDataReader@{Hive::InputDataReader}}
+\subsubsection[InputDataReader]{\setlength{\rightskip}{0pt plus 5cm}Hive::InputDataReader::InputDataReader ()}\label{classHive_1_1InputDataReader_d9f91314addd1ffeafb4cf0907faabd2}
+
+
+constructor 
+
+\index{Hive::InputDataReader@{Hive::InputDataReader}!$\sim$InputDataReader@{$\sim$InputDataReader}}
+\index{$\sim$InputDataReader@{$\sim$InputDataReader}!Hive::InputDataReader@{Hive::InputDataReader}}
+\subsubsection[$\sim$InputDataReader]{\setlength{\rightskip}{0pt plus 5cm}Hive::InputDataReader::$\sim$InputDataReader ()}\label{classHive_1_1InputDataReader_d040f380f77015443f56cc45d6f99db5}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::InputDataReader@{Hive::InputDataReader}!read@{read}}
+\index{read@{read}!Hive::InputDataReader@{Hive::InputDataReader}}
+\subsubsection[read]{\setlength{\rightskip}{0pt plus 5cm}void Hive::InputDataReader::read (ifstream \& {\em input})}\label{classHive_1_1InputDataReader_69b4beee15ca8699cd49056e4cf8c319}
+
+
+read data from file \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em input}]input file stream \end{description}
+\end{Desc}
+\index{Hive::InputDataReader@{Hive::InputDataReader}!getNextDataItem@{getNextDataItem}}
+\index{getNextDataItem@{getNextDataItem}!Hive::InputDataReader@{Hive::InputDataReader}}
+\subsubsection[getNextDataItem]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data}$\ast$ Hive::InputDataReader::getNextDataItem ()\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1InputDataReader_f35864f9ba42c078b0d4fc033c64a30a}
+
+
+reads the next element from the input file-stream \begin{Desc}
+\item[Returns:]pointer to data element \end{Desc}
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf inputdatareader.hh}\end{CompactItemize}

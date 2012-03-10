@@ -1,0 +1,103 @@
+\section{Data Class Reference}
+\label{classData}\index{Data@{Data}}
+{\tt \#include $<$data.hh$>$}
+
+Inheritance diagram for Data::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classData}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+individual element of the database 
+
+abstract class data. all data items stored in the database will have to comply with this interface.
+
+\begin{Desc}
+\item[{\bf Todo}]\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 7, 2009 Last edited: Oct 14, 2009 by Garrit and Michael\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Data} (string type)
+\item 
+virtual {\bf $\sim$Data} ()
+\begin{CompactList}\small\item\em Destructor. \item\end{CompactList}\item 
+virtual void {\bf printContent} (ostream \&out)=0
+\begin{CompactList}\small\item\em virtual method for print the content of a data item on sterr. \item\end{CompactList}\item 
+string {\bf getType} () const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+string {\bf datatype}
+\begin{CompactList}\small\item\em name of type of data \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection[Data]{\setlength{\rightskip}{0pt plus 5cm}Data::Data (string {\em type})\hspace{0.3cm}{\tt  [inline]}}\label{classData_a8d178fc375260ecb9604113d64fbfc7}
+
+
+constructor \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em s}]typename \end{description}
+\end{Desc}
+
+
+References datatype.\index{Data@{Data}!$\sim$Data@{$\sim$Data}}
+\index{$\sim$Data@{$\sim$Data}!Data@{Data}}
+\subsubsection[$\sim$Data]{\setlength{\rightskip}{0pt plus 5cm}virtual Data::$\sim$Data ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classData_8c4dbe720325cd952ec9146114f22d35}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{Data@{Data}!printContent@{printContent}}
+\index{printContent@{printContent}!Data@{Data}}
+\subsubsection[printContent]{\setlength{\rightskip}{0pt plus 5cm}virtual void Data::printContent (ostream \& {\em out})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classData_2168cd6e0e8806938f036c28be8bc041}
+
+
+virtual method for print the content of a data item on sterr. 
+
+
+
+Implemented in {\bf IntegerData} \doxyref{}{p.}{classIntegerData_c8b7d3312b0335c50a0e74aa8bf6a2c0}, {\bf DoubleData} \doxyref{}{p.}{classDoubleData_96e0192b6ee96ac57fde048f7e854432}, and {\bf BoolData} \doxyref{}{p.}{classBoolData_4480d929f6baf36ac991c346e4a4b3ea}.
+
+Referenced by DummyComposer::createAgent().\index{Data@{Data}!getType@{getType}}
+\index{getType@{getType}!Data@{Data}}
+\subsubsection[getType]{\setlength{\rightskip}{0pt plus 5cm}string Data::getType () const\hspace{0.3cm}{\tt  [inline]}}\label{classData_0aea15d14176ced659f5640196f5e3b9}
+
+
+returns type name of data \begin{Desc}
+\item[Returns:]typename \end{Desc}
+
+
+References datatype.
+
+Referenced by DummyWaveAction::fire().
+
+\subsection{Member Data Documentation}
+\index{Data@{Data}!datatype@{datatype}}
+\index{datatype@{datatype}!Data@{Data}}
+\subsubsection[datatype]{\setlength{\rightskip}{0pt plus 5cm}string {\bf Data::datatype}\hspace{0.3cm}{\tt  [protected]}}\label{classData_ee2ffced74b2f054a0b606267a181cbf}
+
+
+name of type of data 
+
+
+
+Referenced by Data(), getType(), BoolData::printContent(), DoubleData::printContent(), and IntegerData::printContent().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf data.hh}\end{CompactItemize}

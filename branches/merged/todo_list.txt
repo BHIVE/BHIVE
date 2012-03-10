@@ -1,0 +1,61 @@
+
+
+
+
+
+==========================================
+==  Priority Updates
+==========================================
+
+ * Incorporate ODE solver library
+ * Add new simulators and default agent factories for BNG based ODE and SSA simulation
+
+ * Figure out the best way to add agents to simulators.  Shouldn't they always be added
+   when a simulator is created?  If not, we should standardize when agents are added to
+   a simulator.
+
+ * Add the ability to load projects from a library that calls hive functions
+ 
+ * Add a default input file / input format that automatically parses and returns a map
+
+
+
+
+
+
+
+
+==========================================
+==  Performance Updates
+==========================================
+
+ * Switch Database representation of Data elements from Map to an indexed-array, but keep
+   the map around for matching Data names (which we now use as unique identifiers of data)
+   to array index locations (which should not change during a simulation).  this will save
+   computation time during each time step when database elements are accessed.
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+==========================================
+==  Design issues to ponder
+==========================================
+
+ * Should messages know who sent them, or should they be anonymous?  In some cases, the reciever
+   needs to know who sent the message, for instance, when a cell agent notifies the world that
+   its position must be changed.  Now this return address must be part of the Data message being
+   sent.  This minimizes the information that is sent with a message because you only send the
+   message author agent when needed instead of every time.  however, this also introduces a possible
+   source of errors if you forget to or do not properly sign your message when it is generated.
+   So then, should messages enforce this adding slightly more to each message, or should messages
+   remain anonymous to be only signed in needed?
+   
+   
+   
+   

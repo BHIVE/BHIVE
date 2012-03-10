@@ -1,0 +1,39 @@
+# flags for the simulation
+FLAGS
+# specifying which cell type will be used. this can either
+# take on the value ecoli or blindagent. this is followed by the 
+# filename that the agent initialiser will be using 
+CELLTYPE ecoli /home/jentsch/workspace/chemotaxisPopulation2/cellfileIII.dat
+# specifying whether metabolism will be modeled. currently we only
+# have a single metabolism model availabe which is called simple.
+# CELL_HAS_METABOLISM simple
+END
+
+# first we specify the environmenttype 
+ENVIRONMENTTYPE
+# which is a simulator
+SIMULATOR
+# rds with time parameter, space parameter, mu, sigma, and D. mu and sigma
+# are used for determining the initial value of a new drop according to a
+# a log normal distribution. the last item is a flag can be used to switch 
+# this off. hence, if this flag is set to FALSE, the initial value will always
+# be equal to mu. 
+RANDOM_DROP_SIMULATOR 10.0 10.0 1 1 10 FALSE
+END
+END
+
+# next we specify the initial cell positions
+CELL_POSITIONS
+# initialise all cell positions around same position x,y,z within a radius
+# r, set total number of cells to number.
+AROUND_POSITION 0.0 0.0 0.0 1.0 10
+END
+
+# finally we specify the time steps 
+NUM_STEPS
+# there will be 1000 steps of length 0.1 local world time is 0.0 
+# and equilibration time is equal to 10.0
+1000 0.1 0.0 10.0
+END
+
+

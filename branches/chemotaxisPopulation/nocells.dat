@@ -1,0 +1,12 @@
+#
+# flagellaModel = 0 voting
+#                 1 conformation
+#                 2 sourjick
+#
+# first flag saying that it is will's methylation model 
+#
+# kr, Kr, kb, Kb, noise_parameter, meth_init, cheyp, numOfMotors isCoordinated flagellaModel minFlagellaToRun semiWaitingTime numOfCells isChemotactic
+
+# below are the 
+WILLS_MODEL
+0.12007, 2.21, 0.323843, 0.1, 0.0811, 0.925231, 2.465, 4, 1, 1, 2, 0.2, 25, 0, 1

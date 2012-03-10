@@ -1,0 +1,124 @@
+\section{Dummy::DummyAgentFactory Class Reference}
+\label{classDummy_1_1DummyAgentFactory}\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+{\tt \#include $<$dummyagentfactory.hh$>$}
+
+Inheritance diagram for Dummy::DummyAgentFactory::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classDummy_1_1DummyAgentFactory}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+simple implementation of an agentfactory 
+
+this is a minimal implemtation of the agentfactory. it generates agents that can not really do anything.
+
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]Oct 14, 2009 last edited Oct 15, 2009 \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf DummyAgentFactory} ()
+\item 
+{\bf DummyAgentFactory} ({\bf InputSystemReader} $\ast${\bf isr})
+\item 
+{\bf Agent} $\ast$ {\bf createAgent} ()
+\item 
+{\bf Agent} $\ast$ {\bf createAgent} ({\bf Action} $\ast$$\ast$ac)
+\item 
+{\bf Agent} $\ast$ {\bf duplicateAgent} ({\bf Agent} $\ast$ag)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf addActionToAgentsActionSet} ({\bf Action} $\ast$a)
+\item 
+void {\bf addSimulatorToAgent} ({\bf Simulator} $\ast$s)
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!DummyAgentFactory@{DummyAgentFactory}}
+\index{DummyAgentFactory@{DummyAgentFactory}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[DummyAgentFactory]{\setlength{\rightskip}{0pt plus 5cm}DummyAgentFactory::DummyAgentFactory ()}\label{classDummy_1_1DummyAgentFactory_2766d99aae0baea748b68019507c2590}
+
+
+\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!DummyAgentFactory@{DummyAgentFactory}}
+\index{DummyAgentFactory@{DummyAgentFactory}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[DummyAgentFactory]{\setlength{\rightskip}{0pt plus 5cm}DummyAgentFactory::DummyAgentFactory ({\bf InputSystemReader} $\ast$ {\em isr})}\label{classDummy_1_1DummyAgentFactory_733f884c3a2beaac5991d98dd9e40d34}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!createAgent@{createAgent}}
+\index{createAgent@{createAgent}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[createAgent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent} $\ast$ DummyAgentFactory::createAgent ()\hspace{0.3cm}{\tt  [virtual]}}\label{classDummy_1_1DummyAgentFactory_0aec7238d1758a98d59817f49ae1c2c0}
+
+
+create agent of a certain type. encapsulates everything that has to be done, i.e. it adds actions, simulator, messagegenerators, and communicator to the agent. the simulator is also told to connect to the database and initialize itself. \begin{Desc}
+\item[Returns:]pointer to constructed agent \end{Desc}
+
+
+Implements {\bf Hive::AgentFactory} \doxyref{}{p.}{classHive_1_1AgentFactory_a1e148a842b3f0e2dd11de0ef61bf877}.
+
+References Hive::Agent::addAction(), Hive::Database::addData(), Hive::Agent::addMessageGenerator(), Hive::Agent::addSimulator(), Hive::Agent::getDatabase(), Hive::IntegerData::getDataName(), and Hive::Action::setAgent().\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!createAgent@{createAgent}}
+\index{createAgent@{createAgent}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[createAgent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent} $\ast$ DummyAgentFactory::createAgent ({\bf Action} $\ast$$\ast$ {\em as})\hspace{0.3cm}{\tt  [virtual]}}\label{classDummy_1_1DummyAgentFactory_939e7c2ccee8945187801e6cd92da0df}
+
+
+create an agent and provide actionset as an argument \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em as}]pointer to actionset \end{description}
+\end{Desc}
+
+
+Implements {\bf Hive::AgentFactory} \doxyref{}{p.}{classHive_1_1AgentFactory_40e828a8b7c397c11a3c0ed24e22932d}.\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!duplicateAgent@{duplicateAgent}}
+\index{duplicateAgent@{duplicateAgent}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[duplicateAgent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent} $\ast$ DummyAgentFactory::duplicateAgent ({\bf Agent} $\ast$ {\em ag})\hspace{0.3cm}{\tt  [virtual]}}\label{classDummy_1_1DummyAgentFactory_8ddeb4e5090dac67d921e8a4b89275a7}
+
+
+copies an agent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$ag}]pointer to agent to be copied \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to copy \end{Desc}
+
+
+Implements {\bf Hive::AgentFactory} \doxyref{}{p.}{classHive_1_1AgentFactory_ea99bc08ec4fa2a262244362e7de03f6}.\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!addActionToAgentsActionSet@{addActionToAgentsActionSet}}
+\index{addActionToAgentsActionSet@{addActionToAgentsActionSet}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[addActionToAgentsActionSet]{\setlength{\rightskip}{0pt plus 5cm}void DummyAgentFactory::addActionToAgentsActionSet ({\bf Action} $\ast$ {\em a})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classDummy_1_1DummyAgentFactory_f469c5c34c6d26c944d9272c3bff6cb5}
+
+
+adds an action to the agents action set \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$a}]pointer to action \end{description}
+\end{Desc}
+
+
+Implements {\bf Hive::AgentFactory} \doxyref{}{p.}{classHive_1_1AgentFactory_978d73e56c472e6ecce59282fa80852e}.\index{Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}!addSimulatorToAgent@{addSimulatorToAgent}}
+\index{addSimulatorToAgent@{addSimulatorToAgent}!Dummy::DummyAgentFactory@{Dummy::DummyAgentFactory}}
+\subsubsection[addSimulatorToAgent]{\setlength{\rightskip}{0pt plus 5cm}void DummyAgentFactory::addSimulatorToAgent ({\bf Simulator} $\ast$ {\em s})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classDummy_1_1DummyAgentFactory_52894893fc20746c63949ee62ff875af}
+
+
+adds a simulator to the agents simulator set \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$s}]pointer to simulator \end{description}
+\end{Desc}
+
+
+Implements {\bf Hive::AgentFactory} \doxyref{}{p.}{classHive_1_1AgentFactory_e10d7f9aeb994662565de5fa7d074e87}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf dummyagentfactory.hh}\item 
+{\bf dummyagentfactory.cpp}\end{CompactItemize}

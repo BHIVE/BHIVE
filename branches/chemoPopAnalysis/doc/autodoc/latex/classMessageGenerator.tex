@@ -1,0 +1,72 @@
+\section{MessageGenerator Class Reference}
+\label{classMessageGenerator}\index{MessageGenerator@{MessageGenerator}}
+{\tt \#include $<$messagegenerator.hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf MessageGenerator} ()
+\begin{CompactList}\small\item\em default constructor \item\end{CompactList}\item 
+{\bf MessageGenerator} ({\bf Agent} $\ast$ag)
+\item 
+virtual {\bf $\sim$MessageGenerator} ()=0
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual {\bf Message} $\ast$ {\bf placeMessage} ()=0
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Agent} $\ast$ {\bf source}
+\begin{CompactList}\small\item\em pointer to agent that generates the message \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{MessageGenerator@{MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\index{MessageGenerator@{MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\subsubsection[MessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}MessageGenerator::MessageGenerator ()}\label{classMessageGenerator_bb8f104459b6f93d0f6b26d656cf70ef}
+
+
+default constructor 
+
+\index{MessageGenerator@{MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\index{MessageGenerator@{MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\subsubsection[MessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}MessageGenerator::MessageGenerator ({\bf Agent} $\ast$ {\em ag})}\label{classMessageGenerator_0878332ef68ecf3c13a2ba19cd3d89ef}
+
+
+construct \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pointer}]to source agent \end{description}
+\end{Desc}
+\index{MessageGenerator@{MessageGenerator}!$\sim$MessageGenerator@{$\sim$MessageGenerator}}
+\index{$\sim$MessageGenerator@{$\sim$MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\subsubsection[$\sim$MessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}virtual MessageGenerator::$\sim$MessageGenerator ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classMessageGenerator_8a20c88d0cf01bc6d3b2f54734b39a14}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{MessageGenerator@{MessageGenerator}!placeMessage@{placeMessage}}
+\index{placeMessage@{placeMessage}!MessageGenerator@{MessageGenerator}}
+\subsubsection[placeMessage]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Message}$\ast$ MessageGenerator::placeMessage ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classMessageGenerator_6da422ed53d26661c646043e2c326a4b}
+
+
+generate message \begin{Desc}
+\item[Returns:]pointer to message \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{MessageGenerator@{MessageGenerator}!source@{source}}
+\index{source@{source}!MessageGenerator@{MessageGenerator}}
+\subsubsection[source]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$ {\bf MessageGenerator::source}\hspace{0.3cm}{\tt  [protected]}}\label{classMessageGenerator_12b7c0be392b69580cd68779f8f972e0}
+
+
+pointer to agent that generates the message 
+
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf messagegenerator.hh}\end{CompactItemize}

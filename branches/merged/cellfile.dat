@@ -1,0 +1,9 @@
+#
+# flagellaModel = 0 voting
+#                 1 conformation
+#                 2 sourjick
+#
+#CheYp tau noise numOfMotors isCoordinated flagellaModel minFlagellaToRun semiWaitingTime numOfCells
+
+2.7, 20, 0.15, 4, 1, 1, 2, 0.2, 25, 20
+2.7, 20, 0.01, 4, 1, 1, 2, 0.2, 25, 15

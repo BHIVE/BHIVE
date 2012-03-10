@@ -1,0 +1,82 @@
+\section{Hive::MessageGenerator Class Reference}
+\label{classHive_1_1MessageGenerator}\index{Hive::MessageGenerator@{Hive::MessageGenerator}}
+{\tt \#include $<$messagegenerator.hh$>$}
+
+Inheritance diagram for Hive::MessageGenerator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1MessageGenerator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf MessageGenerator} ()
+\begin{CompactList}\small\item\em default constructor \item\end{CompactList}\item 
+{\bf MessageGenerator} ({\bf Agent} $\ast$ag)
+\item 
+virtual {\bf $\sim$MessageGenerator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual void {\bf placeMessage} ()=0
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Agent} $\ast$ {\bf source}
+\begin{CompactList}\small\item\em pointer to agent that generates the message \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::MessageGenerator@{Hive::MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\index{MessageGenerator@{MessageGenerator}!Hive::MessageGenerator@{Hive::MessageGenerator}}
+\subsubsection[MessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}Hive::MessageGenerator::MessageGenerator ()\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1MessageGenerator_151d85b04a90038bd7475e02ecf08335}
+
+
+default constructor 
+
+\index{Hive::MessageGenerator@{Hive::MessageGenerator}!MessageGenerator@{MessageGenerator}}
+\index{MessageGenerator@{MessageGenerator}!Hive::MessageGenerator@{Hive::MessageGenerator}}
+\subsubsection[MessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}Hive::MessageGenerator::MessageGenerator ({\bf Agent} $\ast$ {\em ag})\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1MessageGenerator_d3db0022514a56ba1fa69850bb060989}
+
+
+construct \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pointer}]to source agent \end{description}
+\end{Desc}
+
+
+References source.\index{Hive::MessageGenerator@{Hive::MessageGenerator}!$\sim$MessageGenerator@{$\sim$MessageGenerator}}
+\index{$\sim$MessageGenerator@{$\sim$MessageGenerator}!Hive::MessageGenerator@{Hive::MessageGenerator}}
+\subsubsection[$\sim$MessageGenerator]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::MessageGenerator::$\sim$MessageGenerator ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1MessageGenerator_0dc07ead2cd7181415ca414e2992d77b}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::MessageGenerator@{Hive::MessageGenerator}!placeMessage@{placeMessage}}
+\index{placeMessage@{placeMessage}!Hive::MessageGenerator@{Hive::MessageGenerator}}
+\subsubsection[placeMessage]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::MessageGenerator::placeMessage ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1MessageGenerator_874d881a3aeff02ca53391714f659a20}
+
+
+generate message and puts it into the outbox of the source agent 
+
+Implemented in {\bf Dummy::DummyMessageGenerator} \doxyref{}{p.}{classDummy_1_1DummyMessageGenerator_5a7af3c76d74a53211e440fc86514d0c}.
+
+\subsection{Member Data Documentation}
+\index{Hive::MessageGenerator@{Hive::MessageGenerator}!source@{source}}
+\index{source@{source}!Hive::MessageGenerator@{Hive::MessageGenerator}}
+\subsubsection[source]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$ {\bf Hive::MessageGenerator::source}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1MessageGenerator_e2567828ed7b3d9b57a5cc3a77f90075}
+
+
+pointer to agent that generates the message 
+
+
+
+Referenced by MessageGenerator(), and Dummy::DummyMessageGenerator::placeMessage().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf messagegenerator.hh}\end{CompactItemize}

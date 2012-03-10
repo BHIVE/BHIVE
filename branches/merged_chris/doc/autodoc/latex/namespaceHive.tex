@@ -1,0 +1,121 @@
+\section{Hive Namespace Reference}
+\label{namespaceHive}\index{Hive@{Hive}}
+
+
+\subsection{Detailed Description}
+Core \doxyref{Hive}{p.}{namespaceHive} classes and functionality. 
+
+All of the \doxyref{Hive}{p.}{namespaceHive} framework classes and methods are defined in this namespace, so you should use this namespace in all of your projects. Be sure to define a new namespace for problem specific projects. \begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf Action}
+\begin{CompactList}\small\item\em action class for working on an agent \item\end{CompactList}\item 
+class {\bf Agent}
+\begin{CompactList}\small\item\em central class of the hive \item\end{CompactList}\item 
+class {\bf AgentFactory}
+\begin{CompactList}\small\item\em agent factory \item\end{CompactList}\item 
+class {\bf Data}
+\begin{CompactList}\small\item\em individual element of the database \item\end{CompactList}\item 
+class {\bf IntegerData}
+\begin{CompactList}\small\item\em A data object to store integer values. \item\end{CompactList}\item 
+class {\bf DoubleData}
+\begin{CompactList}\small\item\em A data object to store double values. \item\end{CompactList}\item 
+class {\bf BoolData}
+\begin{CompactList}\small\item\em A data object to store integer values. \item\end{CompactList}\item 
+class {\bf Database}
+\begin{CompactList}\small\item\em \doxyref{Database}{p.}{classHive_1_1Database} of an agent. \item\end{CompactList}\item 
+class {\bf Message}
+\begin{CompactList}\small\item\em message for agent communication. \item\end{CompactList}\item 
+class {\bf MessageGenerator}
+\item 
+class {\bf Communicator}
+\item 
+class {\bf SerialCommunicator}
+\begin{CompactList}\small\item\em serialcommunicator implements the communicator \item\end{CompactList}\item 
+class {\bf Composer}
+\begin{CompactList}\small\item\em this class sets up the entire simulation. \item\end{CompactList}\item 
+class {\bf InputDataReader}
+\begin{CompactList}\small\item\em reads input from filestream \item\end{CompactList}\item 
+class {\bf System}
+\begin{CompactList}\small\item\em system class \item\end{CompactList}\item 
+class {\bf InputSystemReader}
+\begin{CompactList}\small\item\em abstract class for reading a system \item\end{CompactList}\item 
+class {\bf OutputWriter}
+\item 
+class {\bf DummySimulator}
+\item 
+class {\bf Simulator}
+\begin{CompactList}\small\item\em simulator class \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf parseArguments} (int argc, const char $\ast$argv[$\,$], std::map$<$ std::string, std::string $>$ \&argMap)
+\begin{CompactList}\small\item\em Parses command line arguments from the console into an argMap. \item\end{CompactList}\item 
+int {\bf parseAsInt} (map$<$ string, string $>$ \&argMap, string argName, int defaultValue)
+\begin{CompactList}\small\item\em Looks up the argument in the argMap and tries to parse the value as an integer. \item\end{CompactList}\item 
+double {\bf parseAsDouble} (map$<$ string, string $>$ \&argMap, string argName, double defaultValue)
+\begin{CompactList}\small\item\em Looks up the argument in the argMap and tries to parse the value as a double. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Hive@{Hive}!parseArguments@{parseArguments}}
+\index{parseArguments@{parseArguments}!Hive@{Hive}}
+\subsubsection[parseArguments]{\setlength{\rightskip}{0pt plus 5cm}bool Hive::parseArguments (int {\em argc}, \/  const char $\ast$ {\em argv}[$\,$], \/  std::map$<$ std::string, std::string $>$ \& {\em argMap})}\label{namespaceHive_f323412d9323514b57735262f70727b4}
+
+
+Parses command line arguments from the console into an argMap. 
+
+Given the vector of strings taken from the command line, this function parses out all strings that start with a dash and identifies them as parameters, and attatches the parameter value to whatever string follows. For example, -file help.txt would add an entry to the argMap as a parameter named \char`\"{}file\char`\"{} with value \char`\"{}help.txt\char`\"{}. You can take a look at parseAsInt and parseAsDouble functions that can interpret the value as integers or doubles
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argc}]the number of arguments \item[{\em argv}]the array of character arrays (strings) \item[{\em argMap}]the map that will be set when this function is called \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]bool true if successful, false if something went wrong \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+\index{Hive@{Hive}!parseAsDouble@{parseAsDouble}}
+\index{parseAsDouble@{parseAsDouble}!Hive@{Hive}}
+\subsubsection[parseAsDouble]{\setlength{\rightskip}{0pt plus 5cm}double Hive::parseAsDouble (map$<$ string, string $>$ \& {\em argMap}, \/  string {\em argName}, \/  double {\em defaultValue})}\label{namespaceHive_634f2b1e4718a3ef1d59bbf13025786a}
+
+
+Looks up the argument in the argMap and tries to parse the value as a double. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argMap}]the argMap to lookup, generally created by the parseArguments function \item[{\em string}]the name of the parameter to look up \item[{\em defaultValue}]the default value to return if the value was empty \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int the parsed double if successful, otherwise the defaultValue given \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+References Util::convertToDouble().\index{Hive@{Hive}!parseAsInt@{parseAsInt}}
+\index{parseAsInt@{parseAsInt}!Hive@{Hive}}
+\subsubsection[parseAsInt]{\setlength{\rightskip}{0pt plus 5cm}int Hive::parseAsInt (map$<$ string, string $>$ \& {\em argMap}, \/  string {\em argName}, \/  int {\em defaultValue})}\label{namespaceHive_21f56e4cbc04575ec651d6dad8f06c47}
+
+
+Looks up the argument in the argMap and tries to parse the value as an integer. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em argMap}]the argMap to lookup, generally created by the parseArguments function \item[{\em string}]the name of the parameter to look up \item[{\em defaultValue}]the default value to return if the value was empty \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int the parsed int if successful, otherwise the defaultValue given \end{Desc}
+\begin{Desc}
+\item[Author:]Michael Sneddon \end{Desc}
+
+
+References Util::convertToInt().

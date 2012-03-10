@@ -1,0 +1,190 @@
+\section{Hive::Database Class Reference}
+\label{classHive_1_1Database}\index{Hive::Database@{Hive::Database}}
+{\tt \#include $<$database.hh$>$}
+
+
+
+\subsection{Detailed Description}
+\doxyref{Database}{p.}{classHive_1_1Database} of an agent. 
+
+The database of the agent class stores all of the agent's data. This is the most radical way for a generic database in that a database is a vector of void pointers.
+
+\begin{Desc}
+\item[{\bf Todo}]Implementation\end{Desc}
+\begin{Desc}
+\item[Date:]Started: Oct 7th, 2009 Last edited: Oct 14th, 2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Database} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+{\bf $\sim$Database} ()
+\begin{CompactList}\small\item\em Destructor. \item\end{CompactList}\item 
+void {\bf setup} ()
+\item 
+void {\bf dumpDataBase} ({\bf OutputWriter} $\ast$ow)
+\item 
+void {\bf addData} (string name, {\bf Data} $\ast$data)
+\item 
+void {\bf eraseDataItem} (string name)
+\item 
+{\bf Data} $\ast$ {\bf getDataItem} (string name)
+\item 
+void {\bf readDataBase} ({\bf InputDataReader} $\ast$ir)
+\item 
+void {\bf returnPointerToData} (string name, {\bf Data} $\ast$\&ptr)
+\item 
+bool {\bf existsDataItem} (string name)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf Data} $\ast$ $>$ {\bf real\_\-database}
+\begin{CompactList}\small\item\em the database is really nothing else but a vector of pointers to data objects \item\end{CompactList}\item 
+map$<$ string, int $>$ {\bf data\_\-position\_\-identifyer}
+\begin{CompactList}\small\item\em map to give a name to the data items stored in the database \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::Database@{Hive::Database}!Database@{Database}}
+\index{Database@{Database}!Hive::Database@{Hive::Database}}
+\subsubsection[Database]{\setlength{\rightskip}{0pt plus 5cm}Database::Database ()}\label{classHive_1_1Database_4703c80e6969d33565ea340f768fdadf}
+
+
+Constructor. 
+
+\index{Hive::Database@{Hive::Database}!$\sim$Database@{$\sim$Database}}
+\index{$\sim$Database@{$\sim$Database}!Hive::Database@{Hive::Database}}
+\subsubsection[$\sim$Database]{\setlength{\rightskip}{0pt plus 5cm}Database::$\sim$Database ()}\label{classHive_1_1Database_84d399a2ad58d69daab9b05330e1316d}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::Database@{Hive::Database}!setup@{setup}}
+\index{setup@{setup}!Hive::Database@{Hive::Database}}
+\subsubsection[setup]{\setlength{\rightskip}{0pt plus 5cm}void Database::setup ()}\label{classHive_1_1Database_8aa21b2c14a496033b90030dbef746b7}
+
+
+outputs the entire database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ow}]Pointer to the \doxyref{OutputWriter}{p.}{classHive_1_1OutputWriter} that outputs the database \end{description}
+\end{Desc}
+\index{Hive::Database@{Hive::Database}!dumpDataBase@{dumpDataBase}}
+\index{dumpDataBase@{dumpDataBase}!Hive::Database@{Hive::Database}}
+\subsubsection[dumpDataBase]{\setlength{\rightskip}{0pt plus 5cm}void Database::dumpDataBase ({\bf OutputWriter} $\ast$ {\em ow})}\label{classHive_1_1Database_b5a71b1729cdda881c9240f7cc1c2b98}
+
+
+outputs the entire database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ow}]Pointer to the \doxyref{OutputWriter}{p.}{classHive_1_1OutputWriter} that outputs the database \end{description}
+\end{Desc}
+
+
+References real\_\-database.\index{Hive::Database@{Hive::Database}!addData@{addData}}
+\index{addData@{addData}!Hive::Database@{Hive::Database}}
+\subsubsection[addData]{\setlength{\rightskip}{0pt plus 5cm}void Database::addData (string {\em name}, \/  {\bf Data} $\ast$ {\em data})}\label{classHive_1_1Database_203a8eb871aeffd3310bb73d263ff5a9}
+
+
+adds data to the database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]Name of the variable to be added \item[{\em ptr}]Pointer to the data to be added \end{description}
+\end{Desc}
+
+
+References data\_\-position\_\-identifyer, and real\_\-database.
+
+Referenced by Dummy::DummyAgentFactory::createAgent(), and Hive::DummySimulator::DummySimulator().\index{Hive::Database@{Hive::Database}!eraseDataItem@{eraseDataItem}}
+\index{eraseDataItem@{eraseDataItem}!Hive::Database@{Hive::Database}}
+\subsubsection[eraseDataItem]{\setlength{\rightskip}{0pt plus 5cm}void Database::eraseDataItem (string {\em name})}\label{classHive_1_1Database_da3c540517d0d858d925c92efbca1ee6}
+
+
+removes data item form the database \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]Name of data item to be removed. \end{description}
+\end{Desc}
+\index{Hive::Database@{Hive::Database}!getDataItem@{getDataItem}}
+\index{getDataItem@{getDataItem}!Hive::Database@{Hive::Database}}
+\subsubsection[getDataItem]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data} $\ast$ Database::getDataItem (string {\em name})}\label{classHive_1_1Database_f5b70a3d1c09f91e8116a299ead84874}
+
+
+returns a data item \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]identifyer of data item \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to data item \end{Desc}
+
+
+References data\_\-position\_\-identifyer, and real\_\-database.
+
+Referenced by Dummy::DummyWaveAction::fire(), Hive::DummySimulator::step(), and Hive::DummySimulator::synchroniseWithDatabase().\index{Hive::Database@{Hive::Database}!readDataBase@{readDataBase}}
+\index{readDataBase@{readDataBase}!Hive::Database@{Hive::Database}}
+\subsubsection[readDataBase]{\setlength{\rightskip}{0pt plus 5cm}void Database::readDataBase ({\bf InputDataReader} $\ast$ {\em ir})}\label{classHive_1_1Database_820a6511feee01ab831deabc187c2262}
+
+
+set up a database by using an input reader \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ir}]Pointer to an InputReader \end{description}
+\end{Desc}
+\index{Hive::Database@{Hive::Database}!returnPointerToData@{returnPointerToData}}
+\index{returnPointerToData@{returnPointerToData}!Hive::Database@{Hive::Database}}
+\subsubsection[returnPointerToData]{\setlength{\rightskip}{0pt plus 5cm}void Database::returnPointerToData (string {\em name}, \/  {\bf Data} $\ast$\& {\em ptr})}\label{classHive_1_1Database_46896d00038c00ca0ed8671656a27344}
+
+
+returns pointer to data item \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]Name of variable that one wishes to obtain a pointer to. \item[{\em ptr}]Pointer to the desired variable. \end{description}
+\end{Desc}
+
+
+References data\_\-position\_\-identifyer, and real\_\-database.\index{Hive::Database@{Hive::Database}!existsDataItem@{existsDataItem}}
+\index{existsDataItem@{existsDataItem}!Hive::Database@{Hive::Database}}
+\subsubsection[existsDataItem]{\setlength{\rightskip}{0pt plus 5cm}bool Database::existsDataItem (string {\em name})}\label{classHive_1_1Database_b8e62e5705be8b286775576271b5e1f2}
+
+
+ask for existence of a data\_\-item \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em name}]name of dataitem \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]existence \end{Desc}
+
+
+References data\_\-position\_\-identifyer.
+
+\subsection{Member Data Documentation}
+\index{Hive::Database@{Hive::Database}!real\_\-database@{real\_\-database}}
+\index{real\_\-database@{real\_\-database}!Hive::Database@{Hive::Database}}
+\subsubsection[real\_\-database]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Data} $\ast$$>$ {\bf Hive::Database::real\_\-database}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Database_04552fae2427e74809fab02759be705d}
+
+
+the database is really nothing else but a vector of pointers to data objects 
+
+
+
+Referenced by addData(), dumpDataBase(), getDataItem(), and returnPointerToData().\index{Hive::Database@{Hive::Database}!data\_\-position\_\-identifyer@{data\_\-position\_\-identifyer}}
+\index{data\_\-position\_\-identifyer@{data\_\-position\_\-identifyer}!Hive::Database@{Hive::Database}}
+\subsubsection[data\_\-position\_\-identifyer]{\setlength{\rightskip}{0pt plus 5cm}map$<$string, int$>$ {\bf Hive::Database::data\_\-position\_\-identifyer}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Database_8f1b647aa252e120ddaf4c91c760a1bd}
+
+
+map to give a name to the data items stored in the database 
+
+
+
+Referenced by addData(), existsDataItem(), getDataItem(), and returnPointerToData().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf database.hh}\item 
+{\bf database.cpp}\end{CompactItemize}

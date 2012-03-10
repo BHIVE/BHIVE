@@ -1,0 +1,116 @@
+\section{Hive::Simulator Class Reference}
+\label{classHive_1_1Simulator}\index{Hive::Simulator@{Hive::Simulator}}
+{\tt \#include $<$simulator.hh$>$}
+
+Inheritance diagram for Hive::Simulator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHive_1_1Simulator}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+simulator class 
+
+a simulator operates on an agent's dataset and propagates it through time. this is an abstract class and the individual simulators have to be derived from this class.
+
+\begin{Desc}
+\item[{\bf Todo}]everything\end{Desc}
+\begin{Desc}
+\item[{\bf Bug}]\end{Desc}
+\begin{Desc}
+\item[Author:]Garrit Jentsch\end{Desc}
+\begin{Desc}
+\item[Date:]October 13th, 2009 last edited: 10-14-2009 by Garrit and Michael \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Simulator} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual {\bf $\sim$Simulator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual void {\bf step} (double t)=0
+\item 
+virtual void {\bf prepare} ()=0
+\item 
+virtual void {\bf synchroniseWithDatabase} ()=0
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf initialise} ()=0
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Agent} $\ast$ {\bf agent}
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Hive::Simulator@{Hive::Simulator}!Simulator@{Simulator}}
+\index{Simulator@{Simulator}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[Simulator]{\setlength{\rightskip}{0pt plus 5cm}Hive::Simulator::Simulator ()\hspace{0.3cm}{\tt  [inline]}}\label{classHive_1_1Simulator_f21b4a04583a51c8243e20a656f8ae64}
+
+
+Constructor. 
+
+\index{Hive::Simulator@{Hive::Simulator}!$\sim$Simulator@{$\sim$Simulator}}
+\index{$\sim$Simulator@{$\sim$Simulator}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[$\sim$Simulator]{\setlength{\rightskip}{0pt plus 5cm}virtual Hive::Simulator::$\sim$Simulator ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classHive_1_1Simulator_8be9b65056772c004ab7e84d4aebe76d}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Hive::Simulator@{Hive::Simulator}!step@{step}}
+\index{step@{step}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[step]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Simulator::step (double {\em t})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Simulator_eec111bc06eafdbf4cbc96389c4819d3}
+
+
+integrate the system for a timestep \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em t}]timestep \end{description}
+\end{Desc}
+
+
+Implemented in {\bf Hive::DummySimulator} \doxyref{}{p.}{classHive_1_1DummySimulator_fa489e06187269a63ed18143272d2ef3}.\index{Hive::Simulator@{Hive::Simulator}!prepare@{prepare}}
+\index{prepare@{prepare}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[prepare]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Simulator::prepare ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Simulator_30d2804d293a3bb84433d83eade34fa3}
+
+
+prepare simulator for the first time, this will call the connectToDataBase and initialise methods 
+
+Implemented in {\bf Hive::DummySimulator} \doxyref{}{p.}{classHive_1_1DummySimulator_19f750cc2a4d104aca9812e677336d0c}.\index{Hive::Simulator@{Hive::Simulator}!synchroniseWithDatabase@{synchroniseWithDatabase}}
+\index{synchroniseWithDatabase@{synchroniseWithDatabase}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[synchroniseWithDatabase]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Simulator::synchroniseWithDatabase ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classHive_1_1Simulator_b0f2c54ec739d17f1d55a2bbba886793}
+
+
+update simulator's internal variables before executing the integrate command 
+
+Implemented in {\bf Hive::DummySimulator} \doxyref{}{p.}{classHive_1_1DummySimulator_6ba8f9d234678113768f5c6c400cf208}.\index{Hive::Simulator@{Hive::Simulator}!initialise@{initialise}}
+\index{initialise@{initialise}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[initialise]{\setlength{\rightskip}{0pt plus 5cm}virtual void Hive::Simulator::initialise ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classHive_1_1Simulator_28d5609523dfc40cdc24f8521e032d2c}
+
+
+initialise simulator's internal variables for the first time 
+
+Implemented in {\bf Hive::DummySimulator} \doxyref{}{p.}{classHive_1_1DummySimulator_45412da18d3233bd8d8b0a9b9fda2361}.
+
+\subsection{Member Data Documentation}
+\index{Hive::Simulator@{Hive::Simulator}!agent@{agent}}
+\index{agent@{agent}!Hive::Simulator@{Hive::Simulator}}
+\subsubsection[agent]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agent}$\ast$ {\bf Hive::Simulator::agent}\hspace{0.3cm}{\tt  [protected]}}\label{classHive_1_1Simulator_080190d6706c82c3b0514b215920d4b1}
+
+
+
+
+Referenced by Hive::DummySimulator::DummySimulator(), Hive::DummySimulator::prepare(), and Hive::DummySimulator::synchroniseWithDatabase().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf simulator.hh}\end{CompactItemize}

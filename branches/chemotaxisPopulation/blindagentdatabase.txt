@@ -1,0 +1,33 @@
+-------------------------------
+dumping a database, here ya go:
+database has: 30 elements.
+DATA]: IntegerType		agent_id
+DATA]: StringType		mytypename
+DATA]: DoubleType		celltime
+DATA]: DoubleType		eqtime
+DATA]: DoubleType		outputinterval
+DATA]: DoubleType		rotational_angleA
+DATA]: DoubleType		reorientation_angle
+DATA]: IntegerType		change_reorientation_direction
+DATA]: IntegerType		rics_blind_agent_id
+DATA]: tvector_double		ligands
+DATA]: tvector_double		appetite
+DATA]: tvector_double		consumption_rates
+DATA]: tvector_double		accumulated_ligands
+DATA]: DoubleType		cost_for_movement
+DATA]: DoubleType		cost_for_living
+DATA]: DoubleType		death_rate
+DATA]: BoolType		death_flag
+DATA]: DoubleType		hooker_cost
+DATA]: DoubleType		birth_threshold
+DATA]: BoolType		birth_flag
+DATA]: BoolType		move_flag
+DATA]: DoubleType		essence
+DATA]: DoubleType		mass
+DATA]: DoubleType		kcat
+DATA]: DoubleType		Km
+DATA]: DoubleType		essence_cost_for_movement
+DATA]: DoubleType		background_death_rate_per_unit_time
+DATA]: DoubleType		essence_threshold_for_birth
+DATA]: DoubleType		essence_threshold_for_death
+DATA]: DoubleType		velocity

@@ -1,0 +1,2359 @@
+%!PS-Adobe-3.0
+%%Title: worldagentfactoryI.cpp
+%%For: Garrit Jentsch
+%%Creator: a2ps version 4.14
+%%CreationDate: Tue Sep 28 15:35:28 2010
+%%BoundingBox: 24 24 588 768
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 6
+%%PageOrder: Ascend
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontType get 0 eq {
+    currentfont /FontMatrix get 3 get
+  }{
+    currentfont /FontMatrix get 3 get 1000 mul
+  } ifelse
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% composite fonts for ASCII-EUC mixed strings
+% Version 1.2 1/31/1990
+% Original Ken'ichi HANDA (handa@etl.go.jp)
+% Modified Norio Katayama (katayama@rd.nacsis.ac.jp),1998
+% Extend & Fix Koji Nakamaru (maru@on.cs.keio.ac.jp), 1999
+% Anyone can freely copy, modify, distribute this program.
+
+/copyfont {	% font-dic extra-entry-count  copyfont  font-dic
+	1 index maxlength add dict begin
+	{	1 index /FID ne 2 index /UniqueID ne and
+		{def} {pop pop} ifelse
+	} forall
+	currentdict
+	end
+} bind def
+
+/compositefont { % ASCIIFontName EUCFontName RomanScale RomanOffset Rot(T/F) compositefont font
+    /RomanRotation exch def
+    /RomanOffset exch def
+    /RomanScale exch def
+    userdict /fixeucfont_dict known not {
+	userdict begin
+	    /fixeucfont_dict 2 dict begin
+		/UpperByteEncoding [
+		    16#00 1 16#20 { pop 0 } for
+		    16#21 1 16#28 { 16#20 sub } for
+		    16#29 1 16#2F { pop 0 } for
+		    16#30 1 16#74 { 16#27 sub } for
+		    16#75 1 16#FF { pop 0 } for
+		] def
+	        /LowerByteEncoding [
+		    16#00 1 16#A0 { pop /.notdef } for
+		    16#A1 1 16#FE { 16#80 sub 16 2 string cvrs
+				    (cXX) dup 1 4 -1 roll
+				    putinterval cvn } for
+		    /.notdef
+		] def
+		currentdict
+	    end def
+	end
+    } if
+    findfont dup /FontType get 0 eq {
+	14 dict begin
+	    %
+	    % 7+8 bit EUC font
+	    %
+	    12 dict begin
+		/EUCFont exch def
+		/FontInfo (7+8 bit EUC font) readonly def
+		/PaintType 0 def
+		/FontType 0 def
+		/FontMatrix matrix def
+		% /FontName
+		/Encoding fixeucfont_dict /UpperByteEncoding get def
+		/FMapType 2 def
+		EUCFont /WMode known
+		{ EUCFont /WMode get /WMode exch def }
+		{ /WMode 0 def } ifelse
+		/FDepVector [
+		    EUCFont /FDepVector get 0 get
+		    [ 16#21 1 16#28 {} for 16#30 1 16#74 {} for ]
+		    {
+			13 dict begin
+			    /EUCFont EUCFont def
+			    /UpperByte exch 16#80 add def	
+			    % /FontName
+			    /FontInfo (EUC lower byte font) readonly def
+			    /PaintType 0 def
+			    /FontType 3 def
+			    /FontMatrix matrix def
+			    /FontBBox {0 0 0 0} def
+			    /Encoding
+				fixeucfont_dict /LowerByteEncoding get def
+			    % /UniqueID
+			    % /WMode
+			    /BuildChar {
+				gsave
+				exch dup /EUCFont get setfont
+				/UpperByte get
+				2 string
+				dup 0 4 -1 roll put
+				dup 1 4 -1 roll put
+				dup stringwidth setcharwidth
+				0 0 moveto show
+				grestore
+			    } bind def
+			    currentdict
+			end
+			/lowerbytefont exch definefont
+		    } forall
+		] def
+		currentdict
+	    end
+	    /eucfont exch definefont
+	    exch
+	    findfont 1 copyfont dup begin
+		RomanRotation {
+			/FontMatrix FontMatrix
+			[ 0 RomanScale neg RomanScale 0 RomanOffset neg 0 ]
+			matrix concatmatrix def
+		}{
+			/FontMatrix FontMatrix
+			[ RomanScale 0 0 RomanScale 0 RomanOffset ] matrix concatmatrix
+			def
+			/CDevProc
+			    {pop pop pop pop 0 exch -1000 exch 2 div 880} def
+		} ifelse
+	    end
+	    /asciifont exch definefont
+	    exch
+	    /FDepVector [ 4 2 roll ] def
+	    /FontType 0 def
+	    /WMode 0 def
+	    /FMapType 4 def
+	    /FontMatrix matrix def
+	    /Encoding [0 1] def
+	    /FontBBox {0 0 0 0} def
+%	    /FontHeight 1.0 def % XXXX
+	    /FontHeight RomanScale 1.0 ge { RomanScale }{ 1.0 } ifelse def
+	    /Descent -0.3 def   % XXXX
+	    currentdict
+	end
+	/tmpfont exch definefont
+	pop
+	/tmpfont findfont
+    }{
+	pop findfont 0 copyfont
+    } ifelse
+} def	
+
+/slantfont {	% FontName slant-degree  slantfont  font'
+    exch findfont 1 copyfont begin
+    [ 1 0 4 -1 roll 1 0 0 ] FontMatrix exch matrix concatmatrix
+    /FontMatrix exch def
+    currentdict
+    end
+} def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 612 def
+/sw 792 def
+/llx 24 def
+/urx 768 def
+/ury 588 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 7.493857 def
+/cw 4.496314 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 81.400000 mul
+def
+/ph
+   522.321860 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 0 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#include) K
+( ") p
+(worldagentfactoryI.hh) str
+(") p n
+() N
+() N
+() N
+(using) K
+( ) p
+(namespace) K
+( ChemoPop;) p n
+() N
+(WorldAgentFactoryI::WorldAgentFactoryI\(\) {) N
+() S 8 T (cerr << ") S
+(# hello, i am the WorldAgentFactoryI ) str
+(" << endl;) p n
+() S 8 T (cerr << ") S
+(# at your service) str
+(" << endl;) p n
+() N
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(linear) str
+("]      = 0;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(exponential) str
+("] = 1;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(pointsource) str
+("] = 2;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(yuhaissine) str
+("]  = 3;) p n
+() S 8 T (isBlindAgent = ) S
+(false) k
+(;) p n
+() S 8 T (blockWorldOutput = ) S
+(false) k
+(;) p n
+() S 8 T (hasEnvironmentSimulator = ) S
+(false) k
+(;) p n
+(}) N
+() N
+(WorldAgentFactoryI::WorldAgentFactoryI\(InputSystemReader *isr\) {) N
+() S 8 T (cerr << ") S
+(# nothing, not creating world agent factory correctly) str
+(" << endl;) p n
+() S 8 T (isBlindAgent = ) S
+(false) k
+(;) p n
+() S 8 T (blockWorldOutput = ) S
+(false) k
+(;) p n
+() S 8 T (hasEnvironmentSimulator = ) S
+(false) k
+(;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(linear) str
+("]      = 0;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(exponential) str
+("] = 1;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(pointsource) str
+("] = 2;) p n
+() S 8 T () S
+(this) K
+(->stringswitch[") p
+(yuhaissine) str
+("]  = 3;) p n
+(}) N
+() N
+(WorldAgentFactoryI::~WorldAgentFactoryI\(\) { }) N
+() N
+(void) k
+( WorldAgentFactoryI::setInput\(string in\) {) p n
+() S 8 T () S
+(this) K
+(->inputname = in;) p n
+(}) N
+() N
+(void) k
+( WorldAgentFactoryI::setNumberCells\() p
+(int) k
+( i\) {) p n
+() S 8 T () S
+(this) K
+(->numbercells = i;) p n
+(}) N
+() N
+(void) k
+( WorldAgentFactoryI::setIsBlindAgentCells\() p
+(bool) k
+( isBlindAgent\) {) p n
+() S 8 T () S
+(this) K
+(->isBlindAgent = isBlindAgent;) p n
+(}) N
+() N
+(Agent* WorldAgentFactoryI::createAgent\(\) {) N
+() S 8 T () S
+(// open up an inputstream) c n
+() p 8 T (ifstream input\() S
+(this) K
+(->inputname.c_str\(\)\);) p n
+() N
+() S 8 T () S
+(// create world agent and get his database) c n
+() p 8 T (Agent *world = ) S
+(new) K
+( Agent\(\);) p n
+() S 8 T (Hive::Database *db = world->getDatabase\(\);) N
+() N
+() S 8 T () S
+(// add the time counter to the world) c n
+() p 8 T (DoubleData *localworldtime = ) S
+(new) K
+( DoubleData\(") p
+(localworldtime) str
+(",0.0\);) p n
+() S 8 T (db->addData\(localworldtime->getName\(\),localworldtime\);) N
+() N
+() S 8 T (DoubleData *eqTime         = ) S
+(new) K
+( DoubleData\(") p
+(eqTime) str
+(", 0\);) p n
+() S 8 T (db->addData\(eqTime->getName\(\), eqTime\);) N
+() N
+() S 8 T (DoubleData *dt = ) S
+(new) K
+( DoubleData\(") p
+(dt) str
+(", 1.0\);) p n
+() S 8 T (db->addData\(dt\);) N
+() N
+() S 8 T (IntegerData *numberofcells = ) S
+(new) K
+( IntegerData\(") p
+(numberofcells) str
+(", ) p
+(this) K
+(->numberc) p n
+(ells\);) N
+() S 8 T (db->addData\(numberofcells->getName\(\), numberofcells\);) N
+() N
+() S 8 T () S
+(// data structure for knowing which cell is stored at which index in the) c n
+( various vectors) N
+() p 8 T () S
+(// that the world agent has) c n
+(worldagentfactoryI.cpp) (Page 1/11) (Sep 28, 10 13:35) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T () S
+(// maps agent_id \(key\) on to vector index \(value\)) c n
+() p 8 T (MapIntIntData *local_index_map = ) S
+(new) K
+( MapIntIntData\(") p
+(local_index_map) str
+("\);) p n
+() S 8 T () S
+(for) K
+( \() p
+(int) k
+( i=0; i<) p
+(this) K
+(->numbercells; i++\) {) p n
+() S 8 T () S 16 T () S
+(//assume agent_ids start at 1 \(because the world is agent zero\)) c n
+() p 8 T () S 16 T (local_index_map->insert\(i+1,i\);) N
+() S 8 T () S 16 T () S
+(//cout<<"adding to local index map: ["<<i+1<<"]: => "<<i<<endl;) c n
+() p 8 T (}) N
+() S 8 T (db->addData\(local_index_map->getName\(\),local_index_map\);) N
+() N
+() S 8 T () S
+(// maps vector_index \(key\) onto agent_id) c n
+() p 8 T () S
+(// this is needed for outputing the positions of the cells) c n
+() p 8 T (MapIntIntData *index_agentid_map = ) S
+(new) K
+( MapIntIntData\(") p
+(indexagentidmap) str
+("\);) p n
+() S 8 T () S
+(for) K
+( \() p
+(int) k
+( i=0; i<) p
+(this) K
+(->numbercells; i++\) {) p n
+() S 8 T () S 16 T () S
+(// again, agent_ids = i+1) c n
+() p 8 T () S 16 T (index_agentid_map->insert\(i,i+1\);) N
+() S 8 T (}) N
+() S 8 T (db->addData\(index_agentid_map->getName\(\), index_agentid_map\);) N
+() N
+() S 8 T () S
+(// ----------------- DATA STRUCTURES FOR CELL MOVEMENT -----------------) c n
+(-------------) N
+() p 8 T () S
+(// add data structure to the world in which it can store the cell positi) c n
+(ons) N
+() p 8 T (TVectorData<TVectorData<) S
+(double) k
+(>* > *cell_positions = ) p
+(new) K
+( TVectorData<TVe) p n
+(ctorData<) S
+(double) k
+(>* > \(") p
+(cellpositions) str
+(",") p
+(tvectordata_double_matrix) str
+("\);) p n
+() S 8 T (cell_positions->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() N
+() S 8 T () S
+(// add data_structure for direction and up vector of the individual cell) c n
+(s) N
+() p 8 T (TVectorData<TVectorData<) S
+(double) k
+(>* > *cell_dir_vecs = ) p
+(new) K
+( TVectorData<TVec) p n
+(torData<) S
+(double) k
+(>* > \(") p
+(celldirvecs) str
+(", ") p
+(tvectordata_doublematrix) str
+("\);) p n
+() S 8 T (cell_dir_vecs->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() N
+() S 8 T (TVectorData<TVectorData<) S
+(double) k
+(>* > *cell_up_vecs  = ) p
+(new) K
+( TVectorData<TVec) p n
+(torData<) S
+(double) k
+(>* > \(") p
+(cellupvecs) str
+(", ") p
+(tvectordata_doublematrix) str
+("\);) p n
+() S 8 T (cell_up_vecs->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() N
+() S 8 T () S
+(for) K
+( \() p
+(int) k
+( i=0; i<) p
+(this) K
+(->numbercells;i++\) {) p n
+() S 8 T () S 16 T (\(*cell_positions\)[i] = ) S
+(new) K
+( TVectorData<) p
+(double) k
+(> \(") p
+(position) str
+(", ") p
+(tvectord) str n
+(ata_double) S
+("\);) p n
+() S 8 T () S 16 T (\(*cell_positions\)[i]->reserveSize\(3\);) N
+() S 8 T () S 16 T (\(*cell_dir_vecs\)[i]  = ) S
+(new) K
+( TVectorData<) p
+(double) k
+(> \(") p
+(direction) str
+(", ") p
+(tvector) str n
+(data_double) S
+("\);) p n
+() S 8 T () S 16 T (\(*cell_dir_vecs\)[i]->reserveSize\(3\);) N
+() S 8 T () S 16 T () S
+(/// this needs to be a unit-vector.) c n
+() p 8 T () S 16 T (cell_dir_vecs->at\(i\)->at\(0\) = 1.; cell_dir_vecs->at\(i\)->at\(1\) = ) N
+(0.; cell_dir_vecs->at\(i\)->at\(2\) = 0;) N
+() S 8 T () S 16 T (\(*cell_up_vecs\)[i]   = ) S
+(new) K
+( TVectorData<) p
+(double) k
+(> \(") p
+(up) str
+(", ") p
+(tvectordata_d) str n
+(ouble) S
+("\);) p n
+() S 8 T () S 16 T (\(*cell_up_vecs\)[i]->reserveSize\(3\);) N
+() S 8 T () S 16 T (cell_up_vecs->at\(i\)->at\(0\) = 0; cell_up_vecs->at\(i\)->at\(1\) = 1; ) N
+(cell_up_vecs->at\(i\)->at\(2\) = 0;) N
+() S 8 T (}) N
+() S 8 T (db->addData\(cell_positions->getName\(\), cell_positions\);) N
+() S 8 T (db->addData\(cell_dir_vecs->getName\(\), cell_dir_vecs\);) N
+() S 8 T (db->addData\(cell_up_vecs->getName\(\), cell_up_vecs\);) N
+() N
+() S 8 T () S
+(// cellspeeds) c n
+() p 8 T (TVectorData<) S
+(double) k
+(> *cellspeeds = ) p
+(new) K
+( TVectorData<) p
+(double) k
+(>\(") p
+(cellspeeds) str
+(", ") p
+(tve) str n
+(ctor_double) S
+("\);) p n
+() S 8 T (cellspeeds->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() S 8 T () S
+(for) K
+( \() p
+(int) k
+( i=0; i<) p
+(this) K
+(->numbercells; i++\)) p n
+() S 8 T () S 16 T (cellspeeds->at\(i\) = 20.0;) N
+() S 8 T (db->addData\(cellspeeds->getName\(\), cellspeeds\);) N
+() N
+() S 8 T () S
+(// DATA STRUCTURE FOR METABOLISM) c n
+() p 8 T () S
+(// data structure for storing how much a cell wishes to consume) c n
+() p 8 T () S
+(// we will also use it to store the actual concentration that gets consu) c n
+(med by the cells) N
+() p 8 T (TVectorData<) S
+(double) k
+(> *desired_cell_consumption = ) p
+(new) K
+( TVectorData<) p
+(double) k
+(>\() p n
+(worldagentfactoryI.cpp) (Page 2/11) (Sep 28, 10 13:35) title
+border
+grestore
+(Printed by Garrit Jentsch) rhead
+(worldagentfactoryI.cpp) (1/6) (Tuesday September 28, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(") p
+(desired_cell_consumption) str
+(", ") p
+(tvectordata_double) str
+("\);) p n
+() S 8 T (desired_cell_consumption->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() S 8 T (db->addData\(desired_cell_consumption->getName\(\), desired_cell_consumptio) N
+(n\);) N
+() N
+() S 8 T () S
+(// DATA FOR OUTPUT) c n
+() p 8 T (DoubleData *output_interval = ) S
+(new) K
+( DoubleData\(") p
+(output_interval) str
+(",) p
+(this) K
+(->output_) p n
+(interval\);) N
+() S 8 T (db->addData\(output_interval->getName\(\), output_interval\);) N
+() N
+() S 8 T () S
+(// SPECIFIC DATA FOR EITHER ECOLIs OR BLIND AGENTS) c n
+() p 8 T () S
+(// add data structures to the world that are unique to the E.coli model) c n
+() p 8 T () S
+(if) K
+(\(!) p
+(this) K
+(->isBlindAgent\) {) p n
+() S 8 T () S 16 T (cerr << ") S
+(# cells are of type: ECOLI) str
+(" << endl;) p n
+() S 8 T () S 16 T () S
+(// add data structure to the world in which it can store the swi) c n
+(mming states of all the cells) N
+() p 8 T () S 16 T (TVectorData<) S
+(int) k
+(> *swimming_states = ) p
+(new) K
+( TVectorData<) p
+(int) k
+(>\(") p
+(swimmi) str n
+(ngstates) S
+(", ") p
+(tvectordata_int) str
+("\);) p n
+() S 8 T () S 16 T (swimming_states->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() S 8 T () S 16 T (db->addData\(swimming_states->getName\(\), swimming_states\);) N
+() N
+() S 8 T () S 16 T () S
+(// add data structure to the world in whihc it stores the old sw) c n
+(imming states of all the cells) N
+() p 8 T () S 16 T (TVectorData<) S
+(int) k
+(> *last_swimming_states = ) p
+(new) K
+( TVectorData<) p
+(int) k
+(>\(") p
+(l) str n
+(astswimmingstates) S
+(", ") p
+(tvectordata_int) str
+("\);) p n
+() S 8 T () S 16 T (last_swimming_states->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() S 8 T () S 16 T (db->addData\(last_swimming_states->getName\(\), last_swimming_state) N
+(s\);) N
+() N
+() S 8 T () S 16 T () S
+(// rotational diffusion constant of the cells) c n
+() p 8 T () S 16 T (DoubleData *rotdiffconst = ) S
+(new) K
+( DoubleData\(") p
+(rotational_diffusion_constant) str
+(") p n
+(,0.062\);) N
+() S 8 T () S 16 T (db->addData\(rotdiffconst->getName\(\), rotdiffconst\);) N
+() S 8 T (} ) S
+(else) K
+( { ) p
+(// add data object needed by the blind searcher, which is the) c n
+() p 8 T () S 16 T (cerr << ") S
+(# cells are of type: BLIND) str
+(" << endl;) p n
+() S 8 T () S 16 T () S
+(// next angle to use during turns.  Default to zero and must be ) c n
+(overwritten by the agent) N
+() p 8 T () S 16 T (TVectorData<) S
+(double) k
+(> *nextTurnAngles = ) p
+(new) K
+( TVectorData<) p
+(double) k
+(>\(") p
+(c) str n
+(ellnextturnangle) S
+(", ") p
+(tvector_double) str
+("\);) p n
+() S 8 T () S 16 T (nextTurnAngles->reserveSize\() S
+(this) K
+(->numbercells\);) p n
+() S 8 T () S 16 T () S
+(for) K
+( \() p
+(int) k
+( i=0; i<) p
+(this) K
+(->numbercells; i++\)) p n
+() S 8 T () S 16 T () S 24 T (nextTurnAngles->at\(i\) = 0;) N
+() S 8 T () S 16 T (db->addData\(nextTurnAngles->getName\(\), nextTurnAngles\);) N
+() S 8 T (}) N
+() N
+() N
+() S 8 T () S
+(// <------ DATA FOR ENVIRONMENT --------------) c n
+() p 8 T () S
+(// we read the environment from a file.) c n
+() p 8 T (BoolData *isGridEnv = ) S
+(new) K
+( BoolData\(") p
+(is_grid_environment) str
+(",) p
+(false) k
+(\);) p n
+() S 8 T (db->addData\(isGridEnv\);) N
+() N
+() S 8 T () S
+(// do the parsing of the system file. we can extend this later on if mor) c n
+(e information is needed.) N
+() p 8 T () S
+(// not optimal, arose from our need to quickly change environements with) c n
+(out having to change the code) N
+() p 8 T () S
+(if) K
+(\(!input.is_open\(\)\) {) p n
+() S 8 T () S 16 T (cerr<<") S
+(did not open world file. quitting.) str
+(";) p n
+() S 8 T () S 16 T (exit\(1\);) N
+() S 8 T (}) N
+() S 8 T (input.seekg\(0,ios_base::beg\);) N
+() S 8 T (string line = "";) N
+() S 8 T (istringstream iss;) N
+() S 8 T (string environ_type;) N
+() S 8 T (string cellpos_init_type;) N
+() S 8 T (CellPositionInitialiser cpi;) N
+() S 8 T () S
+(/// we need a vector of environments as we want to have multiple pointso) c n
+(urces) N
+() p 8 T (TVectorData<MathFunctionData* > *environments = ) S
+(new) K
+( TVectorData<MathFunc) p n
+(tionData*> \(") S
+(environments) str
+(", ") p
+(tvector_mathfunctiondata) str
+("\);) p n
+(worldagentfactoryI.cpp) (Page 3/11) (Sep 28, 10 13:35) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T (db->addData\(environments\);) N
+() S 8 T () S
+(/// we need a vector of birth-times for the environments) c n
+() p 8 T (TVectorData<) S
+(double) k
+(> *birthtimes = ) p
+(new) K
+( TVectorData<) p
+(double) k
+(> \(") p
+(birthtimes_of_en) str n
+(vironments) S
+(", ") p
+(tvector_double) str
+("\);) p n
+() S 8 T (db->addData\(birthtimes\);) N
+() N
+() S 8 T () S
+(/// we need the parameters for the simulator that randomly drops new poi) c n
+(ntsources into the environment.) N
+() p 8 T () S
+(while) K
+( \(getline\(input,line\)\) {) p n
+() S 8 T () S 16 T () S
+(if) K
+( \(line == ") p
+(RANDOM DROP SIMULATOR) str
+("\) {   ) p
+(// reading parameters) c n
+( for the environment simulator) N
+() p 8 T () S 16 T () S 24 T () S
+(// first we need to add the position of the ...) c n
+() p 8 T () S 16 T () S 24 T () S
+(this) K
+(->hasEnvironmentSimulator = ) p
+(true) k
+(;) p n
+() S 8 T () S 16 T () S 24 T (TVectorData<) S
+(double) k
+(> *lastposition = ) p
+(new) K
+( TVectorData<) p
+(doub) k n
+(le) S
+(> \(") p
+(last_pointsource_position) str
+(",") p
+(tvector_double) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T (lastposition->reserveSize\(3\);) N
+() S 8 T () S 16 T () S 24 T (lastposition->at\(0\) = 0; lastposition->at\(1\) = 0; lastpo) N
+(sition->at\(2\) = 0;) N
+() S 8 T () S 16 T () S 24 T (db->addData\(lastposition\);) N
+() S 8 T () S 16 T () S 24 T () S
+(// add time of next drop event to environment.) c n
+() p 8 T () S 16 T () S 24 T (DoubleData *tone = ) S
+(new) K
+( DoubleData\(") p
+(environment_time_of_next_dr) str n
+(op) S
+(", 0\);) p n
+() S 8 T () S 16 T () S 24 T (db->addData\(tone\);) N
+() S 8 T () S 16 T () S 24 T () S
+(while) K
+( \(getline\(input, line\) && line != ") p
+(END) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S
+(if) K
+( \(line.substr\(0,1\)!=") p
+(#) str
+(" && line != ""\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.clear\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.str\(line\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(/// parameters are read as follows from ) c n
+(the file:) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(/// timpe_parameter, space_parameter, me) c n
+(an_of_pointsource_initial_dist, sigma_of_....) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(/// diff) c n
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(double) k
+() p 48 T (tp, sp, mi, sigma, diff;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss >> tp; iss >> sp; iss >> mi; iss >> ) N
+(sigma; iss >> diff;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (DoubleData *d1 = ) S
+(new) K
+( DoubleData\(") p
+(environm) str n
+(ent_time_parameter) S
+(",tp\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (db->addData\(d1\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (DoubleData *d2 = ) S
+(new) K
+( DoubleData\(") p
+(environm) str n
+(ent_space_parameter) S
+(", sp\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (db->addData\(d2\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (DoubleData *d3 = ) S
+(new) K
+( DoubleData\(") p
+(mean_of_) str n
+(pointsource_initial_distribution) S
+(", mi\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (db->addData\(d3\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (DoubleData *d4 = ) S
+(new) K
+( DoubleData\(") p
+(sigma_of) str n
+(_pointsource_initial_distribution) S
+(", sigma\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (db->addData\(d4\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (DoubleData *d5 = ) S
+(new) K
+( DoubleData\(") p
+(diffusion_) str n
+(coeff_ligand) S
+(", diff\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (db->addData\(d5\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T (}) N
+() S 8 T () S 16 T () S 24 T (}) N
+() S 8 T () S 16 T (}) S
+(else) K
+( ) p
+(if) K
+( \(line == ") p
+(TYPE) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S
+(while) K
+( \(getline\(input,line\) && line != ") p
+(END) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S
+(if) K
+( \(line.substr\(0,1\)!=") p
+(#) str
+(" && line != ""\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.clear\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.str\(line\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss >> environ_type;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(if) K
+( \(environ_type == ") p
+(linear) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# creating linear environment) str
+(" <) p n
+(< endl;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (OneDLinearMathFunctionData *envi) N
+(ron1 = ) S
+(new) K
+( OneDLinearMathFunctionData\(") p
+(environment) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( s, yi;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> s; iss >> yi;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ1->setSlope\(s\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ1->setYIntercept\(yi\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(worldagentfactoryI.cpp) (Page 4/11) (Sep 28, 10 13:35) title
+border
+grestore
+(Printed by Garrit Jentsch) rhead
+(worldagentfactoryI.cpp) (2/6) (Tuesday September 28, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (5-6) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(viron1\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(exponential) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# creating exponential environme) str n
+(nt) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (OneDExponentialMathFunctionData ) N
+(*environ2 = ) S
+(new) K
+( OneDExponentialMathFunctionData\(") p
+(environment) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( o, p;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> o, iss >> p;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ2->setOffset\(o\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ2->setParameter\(p\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(viron2\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(pointsource) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# creating pointsource environme) str n
+(nt) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (CarlFriedrichMathFunctionData *e) N
+(nviron3 = ) S
+(new) K
+( CarlFriedrichMathFunctionData\(") p
+(environment) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( D, n, x, y, z;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> D; iss >> n; iss >> x; is) N
+(s >> y; iss >> z;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3->setDiff\(D\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3->setInitialNumber\(n\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3->setPosition\(x,y,z\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(viron3\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(gauss) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# creating a gauss curve) str
+(" << e) p n
+(ndl;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (GaussGlockeMathFunctionData *env) N
+(iron3b = ) S
+(new) K
+( GaussGlockeMathFunctionData\(") p
+(environment) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( a, s, x, y, z;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> a; iss >> s; iss >> x; is) N
+(s >> y; iss >> z;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3b->setAmplitude\(a\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3b->setSigma\(s\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3b->setPosition\(x,y,z\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(viron3b\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(doublegauss) str
+("\) ) p n
+({) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(#creating double gauss curve) str
+(" <) p n
+(< endl;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (DoubleGaussFunctionData *environ) N
+(3c = ) S
+(new) K
+( DoubleGaussFunctionData\(") p
+(environment) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( a0, a1, s0, s1, x0, y0, z) p n
+(0, x1, y1, z1;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> a0; iss >> s0; iss >> x0;) N
+( iss >> y0; iss >> z0;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> a1; iss >> s1; iss >> x1;) N
+( iss >> y1; iss >> z1;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3c->setAmplitude0\(a0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3c->setSigma0\(s0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3c->setPosition0\(x0,y0,z0) N
+(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3c->setAmplitude1\(a1\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3c->setSigma1\(s1\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ3c->setPosition1\(x1,y1,z1) N
+(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(viron3c\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(yuhaissine) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# creating yuhai's sine-linear env) str n
+(ironment) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (YuhaisSineFunctionData *environ4) N
+( = ) S
+(new) K
+( YuhaisSineFunctionData\(") p
+(environment) str
+("\);) p n
+(worldagentfactoryI.cpp) (Page 5/11) (Sep 28, 10 13:35) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( h, o, s;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> h; iss >> o; iss >> s;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ4->setHalfConcentration\(h) N
+(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ4->setOmega\(o\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ4->setSlope\(s\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(viron4\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(step) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# creating step environment) str
+(" <<) p n
+( endl;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (StepFunction *environ5 = ) S
+(new) K
+( Ste) p n
+(pFunction\(") S
+(environment) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// hard coded steps, but this ca) c n
+(n easily be read in from file if need be) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (vector <) S
+(double) k
+(> steps;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (vector <) S
+(int) k
+(> times;) p n
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (steps.push_back\(0.0001\); ) S
+(// in M) c n
+(olar, so this is 10uM) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (times.push_back\(150\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (steps.push_back\(0.001\); ) S
+(// inMol) c n
+(ar, this is 1mM) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (times.push_back\(200\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (steps.push_back\(0\); ) S
+(// back to z) c n
+(ero) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (times.push_back\(250\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environ5->setSteps\(steps,times\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (birthtimes->addElementToEnd\(0\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (environments->addElementToEnd\(en) N
+(viron5\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(environ_type == ") p
+(cube_grid) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// what is this needed for?) c n
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (DoubleData* totalNutrient = ) S
+(new) K
+( ) p n
+(DoubleData\(") S
+(total_nutrient) str
+(",0\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (db->addData\(totalNutrient\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// tell the cell position initia) c n
+(liser that it is dealing with a cubic grid) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cpi.setIsCubeGrid\() S
+(true) k
+(\);) p n
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// declare a cubegeometry constr) c n
+(uctor.) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (CubeGeometryConstructor cgc;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( l, r;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> l; iss >> r;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// one would need to read inform) c n
+(ation about the number of species, their names,) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// and the diff_coeffs. it is ha) c n
+(rd coded here.) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(int) k
+( num_species = 1;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (vector<string> species_names\(1\);) N
+( species_names[0] = ") S
+(nutrient) str
+(";) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (vector<) S
+(double) k
+(> species_diff\(1\); ) p n
+(species_diff[0] = 1.0;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cgc.setSpecies\(1, species_names,) N
+( species_diff\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cgc.setLength\(l\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cgc.setResolution\(r\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (Grid *g = cgc.returnGrid\(") S
+(environ) str n
+(ment) S
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (g->setIsCubeGrid\() S
+(true) k
+(\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (db->addData\(g->getName\(\),g\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// save the cube's side length a) c n
+(worldagentfactoryI.cpp) (Page 6/11) (Sep 28, 10 13:35) title
+border
+grestore
+(Printed by Garrit Jentsch) rhead
+(worldagentfactoryI.cpp) (3/6) (Tuesday September 28, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (7-8) 4
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(nd step size) c n
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (DoubleData * cubeSideLength = ) S
+(ne) K n
+(w) S
+( DoubleData\(") p
+(cube_side_length) str
+(",l\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (db->addData\(cubeSideLength\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (DoubleData * cubeStepSize = ) S
+(new) K
+( ) p n
+(DoubleData\(") S
+(cube_step_size) str
+(",r\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (db->addData\(cubeStepSize\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// we have to add a datastructur) c n
+(e for storing in which voxels the cells are situated.) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (TVectorData<) S
+(int) k
+(> *cell_voxel_pos) p n
+(itions = ) S
+(new) K
+( TVectorData<) p
+(int) k
+(>\(") p
+(cell_voxel_positions) str
+(",") p
+(tvector_int) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cell_voxel_positions->reserveSiz) N
+(e\() S
+(this) K
+(->numbercells\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (db->addData\(cell_voxel_positions) N
+(->getName\(\),cell_voxel_positions\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(// data structure which tells ho) c n
+(w many cells there are in each voxel) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (TVectorData<) S
+(int) k
+(> *number_cells_p) p n
+(er_voxel = ) S
+(new) K
+( TVectorData<) p
+(int) k
+(>\(") p
+(number_cells_per_voxel) str
+(", ") p
+(tvector_int) str
+("\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (number_cells_per_voxel->reserveS) N
+(ize\(g->getNumberOfVoxels\(\)\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (db->addData\(number_cells_per_vox) N
+(el->getName\(\), number_cells_per_voxel\);) N
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (isGridEnv->setBool\() S
+(true) k
+(\);) p n
+() N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (string initType = "";) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> initType;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (Util::trim\(initType\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(/// initialise the nutrient dist) c n
+(ribution in the environment.) N
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(if) K
+(\(initType.compare\(") p
+(UNIFORM) str
+("\)=) p n
+(=0\) {) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T () S
+(double) k
+( conc = 0;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T (iss >> conc;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T (CubeConstantInitialiser ) N
+(* cci = ) S
+(new) K
+( CubeConstantInitialiser\(\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T (cci->setGrid\(g\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T (cci->setValue\(conc\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T (cci->initialise\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T () S
+(delete) K
+( cci;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (} ) S
+(else) K
+( ) p
+(if) K
+( \(initType.compare\(") p
+(RA) str n
+(NDOM) S
+("\)==0\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( ) S
+(int) k
+( num = 0;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( ) S
+(double) k
+( min = 0, max = 0) p n
+(;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( iss >> num;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( iss >> min;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( iss >> max;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( CubeRandomInitialiser *) N
+(cri = ) S
+(new) K
+( CubeRandomInitialiser\(\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( cri->setGrid\(g\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( cri->setNumberOfPoints\() N
+(num\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( cri->setNutrientRange\(m) N
+(in,max\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( cri->initialise\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T ( ) S
+(delete) K
+( cri;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (} ) S
+(else) K
+( {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S 56 T () S
+(throw) K
+(\(HiveException\(") p
+(Inva) str n
+(lid initialization scheme specified for cube_grid) S
+(",") p
+(WorldAgentFactoryI::createAgent\(\)) str
+("\)\);) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (} ) S
+(else) K
+( {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# do not understand the input file .) str n
+(.. leaving ... ) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << line << endl;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (exit\(1\);) N
+(worldagentfactoryI.cpp) (Page 7/11) (Sep 28, 10 13:35) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T () S 16 T () S 24 T () S 32 T () S 40 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T (}) N
+() S 8 T () S 16 T () S 24 T (}) N
+() S 8 T () S 16 T (}) N
+() S 8 T () S 16 T () S
+(/// data for running the simulations) c n
+() p 8 T () S 16 T () S
+(if) K
+( \(line == ") p
+(NUM_STEPS) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S
+(while) K
+( \(getline\(input,line\) && line != ") p
+(END) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S
+(if) K
+( \(line.substr\(0,1\)!=") p
+(#) str
+(" && line != ""\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.clear\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.str\(line\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(int) k
+( ns; ) p
+(double) k
+( ti;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss >> ns;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(this) K
+(->num_steps = ns;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss >> ti;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (dt->setDouble\(ti\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T (}) N
+() S 8 T () S 16 T () S 24 T (}) N
+() S 8 T () S 16 T (}) N
+() S 8 T () S 16 T () S
+(/// here we initialise the positions of the cell positions) c n
+() p 8 T () S 16 T () S
+(if) K
+( \(line == ") p
+(CELLPOSITIONS) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S
+(while) K
+( \(getline\(input,line\) && line != ") p
+(END) str
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S
+(if) K
+( \(line.substr\(0,1\)!= ") p
+(#) str
+(" && line != ""\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.clear\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss.str\(line\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (iss >> cellpos_init_type;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(if) K
+( \(cellpos_init_type == ") p
+(all_same_position) str
+(") p n
+(\) {) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# initialising cells all at the same ) str n
+(position) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( x; ) p
+(double) k
+( y; ) p
+(double) k
+( z;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> x; iss >> y; iss >> z;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cpi.initAllInSamePosition\(world,) N
+(x,y,z\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(else) K
+( ) p
+(if) K
+( \(cellpos_init_type == ") p
+(around_posit) str n
+(ion) S
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# initialising cell positions around) str n
+( position) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T () S
+(double) k
+( x, y, z, r;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> x; iss >> y; iss >> z; is) N
+(s >> r;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cpi.initRandomlyAroundPosition\(w) N
+(orld,x,y,z,r\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(else) K
+( ) p
+(if) K
+( \(cellpos_init_type == ") p
+(random_in_c) str n
+(ube) S
+("\) {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# initialising cell positions rando) str n
+(mly in cube) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cpi.initRandomlyInCube\(world\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(else) K
+( ) p
+(if) K
+( \(cellpos_init_type == ") p
+(from_file) str
+("\)) p n
+( {) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# initialising from file) str
+(" << end) p n
+(l;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (string filename;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (iss >> filename;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (ifstream cellinput\(filename.c_st) N
+(r\(\)\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cpi.initFromFile\(world,cellinput) N
+(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cellinput.close\(\);) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S
+(else) K
+( {) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T () S 48 T (cerr << ") S
+(# do not understand the option ... l) str n
+(eaving ... ) S
+(" << endl;) p n
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (}) N
+() S 8 T () S 16 T () S 24 T () S 32 T (}) N
+() S 8 T () S 16 T () S 24 T (}) N
+() S 8 T () S 16 T (}) N
+(worldagentfactoryI.cpp) (Page 8/11) (Sep 28, 10 13:35) title
+border
+grestore
+(Printed by Garrit Jentsch) rhead
+(worldagentfactoryI.cpp) (4/6) (Tuesday September 28, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (9-10) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T (}) N
+() S 8 T () S
+(/// done with the data initialisation ... added all data that is needed) c n
+() p n
+() S 8 T () S
+(/// now we add the remaining things to the world agent) c n
+() p 8 T () S
+(/// add simulators to agent) c n
+() p 8 T () S
+(this) K
+(->addSimulatorToAgent\(world\);) p n
+() N
+() S 8 T () S
+(/// add actions to agents action set) c n
+() p 8 T () S
+(this) K
+(->addActionsToAgentsActionSet\(world\);) p n
+() N
+() S 8 T () S
+(/// add message generators to action set) c n
+() p 8 T () S
+(this) K
+(->addMessageGeneratorsToAgent\(world\);) p n
+() N
+() S 8 T (cerr<<") S
+(# done creating world) str
+("<<endl;) p n
+() N
+() S 8 T () S
+(return) K
+( world;) p n
+(}) N
+() N
+(Agent* WorldAgentFactoryI::createAgent\(Action **as\) {) N
+() S 8 T (Agent *frank = ) S
+(new) K
+( Agent\(\);) p n
+() N
+() S 8 T () S
+(return) K
+( frank;) p n
+(}) N
+() N
+(Agent* WorldAgentFactoryI::duplicateAgent\(Agent *ag\) {) N
+() S 8 T (Agent *frank = ) S
+(new) K
+( Agent\(\);) p n
+() S 8 T () S
+(return) K
+( frank;) p n
+(}) N
+() N
+(void) k
+( WorldAgentFactoryI::finalise\(\) { }) p n
+() N
+(void) k
+( WorldAgentFactoryI::addSimulatorToAgent\(Agent* ag\) {) p n
+() N
+() S 8 T () S
+(// add the correct cell movement simulator to the world) c n
+() p 8 T () S
+(if) K
+(\() p
+(this) K
+(->isBlindAgent\) {) p n
+() N
+() S 8 T () S 16 T (BlindMovementSimulatorInWorld * bmsiw = ) S
+(new) K
+( BlindMovementSimulat) p n
+(orInWorld\(\);) N
+() S 8 T () S 16 T (bmsiw->setWorldAgent\(ag\);) N
+() S 8 T () S 16 T (ag->addSimulator\(bmsiw\);) N
+() N
+() S 8 T () S 16 T () S
+(// add a simulator to model the metabolism consumption) c n
+() p 8 T () S 16 T (SimplestConsumptionSimulatorForWorld *scs = ) S
+(new) K
+( SimplestConsumpt) p n
+(ionSimulatorForWorld\(ag\);) N
+() S 8 T () S 16 T (ag->addSimulator\(scs\);) N
+() N
+() S 8 T (} ) S
+(else) K
+( {) p n
+() S 8 T () S 16 T (ChemotaxisMovementSimulatorInWorld *cmsiw = ) S
+(new) K
+( ChemotaxisMoveme) p n
+(ntSimulatorInWorld\(\);) N
+() S 8 T () S 16 T (cmsiw->setWorldAgent\(ag\);) N
+() S 8 T () S 16 T (ag->addSimulator\(cmsiw\);) N
+() N
+() S 8 T () S 16 T () S
+(if) K
+( \() p
+(this) K
+(->hasEnvironmentSimulator\) {) p n
+() S 8 T () S 16 T () S 24 T (DeLuettenSchieterSimulator *dlss = ) S
+(new) K
+( DeLuettenSchieter) p n
+(Simulator\(ag\);) N
+() S 8 T () S 16 T () S 24 T (ag->addSimulator\(dlss\);) N
+() S 8 T () S 16 T (}) N
+() S 8 T (}) N
+() N
+() N
+() N
+() S 8 T () S
+(// add a celltimekeeper to the agent) c n
+() p 8 T (TimeKeeper *ctk = ) S
+(new) K
+( TimeKeeper\(ag,") p
+(localworldtime) str
+("\);) p n
+() S 8 T (ag->addSimulator\(ctk\);) N
+() N
+(}) N
+() N
+() N
+(void) k
+( WorldAgentFactoryI::addMessageGeneratorsToAgent\(Agent *ag\) {) p n
+(worldagentfactoryI.cpp) (Page 9/11) (Sep 28, 10 13:35) title
+border
+/v 1 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T () S
+(// adding message generators to agent.) c n
+() p 8 T (WorldNotifyLigandToCellMessageGenerator *wnltcmg = ) S
+(new) K
+( WorldNotifyLigand) p n
+(ToCellMessageGenerator\(ag\);) N
+() S 8 T (ag->addMessageGenerator\(wnltcmg\);) N
+() N
+() S 8 T () S
+(if) K
+(\() p
+(this) K
+(->isBlindAgent\) {) p n
+() N
+() S 8 T () S 16 T (WorldNotifyCellAboutConsumedNutrientMessageGenerator *wncacn = ) S
+(n) K n
+(ew) S
+( WorldNotifyCellAboutConsumedNutrientMessageGenerator\(ag\);) p n
+() S 8 T () S 16 T (ag->addMessageGenerator\(wncacn\);) N
+() S 8 T (}) N
+() N
+() S 8 T (WorldTellSpecialAgentCellPositionsMessageGenerator *wtsacpmg = ) S
+(new) K
+( World) p n
+(TellSpecialAgentCellPositionsMessageGenerator\(ag\);) N
+() S 8 T (wtsacpmg->isMessageForSpecialAgent\(\);) N
+() S 8 T (ag->addMessageGenerator\(wtsacpmg\);) N
+() N
+() S 8 T () S
+(// only output world if requested) c n
+() p 8 T () S
+(if) K
+(\(!) p
+(this) K
+(->blockWorldOutput && ) p
+(this) K
+(->isBlindAgent\) {) p n
+() S 8 T () S 16 T (WorldTellSpecialAgentAboutGridMessageGenerator *wtsaagmg = ) S
+(new) K
+( W) p n
+(orldTellSpecialAgentAboutGridMessageGenerator\(ag\);) N
+() S 8 T () S 16 T (wtsaagmg->isMessageForSpecialAgent\(\);) N
+() S 8 T () S 16 T (ag->addMessageGenerator\(wtsaagmg\);) N
+() S 8 T (}) N
+() N
+() N
+(}) N
+() N
+() N
+() N
+(void) k
+( WorldAgentFactoryI::addActionsToAgentsActionSet\(Agent *ag\) {) p n
+() N
+() S 8 T () S
+(// adding actions to agents) c n
+() p 8 T (UpdateWorldSeenCellsSwimmingStateAction *uwscssa = ) S
+(new) K
+( UpdateWorldSeenCe) p n
+(llsSwimmingStateAction\(\);) N
+() S 8 T (uwscssa->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwscssa\);) N
+() N
+() S 8 T (UpdateWorldSeenCellSpeedAction *uwscsa = ) S
+(new) K
+( UpdateWorldSeenCellSpeedAct) p n
+(ion\(\);) N
+() S 8 T (uwscsa->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwscsa\);) N
+() N
+() S 8 T (UpdateWorldBackgroundConcentrationAction *uwbca = ) S
+(new) K
+( UpdateWorldBackgro) p n
+(undConcentrationAction\(\);) N
+() S 8 T (uwbca->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwbca\);) N
+() N
+() S 8 T (UpdateWorldSeenBlindAgentsAnglesAction *uwsbaaa = ) S
+(new) K
+( UpdateWorldSeenBli) p n
+(ndAgentsAnglesAction\(\);) N
+() S 8 T (uwsbaaa->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwsbaaa\);) N
+() N
+() S 8 T (UpdateWorldDesiredConsumptionAction *uwdca = ) S
+(new) K
+( UpdateWorldDesiredConsu) p n
+(mptionAction\(\);) N
+() S 8 T (uwdca->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwdca\);) N
+() N
+() S 8 T (UpdateWorldBlindAgentDeathAction * uwbada = ) S
+(new) K
+( UpdateWorldBlindAgentDea) p n
+(thAction\(\);) N
+() S 8 T (uwbada->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwbada\);) N
+() N
+() S 8 T (UpdateWorldBlindAgentBirthAction * uwbaba = ) S
+(new) K
+( UpdateWorldBlindAgentBir) p n
+(thAction\(\);) N
+() S 8 T (uwbaba->setAgent\(ag\);) N
+() S 8 T (ag->addAction\(uwbaba\);) N
+() N
+() N
+(worldagentfactoryI.cpp) (Page 10/11) (Sep 28, 10 13:35) title
+border
+grestore
+(Printed by Garrit Jentsch) rhead
+(worldagentfactoryI.cpp) (5/6) (Tuesday September 28, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (11) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.147420 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(}) p n
+(worldagentfactoryI.cpp) (Page 11/11) (Sep 28, 10 13:35) title
+border
+grestore
+(Printed by Garrit Jentsch) rhead
+(worldagentfactoryI.cpp) (6/6) (Tuesday September 28, 2010) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

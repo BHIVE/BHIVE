@@ -1,0 +1,32 @@
+# flags for the simulation
+FLAGS
+# specifying which cell type will be used can either take on the value ecoli or blindagent
+# followed by the filename for the agent initialiser 
+CELLTYPE ecoli /home/jentsch/workspace/chemotaxisPopulation2/cellfile.dat
+# specifying whether metabolism will be modeled
+CELL_HAS_METABOLISM simple
+END
+
+# first we specify the environmenttype 
+ENVIRONMENTTYPE
+# which is a grid
+GRID
+# in particular a microfluidic grid with a resolution of 1 and file specifying the geometry and initial ligand concentration of a ligand with Diffusion coefficient of 1.0 
+MICROFLUIDIC 1 /home/jentsch/workspace/chemotaxisPopulation2/microtest.txt /home/jentsch/workspace/chemotaxisPopulation2/testconc.txt 1.0
+END
+END
+
+
+# next we specify the initial cell positions
+CELL_POSITIONS
+# read initial cell positions from the file below
+FROM_FILE_FOR_MICROFLUIDIC /home/jentsch/workspace/chemotaxisPopulation2/cellsmicrotest.txt
+END
+
+# finally we specify the time steps 
+NUM_STEPS
+# there will be 1000 steps of length 0.1 local world time is 0.0 and equilibration time is 10.0
+1000 0.1 0.0 10.0
+END
+
+

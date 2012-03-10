@@ -1,0 +1,355 @@
+\section{mu::ParserToken$<$ TBase, TString $>$ Class Template Reference}
+\label{classmu_1_1ParserToken}\index{mu::ParserToken@{mu::ParserToken}}
+{\tt \#include $<$muParserToken.h$>$}
+
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename TBase, typename TString$>$ class mu::ParserToken$<$ TBase, TString $>$}
+
+Encapsulation of the data for a single formula token. 
+
+Formula token implementation. Part of the Math \doxyref{Parser}{p.}{classmu_1_1Parser} Package. Formula tokens can be either one of the following: \begin{itemize}
+\item value \item variable \item function with numerical arguments \item functions with a string as argument \item prefix operators \item infix operators \item binary operator \end{itemize}
+
+
+\begin{Desc}
+\item[Author:](C) 2004 Ingo Berg \end{Desc}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+enum {\bf ETokFlags} \{ {\bf flVOLATILE} =  1
+ \}
+\begin{CompactList}\small\item\em Additional token flags. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserToken} ()
+\begin{CompactList}\small\item\em Constructor (default). \item\end{CompactList}\item 
+{\bf ParserToken} (const {\bf ParserToken} \&a\_\-Tok)
+\begin{CompactList}\small\item\em Create token from another one. \item\end{CompactList}\item 
+{\bf ParserToken} \& {\bf operator=} (const {\bf ParserToken} \&a\_\-Tok)
+\begin{CompactList}\small\item\em Assignement operator. \item\end{CompactList}\item 
+void {\bf Assign} (const {\bf ParserToken} \&a\_\-Tok)
+\begin{CompactList}\small\item\em Copy token information from argument. \item\end{CompactList}\item 
+void {\bf AddFlags} (int a\_\-iFlags)
+\begin{CompactList}\small\item\em Add additional flags to the token. \item\end{CompactList}\item 
+bool {\bf IsFlagSet} (int a\_\-iFlags) const 
+\begin{CompactList}\small\item\em Check if a certain flag ist set. \item\end{CompactList}\item 
+{\bf ParserToken} \& {\bf Set} ({\bf ECmdCode} a\_\-iType, const TString \&a\_\-strTok=TString())
+\begin{CompactList}\small\item\em Assign a token type. \item\end{CompactList}\item 
+{\bf ParserToken} \& {\bf Set} (const {\bf ParserCallback} \&a\_\-pCallback, const TString \&a\_\-sTok)
+\begin{CompactList}\small\item\em Set Callback type. \item\end{CompactList}\item 
+{\bf ParserToken} \& {\bf SetVal} (TBase a\_\-fVal, const TString \&a\_\-strTok=TString())
+\begin{CompactList}\small\item\em Make this token a value token. \item\end{CompactList}\item 
+{\bf ParserToken} \& {\bf SetVar} (TBase $\ast$a\_\-pVar, const TString \&a\_\-strTok)
+\begin{CompactList}\small\item\em make this token a variable token. \item\end{CompactList}\item 
+{\bf ParserToken} \& {\bf SetString} (const TString \&a\_\-strTok, std::size\_\-t a\_\-iSize)
+\begin{CompactList}\small\item\em Make this token a variable token. \item\end{CompactList}\item 
+void {\bf SetIdx} (int a\_\-iIdx)
+\begin{CompactList}\small\item\em Set an index associated with the token related data. \item\end{CompactList}\item 
+int {\bf GetIdx} () const 
+\begin{CompactList}\small\item\em Return Index associated with the token related data. \item\end{CompactList}\item 
+{\bf ECmdCode} {\bf GetCode} () const 
+\begin{CompactList}\small\item\em Return the token type. \item\end{CompactList}\item 
+{\bf ETypeCode} {\bf GetType} () const 
+\item 
+int {\bf GetPri} () const 
+\item 
+void $\ast$ {\bf GetFuncAddr} () const 
+\begin{CompactList}\small\item\em Return the address of the callback function assoziated with function and operator tokens. \item\end{CompactList}\item 
+TBase {\bf GetVal} () const 
+\item 
+TBase $\ast$ {\bf GetVar} () const 
+\begin{CompactList}\small\item\em Get address of a variable token. \item\end{CompactList}\item 
+int {\bf GetArgCount} () const 
+\begin{CompactList}\small\item\em Return the number of function arguments. \item\end{CompactList}\item 
+const TString \& {\bf GetAsString} () const 
+\begin{CompactList}\small\item\em Return the token identifier. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{mu::ParserToken@{mu::ParserToken}!ETokFlags@{ETokFlags}}
+\index{ETokFlags@{ETokFlags}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[ETokFlags]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ enum {\bf mu::ParserToken::ETokFlags}}\label{classmu_1_1ParserToken_eab15fb29d55a8c525a790f32c837aca}
+
+
+Additional token flags. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{flVOLATILE@{flVOLATILE}!mu::ParserToken@{mu::ParserToken}}\index{mu::ParserToken@{mu::ParserToken}!flVOLATILE@{flVOLATILE}}\item[{\em 
+flVOLATILE\label{classmu_1_1ParserToken_eab15fb29d55a8c525a790f32c837aca7b72b53078f838e624f21bf521b5c5d1}
+}]Mark a token that depends on a variable or a function that is not conservative. \end{description}
+\end{Desc}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserToken@{mu::ParserToken}!ParserToken@{ParserToken}}
+\index{ParserToken@{ParserToken}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[ParserToken]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf mu::ParserToken}$<$ TBase, TString $>$::{\bf ParserToken} ()\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_0ce34ca6a1833441e8fd9840b3cde140}
+
+
+Constructor (default). 
+
+Sets token to an neutral state of type cmUNKNOWN. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]\doxyref{ECmdCode}{p.}{namespacemu_b77181e591bebd278bf9c7a2e30ad40e} \end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!ParserToken@{ParserToken}}
+\index{ParserToken@{ParserToken}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[ParserToken]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf mu::ParserToken}$<$ TBase, TString $>$::{\bf ParserToken} (const {\bf ParserToken}$<$ TBase, TString $>$ \& {\em a\_\-Tok})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_17dfc71fe5750f61e9cdd5c2a3355ac0}
+
+
+Create token from another one. 
+
+Implemented by calling Assign(...) \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Postcondition:]m\_\-iType==cmUNKNOWN \end{Desc}
+\begin{Desc}
+\item[See also:]\doxyref{Assign}{p.}{classmu_1_1ParserToken_40b7e717927c58d03a6665184ff5cc52} \end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{mu::ParserToken@{mu::ParserToken}!operator=@{operator=}}
+\index{operator=@{operator=}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[operator=]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ParserToken}\& {\bf mu::ParserToken}$<$ TBase, TString $>$::operator= (const {\bf ParserToken}$<$ TBase, TString $>$ \& {\em a\_\-Tok})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_f9abe46bd0a5f2b4cbcc59beba68ca0e}
+
+
+Assignement operator. 
+
+Copy token state from another token and return this. Implemented by calling Assign(...). \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!Assign@{Assign}}
+\index{Assign@{Assign}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[Assign]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ void {\bf mu::ParserToken}$<$ TBase, TString $>$::Assign (const {\bf ParserToken}$<$ TBase, TString $>$ \& {\em a\_\-Tok})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_40b7e717927c58d03a6665184ff5cc52}
+
+
+Copy token information from argument. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+Referenced by mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::operator=(), and mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::ParserToken().\index{mu::ParserToken@{mu::ParserToken}!AddFlags@{AddFlags}}
+\index{AddFlags@{AddFlags}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[AddFlags]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ void {\bf mu::ParserToken}$<$ TBase, TString $>$::AddFlags (int {\em a\_\-iFlags})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_8b9d1e7d43bf04702540262598536ada}
+
+
+Add additional flags to the token. 
+
+Flags are currently used to mark volatile (non optimizeable) functions. \begin{Desc}
+\item[See also:]m\_\-iFlags, \doxyref{ETokFlags}{p.}{classmu_1_1ParserToken_eab15fb29d55a8c525a790f32c837aca} \end{Desc}
+
+
+Referenced by mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::Set(), mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::SetString(), and mu::ParserToken$<$ MUP\_\-BASETYPE, MUP\_\-STRING\_\-TYPE $>$::SetVar().\index{mu::ParserToken@{mu::ParserToken}!IsFlagSet@{IsFlagSet}}
+\index{IsFlagSet@{IsFlagSet}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[IsFlagSet]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ bool {\bf mu::ParserToken}$<$ TBase, TString $>$::IsFlagSet (int {\em a\_\-iFlags}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_7f942072a1f92eb99b2994a7ea85645c}
+
+
+Check if a certain flag ist set. 
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!Set@{Set}}
+\index{Set@{Set}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[Set]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ParserToken}\& {\bf mu::ParserToken}$<$ TBase, TString $>$::Set ({\bf ECmdCode} {\em a\_\-iType}, \/  const TString \& {\em a\_\-strTok} = {\tt TString()})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_c4588ba38ccc660686956f7998ba74dc}
+
+
+Assign a token type. 
+
+Token may not be of type value, variable or function. Those have seperate set functions.
+
+\begin{Desc}
+\item[Precondition:][assert] a\_\-iType!=cmVAR 
+
+[assert] a\_\-iType!=cmVAL 
+
+[assert] a\_\-iType!=cmFUNC \end{Desc}
+\begin{Desc}
+\item[Postcondition:]m\_\-fVal = 0 
+
+m\_\-pTok = 0 \end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!Set@{Set}}
+\index{Set@{Set}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[Set]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ParserToken}\& {\bf mu::ParserToken}$<$ TBase, TString $>$::Set (const {\bf ParserCallback} \& {\em a\_\-pCallback}, \/  const TString \& {\em a\_\-sTok})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_a7c0c0e307b2064f1ab12cbf922c7e40}
+
+
+Set Callback type. 
+
+\index{mu::ParserToken@{mu::ParserToken}!SetVal@{SetVal}}
+\index{SetVal@{SetVal}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[SetVal]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ParserToken}\& {\bf mu::ParserToken}$<$ TBase, TString $>$::SetVal (TBase {\em a\_\-fVal}, \/  const TString \& {\em a\_\-strTok} = {\tt TString()})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_68d4974b234ee9f109ef466cd04e1501}
+
+
+Make this token a value token. 
+
+Member variables not necessary for value tokens will be invalidated. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!SetVar@{SetVar}}
+\index{SetVar@{SetVar}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[SetVar]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ParserToken}\& {\bf mu::ParserToken}$<$ TBase, TString $>$::SetVar (TBase $\ast$ {\em a\_\-pVar}, \/  const TString \& {\em a\_\-strTok})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_86de84eb76900ca677c3ab93681ec7c5}
+
+
+make this token a variable token. 
+
+Member variables not necessary for variable tokens will be invalidated. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!SetString@{SetString}}
+\index{SetString@{SetString}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[SetString]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ParserToken}\& {\bf mu::ParserToken}$<$ TBase, TString $>$::SetString (const TString \& {\em a\_\-strTok}, \/  std::size\_\-t {\em a\_\-iSize})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_da40ff914f9c59f6891f6809991b3542}
+
+
+Make this token a variable token. 
+
+Member variables not necessary for variable tokens will be invalidated. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!SetIdx@{SetIdx}}
+\index{SetIdx@{SetIdx}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[SetIdx]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ void {\bf mu::ParserToken}$<$ TBase, TString $>$::SetIdx (int {\em a\_\-iIdx})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_c2e70ba039bc033722ea946342649881}
+
+
+Set an index associated with the token related data. 
+
+In cmSTRFUNC - This is the index to a string table in the main parser. parameter: a\_\-iIdx The index the string function result will take in the bytecode parser. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em exception\_\-type}]if a\_\-iIdx$<$0 or m\_\-iType!=cmSTRING \end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!GetIdx@{GetIdx}}
+\index{GetIdx@{GetIdx}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetIdx]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ int {\bf mu::ParserToken}$<$ TBase, TString $>$::GetIdx () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_394d2f4c77548e20d6ea1d69ab583426}
+
+
+Return Index associated with the token related data. 
+
+In cmSTRFUNC - This is the index to a string table in the main parser.
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em exception\_\-type}]if m\_\-iIdx$<$0 or m\_\-iType!=cmSTRING \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The index the result will take in the Bytecode calculatin array (m\_\-iIdx). \end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!GetCode@{GetCode}}
+\index{GetCode@{GetCode}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetCode]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ECmdCode} {\bf mu::ParserToken}$<$ TBase, TString $>$::GetCode () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_2aed855c2686a1a4f7696f373e79d2ba}
+
+
+Return the token type. 
+
+\begin{Desc}
+\item[Returns:]m\_\-iType \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!GetType@{GetType}}
+\index{GetType@{GetType}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetType]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ {\bf ETypeCode} {\bf mu::ParserToken}$<$ TBase, TString $>$::GetType () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_8b53010c2405da2908ad3b889798f92a}
+
+
+\index{mu::ParserToken@{mu::ParserToken}!GetPri@{GetPri}}
+\index{GetPri@{GetPri}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetPri]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ int {\bf mu::ParserToken}$<$ TBase, TString $>$::GetPri () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_5b032bb1b4b3f4bfc4908e96a33733bc}
+
+
+\index{mu::ParserToken@{mu::ParserToken}!GetFuncAddr@{GetFuncAddr}}
+\index{GetFuncAddr@{GetFuncAddr}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetFuncAddr]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ void$\ast$ {\bf mu::ParserToken}$<$ TBase, TString $>$::GetFuncAddr () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_bbae24591fa059bbc8266728cb303c46}
+
+
+Return the address of the callback function assoziated with function and operator tokens. 
+
+\begin{Desc}
+\item[Returns:]The pointer stored in m\_\-pTok. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em exception\_\-type}]if token type is non of: \begin{itemize}
+\item cmFUNC \item cmSTRFUNC \item cmPOSTOP \item cmINFIXOP \item cmOPRT\_\-BIN \end{itemize}
+\end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]\doxyref{ECmdCode}{p.}{namespacemu_b77181e591bebd278bf9c7a2e30ad40e} \end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!GetVal@{GetVal}}
+\index{GetVal@{GetVal}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetVal]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ TBase {\bf mu::ParserToken}$<$ TBase, TString $>$::GetVal () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_92bdbe69e20244358ff7b8348cee4162}
+
+
+Get value of the token.
+
+Only applicable to variable and value tokens. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em exception\_\-type}]if token is no value/variable token. \end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!GetVar@{GetVar}}
+\index{GetVar@{GetVar}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetVar]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ TBase$\ast$ {\bf mu::ParserToken}$<$ TBase, TString $>$::GetVar () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_e3125d176cc8c5238ec2d650386f449c}
+
+
+Get address of a variable token. 
+
+Valid only if m\_\-iType==CmdVar. \begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em exception\_\-type}]if token is no variable token. \end{description}
+\end{Desc}
+\index{mu::ParserToken@{mu::ParserToken}!GetArgCount@{GetArgCount}}
+\index{GetArgCount@{GetArgCount}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetArgCount]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ int {\bf mu::ParserToken}$<$ TBase, TString $>$::GetArgCount () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_0286c6356dbddebca69da1e5ebb5a888}
+
+
+Return the number of function arguments. 
+
+Valid only if m\_\-iType==CmdFUNC. \index{mu::ParserToken@{mu::ParserToken}!GetAsString@{GetAsString}}
+\index{GetAsString@{GetAsString}!mu::ParserToken@{mu::ParserToken}}
+\subsubsection[GetAsString]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TBase, typename TString$>$ const TString\& {\bf mu::ParserToken}$<$ TBase, TString $>$::GetAsString () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserToken_667a6b2a30e58bc3332ef2358412c2eb}
+
+
+Return the token identifier. 
+
+If m\_\-iType is cmSTRING the token identifier is the value of the string argument for a string function. \begin{Desc}
+\item[Returns:]m\_\-strTok \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]m\_\-strTok \end{Desc}
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf muParserToken.h}\end{CompactItemize}

@@ -1,0 +1,32 @@
+#
+#  Example Specification File for Blind Agents
+#
+#  columns are:
+#     type name      (any string you want)
+#     velocity       (must be between 0 and 1 in nondimensional units)
+#     cost for movement
+#     max growth rate
+#     Km               (note that substrate ranges from 0 to 1 always)
+#     yield            (should be between 0.5 and 1)
+#     death_threshold  (note that birth threshold is always 1)
+#     initial_essence  (should be between death threshold and 1)
+#     spontaneous death rate  (in units of probability per time unit)
+#     rho         (cauchy distribution parameter, should be between 0 and 1)
+#     is_levy     (set to 0 for exponential run length distribution
+#                  set to 1 for power law (levy) run length distribution)
+#     run length distribution parameter  (Beta for levy flights, gamma for exponential)
+#     efficiency  this is the efficiency by which nutrient is depleted.  It is just a scaling
+#                 factor for growth that will account for the spacing between voxels.  so if
+#                 a cell wants to consume 0.5 units, it will only remove efficiency*0.5 units
+#                 from the voxel it is in.
+#     r1          cost of living.  in original normalized terms, this is always 1, but to get
+#                 more interesting behavior, we can set this manually
+#     birth threshold (in normalized units, this is set to 1)
+#     number of cells 
+#
+
+#           v      c   mu_max     Km   yield  death   ess  wack   rho  levy  runParam  efficiency  r1  birth  n_cells
+ric      0.99   0.01      8.0    0.4    0.51    0.1   0.3  0.01   0.6     1         2     0.01      1      1        1
+chris    0.75   0.01      6.0    0.3    0.65    0.1   0.3  0.01   0.6     1         2     0.01      1      1        1
+garrit   0.50   0.01      4.0    0.2    0.75    0.1   0.3  0.01   0.6     1         2     0.01      1      1
+mike     0.25   0.01      3.0    0.1    0.99    0.1   0.3  0.01   0.6     1         2     0.01      1      1

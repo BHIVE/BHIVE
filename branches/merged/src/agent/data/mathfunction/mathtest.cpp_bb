@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+#include "mathfunctiondata.hh"
+
+using namespace std;
+using namespace Hive;
+
+/**
+ *  little programm to make sure tha the mathfunctiondata is working
+ *   ... and it does. now isn't that amazing.   
+ */
+int main(int argn, char *argv[]) {
+  OneDLinearMathFunctionData hans("hans");
+
+  hans.setSlope(3.0);
+  hans.setYIntercept(1.0);
+
+  cerr << hans.getValue(2) << endl;
+  cerr << hans.getType() << endl;
+
+
+  OneDExponentialMathFunctionData gretel("gretel");
+  gretel.setOffset(5.0);
+  gretel.setParameter(1.0);
+  cerr << gretel.getValue(0.0) << endl; 
+
+
+  CarlFriedrichMathFunctionData fritz("fritz");
+  fritz.setDiff(1);
+  fritz.setInitialNumber(1000);
+
+  vector<double> frank(3,1);
+  cerr << fritz.getValue(frank,1.0) << endl;
+  fritz.printContent(cerr);
+ 
+  return 0;
+
+}
