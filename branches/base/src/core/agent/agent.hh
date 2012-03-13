@@ -173,6 +173,10 @@ namespace Hive
 
 			void placeMessageInOutbox(Message* m) { this->outbox.push_back(m); }
 
+
+			/// method required for simulations that must only simulate up to the given time
+			void setTargetTime(double dt);
+
 			/// propagates the agent for a timestep
 			virtual void propagate(double time);
 

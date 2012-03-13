@@ -89,6 +89,16 @@ namespace Hive
 		 */
 		virtual void setupSimulation()=0;
 
+		/**
+		 * method for setting the time step until which the agents are supposed to
+		 * propagate
+		 */
+		void setTargetTime(double dt) {
+			maestro->setTargetTime(dt);
+			for (unsigned int i=0; i<orchestra.size(); i++)
+				orchestra[i]->setTargetTime(dt);
+		}
+
 	protected:
 		/**
 		 *	prepare agent factories for agent setup

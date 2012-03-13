@@ -45,7 +45,6 @@ Agent::Agent() {
 	//message_generators = 0;
 
 
-
 	IntegerData *agentId = new IntegerData("agent_id", this->agent_id);
 	db->addData(agentId->getName(), agentId);
 
@@ -244,6 +243,13 @@ void Agent::init() {
 		outbox.pop_back();
 		c->sendMessage(m, m->getDestinationID());
 	}
+}
+
+
+
+void Agent::setTargetTime(double dt) {
+        double initial_time = ((DoubleData*)this->db->getDataItem("time"))->getDouble();
+        ((DoubleData*) this->db->getDataItem("propagate_until"))->setDouble(initial_time + dt);
 }
 
 
