@@ -1,0 +1,91 @@
+\section{Simulator Class Reference}
+\label{classSimulator}\index{Simulator@{Simulator}}
+{\tt \#include $<$simulator.hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Simulator} ()
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+{\bf $\sim$Simulator} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\item 
+virtual void {\bf integrate} (double t)=0
+\item 
+virtual void {\bf prepare} ()=0
+\item 
+virtual void {\bf synchroniseWithDatabase} ()=0
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf step} ()
+\item 
+void {\bf connectToDataBase} ({\bf Agent} $\ast$a)
+\item 
+virtual void {\bf initialise} ()=0
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Simulator@{Simulator}!Simulator@{Simulator}}
+\index{Simulator@{Simulator}!Simulator@{Simulator}}
+\subsubsection[Simulator]{\setlength{\rightskip}{0pt plus 5cm}Simulator::Simulator ()}\label{classSimulator_031573bfcfe2e0f5c9539bcc1c7fc5d9}
+
+
+Constructor. 
+
+\index{Simulator@{Simulator}!$\sim$Simulator@{$\sim$Simulator}}
+\index{$\sim$Simulator@{$\sim$Simulator}!Simulator@{Simulator}}
+\subsubsection[$\sim$Simulator]{\setlength{\rightskip}{0pt plus 5cm}Simulator::$\sim$Simulator ()}\label{classSimulator_0f49aa04f42060a785adf77346b9de9f}
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\index{Simulator@{Simulator}!integrate@{integrate}}
+\index{integrate@{integrate}!Simulator@{Simulator}}
+\subsubsection[integrate]{\setlength{\rightskip}{0pt plus 5cm}virtual void Simulator::integrate (double {\em t})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classSimulator_d76c95dd87fa0cd660a6983271837082}
+
+
+integrate the system for a timestep \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em t}]timestep \end{description}
+\end{Desc}
+\index{Simulator@{Simulator}!prepare@{prepare}}
+\index{prepare@{prepare}!Simulator@{Simulator}}
+\subsubsection[prepare]{\setlength{\rightskip}{0pt plus 5cm}virtual void Simulator::prepare ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classSimulator_dd84016ae6d63ae4556225c18c473ba2}
+
+
+prepare simulator for the first time, this will call the connectToDataBase and initialise methods \index{Simulator@{Simulator}!synchroniseWithDatabase@{synchroniseWithDatabase}}
+\index{synchroniseWithDatabase@{synchroniseWithDatabase}!Simulator@{Simulator}}
+\subsubsection[synchroniseWithDatabase]{\setlength{\rightskip}{0pt plus 5cm}virtual void Simulator::synchroniseWithDatabase ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classSimulator_08448abf6a7dc875cd81ec33005510a8}
+
+
+update simulator's internal variables before executing the integrate command \index{Simulator@{Simulator}!step@{step}}
+\index{step@{step}!Simulator@{Simulator}}
+\subsubsection[step]{\setlength{\rightskip}{0pt plus 5cm}void Simulator::step ()\hspace{0.3cm}{\tt  [protected]}}\label{classSimulator_c11a8e1119c88c075853f11a23518d0d}
+
+
+performs a single integration step \index{Simulator@{Simulator}!connectToDataBase@{connectToDataBase}}
+\index{connectToDataBase@{connectToDataBase}!Simulator@{Simulator}}
+\subsubsection[connectToDataBase]{\setlength{\rightskip}{0pt plus 5cm}void Simulator::connectToDataBase ({\bf Agent} $\ast$ {\em a})\hspace{0.3cm}{\tt  [protected]}}\label{classSimulator_d350191a67743facc3ae5371a5a42bcb}
+
+
+a simulator needs to connect to the database of the agent on which it operates. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]pointer of agent \end{description}
+\end{Desc}
+\index{Simulator@{Simulator}!initialise@{initialise}}
+\index{initialise@{initialise}!Simulator@{Simulator}}
+\subsubsection[initialise]{\setlength{\rightskip}{0pt plus 5cm}virtual void Simulator::initialise ()\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classSimulator_c0d11612f02bb161aefd08905ca5809f}
+
+
+initialise simulator's internal variables for the first time 
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf simulator.hh}\end{CompactItemize}

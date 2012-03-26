@@ -1,0 +1,13 @@
+<?xml version="1.0">
+<opt>
+  <World xLen="10" blockSize="1" yLen="10" zLen="10">
+    <Compound name="cpd1" diffusion="0.1" defaultconc="1">
+      <Voxel x="1" y="1" z="1">
+        <Concentration>3</Concentration>
+      </Voxel>
+    </Compound>
+    <Cell speed="0.001" consumption="0" currentGlucoseConsumption="0">
+        <childConfig x="5" y="5" z="5" diameter="0.001"></childConfig>
+    </Cell>
+  </World>
+</opt>

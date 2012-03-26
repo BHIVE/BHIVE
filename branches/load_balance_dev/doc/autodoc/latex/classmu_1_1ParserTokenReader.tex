@@ -1,0 +1,188 @@
+\section{mu::ParserTokenReader Class Reference}
+\label{classmu_1_1ParserTokenReader}\index{mu::ParserTokenReader@{mu::ParserTokenReader}}
+{\tt \#include $<$muParserTokenReader.h$>$}
+
+
+
+\subsection{Detailed Description}
+Token reader for the \doxyref{ParserBase}{p.}{classmu_1_1ParserBase} class. 
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserTokenReader} ({\bf ParserBase} $\ast$a\_\-pParent)
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+{\bf ParserTokenReader} $\ast$ {\bf Clone} ({\bf ParserBase} $\ast$a\_\-pParent) const 
+\begin{CompactList}\small\item\em Create instance of a \doxyref{ParserTokenReader}{p.}{classmu_1_1ParserTokenReader} identical with this and return its pointer. \item\end{CompactList}\item 
+void {\bf AddValIdent} ({\bf identfun\_\-type} a\_\-pCallback)
+\item 
+void {\bf SetVarCreator} ({\bf facfun\_\-type} a\_\-pFactory, void $\ast$pUserData)
+\item 
+void {\bf SetFormula} (const {\bf string\_\-type} \&a\_\-strFormula)
+\begin{CompactList}\small\item\em Initialize the token Reader. \item\end{CompactList}\item 
+void {\bf SetArgSep} ({\bf char\_\-type} cArgSep)
+\item 
+int {\bf GetPos} () const 
+\begin{CompactList}\small\item\em Return the current position of the token reader in the formula string. \item\end{CompactList}\item 
+const {\bf string\_\-type} \& {\bf GetFormula} () const 
+\begin{CompactList}\small\item\em Return a reference to the formula. \item\end{CompactList}\item 
+const {\bf varmap\_\-type} \& {\bf GetUsedVar} () const 
+\begin{CompactList}\small\item\em Return a map containing the used variables only. \item\end{CompactList}\item 
+{\bf char\_\-type} {\bf GetArgSep} () const 
+\item 
+void {\bf IgnoreUndefVar} (bool bIgnore)
+\begin{CompactList}\small\item\em Set Flag that contronls behaviour in case of undefined variables beeing found. \item\end{CompactList}\item 
+void {\bf ReInit} ()
+\begin{CompactList}\small\item\em Reset the token reader to the start of the formula. \item\end{CompactList}\item 
+{\bf token\_\-type} {\bf ReadNextToken} ()
+\begin{CompactList}\small\item\em Read the next token from the string. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!ParserTokenReader@{ParserTokenReader}}
+\index{ParserTokenReader@{ParserTokenReader}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[ParserTokenReader]{\setlength{\rightskip}{0pt plus 5cm}mu::ParserTokenReader::ParserTokenReader ({\bf ParserBase} $\ast$ {\em a\_\-pParent})}\label{classmu_1_1ParserTokenReader_1e72a60fc0bfccf885a066ed0578922d}
+
+
+Constructor. 
+
+Create a Token reader and bind it to a parser object.
+
+\begin{Desc}
+\item[Precondition:][assert] a\_\-pParser may not be NULL \end{Desc}
+\begin{Desc}
+\item[Postcondition:]m\_\-pParser==a\_\-pParser \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-pParent}]Parent parser object of the token reader. \end{description}
+\end{Desc}
+
+
+Referenced by Clone().
+
+\subsection{Member Function Documentation}
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!Clone@{Clone}}
+\index{Clone@{Clone}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[Clone]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParserTokenReader} $\ast$ mu::ParserTokenReader::Clone ({\bf ParserBase} $\ast$ {\em a\_\-pParent}) const}\label{classmu_1_1ParserTokenReader_c5ed05f986cfd6ab28f802e22937f0b5}
+
+
+Create instance of a \doxyref{ParserTokenReader}{p.}{classmu_1_1ParserTokenReader} identical with this and return its pointer. 
+
+This is a factory method the calling function must take care of the object destruction.
+
+\begin{Desc}
+\item[Returns:]A new \doxyref{ParserTokenReader}{p.}{classmu_1_1ParserTokenReader} object. \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+
+
+References ParserTokenReader().\index{mu::ParserTokenReader@{mu::ParserTokenReader}!AddValIdent@{AddValIdent}}
+\index{AddValIdent@{AddValIdent}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[AddValIdent]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserTokenReader::AddValIdent ({\bf identfun\_\-type} {\em a\_\-pCallback})}\label{classmu_1_1ParserTokenReader_e7c87757b4244e20b2c32c4173cc8284}
+
+
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!SetVarCreator@{SetVarCreator}}
+\index{SetVarCreator@{SetVarCreator}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[SetVarCreator]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserTokenReader::SetVarCreator ({\bf facfun\_\-type} {\em a\_\-pFactory}, \/  void $\ast$ {\em pUserData})}\label{classmu_1_1ParserTokenReader_6275551cf90f88ee6e0b992cc8027fb2}
+
+
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!SetFormula@{SetFormula}}
+\index{SetFormula@{SetFormula}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[SetFormula]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserTokenReader::SetFormula (const {\bf string\_\-type} \& {\em a\_\-strFormula})}\label{classmu_1_1ParserTokenReader_73c2f7d995520961afe22c9f3f4113d7}
+
+
+Initialize the token Reader. 
+
+Sets the formula position index to zero and set Syntax flags to default for initial formula parsing. \begin{Desc}
+\item[Precondition:][assert] triggered if a\_\-szFormula==0 \end{Desc}
+
+
+References ReInit().\index{mu::ParserTokenReader@{mu::ParserTokenReader}!SetArgSep@{SetArgSep}}
+\index{SetArgSep@{SetArgSep}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[SetArgSep]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserTokenReader::SetArgSep ({\bf char\_\-type} {\em cArgSep})}\label{classmu_1_1ParserTokenReader_5c6df951c19e7cbbe381312a15ab3ddc}
+
+
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!GetPos@{GetPos}}
+\index{GetPos@{GetPos}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[GetPos]{\setlength{\rightskip}{0pt plus 5cm}int mu::ParserTokenReader::GetPos () const}\label{classmu_1_1ParserTokenReader_c539d94917cbcb9ac1b0a9f62128ddba}
+
+
+Return the current position of the token reader in the formula string. 
+
+\begin{Desc}
+\item[Returns:]m\_\-iPos \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!GetFormula@{GetFormula}}
+\index{GetFormula@{GetFormula}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[GetFormula]{\setlength{\rightskip}{0pt plus 5cm}const {\bf string\_\-type} \& mu::ParserTokenReader::GetFormula () const}\label{classmu_1_1ParserTokenReader_85d07cceed649a18634885cfa6ce3783}
+
+
+Return a reference to the formula. 
+
+\begin{Desc}
+\item[Returns:]m\_\-strFormula \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!GetUsedVar@{GetUsedVar}}
+\index{GetUsedVar@{GetUsedVar}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[GetUsedVar]{\setlength{\rightskip}{0pt plus 5cm}const {\bf varmap\_\-type} \& mu::ParserTokenReader::GetUsedVar () const}\label{classmu_1_1ParserTokenReader_76377103d67239f77797de3ab6eba517}
+
+
+Return a map containing the used variables only. 
+
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!GetArgSep@{GetArgSep}}
+\index{GetArgSep@{GetArgSep}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[GetArgSep]{\setlength{\rightskip}{0pt plus 5cm}{\bf char\_\-type} mu::ParserTokenReader::GetArgSep () const}\label{classmu_1_1ParserTokenReader_fb492575894ccf474723397b56a80129}
+
+
+\index{mu::ParserTokenReader@{mu::ParserTokenReader}!IgnoreUndefVar@{IgnoreUndefVar}}
+\index{IgnoreUndefVar@{IgnoreUndefVar}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[IgnoreUndefVar]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserTokenReader::IgnoreUndefVar (bool {\em bIgnore})}\label{classmu_1_1ParserTokenReader_62cd2361502098231dcb9893a09e9de0}
+
+
+Set Flag that contronls behaviour in case of undefined variables beeing found. 
+
+If true, the parser does not throw an exception if an undefined variable is found. otherwise it does. This variable is used internally only! It supresses a \char`\"{}undefined variable\char`\"{} exception in \doxyref{GetUsedVar()}{p.}{classmu_1_1ParserTokenReader_76377103d67239f77797de3ab6eba517}. Those function should return a complete list of variables including those the are not defined by the time of it's call. \index{mu::ParserTokenReader@{mu::ParserTokenReader}!ReInit@{ReInit}}
+\index{ReInit@{ReInit}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[ReInit]{\setlength{\rightskip}{0pt plus 5cm}void mu::ParserTokenReader::ReInit ()}\label{classmu_1_1ParserTokenReader_c991cffd605b837020a732a026b009bc}
+
+
+Reset the token reader to the start of the formula. 
+
+The syntax flags will be reset to a value appropriate for the start of a formula. \begin{Desc}
+\item[Postcondition:]m\_\-iPos==0, m\_\-iSynFlags = noOPT $|$ noBC $|$ noPOSTOP $|$ noSTR \end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]ESynCodes \end{Desc}
+
+
+Referenced by SetFormula().\index{mu::ParserTokenReader@{mu::ParserTokenReader}!ReadNextToken@{ReadNextToken}}
+\index{ReadNextToken@{ReadNextToken}!mu::ParserTokenReader@{mu::ParserTokenReader}}
+\subsubsection[ReadNextToken]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParserTokenReader::token\_\-type} mu::ParserTokenReader::ReadNextToken ()}\label{classmu_1_1ParserTokenReader_36861d4d08fc658b210c1a18e80052e5}
+
+
+Read the next token from the string. 
+
+
+
+References mu::ecUNASSIGNABLE\_\-TOKEN, and mu::ParserBase::ValidNameChars().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf muParserTokenReader.h}\item 
+{\bf muParserTokenReader.cpp}\end{CompactItemize}

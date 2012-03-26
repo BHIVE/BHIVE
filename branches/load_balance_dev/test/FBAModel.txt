@@ -1,0 +1,12 @@
+COMPOUNDS
+Name;Concentrations
+Nutrient;0.001
+Energy;0.001
+Waste;0.001
+Biomass;0.001
+REACTIONS
+Name;Equation;k1;k2;e
+Import nutrient;Nutrient[e] => Nutrient[c];1;0.001;0.00001
+Export waste;Waste[e] => Waste[c];FBA;FBA;FBA
+Metabolize nutrient;Nutrient[c] => Waste[c] + Energy[c];FBA;FBA;FBA
+Produce biomass;(1) Nutrient[c] + Energy[c] => Biomass [c];FBA;FBA;FBA

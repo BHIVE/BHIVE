@@ -1,0 +1,113 @@
+\section{mu::ParserStack$<$ TValueType $>$ Class Template Reference}
+\label{classmu_1_1ParserStack}\index{mu::ParserStack@{mu::ParserStack}}
+{\tt \#include $<$muParserStack.h$>$}
+
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename TValueType$>$ class mu::ParserStack$<$ TValueType $>$}
+
+\doxyref{Parser}{p.}{classmu_1_1Parser} stack implementation. 
+
+Stack implementation based on a std::stack. The behaviour of \doxyref{pop()}{p.}{classmu_1_1ParserStack_d00f833ee3f30d901fa18e714105c381} had been slightly changed in order to get an error code if the stack is empty. The stack is used within the \doxyref{Parser}{p.}{classmu_1_1Parser} both as a value stack and as an operator stack.
+
+\begin{Desc}
+\item[Author:](C) 2004-2008 Ingo Berg \end{Desc}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ParserStack} ()
+\item 
+virtual {\bf $\sim$ParserStack} ()
+\item 
+TValueType {\bf pop} ()
+\begin{CompactList}\small\item\em Pop a value from the stack. \item\end{CompactList}\item 
+void {\bf push} (const TValueType \&a\_\-Val)
+\begin{CompactList}\small\item\em Push an object into the stack. \item\end{CompactList}\item 
+unsigned {\bf size} () const 
+\begin{CompactList}\small\item\em Return the number of stored elements. \item\end{CompactList}\item 
+bool {\bf empty} () const 
+\begin{CompactList}\small\item\em Returns true if stack is empty false otherwise. \item\end{CompactList}\item 
+TValueType \& {\bf top} ()
+\begin{CompactList}\small\item\em Return reference to the top object in the stack. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mu::ParserStack@{mu::ParserStack}!ParserStack@{ParserStack}}
+\index{ParserStack@{ParserStack}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[ParserStack]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ {\bf mu::ParserStack}$<$ TValueType $>$::{\bf ParserStack} ()\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserStack_570cdffe52bdaf5c549446509f06ea96}
+
+
+\index{mu::ParserStack@{mu::ParserStack}!$\sim$ParserStack@{$\sim$ParserStack}}
+\index{$\sim$ParserStack@{$\sim$ParserStack}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[$\sim$ParserStack]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ virtual {\bf mu::ParserStack}$<$ TValueType $>$::$\sim${\bf ParserStack} ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmu_1_1ParserStack_7ac063affb6991bc6a06e111082a5cfb}
+
+
+
+
+\subsection{Member Function Documentation}
+\index{mu::ParserStack@{mu::ParserStack}!pop@{pop}}
+\index{pop@{pop}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[pop]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ TValueType {\bf mu::ParserStack}$<$ TValueType $>$::pop ()\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserStack_d00f833ee3f30d901fa18e714105c381}
+
+
+Pop a value from the stack. 
+
+Unlike the standard implementation this function will return the value that is going to be taken from the stack.
+
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em ParserException}]in case the stack is empty. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[See also:]pop(int \&a\_\-iErrc) \end{Desc}
+
+
+References mu::ParserStack$<$ TValueType $>$::empty(), and mu::ParserStack$<$ TValueType $>$::top().\index{mu::ParserStack@{mu::ParserStack}!push@{push}}
+\index{push@{push}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[push]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ void {\bf mu::ParserStack}$<$ TValueType $>$::push (const TValueType \& {\em a\_\-Val})\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserStack_38ae431c967a6607aace9dfd4ae4cc5f}
+
+
+Push an object into the stack. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a\_\-Val}]object to push into the stack. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Exceptions:]
+\begin{description}
+\item[{\em nothrow}]\end{description}
+\end{Desc}
+\index{mu::ParserStack@{mu::ParserStack}!size@{size}}
+\index{size@{size}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[size]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ unsigned {\bf mu::ParserStack}$<$ TValueType $>$::size () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserStack_62c1e65a4e0d15f01a031fb245528166}
+
+
+Return the number of stored elements. 
+
+\index{mu::ParserStack@{mu::ParserStack}!empty@{empty}}
+\index{empty@{empty}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[empty]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ bool {\bf mu::ParserStack}$<$ TValueType $>$::empty () const\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserStack_43464a5bd94c2566b87cabe7d8e83fbb}
+
+
+Returns true if stack is empty false otherwise. 
+
+
+
+Referenced by mu::ParserStack$<$ TValueType $>$::pop().\index{mu::ParserStack@{mu::ParserStack}!top@{top}}
+\index{top@{top}!mu::ParserStack@{mu::ParserStack}}
+\subsubsection[top]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename TValueType$>$ TValueType\& {\bf mu::ParserStack}$<$ TValueType $>$::top ()\hspace{0.3cm}{\tt  [inline]}}\label{classmu_1_1ParserStack_ba3a499ebaae388c27bfb81883cba7fd}
+
+
+Return reference to the top object in the stack. 
+
+The top object is the one pushed most recently. 
+
+Referenced by mu::ParserStack$<$ TValueType $>$::pop().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf muParserStack.h}\end{CompactItemize}

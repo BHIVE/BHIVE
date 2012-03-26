@@ -1,0 +1,560 @@
+\section{mu Namespace Reference}
+\label{namespacemu}\index{mu@{mu}}
+
+
+\subsection{Detailed Description}
+Namespace for mathematical applications. 
+
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf Parser}
+\begin{CompactList}\small\item\em Mathematical expressions parser. \item\end{CompactList}\item 
+class {\bf ParserBase}
+\begin{CompactList}\small\item\em Mathematical expressions parser (base parser engine). \item\end{CompactList}\item 
+class {\bf ParserByteCode}
+\begin{CompactList}\small\item\em Bytecode implementation of the Math \doxyref{Parser}{p.}{classmu_1_1Parser}. \item\end{CompactList}\item 
+class {\bf ParserCallback}
+\begin{CompactList}\small\item\em Encapsulation of prototypes for a numerical parser function. \item\end{CompactList}\item 
+class {\bf ParserComplex}
+\begin{CompactList}\small\item\em Mathematical expressions parser. \item\end{CompactList}\item 
+struct {\bf STATIC\_\-ASSERTION\_\-FAILURE$<$ true $>$}
+\item 
+class {\bf ParserErrorMsg}
+\begin{CompactList}\small\item\em A class that handles the error messages. \item\end{CompactList}\item 
+class {\bf ParserError}
+\begin{CompactList}\small\item\em Error class of the parser. \item\end{CompactList}\item 
+class {\bf ParserInt}
+\begin{CompactList}\small\item\em Mathematical expressions parser. \item\end{CompactList}\item 
+class {\bf ParserStack}
+\begin{CompactList}\small\item\em \doxyref{Parser}{p.}{classmu_1_1Parser} stack implementation. \item\end{CompactList}\item 
+class {\bf ParserToken}
+\begin{CompactList}\small\item\em Encapsulation of the data for a single formula token. \item\end{CompactList}\item 
+class {\bf ParserTokenReader}
+\begin{CompactList}\small\item\em Token reader for the \doxyref{ParserBase}{p.}{classmu_1_1ParserBase} class. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef std::map$<$ {\bf string\_\-type}, {\bf ParserCallback} $>$ {\bf funmap\_\-type}
+\begin{CompactList}\small\item\em Container for Callback objects. \item\end{CompactList}\item 
+typedef MUP\_\-BASETYPE {\bf value\_\-type}
+\begin{CompactList}\small\item\em The numeric datatype used by the parser. \item\end{CompactList}\item 
+typedef MUP\_\-STRING\_\-TYPE {\bf string\_\-type}
+\begin{CompactList}\small\item\em The stringtype used by the parser. \item\end{CompactList}\item 
+typedef MUP\_\-BYTECODE\_\-TYPE {\bf bytecode\_\-type}
+\begin{CompactList}\small\item\em The bytecode type used by the parser. \item\end{CompactList}\item 
+typedef string\_\-type::value\_\-type {\bf char\_\-type}
+\begin{CompactList}\small\item\em The character type used by the parser. \item\end{CompactList}\item 
+typedef std::basic\_\-stringstream$<$ {\bf char\_\-type}, std::char\_\-traits$<$ {\bf char\_\-type} $>$, std::allocator$<$ {\bf char\_\-type} $>$ $>$ {\bf stringstream\_\-type}
+\begin{CompactList}\small\item\em Typedef for easily using stringstream that respect the parser stringtype. \item\end{CompactList}\item 
+typedef std::map$<$ {\bf string\_\-type}, {\bf value\_\-type} $\ast$ $>$ {\bf varmap\_\-type}
+\begin{CompactList}\small\item\em Type used for storing variables. \item\end{CompactList}\item 
+typedef std::map$<$ {\bf string\_\-type}, {\bf value\_\-type} $>$ {\bf valmap\_\-type}
+\begin{CompactList}\small\item\em Type used for storing constants. \item\end{CompactList}\item 
+typedef std::map$<$ {\bf string\_\-type}, std::size\_\-t $>$ {\bf strmap\_\-type}
+\begin{CompactList}\small\item\em Type for assigning a string name to an index in the internal string table. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf fun\_\-type0} )()
+\begin{CompactList}\small\item\em Callback type used for functions without arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf fun\_\-type1} )({\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions with a single arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf fun\_\-type2} )({\bf value\_\-type}, {\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions with two arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf fun\_\-type3} )({\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions with three arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf fun\_\-type4} )({\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions with four arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf fun\_\-type5} )({\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions with five arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf multfun\_\-type} )(const {\bf value\_\-type} $\ast$, int)
+\begin{CompactList}\small\item\em Callback type used for functions with a variable argument list. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf strfun\_\-type1} )(const {\bf char\_\-type} $\ast$)
+\begin{CompactList}\small\item\em Callback type used for functions taking a string as an argument. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf strfun\_\-type2} )(const {\bf char\_\-type} $\ast$, {\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions taking a string and a value as arguments. \item\end{CompactList}\item 
+typedef {\bf value\_\-type}($\ast$ {\bf strfun\_\-type3} )(const {\bf char\_\-type} $\ast$, {\bf value\_\-type}, {\bf value\_\-type})
+\begin{CompactList}\small\item\em Callback type used for functions taking a string and two values as arguments. \item\end{CompactList}\item 
+typedef int($\ast$ {\bf identfun\_\-type} )(const {\bf char\_\-type} $\ast$sExpr, int $\ast$nPos, {\bf value\_\-type} $\ast$fVal)
+\begin{CompactList}\small\item\em Callback used for functions that identify values in a string. \item\end{CompactList}\item 
+typedef {\bf value\_\-type} $\ast$($\ast$ {\bf facfun\_\-type} )(const {\bf char\_\-type} $\ast$, void $\ast$)
+\begin{CompactList}\small\item\em Callback used for variable creation factory functions. \item\end{CompactList}\item 
+typedef char {\bf MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED} [sizeof(STATIC\_\-ASSERTION\_\-FAILURE$<$ {\bf bytecode\_\-type}(-1)$<$ 0 $>$)]
+\begin{CompactList}\small\item\em This is a static typecheck. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf ECmdCode} \{ \par
+{\bf cmLE} =  0, 
+{\bf cmGE} =  1, 
+{\bf cmNEQ} =  2, 
+{\bf cmEQ} =  3, 
+\par
+{\bf cmLT} =  4, 
+{\bf cmGT} =  5, 
+{\bf cmADD} =  6, 
+{\bf cmSUB} =  7, 
+\par
+{\bf cmMUL} =  8, 
+{\bf cmDIV} =  9, 
+{\bf cmPOW} =  10, 
+{\bf cmAND} =  11, 
+\par
+{\bf cmOR} =  12, 
+{\bf cmXOR} =  13, 
+{\bf cmASSIGN} =  14, 
+{\bf cmBO} =  15, 
+\par
+{\bf cmBC} =  16, 
+{\bf cmARG\_\-SEP}, 
+{\bf cmVAR}, 
+{\bf cmVAL}, 
+\par
+{\bf cmFUNC}, 
+{\bf cmFUNC\_\-STR}, 
+{\bf cmSTRING}, 
+{\bf cmOPRT\_\-BIN}, 
+\par
+{\bf cmOPRT\_\-POSTFIX}, 
+{\bf cmOPRT\_\-INFIX}, 
+{\bf cmEND}, 
+{\bf cmUNKNOWN}
+ \}
+\begin{CompactList}\small\item\em Bytecode values. \item\end{CompactList}\item 
+enum {\bf ETypeCode} \{ {\bf tpSTR} =  0, 
+{\bf tpDBL} =  1, 
+{\bf tpVOID} =  2
+ \}
+\begin{CompactList}\small\item\em Types internally used by the parser. \item\end{CompactList}\item 
+enum {\bf EPrec} \{ \par
+{\bf prLOGIC} =  1, 
+{\bf prCMP} =  2, 
+{\bf prADD\_\-SUB} =  3, 
+{\bf prMUL\_\-DIV} =  4, 
+\par
+{\bf prPOW} =  5, 
+{\bf prINFIX} =  4, 
+{\bf prPOSTFIX} =  4
+ \}
+\begin{CompactList}\small\item\em Parser operator precedence values. \item\end{CompactList}\item 
+enum {\bf EErrorCodes} \{ \par
+{\bf ecUNEXPECTED\_\-OPERATOR} =  0, 
+{\bf ecUNASSIGNABLE\_\-TOKEN} =  1, 
+{\bf ecUNEXPECTED\_\-EOF} =  2, 
+{\bf ecUNEXPECTED\_\-ARG\_\-SEP} =  3, 
+\par
+{\bf ecUNEXPECTED\_\-ARG} =  4, 
+{\bf ecUNEXPECTED\_\-VAL} =  5, 
+{\bf ecUNEXPECTED\_\-VAR} =  6, 
+{\bf ecUNEXPECTED\_\-PARENS} =  7, 
+\par
+{\bf ecUNEXPECTED\_\-STR} =  8, 
+{\bf ecSTRING\_\-EXPECTED} =  9, 
+{\bf ecVAL\_\-EXPECTED} =  10, 
+{\bf ecMISSING\_\-PARENS} =  11, 
+\par
+{\bf ecUNEXPECTED\_\-FUN} =  12, 
+{\bf ecUNTERMINATED\_\-STRING} =  13, 
+{\bf ecTOO\_\-MANY\_\-PARAMS} =  14, 
+{\bf ecTOO\_\-FEW\_\-PARAMS} =  15, 
+\par
+{\bf ecOPRT\_\-TYPE\_\-CONFLICT} =  16, 
+{\bf ecSTR\_\-RESULT} =  17, 
+{\bf ecINVALID\_\-NAME} =  18, 
+{\bf ecBUILTIN\_\-OVERLOAD} =  19, 
+\par
+{\bf ecINVALID\_\-FUN\_\-PTR} =  20, 
+{\bf ecINVALID\_\-VAR\_\-PTR} =  21, 
+{\bf ecEMPTY\_\-EXPRESSION} =  22, 
+{\bf ecNAME\_\-CONFLICT} =  23, 
+\par
+{\bf ecOPT\_\-PRI} =  24, 
+{\bf ecDOMAIN\_\-ERROR} =  25, 
+{\bf ecDIV\_\-BY\_\-ZERO} =  26, 
+{\bf ecGENERIC} =  27, 
+\par
+{\bf ecLOCALE} =  28, 
+{\bf ecINTERNAL\_\-ERROR} =  29, 
+{\bf ecCOUNT}, 
+{\bf ecUNDEFINED} =  -1
+ \}
+\begin{CompactList}\small\item\em Error codes. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+std::ostream \& {\bf console} ()
+\begin{CompactList}\small\item\em Encapsulate cout. \item\end{CompactList}\item 
+std::istream \& {\bf console\_\-in} ()
+\begin{CompactList}\small\item\em Encapsulate cin. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{mu@{mu}!bytecode\_\-type@{bytecode\_\-type}}
+\index{bytecode\_\-type@{bytecode\_\-type}!mu@{mu}}
+\subsubsection[bytecode\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef MUP\_\-BYTECODE\_\-TYPE {\bf mu::bytecode\_\-type}}\label{namespacemu_8b5a332a715516294c383d95c0d77cfe}
+
+
+The bytecode type used by the parser. 
+
+The bytecode type depends on the value\_\-type. \index{mu@{mu}!char\_\-type@{char\_\-type}}
+\index{char\_\-type@{char\_\-type}!mu@{mu}}
+\subsubsection[char\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef string\_\-type::value\_\-type {\bf mu::char\_\-type}}\label{namespacemu_81cc89a81a8872430ab1799b5848c5ca}
+
+
+The character type used by the parser. 
+
+Depends on wether UNICODE is used or not. \index{mu@{mu}!facfun\_\-type@{facfun\_\-type}}
+\index{facfun\_\-type@{facfun\_\-type}!mu@{mu}}
+\subsubsection[facfun\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}$\ast$($\ast$ {\bf mu::facfun\_\-type})(const {\bf char\_\-type} $\ast$, void $\ast$)}\label{namespacemu_d5acc79d7415e46544c39e7733b6d526}
+
+
+Callback used for variable creation factory functions. 
+
+\index{mu@{mu}!fun\_\-type0@{fun\_\-type0}}
+\index{fun\_\-type0@{fun\_\-type0}!mu@{mu}}
+\subsubsection[fun\_\-type0]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::fun\_\-type0})()}\label{namespacemu_15436d4899c24e08e886dba9bac01c06}
+
+
+Callback type used for functions without arguments. 
+
+\index{mu@{mu}!fun\_\-type1@{fun\_\-type1}}
+\index{fun\_\-type1@{fun\_\-type1}!mu@{mu}}
+\subsubsection[fun\_\-type1]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::fun\_\-type1})({\bf value\_\-type})}\label{namespacemu_e19662da47cef20528f7b08b48387f40}
+
+
+Callback type used for functions with a single arguments. 
+
+\index{mu@{mu}!fun\_\-type2@{fun\_\-type2}}
+\index{fun\_\-type2@{fun\_\-type2}!mu@{mu}}
+\subsubsection[fun\_\-type2]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::fun\_\-type2})({\bf value\_\-type}, {\bf value\_\-type})}\label{namespacemu_9bc4002cafbecaedb37477bf7fa6b9da}
+
+
+Callback type used for functions with two arguments. 
+
+\index{mu@{mu}!fun\_\-type3@{fun\_\-type3}}
+\index{fun\_\-type3@{fun\_\-type3}!mu@{mu}}
+\subsubsection[fun\_\-type3]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::fun\_\-type3})({\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type})}\label{namespacemu_16b0716bbd8d28443b47c47ec0b70b00}
+
+
+Callback type used for functions with three arguments. 
+
+\index{mu@{mu}!fun\_\-type4@{fun\_\-type4}}
+\index{fun\_\-type4@{fun\_\-type4}!mu@{mu}}
+\subsubsection[fun\_\-type4]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::fun\_\-type4})({\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type})}\label{namespacemu_e588f2be6b76325baeebfc872e85da37}
+
+
+Callback type used for functions with four arguments. 
+
+\index{mu@{mu}!fun\_\-type5@{fun\_\-type5}}
+\index{fun\_\-type5@{fun\_\-type5}!mu@{mu}}
+\subsubsection[fun\_\-type5]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::fun\_\-type5})({\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type}, {\bf value\_\-type})}\label{namespacemu_5ccfafb810bcb5b52041cdd66b0f52c4}
+
+
+Callback type used for functions with five arguments. 
+
+\index{mu@{mu}!funmap\_\-type@{funmap\_\-type}}
+\index{funmap\_\-type@{funmap\_\-type}!mu@{mu}}
+\subsubsection[funmap\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef std::map$<${\bf string\_\-type}, {\bf ParserCallback}$>$ {\bf mu::funmap\_\-type}}\label{namespacemu_a38fb627ca71e44a49de0f2fe4d9031d}
+
+
+Container for Callback objects. 
+
+\index{mu@{mu}!identfun\_\-type@{identfun\_\-type}}
+\index{identfun\_\-type@{identfun\_\-type}!mu@{mu}}
+\subsubsection[identfun\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef int($\ast$ {\bf mu::identfun\_\-type})(const {\bf char\_\-type} $\ast$sExpr, int $\ast$nPos, {\bf value\_\-type} $\ast$fVal)}\label{namespacemu_953a068ba5c968820a794b795ed871a7}
+
+
+Callback used for functions that identify values in a string. 
+
+\index{mu@{mu}!MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED@{MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED}}
+\index{MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED@{MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED}!mu@{mu}}
+\subsubsection[MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED]{\setlength{\rightskip}{0pt plus 5cm}typedef char {\bf mu::MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED}[sizeof(STATIC\_\-ASSERTION\_\-FAILURE$<$ {\bf bytecode\_\-type}(-1)$<$ 0 $>$)]}\label{namespacemu_b437e9bfde122560c1c9b281dd1df376}
+
+
+This is a static typecheck. 
+
+If you get a compiler error here you tried to use an unsigned bytecode map type! \index{mu@{mu}!multfun\_\-type@{multfun\_\-type}}
+\index{multfun\_\-type@{multfun\_\-type}!mu@{mu}}
+\subsubsection[multfun\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::multfun\_\-type})(const {\bf value\_\-type} $\ast$, int)}\label{namespacemu_df8309730a68a79f71f009c46fdc2f6c}
+
+
+Callback type used for functions with a variable argument list. 
+
+\index{mu@{mu}!strfun\_\-type1@{strfun\_\-type1}}
+\index{strfun\_\-type1@{strfun\_\-type1}!mu@{mu}}
+\subsubsection[strfun\_\-type1]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::strfun\_\-type1})(const {\bf char\_\-type} $\ast$)}\label{namespacemu_a3a04872b9c1d20e88758cda99c33ad7}
+
+
+Callback type used for functions taking a string as an argument. 
+
+\index{mu@{mu}!strfun\_\-type2@{strfun\_\-type2}}
+\index{strfun\_\-type2@{strfun\_\-type2}!mu@{mu}}
+\subsubsection[strfun\_\-type2]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::strfun\_\-type2})(const {\bf char\_\-type} $\ast$, {\bf value\_\-type})}\label{namespacemu_4996c5630778967223c008e49df06e8a}
+
+
+Callback type used for functions taking a string and a value as arguments. 
+
+\index{mu@{mu}!strfun\_\-type3@{strfun\_\-type3}}
+\index{strfun\_\-type3@{strfun\_\-type3}!mu@{mu}}
+\subsubsection[strfun\_\-type3]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf value\_\-type}($\ast$ {\bf mu::strfun\_\-type3})(const {\bf char\_\-type} $\ast$, {\bf value\_\-type}, {\bf value\_\-type})}\label{namespacemu_59087156252106160b4998b0c5ecb171}
+
+
+Callback type used for functions taking a string and two values as arguments. 
+
+\index{mu@{mu}!string\_\-type@{string\_\-type}}
+\index{string\_\-type@{string\_\-type}!mu@{mu}}
+\subsubsection[string\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef MUP\_\-STRING\_\-TYPE {\bf mu::string\_\-type}}\label{namespacemu_e9f8b44d9a97dd397180891e8390c3e9}
+
+
+The stringtype used by the parser. 
+
+Depends on wether UNICODE is used or not. \index{mu@{mu}!stringstream\_\-type@{stringstream\_\-type}}
+\index{stringstream\_\-type@{stringstream\_\-type}!mu@{mu}}
+\subsubsection[stringstream\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef std::basic\_\-stringstream$<${\bf char\_\-type}, std::char\_\-traits$<${\bf char\_\-type}$>$, std::allocator$<${\bf char\_\-type}$>$ $>$ {\bf mu::stringstream\_\-type}}\label{namespacemu_b3b60f8311eb24cf437182a8d5125774}
+
+
+Typedef for easily using stringstream that respect the parser stringtype. 
+
+\index{mu@{mu}!strmap\_\-type@{strmap\_\-type}}
+\index{strmap\_\-type@{strmap\_\-type}!mu@{mu}}
+\subsubsection[strmap\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef std::map$<${\bf string\_\-type}, std::size\_\-t$>$ {\bf mu::strmap\_\-type}}\label{namespacemu_ea1c20093e51d3dc13de10f3c17ae5b1}
+
+
+Type for assigning a string name to an index in the internal string table. 
+
+\index{mu@{mu}!valmap\_\-type@{valmap\_\-type}}
+\index{valmap\_\-type@{valmap\_\-type}!mu@{mu}}
+\subsubsection[valmap\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef std::map$<${\bf string\_\-type}, {\bf value\_\-type}$>$ {\bf mu::valmap\_\-type}}\label{namespacemu_5940d281286a01342cf773f74481843c}
+
+
+Type used for storing constants. 
+
+\index{mu@{mu}!value\_\-type@{value\_\-type}}
+\index{value\_\-type@{value\_\-type}!mu@{mu}}
+\subsubsection[value\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef MUP\_\-BASETYPE {\bf mu::value\_\-type}}\label{namespacemu_17d4f113a4b88b8d971cca8ddbbe8a47}
+
+
+The numeric datatype used by the parser. 
+
+Normally this is a floating point type either single or double precision. \index{mu@{mu}!varmap\_\-type@{varmap\_\-type}}
+\index{varmap\_\-type@{varmap\_\-type}!mu@{mu}}
+\subsubsection[varmap\_\-type]{\setlength{\rightskip}{0pt plus 5cm}typedef std::map$<${\bf string\_\-type}, {\bf value\_\-type}$\ast$$>$ {\bf mu::varmap\_\-type}}\label{namespacemu_b57755354e948a664ad94d38546dbb10}
+
+
+Type used for storing variables. 
+
+
+
+\subsection{Enumeration Type Documentation}
+\index{mu@{mu}!ECmdCode@{ECmdCode}}
+\index{ECmdCode@{ECmdCode}!mu@{mu}}
+\subsubsection[ECmdCode]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf mu::ECmdCode}}\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e}
+
+
+Bytecode values. 
+
+\begin{Desc}
+\item[Attention:]The order of the operator entries must match the order in \doxyref{ParserBase::c\_\-DefaultOprt}{p.}{classmu_1_1ParserBase_5a191f373ac5bb1118564822eb12854e}! \end{Desc}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{cmLE@{cmLE}!mu@{mu}}\index{mu@{mu}!cmLE@{cmLE}}\item[{\em 
+cmLE\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e62da784138e45f161918ddc845ea4420}
+}]Operator item: less or equal. \index{cmGE@{cmGE}!mu@{mu}}\index{mu@{mu}!cmGE@{cmGE}}\item[{\em 
+cmGE\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e188c6fd8324762d1513f28ef359408d7}
+}]Operator item: greater or equal. \index{cmNEQ@{cmNEQ}!mu@{mu}}\index{mu@{mu}!cmNEQ@{cmNEQ}}\item[{\em 
+cmNEQ\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ec34e5f492d8b0f4f2f46d7c261a02e4c}
+}]Operator item: not equal. \index{cmEQ@{cmEQ}!mu@{mu}}\index{mu@{mu}!cmEQ@{cmEQ}}\item[{\em 
+cmEQ\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ecedcb20eed5d83ea723cb47bb2c1cc0d}
+}]Operator item: equals. \index{cmLT@{cmLT}!mu@{mu}}\index{mu@{mu}!cmLT@{cmLT}}\item[{\em 
+cmLT\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e1f455ded43de3f52ce0a39f9dde843e5}
+}]Operator item: less than. \index{cmGT@{cmGT}!mu@{mu}}\index{mu@{mu}!cmGT@{cmGT}}\item[{\em 
+cmGT\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ec9cbc41a04d7b4dece063211d31ec5b3}
+}]Operator item: greater than. \index{cmADD@{cmADD}!mu@{mu}}\index{mu@{mu}!cmADD@{cmADD}}\item[{\em 
+cmADD\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e127712855b500aff2b37a35c6767451a}
+}]Operator item: add. \index{cmSUB@{cmSUB}!mu@{mu}}\index{mu@{mu}!cmSUB@{cmSUB}}\item[{\em 
+cmSUB\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40edad0cd5d67567c1ad976e7d332537a9d}
+}]Operator item: subtract. \index{cmMUL@{cmMUL}!mu@{mu}}\index{mu@{mu}!cmMUL@{cmMUL}}\item[{\em 
+cmMUL\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e703cb484ede1e3e4926c0a1fb3845679}
+}]Operator item: multiply. \index{cmDIV@{cmDIV}!mu@{mu}}\index{mu@{mu}!cmDIV@{cmDIV}}\item[{\em 
+cmDIV\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e8923e5bebd1eb60c1436fa64a32492a0}
+}]Operator item: division. \index{cmPOW@{cmPOW}!mu@{mu}}\index{mu@{mu}!cmPOW@{cmPOW}}\item[{\em 
+cmPOW\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e3fad2e00b3026f83d90b135fd55ba7e3}
+}]Operator item: y to the power of ... \index{cmAND@{cmAND}!mu@{mu}}\index{mu@{mu}!cmAND@{cmAND}}\item[{\em 
+cmAND\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40eaa16df65c771fddd6cf009a83f683099}
+}]Operator item: logical and. \index{cmOR@{cmOR}!mu@{mu}}\index{mu@{mu}!cmOR@{cmOR}}\item[{\em 
+cmOR\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ec10471fab6e7ccc36f47a604f1d4dad0}
+}]Operator item: logical or. \index{cmXOR@{cmXOR}!mu@{mu}}\index{mu@{mu}!cmXOR@{cmXOR}}\item[{\em 
+cmXOR\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e7b1e78ff8c262a96bcb11aead62a92ac}
+}]Operator item: logical xor. \index{cmASSIGN@{cmASSIGN}!mu@{mu}}\index{mu@{mu}!cmASSIGN@{cmASSIGN}}\item[{\em 
+cmASSIGN\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e471a75e04daaa2a387be5235484a3e01}
+}]Operator item: Assignment operator. \index{cmBO@{cmBO}!mu@{mu}}\index{mu@{mu}!cmBO@{cmBO}}\item[{\em 
+cmBO\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e677298c34553334aa70bfb87a58b7f0a}
+}]Operator item: opening bracket. \index{cmBC@{cmBC}!mu@{mu}}\index{mu@{mu}!cmBC@{cmBC}}\item[{\em 
+cmBC\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40eacee8e4f918f65e180f8734f7e310aa1}
+}]Operator item: closing bracket. \index{cmARG\_\-SEP@{cmARG\_\-SEP}!mu@{mu}}\index{mu@{mu}!cmARG\_\-SEP@{cmARG\_\-SEP}}\item[{\em 
+cmARG\_\-SEP\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e554881ce7928a56e6e97f8f1149b9d50}
+}]function argument separator \index{cmVAR@{cmVAR}!mu@{mu}}\index{mu@{mu}!cmVAR@{cmVAR}}\item[{\em 
+cmVAR\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40efa2a28b5022d2454768c74e15d5ae377}
+}]variable item \index{cmVAL@{cmVAL}!mu@{mu}}\index{mu@{mu}!cmVAL@{cmVAL}}\item[{\em 
+cmVAL\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40eb1cf4ef5d34d815bb016fef14c331622}
+}]value item \index{cmFUNC@{cmFUNC}!mu@{mu}}\index{mu@{mu}!cmFUNC@{cmFUNC}}\item[{\em 
+cmFUNC\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40eeacb1b1bb9859e8bc6147887a787feca}
+}]Code for a function item. \index{cmFUNC\_\-STR@{cmFUNC\_\-STR}!mu@{mu}}\index{mu@{mu}!cmFUNC\_\-STR@{cmFUNC\_\-STR}}\item[{\em 
+cmFUNC\_\-STR\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ee8ed179475f79bed80d66d389007717a}
+}]Code for a function with a string parameter. \index{cmSTRING@{cmSTRING}!mu@{mu}}\index{mu@{mu}!cmSTRING@{cmSTRING}}\item[{\em 
+cmSTRING\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e85db5789f85577dd5bcc21aea5b3244f}
+}]Code for a string token. \index{cmOPRT\_\-BIN@{cmOPRT\_\-BIN}!mu@{mu}}\index{mu@{mu}!cmOPRT\_\-BIN@{cmOPRT\_\-BIN}}\item[{\em 
+cmOPRT\_\-BIN\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40eacf35df01fc3b643b134e9d1ce3cc4e2}
+}]user defined binary operator \index{cmOPRT\_\-POSTFIX@{cmOPRT\_\-POSTFIX}!mu@{mu}}\index{mu@{mu}!cmOPRT\_\-POSTFIX@{cmOPRT\_\-POSTFIX}}\item[{\em 
+cmOPRT\_\-POSTFIX\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ef866a95309b7573574b6e656045e4a2f}
+}]code for postfix operators \index{cmOPRT\_\-INFIX@{cmOPRT\_\-INFIX}!mu@{mu}}\index{mu@{mu}!cmOPRT\_\-INFIX@{cmOPRT\_\-INFIX}}\item[{\em 
+cmOPRT\_\-INFIX\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e961fe96555e0f036e52496126f70c404}
+}]code for infix operators \index{cmEND@{cmEND}!mu@{mu}}\index{mu@{mu}!cmEND@{cmEND}}\item[{\em 
+cmEND\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40e76086ac235dadbe9ad8a184190b21c8b}
+}]end of formula \index{cmUNKNOWN@{cmUNKNOWN}!mu@{mu}}\index{mu@{mu}!cmUNKNOWN@{cmUNKNOWN}}\item[{\em 
+cmUNKNOWN\label{namespacemu_b77181e591bebd278bf9c7a2e30ad40ebd8cbb2e08ff6806578535408feef0c3}
+}]uninitialized item \end{description}
+\end{Desc}
+
+\index{mu@{mu}!EErrorCodes@{EErrorCodes}}
+\index{EErrorCodes@{EErrorCodes}!mu@{mu}}
+\subsubsection[EErrorCodes]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf mu::EErrorCodes}}\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a}
+
+
+Error codes. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ecUNEXPECTED\_\-OPERATOR@{ecUNEXPECTED\_\-OPERATOR}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-OPERATOR@{ecUNEXPECTED\_\-OPERATOR}}\item[{\em 
+ecUNEXPECTED\_\-OPERATOR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a7154513fd624589812610c190497bb0a}
+}]Unexpected binary operator found. \index{ecUNASSIGNABLE\_\-TOKEN@{ecUNASSIGNABLE\_\-TOKEN}!mu@{mu}}\index{mu@{mu}!ecUNASSIGNABLE\_\-TOKEN@{ecUNASSIGNABLE\_\-TOKEN}}\item[{\em 
+ecUNASSIGNABLE\_\-TOKEN\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a2c29f854b65e380ae4fcb4d4e00aaa22}
+}]Token cant be identified. \index{ecUNEXPECTED\_\-EOF@{ecUNEXPECTED\_\-EOF}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-EOF@{ecUNEXPECTED\_\-EOF}}\item[{\em 
+ecUNEXPECTED\_\-EOF\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a3995c6500fc04f8b203817a5d3443219}
+}]Unexpected end of formula. (Example: \char`\"{}2+sin(\char`\"{}). \index{ecUNEXPECTED\_\-ARG\_\-SEP@{ecUNEXPECTED\_\-ARG\_\-SEP}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-ARG\_\-SEP@{ecUNEXPECTED\_\-ARG\_\-SEP}}\item[{\em 
+ecUNEXPECTED\_\-ARG\_\-SEP\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688aa010c6130e7cf45723740cff95757737}
+}]An unexpected comma has been found. (Example: \char`\"{}1,23\char`\"{}). \index{ecUNEXPECTED\_\-ARG@{ecUNEXPECTED\_\-ARG}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-ARG@{ecUNEXPECTED\_\-ARG}}\item[{\em 
+ecUNEXPECTED\_\-ARG\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a64b2880f566f8b44050142c94a0207fb}
+}]An unexpected argument has been found. \index{ecUNEXPECTED\_\-VAL@{ecUNEXPECTED\_\-VAL}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-VAL@{ecUNEXPECTED\_\-VAL}}\item[{\em 
+ecUNEXPECTED\_\-VAL\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688af832f767e3f1c50a024da57221a2416f}
+}]An unexpected value token has been found. \index{ecUNEXPECTED\_\-VAR@{ecUNEXPECTED\_\-VAR}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-VAR@{ecUNEXPECTED\_\-VAR}}\item[{\em 
+ecUNEXPECTED\_\-VAR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a3de33dffb8946c3c4373aa3de3627759}
+}]An unexpected variable token has been found. \index{ecUNEXPECTED\_\-PARENS@{ecUNEXPECTED\_\-PARENS}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-PARENS@{ecUNEXPECTED\_\-PARENS}}\item[{\em 
+ecUNEXPECTED\_\-PARENS\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a8c823a3bef7facd0d99cbfb4d2cd06e1}
+}]Unexpected Parenthesis, opening or closing. \index{ecUNEXPECTED\_\-STR@{ecUNEXPECTED\_\-STR}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-STR@{ecUNEXPECTED\_\-STR}}\item[{\em 
+ecUNEXPECTED\_\-STR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a8a98a29c35c9b7744f4987476b0c3ca9}
+}]A string has been found at an inapropriate position. \index{ecSTRING\_\-EXPECTED@{ecSTRING\_\-EXPECTED}!mu@{mu}}\index{mu@{mu}!ecSTRING\_\-EXPECTED@{ecSTRING\_\-EXPECTED}}\item[{\em 
+ecSTRING\_\-EXPECTED\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a4446abbd60038e6a7f1d4aced202ad05}
+}]A string function has been called with a different type of argument. \index{ecVAL\_\-EXPECTED@{ecVAL\_\-EXPECTED}!mu@{mu}}\index{mu@{mu}!ecVAL\_\-EXPECTED@{ecVAL\_\-EXPECTED}}\item[{\em 
+ecVAL\_\-EXPECTED\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a4e872315cffbc12a39947b60f9367088}
+}]A numerical function has been called with a non value type of argument. \index{ecMISSING\_\-PARENS@{ecMISSING\_\-PARENS}!mu@{mu}}\index{mu@{mu}!ecMISSING\_\-PARENS@{ecMISSING\_\-PARENS}}\item[{\em 
+ecMISSING\_\-PARENS\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a34679c30e955b4c9c04ed36db8a288d0}
+}]Missing parens. (Example: \char`\"{}3$\ast$sin(3\char`\"{}). \index{ecUNEXPECTED\_\-FUN@{ecUNEXPECTED\_\-FUN}!mu@{mu}}\index{mu@{mu}!ecUNEXPECTED\_\-FUN@{ecUNEXPECTED\_\-FUN}}\item[{\em 
+ecUNEXPECTED\_\-FUN\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a5132a541c023ecefe71e17fce886860e}
+}]Unexpected function found. (Example: \char`\"{}sin(8)cos(9)\char`\"{}). \index{ecUNTERMINATED\_\-STRING@{ecUNTERMINATED\_\-STRING}!mu@{mu}}\index{mu@{mu}!ecUNTERMINATED\_\-STRING@{ecUNTERMINATED\_\-STRING}}\item[{\em 
+ecUNTERMINATED\_\-STRING\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688aaf787ce3edd65d5f086ad298e158a4bf}
+}]unterminated string constant. (Example: \char`\"{}3$\ast$valueof(\char`\"{}hello)\char`\"{}) \index{ecTOO\_\-MANY\_\-PARAMS@{ecTOO\_\-MANY\_\-PARAMS}!mu@{mu}}\index{mu@{mu}!ecTOO\_\-MANY\_\-PARAMS@{ecTOO\_\-MANY\_\-PARAMS}}\item[{\em 
+ecTOO\_\-MANY\_\-PARAMS\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a4560405f6d8f871084a57e8e4633d496}
+}]Too many function parameters. \index{ecTOO\_\-FEW\_\-PARAMS@{ecTOO\_\-FEW\_\-PARAMS}!mu@{mu}}\index{mu@{mu}!ecTOO\_\-FEW\_\-PARAMS@{ecTOO\_\-FEW\_\-PARAMS}}\item[{\em 
+ecTOO\_\-FEW\_\-PARAMS\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688ac7b48aee91620edca3bb0ccbaaf31772}
+}]Too few function parameters. (Example: \char`\"{}ite(1$<$2,2)\char`\"{}). \index{ecOPRT\_\-TYPE\_\-CONFLICT@{ecOPRT\_\-TYPE\_\-CONFLICT}!mu@{mu}}\index{mu@{mu}!ecOPRT\_\-TYPE\_\-CONFLICT@{ecOPRT\_\-TYPE\_\-CONFLICT}}\item[{\em 
+ecOPRT\_\-TYPE\_\-CONFLICT\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a73e9671ee2b553affeb628a40ae745d1}
+}]binary operators may only be applied to value items of the same type \index{ecSTR\_\-RESULT@{ecSTR\_\-RESULT}!mu@{mu}}\index{mu@{mu}!ecSTR\_\-RESULT@{ecSTR\_\-RESULT}}\item[{\em 
+ecSTR\_\-RESULT\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a62f472030efcf7fda692e12a2da90338}
+}]result is a string \index{ecINVALID\_\-NAME@{ecINVALID\_\-NAME}!mu@{mu}}\index{mu@{mu}!ecINVALID\_\-NAME@{ecINVALID\_\-NAME}}\item[{\em 
+ecINVALID\_\-NAME\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a125e953e3a9ab50e564cde8e981f56e9}
+}]Invalid function, variable or constant name. \index{ecBUILTIN\_\-OVERLOAD@{ecBUILTIN\_\-OVERLOAD}!mu@{mu}}\index{mu@{mu}!ecBUILTIN\_\-OVERLOAD@{ecBUILTIN\_\-OVERLOAD}}\item[{\em 
+ecBUILTIN\_\-OVERLOAD\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a34807cf30e3bb8ca4b348bd7742fa0a7}
+}]Trying to overload builtin operator. \index{ecINVALID\_\-FUN\_\-PTR@{ecINVALID\_\-FUN\_\-PTR}!mu@{mu}}\index{mu@{mu}!ecINVALID\_\-FUN\_\-PTR@{ecINVALID\_\-FUN\_\-PTR}}\item[{\em 
+ecINVALID\_\-FUN\_\-PTR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688ab3f728ed3fbe1e49ff37fc78bff68355}
+}]Invalid callback function pointer. \index{ecINVALID\_\-VAR\_\-PTR@{ecINVALID\_\-VAR\_\-PTR}!mu@{mu}}\index{mu@{mu}!ecINVALID\_\-VAR\_\-PTR@{ecINVALID\_\-VAR\_\-PTR}}\item[{\em 
+ecINVALID\_\-VAR\_\-PTR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a9d815bf7cb3eafa3887e0ed7c2eaf85f}
+}]Invalid variable pointer. \index{ecEMPTY\_\-EXPRESSION@{ecEMPTY\_\-EXPRESSION}!mu@{mu}}\index{mu@{mu}!ecEMPTY\_\-EXPRESSION@{ecEMPTY\_\-EXPRESSION}}\item[{\em 
+ecEMPTY\_\-EXPRESSION\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688ad4ce9d26ad46c057b12100b16d6d26ae}
+}]The Expression is empty. \index{ecNAME\_\-CONFLICT@{ecNAME\_\-CONFLICT}!mu@{mu}}\index{mu@{mu}!ecNAME\_\-CONFLICT@{ecNAME\_\-CONFLICT}}\item[{\em 
+ecNAME\_\-CONFLICT\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a40ffbd6629bb0ab70bbcbc5b15384274}
+}]Name conflict. \index{ecOPT\_\-PRI@{ecOPT\_\-PRI}!mu@{mu}}\index{mu@{mu}!ecOPT\_\-PRI@{ecOPT\_\-PRI}}\item[{\em 
+ecOPT\_\-PRI\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688aad1847fc9b493d4cda79ea26ad09eb5a}
+}]Invalid operator priority. \index{ecDOMAIN\_\-ERROR@{ecDOMAIN\_\-ERROR}!mu@{mu}}\index{mu@{mu}!ecDOMAIN\_\-ERROR@{ecDOMAIN\_\-ERROR}}\item[{\em 
+ecDOMAIN\_\-ERROR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a971535886e930176428166ab78778619}
+}]catch division by zero, sqrt(-1), log(0) (currently unused) \index{ecDIV\_\-BY\_\-ZERO@{ecDIV\_\-BY\_\-ZERO}!mu@{mu}}\index{mu@{mu}!ecDIV\_\-BY\_\-ZERO@{ecDIV\_\-BY\_\-ZERO}}\item[{\em 
+ecDIV\_\-BY\_\-ZERO\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688aff779580d171527466424d4ecf75a1a8}
+}]Division by zero (currently unused). \index{ecGENERIC@{ecGENERIC}!mu@{mu}}\index{mu@{mu}!ecGENERIC@{ecGENERIC}}\item[{\em 
+ecGENERIC\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688aece22de75a7be641a196123e7e9c322f}
+}]Generic error. \index{ecLOCALE@{ecLOCALE}!mu@{mu}}\index{mu@{mu}!ecLOCALE@{ecLOCALE}}\item[{\em 
+ecLOCALE\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a7f2b93cc8c3de8e45b1d7489f2693804}
+}]Conflict with current locale. \index{ecINTERNAL\_\-ERROR@{ecINTERNAL\_\-ERROR}!mu@{mu}}\index{mu@{mu}!ecINTERNAL\_\-ERROR@{ecINTERNAL\_\-ERROR}}\item[{\em 
+ecINTERNAL\_\-ERROR\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a91b338cf5e35059bb452f783aeb88a5f}
+}]Internal error of any kind. \index{ecCOUNT@{ecCOUNT}!mu@{mu}}\index{mu@{mu}!ecCOUNT@{ecCOUNT}}\item[{\em 
+ecCOUNT\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688ad0077acc7594040e4dd7fe5de229b455}
+}]This is no error code, It just stores just the total number of error codes. \index{ecUNDEFINED@{ecUNDEFINED}!mu@{mu}}\index{mu@{mu}!ecUNDEFINED@{ecUNDEFINED}}\item[{\em 
+ecUNDEFINED\label{namespacemu_cf304a3ef5c4625d0eac5953aa1b688a49ba8c4fa03b5e822bc4573f84d44062}
+}]Undefined message, placeholder to detect unassigned error messages. \end{description}
+\end{Desc}
+
+\index{mu@{mu}!EPrec@{EPrec}}
+\index{EPrec@{EPrec}!mu@{mu}}
+\subsubsection[EPrec]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf mu::EPrec}}\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea}
+
+
+\doxyref{Parser}{p.}{classmu_1_1Parser} operator precedence values. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{prLOGIC@{prLOGIC}!mu@{mu}}\index{mu@{mu}!prLOGIC@{prLOGIC}}\item[{\em 
+prLOGIC\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea5a921789427276e8c641653459da2302}
+}]logic operators \index{prCMP@{prCMP}!mu@{mu}}\index{mu@{mu}!prCMP@{prCMP}}\item[{\em 
+prCMP\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea570966afb3a2a2e7c12bf0f0aff47d56}
+}]comparsion operators \index{prADD\_\-SUB@{prADD\_\-SUB}!mu@{mu}}\index{mu@{mu}!prADD\_\-SUB@{prADD\_\-SUB}}\item[{\em 
+prADD\_\-SUB\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aeac287fcda15dc853e73e3000f7da24c2a}
+}]addition \index{prMUL\_\-DIV@{prMUL\_\-DIV}!mu@{mu}}\index{mu@{mu}!prMUL\_\-DIV@{prMUL\_\-DIV}}\item[{\em 
+prMUL\_\-DIV\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aeaf90e37568d297c82df0f908e6b0852e0}
+}]multiplication/division \index{prPOW@{prPOW}!mu@{mu}}\index{mu@{mu}!prPOW@{prPOW}}\item[{\em 
+prPOW\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea706c8deebfec7a93ee879ab575b478c0}
+}]power operator priority (highest) \index{prINFIX@{prINFIX}!mu@{mu}}\index{mu@{mu}!prINFIX@{prINFIX}}\item[{\em 
+prINFIX\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea50b576d79c0d155f703d409967ad3727}
+}]Signs have a higher priority than ADD\_\-SUB, but lower than power operator. \index{prPOSTFIX@{prPOSTFIX}!mu@{mu}}\index{mu@{mu}!prPOSTFIX@{prPOSTFIX}}\item[{\em 
+prPOSTFIX\label{namespacemu_bcc2208f2cb6f0f3ffe36adec0a07aea1df5768036a033427841dfabe126e016}
+}]Postfix operator priority (currently unused). \end{description}
+\end{Desc}
+
+\index{mu@{mu}!ETypeCode@{ETypeCode}}
+\index{ETypeCode@{ETypeCode}!mu@{mu}}
+\subsubsection[ETypeCode]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf mu::ETypeCode}}\label{namespacemu_c3ccf6a749baacffd48fe97b9c2af302}
+
+
+Types internally used by the parser. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{tpSTR@{tpSTR}!mu@{mu}}\index{mu@{mu}!tpSTR@{tpSTR}}\item[{\em 
+tpSTR\label{namespacemu_c3ccf6a749baacffd48fe97b9c2af302c02584cb1ca179714a5ac8a951653ad4}
+}]String type (Function arguments and constants only, no string variables). \index{tpDBL@{tpDBL}!mu@{mu}}\index{mu@{mu}!tpDBL@{tpDBL}}\item[{\em 
+tpDBL\label{namespacemu_c3ccf6a749baacffd48fe97b9c2af30238692f5e59ea960113e0de77ed9a9428}
+}]Floating point variables. \index{tpVOID@{tpVOID}!mu@{mu}}\index{mu@{mu}!tpVOID@{tpVOID}}\item[{\em 
+tpVOID\label{namespacemu_c3ccf6a749baacffd48fe97b9c2af3022a6b3ae75a0e6a44a992a87d222b4481}
+}]Undefined type. \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\index{mu@{mu}!console@{console}}
+\index{console@{console}!mu@{mu}}
+\subsubsection[console]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& mu::console ()\hspace{0.3cm}{\tt  [inline]}}\label{namespacemu_0346964f0b93f6c904a9964387522d97}
+
+
+Encapsulate cout. 
+
+Used for supporting UNICODE more easily. \index{mu@{mu}!console\_\-in@{console\_\-in}}
+\index{console\_\-in@{console\_\-in}!mu@{mu}}
+\subsubsection[console\_\-in]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& mu::console\_\-in ()\hspace{0.3cm}{\tt  [inline]}}\label{namespacemu_4bcc4027b54951ec8c490fb8d0f68a1d}
+
+
+Encapsulate cin. 
+
+Used for supporting UNICODE more easily. 
