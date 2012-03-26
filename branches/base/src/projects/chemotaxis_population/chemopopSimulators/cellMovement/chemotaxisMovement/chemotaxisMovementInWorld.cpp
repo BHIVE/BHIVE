@@ -161,6 +161,8 @@ void ChemotaxisMovementSimulatorInWorld::initialise() {
 
 	if(this->generate_Xdir_output) {
 		if(db->existsDataItem("xdir_history") && db->existsDataItem("xdirTumble_history")) {
+
+			tumbleTriggeredAverageOFFSET = (DoubleData *) agent->getDatabase()->getDataItem("tumbleTriggeredAverageOFFSET");
 			this->hcXDirectionCollectors    = (TVectorData <HistoryCollector *> *) db->getDataItem("xdir_history");
 			this->haXDirectionAggregators   = (TVectorData <HistoryAggregator *> *) db->getDataItem("xdirTumble_history");
 		} else {
@@ -211,7 +213,7 @@ void ChemotaxisMovementSimulatorInWorld::step(double t) {
 				this->last_swimming_states->at(i) = CellParameterData::TUMBLE;
 				// this is for recording the distribution of run-times to file if we end a run
 				if (this->generate_run_tumble_output) {	recordRunTumble(i,0); }
-				if(generate_Xdir_output) { this->haXDirectionAggregators->at(i)->scheduleAggregation(internalTime+30); }
+				if(generate_Xdir_output) { this->haXDirectionAggregators->at(i)->scheduleAggregation(internalTime+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0)); }
 			}
 
 		}

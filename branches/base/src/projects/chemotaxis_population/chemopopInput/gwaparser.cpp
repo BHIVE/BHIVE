@@ -5,10 +5,25 @@ using namespace Hive;
 
 GWAParser::GWAParser(){
 	equilibration_time = 0;
+	// parameters for tumble triggered averages
+	this->generate_traj_before_tumble_output = false;
+	this->generateTrajBeforeTumbleTimeOFFSET = 30;
+	this->generateTrajBeforeTumbleTimeSTART = 0;
+	this->generateTrajBeforeTumbleTimeEND = 1e30;
 }
 
 GWAParser::~GWAParser(){}
 
+void GWAParser::setTumbleTriggeredAverageParameters( bool generate_traj_before_tumble_output,
+			double generateTrajBeforeTumbleTimeOFFSET,
+			double generateTrajBeforeTumbleTimeSTART,
+			double generateTrajBeforeTumbleTimeEND) {
+
+	this->generate_traj_before_tumble_output = generate_traj_before_tumble_output;
+	this->generateTrajBeforeTumbleTimeOFFSET = generateTrajBeforeTumbleTimeOFFSET;
+	this->generateTrajBeforeTumbleTimeSTART = generateTrajBeforeTumbleTimeSTART;
+	this->generateTrajBeforeTumbleTimeEND = generateTrajBeforeTumbleTimeEND;
+}
 
 void GWAParser::doIt() {
 	// get the database from the system
@@ -155,12 +170,13 @@ void GWAParser::setCellType(string value) {
 
 
 	// add check here- only add if we want it
-
+	if(this->generate_traj_before_tumble_output) {
 		// add array to remember last cell directions
 		TVectorData <HistoryCollector *> *hcDir= new TVectorData<HistoryCollector *>("xdir_history","tvectordata_HistoryCollector");
 		db->addData(hcDir);
 		TVectorData <HistoryAggregator *> *haDir= new TVectorData<HistoryAggregator *>("xdirTumble_history","tvectordata_HistoryAggregator");
 		db->addData(haDir);
+	}
 
 
 	} else if (value == "blindagent" || value == "Blindagent" || value == "BlindAgent" || value == "BLINDAGENT") {
@@ -611,6 +627,10 @@ void GWAParser::parseCellPositions() {
 	istringstream iss;
 	string type;
 	ChemoPop::CellPositionInitialiser cpi;
+	cpi.setTumbleTriggeredAverageParameters(this->generate_traj_before_tumble_output,
+			this->generateTrajBeforeTumbleTimeOFFSET,
+			this->generateTrajBeforeTumbleTimeSTART,
+			this->generateTrajBeforeTumbleTimeEND);
 
 	//  begin by adding data item for movement of cells to the world that are needed irrespective of celltype
 	if (!db->doesDataItemExist("cellpositions")) {

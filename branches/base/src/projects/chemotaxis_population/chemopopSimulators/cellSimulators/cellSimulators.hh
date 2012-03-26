@@ -133,7 +133,7 @@ namespace ChemoPop
 			double lastActivity;
 			double lastMeth;
 
-
+			bool collectHistory;
 			HistoryCollector *hcLig;
 			HistoryCollector *hcdlogLig;
 			HistoryCollector *hcCheYP;
@@ -240,7 +240,7 @@ namespace ChemoPop
 			double lastActivity;
 			double lastMeth;
 
-
+			bool collectHistory;
 			HistoryCollector *hcLig;
 			HistoryCollector *hcdlogLig;
 			HistoryCollector *hcCheYP;
@@ -348,6 +348,9 @@ namespace ChemoPop
 
 			DoubleData * cellTime;
 
+			bool collectHistory;
+
+			DoubleData *tumbleTriggeredAverageOFFSET;
 			HistoryCollector *hcMotor;
 			HistoryCollector *hcRunHistory;
 

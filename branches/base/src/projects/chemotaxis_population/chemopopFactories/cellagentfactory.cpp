@@ -7,6 +7,10 @@ using namespace ChemoPop;
 
 CellAgentFactory::CellAgentFactory()  {
 	this->generate_cell_data_output = false;
+	this->generate_traj_before_tumble_output = false;
+	this->generateTrajBeforeTumbleTimeOFFSET = 30;
+	this->generateTrajBeforeTumbleTimeSTART = 0;
+	this->generateTrajBeforeTumbleTimeEND = 1e30;
 }
 
 CellAgentFactory::~CellAgentFactory() { }
@@ -86,45 +90,55 @@ Agent* CellAgentFactory::createAgent()
 
 
 
+	if(this->generate_traj_before_tumble_output) {
 
-	double startTimeForHistory = this->equilibration_time+30; double endTimeForHistory = 9999999;
-	double historyLengthInSeconds = 60;
-	int historyLength = (int)(historyLengthInSeconds/dt->getDouble());
+		//double startTimeForHistory = this->equilibration_time+30; double endTimeForHistory = 9999999;
+		//double historyLengthInSeconds = 60;
+		//int historyLength = (int)(historyLengthInSeconds/dt->getDouble());
+		double startTimeForHistory = this->generateTrajBeforeTumbleTimeSTART; double endTimeForHistory = this->generateTrajBeforeTumbleTimeEND;
+		double historyLengthInSeconds = this->generateTrajBeforeTumbleTimeOFFSET;
+		int historyLength = (int)(historyLengthInSeconds/0.01);
 
-	HistoryCollector *hcLig = new HistoryCollector("ligHistory", historyLength);
-	db->addData(hcLig);
-	HistoryAggregator *haLig_TUMBLE = new HistoryAggregator("ligAggregator", hcLig, startTimeForHistory, endTimeForHistory);
-	db->addData(haLig_TUMBLE);
+		//cerr<<startTimeForHistory<< " " <<endTimeForHistory << " "<<generateTrajBeforeTumbleTimeOFFSET<<endl; exit(1);
 
-	HistoryCollector *hcdlogLig = new HistoryCollector("dlogligHistory", historyLength);
-	db->addData(hcdlogLig);
-	HistoryAggregator *hadlogLig_TUMBLE = new HistoryAggregator("dlogligAggregator", hcdlogLig, startTimeForHistory, endTimeForHistory);
-	db->addData(hadlogLig_TUMBLE);
+		DoubleData * tumbleTriggeredAverageOFFSET = new DoubleData("tumbleTriggeredAverageOFFSET",generateTrajBeforeTumbleTimeOFFSET);
+		db->addData(tumbleTriggeredAverageOFFSET);
 
-	HistoryCollector *hcCheYP = new HistoryCollector("cheYpHistory", historyLength);
-	db->addData(hcCheYP);
-	HistoryAggregator *haCheYP_TUMBLE = new HistoryAggregator("cheYpTumbleAggregator", hcCheYP, startTimeForHistory, endTimeForHistory);
-	db->addData(haCheYP_TUMBLE);
+		HistoryCollector *hcLig = new HistoryCollector("ligHistory", historyLength);
+		db->addData(hcLig);
+		HistoryAggregator *haLig_TUMBLE = new HistoryAggregator("ligAggregator", hcLig, startTimeForHistory, endTimeForHistory);
+		db->addData(haLig_TUMBLE);
 
-	HistoryCollector *hcAct = new HistoryCollector("actHistory", historyLength);
-	db->addData(hcAct);
-	HistoryAggregator *haAct_TUMBLE = new HistoryAggregator("actTumbleAggregator", hcAct, startTimeForHistory, endTimeForHistory);
-	db->addData(haAct_TUMBLE);
+		HistoryCollector *hcdlogLig = new HistoryCollector("dlogligHistory", historyLength);
+		db->addData(hcdlogLig);
+		HistoryAggregator *hadlogLig_TUMBLE = new HistoryAggregator("dlogligAggregator", hcdlogLig, startTimeForHistory, endTimeForHistory);
+		db->addData(hadlogLig_TUMBLE);
 
-	HistoryCollector *hcMeth = new HistoryCollector("methHistory", historyLength);
-	db->addData(hcMeth);
-	HistoryAggregator *haMeth_TUMBLE = new HistoryAggregator("methTumbleAggregator", hcMeth, startTimeForHistory, endTimeForHistory);
-	db->addData(haMeth_TUMBLE);
+		HistoryCollector *hcCheYP = new HistoryCollector("cheYpHistory", historyLength);
+		db->addData(hcCheYP);
+		HistoryAggregator *haCheYP_TUMBLE = new HistoryAggregator("cheYpTumbleAggregator", hcCheYP, startTimeForHistory, endTimeForHistory);
+		db->addData(haCheYP_TUMBLE);
 
-	HistoryCollector *hcMotorCW = new HistoryCollector("motorCWHistory", historyLength);
-	db->addData(hcMotorCW);
-	HistoryAggregator *haMotor_TUMBLE = new HistoryAggregator("motorTumbleAggregator", hcMotorCW, startTimeForHistory, endTimeForHistory);
-	db->addData(haMotor_TUMBLE);
+		HistoryCollector *hcAct = new HistoryCollector("actHistory", historyLength);
+		db->addData(hcAct);
+		HistoryAggregator *haAct_TUMBLE = new HistoryAggregator("actTumbleAggregator", hcAct, startTimeForHistory, endTimeForHistory);
+		db->addData(haAct_TUMBLE);
 
-	HistoryCollector *hcRun = new HistoryCollector("runHistory", historyLength);
-	db->addData(hcRun);
-	HistoryAggregator *haRunHistory_TUMBLE = new HistoryAggregator("runHistoryTumbleAggregator", hcRun, startTimeForHistory, endTimeForHistory);
-	db->addData(haRunHistory_TUMBLE);
+		HistoryCollector *hcMeth = new HistoryCollector("methHistory", historyLength);
+		db->addData(hcMeth);
+		HistoryAggregator *haMeth_TUMBLE = new HistoryAggregator("methTumbleAggregator", hcMeth, startTimeForHistory, endTimeForHistory);
+		db->addData(haMeth_TUMBLE);
+
+		HistoryCollector *hcMotorCW = new HistoryCollector("motorCWHistory", historyLength);
+		db->addData(hcMotorCW);
+		HistoryAggregator *haMotor_TUMBLE = new HistoryAggregator("motorTumbleAggregator", hcMotorCW, startTimeForHistory, endTimeForHistory);
+		db->addData(haMotor_TUMBLE);
+
+		HistoryCollector *hcRun = new HistoryCollector("runHistory", historyLength);
+		db->addData(hcRun);
+		HistoryAggregator *haRunHistory_TUMBLE = new HistoryAggregator("runHistoryTumbleAggregator", hcRun, startTimeForHistory, endTimeForHistory);
+		db->addData(haRunHistory_TUMBLE);
+	}
 
 
 

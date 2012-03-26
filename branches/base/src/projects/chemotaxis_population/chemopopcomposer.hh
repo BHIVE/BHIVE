@@ -96,7 +96,12 @@ namespace ChemoPop {
 		bool generate_cell_data_output;
 		bool generate_cell_position_output;
 		bool generate_run_tumble_output;
+
+		// parameters for tumble triggered averages
 		bool generate_traj_before_tumble_output;
+		double generateTrajBeforeTumbleTimeOFFSET;
+		double generateTrajBeforeTumbleTimeSTART;
+		double generateTrajBeforeTumbleTimeEND;
 
 	};
 }

@@ -80,7 +80,17 @@ namespace ChemoPop {
 
 		void setGenerateCellPositionOutput(bool b) { this->generate_cell_position_output = b ;};
 		void setGenerateRunTumbleOutput(bool b) { this->generate_run_tumble_output = b; };
-		void setGenerateXDirBeforeTumbleOutput(bool b) { this->generate_Xdir_output = b; };
+
+		void setTumbleTriggeredAverageParameters(
+				    bool b,
+				    double offset,
+					double start,
+					double end) {
+			this->generate_traj_before_tumble_output = b;
+			this->generateTrajBeforeTumbleTimeOFFSET=offset;
+			this->generateTrajBeforeTumbleTimeSTART=start;
+			this->generateTrajBeforeTumbleTimeEND=end;
+		};
 
 	protected:
 		void addActionsToAgentsActionSet(Agent *ag);
@@ -101,7 +111,12 @@ namespace ChemoPop {
 		// flags for output
 		bool generate_cell_position_output;
 		bool generate_run_tumble_output;
-		bool generate_Xdir_output;
+
+		// parameters for tumble triggered averages
+		bool generate_traj_before_tumble_output;
+		double generateTrajBeforeTumbleTimeOFFSET;
+		double generateTrajBeforeTumbleTimeSTART;
+		double generateTrajBeforeTumbleTimeEND;
 
 		string inputname;
 		string outputsuffix;

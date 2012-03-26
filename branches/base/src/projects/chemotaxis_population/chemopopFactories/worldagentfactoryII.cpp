@@ -17,7 +17,10 @@ WorldAgentFactoryII::WorldAgentFactoryII() {
 
 	this->generate_cell_position_output = false;
 	this->generate_run_tumble_output = false;
-	this->generate_Xdir_output = false;
+	this->generate_traj_before_tumble_output = false;
+	this->generateTrajBeforeTumbleTimeOFFSET = 30;
+	this->generateTrajBeforeTumbleTimeSTART = 0;
+	this->generateTrajBeforeTumbleTimeEND = 1e30;
 	this->outputsuffix = "";
 	this->output_interval = 1;
 }
@@ -57,6 +60,10 @@ Agent* WorldAgentFactoryII::createAgent() {
 	GWAParser gwap;
 	cerr << "# starting to invoke GWAParser for parsing the environment" << endl;
 	cerr << "# reading from file:    '" << this->inputname <<"'"<< endl;
+	gwap.setTumbleTriggeredAverageParameters(this->generate_traj_before_tumble_output,
+					this->generateTrajBeforeTumbleTimeOFFSET,
+					this->generateTrajBeforeTumbleTimeSTART,
+					this->generateTrajBeforeTumbleTimeEND);
 	gwap.setInputfile(input);
 	gwap.setAgent(world);
 	gwap.parse();
@@ -148,7 +155,7 @@ void WorldAgentFactoryII::addSimulatorToAgent(Agent* ag) {
 			cerr << "# adding chemotaxis movement simulator to the world" << endl;
 			ChemotaxisMovementSimulatorInWorld *cmsiw = new ChemotaxisMovementSimulatorInWorld();
 			cmsiw->setGenerateRunTumbleOutput(this->generate_run_tumble_output,"runTumbleTimes"+this->outputsuffix+".dat");
-			cmsiw->setGenerateXDirTrajBeforeTumbleOutput(this->generate_Xdir_output);
+			cmsiw->setGenerateXDirTrajBeforeTumbleOutput(this->generate_traj_before_tumble_output);
 			cmsiw->setWorldAgent(ag);
 			// add grid to simulator if there is grid environment
 			if(((BoolData *)ag->getDatabase()->getDataItem("is_grid_environment"))->getBool()==true) {

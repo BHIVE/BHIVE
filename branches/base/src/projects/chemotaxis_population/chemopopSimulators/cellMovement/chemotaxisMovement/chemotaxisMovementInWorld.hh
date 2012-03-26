@@ -50,6 +50,7 @@ namespace ChemoPop {
 
 		void setGenerateRunTumbleOutput(bool b, string filename);
 		void setGenerateXDirTrajBeforeTumbleOutput(bool b);
+		void setGenerateXDirTrajBeforeTumbleTimeOffset(double d);
 
 	protected:
 		void initialise();
@@ -112,6 +113,7 @@ namespace ChemoPop {
 
 
 		bool generate_Xdir_output;
+		DoubleData *tumbleTriggeredAverageOFFSET;
 		TVectorData <HistoryCollector *>  *hcXDirectionCollectors;
 		TVectorData <HistoryAggregator *> *haXDirectionAggregators;
 

@@ -388,21 +388,27 @@ void CellPositionInitialiser::doTheRest(Agent *ag) {
 
 
 	// add array to remember last cell directions
-	double startTimeForHistory = 500+30; double endTimeForHistory = 9999999;
-	double historyLengthInSeconds = 60;
-	int historyLength = (int)(historyLengthInSeconds/0.01);
+	if(this->generate_traj_before_tumble_output) {
+		double startTimeForHistory = this->generateTrajBeforeTumbleTimeSTART; double endTimeForHistory = this->generateTrajBeforeTumbleTimeEND;
+		double historyLengthInSeconds = this->generateTrajBeforeTumbleTimeOFFSET;
+		int historyLength = (int)(historyLengthInSeconds/0.01);
 
-	if (db->doesDataItemExist("xdir_history") && db->doesDataItemExist("xdirTumble_history") ) {
-		TVectorData <HistoryCollector *> *hcDir= (TVectorData <HistoryCollector *> *) db->getDataItem("xdir_history");
-		hcDir->reserveSize(this->cellnumber);
-		for (int i=0; i<this->cellnumber; i++) {
-			hcDir->at(i) = new HistoryCollector ("xhistory",historyLength);
-		}
+		DoubleData * tumbleTriggeredAverageOFFSET = new DoubleData("tumbleTriggeredAverageOFFSET",generateTrajBeforeTumbleTimeOFFSET);
+		db->addData(tumbleTriggeredAverageOFFSET);
 
-		TVectorData <HistoryAggregator *> *haDir= (TVectorData <HistoryAggregator *> *) db->getDataItem("xdirTumble_history");
-		haDir->reserveSize(this->cellnumber);
-		for (int i=0; i<this->cellnumber; i++) {
-			haDir->at(i) = new HistoryAggregator ("xhistory_agg", hcDir->at(i), startTimeForHistory, endTimeForHistory);
+		if (db->doesDataItemExist("xdir_history") && db->doesDataItemExist("xdirTumble_history") ) {
+
+			TVectorData <HistoryCollector *> *hcDir= (TVectorData <HistoryCollector *> *) db->getDataItem("xdir_history");
+			hcDir->reserveSize(this->cellnumber);
+			for (int i=0; i<this->cellnumber; i++) {
+				hcDir->at(i) = new HistoryCollector ("xhistory",historyLength);
+			}
+
+			TVectorData <HistoryAggregator *> *haDir= (TVectorData <HistoryAggregator *> *) db->getDataItem("xdirTumble_history");
+			haDir->reserveSize(this->cellnumber);
+			for (int i=0; i<this->cellnumber; i++) {
+				haDir->at(i) = new HistoryAggregator ("xhistory_agg", hcDir->at(i), startTimeForHistory, endTimeForHistory);
+			}
 		}
 	}
 

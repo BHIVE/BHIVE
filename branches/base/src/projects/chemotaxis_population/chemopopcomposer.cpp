@@ -22,6 +22,9 @@ ChemoPopComposer::ChemoPopComposer () {
 	this->generate_cell_position_output = false;
 	this->generate_run_tumble_output    = false;
 	this->generate_traj_before_tumble_output = false;
+	this->generateTrajBeforeTumbleTimeOFFSET = 30;
+	this->generateTrajBeforeTumbleTimeSTART = 0;
+	this->generateTrajBeforeTumbleTimeEND = 1e30;
 
 	cerr << "# calling without command line arguments. i can not tolerate that." << endl;
 	exit(1);
@@ -184,8 +187,8 @@ ChemoPopComposer::ChemoPopComposer(int argn, char *argv[]) {
 		if (trueStr.compare(commandline["-generateTrajBeforeTumbleOutput"]) == 0) {
 			this->generate_traj_before_tumble_output = true;
 
-			cerr<<"warning, do not turn on generateTrajBeforeTumbleOutput yet.";
-			exit(1);
+//			cerr<<"warning, do not turn on generateTrajBeforeTumbleOutput yet.";
+//			exit(1);
 //			//overwrite how long the snapshot lasts
 //			if (commandline.find("-generateTrajBeforeTumbleTimeOffset") != commandline.end()) {
 //				// = atof(commandline["-outputinterval"].c_str());
@@ -195,6 +198,30 @@ ChemoPopComposer::ChemoPopComposer(int argn, char *argv[]) {
 			this->generate_traj_before_tumble_output = false;
 		}
 	}
+
+	if (commandline.find("-generateTrajBeforeTumbleTimeOffset") != commandline.end()) {
+		string tempString = commandline["-generateTrajBeforeTumbleTimeOffset"];
+		Util::trim(tempString);
+
+		int eIdx = tempString.find(",");
+		string s1 = tempString.substr(0,eIdx);
+		int sIdx = eIdx+1;
+		eIdx = tempString.find(",",sIdx);
+		string s2 = tempString.substr(sIdx,eIdx-sIdx);
+		string s3 = tempString.substr(eIdx+1,tempString.length()-eIdx+1);
+
+		this->generateTrajBeforeTumbleTimeOFFSET = Util::convertToDouble(s1);
+		this->generateTrajBeforeTumbleTimeSTART = Util::convertToDouble(s2);
+		this->generateTrajBeforeTumbleTimeEND = Util::convertToDouble(s3);
+
+		if(verboseOutput) {
+			cerr<<"# configuring the tumble triggered average parameters."<<endl;
+			cerr<<"#   - average length = " <<generateTrajBeforeTumbleTimeOFFSET<<endl;
+			cerr<<"#   - average length = " <<generateTrajBeforeTumbleTimeSTART<<endl;
+			cerr<<"#   - average length = " <<generateTrajBeforeTumbleTimeEND<<endl;
+		}
+	}
+
 
 	// if you pass this flag with the value true, you will generate a binary file indicating
 	// for each cell the times of running and tumbling.
@@ -341,27 +368,35 @@ void ChemoPopComposer::initializeAgentFactories() {
     */
 
 	// initialise the world agent factory: factory which uses an external parser.
-	this->factories.push_back(new WorldAgentFactoryII());
-	((WorldAgentFactoryII *) this->factories.at(factories.size()-1))->setGenerateCellPositionOutput(this->generate_cell_position_output);
-	((WorldAgentFactoryII *) this->factories.at(factories.size()-1))->setGenerateRunTumbleOutput(this->generate_run_tumble_output);
-	((WorldAgentFactoryII *) this->factories.at(factories.size()-1))->setOutputSuffix(this->outputSuffix);
-	((WorldAgentFactoryII *) this->factories.at(factories.size()-1))->setGenerateXDirBeforeTumbleOutput(this->generate_traj_before_tumble_output);
-	this->factories.at(factories.size()-1)->finalise();
+	WorldAgentFactoryII *waf = new WorldAgentFactoryII();
+	this->factories.push_back(waf);
+	waf->setGenerateCellPositionOutput(this->generate_cell_position_output);
+	waf->setGenerateRunTumbleOutput(this->generate_run_tumble_output);
+	waf->setOutputSuffix(this->outputSuffix);
+	waf->setTumbleTriggeredAverageParameters(this->generate_traj_before_tumble_output,
+			this->generateTrajBeforeTumbleTimeOFFSET,
+			this->generateTrajBeforeTumbleTimeSTART,
+			this->generateTrajBeforeTumbleTimeEND);
+
+	waf->finalise();
+
+
+
 	// provide the world agent factory with the correct input file
-	((WorldAgentFactoryII *)this->factories.at(factories.size()-1))->setNumberCells(number_of_cells);
+	waf->setNumberCells(number_of_cells);
 	if (commandline.find("-metafile") != commandline.end())
-		((WorldAgentFactoryII *) this->factories.at(factories.size()-1))->setInput(commandline["-metafile"]);
+		waf->setInput(commandline["-metafile"]);
 	else
-		((WorldAgentFactoryII *)this->factories.at(factories.size()-1))->setInput(commandline["-worldfile"]);
+		waf->setInput(commandline["-worldfile"]);
 	// set the output interval which is given by the commandline
-	((WorldAgentFactoryII *)this->factories.at(factories.size()-1))->setOutputInterval(this->output_interval);
+	waf->setOutputInterval(this->output_interval);
 	// passing flaging indicating whether output for the world is to be blocked or not
-	((WorldAgentFactoryII *)this->factories.at(factories.size()-1))->setBlockWorldOutput(blockWorldOutput);
+	waf->setBlockWorldOutput(blockWorldOutput);
 	// propagate information of whether we are dealing with blind agents to the world factory
 	if(this->cells_are_blind_agents) {
-		((WorldAgentFactoryII *)this->factories.at(factories.size()-1))->setIsBlindAgentCells(true);
+		waf->setIsBlindAgentCells(true);
 	} else {
-		((WorldAgentFactoryII *)this->factories.at(factories.size()-1))->setIsBlindAgentCells(false);
+		waf->setIsBlindAgentCells(false);
 	}
 
 
@@ -375,11 +410,16 @@ void ChemoPopComposer::initializeAgentFactories() {
 		this->factories.at(factories.size()-1)->finalise();
 	} else {
 		// for chemotaxis cells
-		this->factories.push_back(new CellAgentFactory());
-		((CellAgentFactory*)this->factories.at(factories.size()-1))->setInitializer((CellParameterInitializer*) this->cpi);
-		((CellAgentFactory*)this->factories.at(factories.size()-1))->setOutputInterval(this->output_interval);
-		((CellAgentFactory*)this->factories.at(factories.size()-1))->setGenerateCellDataOutput(this->generate_cell_data_output);
-		this->factories.at(factories.size()-1)->finalise();
+		CellAgentFactory *caf = new CellAgentFactory();
+		this->factories.push_back(caf);
+		caf->setInitializer((CellParameterInitializer*) this->cpi);
+		caf->setOutputInterval(this->output_interval);
+		caf->setGenerateCellDataOutput(this->generate_cell_data_output);
+		caf->setTumbleTriggeredAverageParameters(this->generate_traj_before_tumble_output,
+			this->generateTrajBeforeTumbleTimeOFFSET,
+			this->generateTrajBeforeTumbleTimeSTART,
+			this->generateTrajBeforeTumbleTimeEND);
+		caf->finalise();
 	}
 
 

@@ -461,6 +461,7 @@ void CellRevealItselfToSpecialAgentMessageGenerator::placeMessage(int destID) {
 		argument->addElementToEnd((double)accligand->at(0));
 
 
+
 		argument->addElementToEnd((double)dLigand->getDouble());
 		//cerr<<"dLig: "<<dLigand->getDouble()<<endl;
 		argument->addElementToEnd((double)dCheYP->getDouble());

@@ -34,6 +34,11 @@ namespace Hive {
 		GWAParser();
 		~GWAParser();
 
+		void setTumbleTriggeredAverageParameters( bool generate_traj_before_tumble_output,
+					double generateTrajBeforeTumbleTimeOFFSET,
+					double generateTrajBeforeTumbleTimeSTART,
+					double generateTrajBeforeTumbleTimeEND);
+
 		// return the equilibration time
 		double getEquilibrationTime() { return equilibration_time; };
 
@@ -98,6 +103,14 @@ namespace Hive {
 		string name_geometry_input_file_fmf;
 		string name_nutrient_input_file_fmf;
 		string name_cellposi_input_file_fmf;
+
+
+		// parameters for tumble triggered averages
+		bool generate_traj_before_tumble_output;
+		double generateTrajBeforeTumbleTimeOFFSET;
+		double generateTrajBeforeTumbleTimeSTART;
+		double generateTrajBeforeTumbleTimeEND;
+
 
 		double equilibration_time;
 	};

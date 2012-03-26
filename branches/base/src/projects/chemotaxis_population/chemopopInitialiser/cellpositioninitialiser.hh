@@ -58,6 +58,17 @@ namespace ChemoPop {
 
 		void setIsCubeGrid(bool b) { this->isCubeGrid = b; };
 
+		void setTumbleTriggeredAverageParameters(
+				    bool b,
+				    double offset,
+					double start,
+					double end) {
+			this->generate_traj_before_tumble_output = b;
+			this->generateTrajBeforeTumbleTimeOFFSET=offset;
+			this->generateTrajBeforeTumbleTimeSTART=start;
+			this->generateTrajBeforeTumbleTimeEND=end;
+		};
+
 	private:
 		// for initialising the direction and up vecs as well as the cellspeed vector
 		// this should also do the initialisation of all vectors of which the length has to be equal to
@@ -71,6 +82,15 @@ namespace ChemoPop {
 
 		/// cell number ... is it needed?
 		int  cellnumber;
+
+
+		// parameters for tumble triggered averages
+		bool generate_traj_before_tumble_output;
+		double generateTrajBeforeTumbleTimeOFFSET;
+		double generateTrajBeforeTumbleTimeSTART;
+		double generateTrajBeforeTumbleTimeEND;
+
+
 	};
 }
 

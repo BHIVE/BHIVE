@@ -229,6 +229,7 @@ ConformationModelSimulator::ConformationModelSimulator()
 //	this->intervalTime = NULL;
 //	this->timeInSemi=NULL;
 //	this->internalTime = 0;
+	this->collectHistory = false;
 }
 
 ConformationModelSimulator::~ConformationModelSimulator()
@@ -303,13 +304,20 @@ void ConformationModelSimulator::setAgent (Agent *ag) {
 
 	cellTime = (DoubleData *) agent->getDatabase()->getDataItem("celltime");
 
-	haLig_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("ligAggregator");
-	haCheYP_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("cheYpTumbleAggregator");
-	haAct_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("actTumbleAggregator");
-	haMeth_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("methTumbleAggregator");
-	haMotor_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("motorTumbleAggregator");
-	haRunHistory_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("runHistoryTumbleAggregator");
-	hadlogLig_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("dlogligAggregator");
+
+	if(agent->getDatabase()->existsDataItem("ligAggregator")) {
+		this->collectHistory = true;
+		tumbleTriggeredAverageOFFSET = (DoubleData *) agent->getDatabase()->getDataItem("tumbleTriggeredAverageOFFSET");
+		haLig_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("ligAggregator");
+		haCheYP_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("cheYpTumbleAggregator");
+		haAct_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("actTumbleAggregator");
+		haMeth_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("methTumbleAggregator");
+		haMotor_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("motorTumbleAggregator");
+		haRunHistory_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("runHistoryTumbleAggregator");
+		hadlogLig_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("dlogligAggregator");
+	} else {
+		this->collectHistory = false;
+	}
 
 	hcMotor      = (HistoryCollector *) agent->getDatabase()->getDataItem("motorCWHistory");
 	hcRunHistory = (HistoryCollector *) agent->getDatabase()->getDataItem("runHistory");
@@ -336,14 +344,16 @@ void ConformationModelSimulator::step(double t)
 
 
 	// check that we aggregate now if we have to
-	haCheYP_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-	haLig_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-	haAct_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-	haMeth_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-	haMotor_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-	haRunHistory_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-	hadlogLig_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
-
+	// remember what happened right before the tumble
+	if(this->collectHistory) {
+		haCheYP_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+		haLig_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+		haAct_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+		haMeth_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+		haMotor_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+		haRunHistory_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+		hadlogLig_TUMBLE->checkScheduledAggregations(this->cellTime->getDouble());
+	}
 
 
 
@@ -438,15 +448,15 @@ void ConformationModelSimulator::step(double t)
 			swimming_state->getInteger() == CellParameterData::TUMBLE  ) {
 
 		// remember what happened right before the tumble
-		haCheYP_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-		haLig_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-		haAct_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-		haMeth_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-		haMotor_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-		haRunHistory_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-		hadlogLig_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+30);
-
-
+		if(this->collectHistory) {
+			haCheYP_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+			haLig_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+			haAct_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+			haMeth_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+			haMotor_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+			haRunHistory_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+			hadlogLig_TUMBLE->scheduleAggregation(this->cellTime->getDouble()+(this->tumbleTriggeredAverageOFFSET->getDouble()/2.0));
+		}
 	}
 	//else if (last_swimming_state->getInteger() == CellParameterData::TUMBLE  &&
 	//		swimming_state->getInteger() == CellParameterData::RUN  ) {
@@ -459,8 +469,11 @@ void ConformationModelSimulator::step(double t)
 	for(int m=0;m<n_motors->getInteger(); m++) {
 		if(currentMotorStates->at(m)==CellParameterData::CW) { n_cw++; }
 	}
-	hcMotor->makeHistory((double)n_cw);
-	hcRunHistory->makeHistory(swimming_state->getInteger());
+
+	if(this->collectHistory) {
+		hcMotor->makeHistory((double)n_cw);
+		hcRunHistory->makeHistory(swimming_state->getInteger());
+	}
 
 }
 
@@ -492,6 +505,7 @@ FullSignalingSimulator::FullSignalingSimulator()
 	this->TarTerm=1;
 	this->TsrTerm=1;
 	this->ligIndex=0;
+	collectHistory=false;
 }
 
 FullSignalingSimulator::~FullSignalingSimulator() { }
@@ -591,12 +605,16 @@ void FullSignalingSimulator::setAgent(Agent *ag)
 		dActivity=validateDoubleData("dActivity",database);
 		dMeth=validateDoubleData("dMeth",database);
 
-		hcLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("ligHistory");
-		hcCheYP   = (HistoryCollector *) agent->getDatabase()->getDataItem("cheYpHistory");
-		hcAct   = (HistoryCollector *) agent->getDatabase()->getDataItem("actHistory");
-		hcMeth   = (HistoryCollector *) agent->getDatabase()->getDataItem("methHistory");
-		hcdlogLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("dlogligHistory");
-
+		if(agent->getDatabase()->existsDataItem("ligHistory")) {
+				this->collectHistory = true;
+				hcLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("ligHistory");
+				hcCheYP   = (HistoryCollector *) agent->getDatabase()->getDataItem("cheYpHistory");
+				hcAct   = (HistoryCollector *) agent->getDatabase()->getDataItem("actHistory");
+				hcMeth   = (HistoryCollector *) agent->getDatabase()->getDataItem("methHistory");
+				hcdlogLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("dlogligHistory");
+		} else {
+			this->collectHistory = false;
+		}
 
 		// SEVENTH: GET THE OTHER STUFF
 		// Grab the Ligand Concentration Data
@@ -899,12 +917,14 @@ void FullSignalingSimulator::step(double t)
 	MethylationForOutput->setDouble(M->getDouble());
 	YpCouplingVector->at(0)=Yp->getDouble();
 
-	if(internalTime>eqtime->getDouble()) {
-		hcCheYP->makeHistory(Yp->getDouble());
-		hcLig->makeHistory(ligands->at(0));
-		hcAct->makeHistory(activity->getDouble());
-		hcMeth->makeHistory(M->getDouble());
-		hcdlogLig->makeHistory((ligands->at(0)-lastLig) / ligands->at(0));
+	if(collectHistory) {
+		if(internalTime>eqtime->getDouble()) {
+			hcCheYP->makeHistory(Yp->getDouble());
+			hcLig->makeHistory(ligands->at(0));
+			hcAct->makeHistory(activity->getDouble());
+			hcMeth->makeHistory(M->getDouble());
+			hcdlogLig->makeHistory((ligands->at(0)-lastLig) / ligands->at(0));
+		}
 	}
 
 	dLig->setDouble(ligands->at(0)-lastLig);
@@ -945,6 +965,7 @@ SimpleSignalingSimulator::SimpleSignalingSimulator()
 	this->TsrTerm=1;
 	this->ligIndex=0;
 	this->lastCheYpForNoise.reserve(0);
+	this->collectHistory=false;
 }
 
 SimpleSignalingSimulator::~SimpleSignalingSimulator()
@@ -1146,9 +1167,7 @@ void SimpleSignalingSimulator::setAgent(Agent *ag)
 
 		d = agent->getDatabase()->getDataItem("sigma");
 		this->stdDev = (DoubleData *) d;
-
 		//cerr<<"sigma: "<<stdDev->getDouble()<<endl;
-		//exit(1);
 
 		d = agent->getDatabase()->getDataItem("cheyp_mean");
 		this->meanCheYp = (DoubleData *) d;
@@ -1187,7 +1206,7 @@ void SimpleSignalingSimulator::setAgent(Agent *ag)
 		TarTerm=pow( (1.0+(ligands->at(ligIndex)/KoffTar->getDouble())) / (1.0+(ligands->at(ligIndex)/KonTar->getDouble())) ,TarCount->getInteger());
 		TsrTerm=pow( (1.0+(ligands->at(ligIndex)/KoffTsr->getDouble())) / (1.0+(ligands->at(ligIndex)/KonTsr->getDouble())) ,TsrCount->getInteger());
 	} else {
-		cerr<<"WARNING: CELLS ARE NOT CHEMOTACTIC!"<<endl;
+		cout<<"WARNING: CELLS ARE NOT CHEMOTACTIC!"<<endl;
 		TarTerm = 1;
 		TsrTerm = 1;
 	}
@@ -1221,11 +1240,18 @@ void SimpleSignalingSimulator::setAgent(Agent *ag)
 	dCheYP    = (DoubleData *)agent->getDatabase()->getDataItem("dCheYP");
 	dActivity = (DoubleData *)agent->getDatabase()->getDataItem("dActivity");
 	dMeth     = (DoubleData *)agent->getDatabase()->getDataItem("dMeth");
-	hcLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("ligHistory");
-	hcCheYP   = (HistoryCollector *) agent->getDatabase()->getDataItem("cheYpHistory");
-	hcAct   = (HistoryCollector *) agent->getDatabase()->getDataItem("actHistory");
-	hcMeth   = (HistoryCollector *) agent->getDatabase()->getDataItem("methHistory");
-	hcdlogLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("dlogligHistory");
+
+	if(agent->getDatabase()->existsDataItem("ligHistory")) {
+		this->collectHistory = true;
+		hcLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("ligHistory");
+		hcCheYP   = (HistoryCollector *) agent->getDatabase()->getDataItem("cheYpHistory");
+		hcAct   = (HistoryCollector *) agent->getDatabase()->getDataItem("actHistory");
+		hcMeth   = (HistoryCollector *) agent->getDatabase()->getDataItem("methHistory");
+		hcdlogLig   = (HistoryCollector *) agent->getDatabase()->getDataItem("dlogligHistory");
+
+	} else {
+		this->collectHistory = false;
+	}
 
 	lastLig=0;
 	lastCheYp=0;
@@ -1247,7 +1273,7 @@ void SimpleSignalingSimulator::step(double t)
 	if(this->isChemotactic->getInteger()==1) {
 		TarTerm=pow( (1.0+(ligands->at(ligIndex)/KoffTar->getDouble())) / (1.0+(ligands->at(ligIndex)/KonTar->getDouble())) ,TarCount->getInteger());
 		TsrTerm=pow( (1.0+(ligands->at(ligIndex)/KoffTsr->getDouble())) / (1.0+(ligands->at(ligIndex)/KonTsr->getDouble())) ,TsrCount->getInteger());
-	} //else { TarTerm = 1; TsrTerm = 1; }
+	} else { TarTerm = 1; TsrTerm = 1; }
 
 	// If we are using the simple OU model, then we have to update m0 (mean methylation level)
 	if (!this->is_wills_methylation_model->getBool()) {
@@ -1312,12 +1338,14 @@ void SimpleSignalingSimulator::step(double t)
 	internalTime += t;
 
 	// here we finally make some updates to track the snapshot output (what happens immediately before/after tumbles
-	if(internalTime>eqtime->getDouble()) {
-		hcCheYP->makeHistory(this->CheYp->at(0));
-		hcLig->makeHistory(this->ligands->at(0));
-		hcAct->makeHistory(this->act[0]);
-		hcMeth->makeHistory(this->methLevel->at(0));
-		hcdlogLig->makeHistory((this->ligands->at(0)-lastLig) / this->ligands->at(0));
+	if(collectHistory) {
+		if(internalTime>eqtime->getDouble()) {
+			hcCheYP->makeHistory(this->CheYp->at(0));
+			hcLig->makeHistory(this->ligands->at(0));
+			hcAct->makeHistory(this->act[0]);
+			hcMeth->makeHistory(this->methLevel->at(0));
+			hcdlogLig->makeHistory((this->ligands->at(0)-lastLig) / this->ligands->at(0));
+		}
 	}
 
 	dLig->setDouble(this->ligands->at(0)-lastLig);

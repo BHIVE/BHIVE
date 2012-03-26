@@ -1140,8 +1140,8 @@ void SpecialAgentOutputAnalysedLigandDataAction::fire(Data *d) {
 		if (!this->isbinary) {
 			*out << arg->at(1) << " " << mean << " " << var << endl;
 		} else {
-			double d = arg->at(1);
-			this->out->write(reinterpret_cast<char *> (&d), sizeof(double));
+			double val = arg->at(1);
+			this->out->write(reinterpret_cast<char *> (&val), sizeof(double));
 			this->out->write(reinterpret_cast<char *> (&mean), sizeof(double));
 			this->out->write(reinterpret_cast<char *> (&var), sizeof(double));
 		}
