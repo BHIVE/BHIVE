@@ -1,0 +1,275 @@
+
+
+HOW TO RUN THE CHEMOTAXIS SIMULATIONS FROM THE COMMANDLINE
+==============================================================
+
+
+BASICS
+To run the Hive from the commandline in a Linux/Unix/cygwin shell, simply
+enter the name of the executable file and the relative or absolute path to
+the file (as in /home/msneddon/hive_simulations/Release/hive).  If you are
+already in the same directory as the executable file, you need to include
+a dot slash before the executable name (as in: ./hive).  To actually run
+a simulation, you also need the proper input files.  The two main files
+that are required is the "metafile", which gives information about the
+environment that cells are in and other parameters, and the "cellfile"
+which gives the parameters of the individual cells in the simulation.  The
+location of the "cellfile" is given in the "metafile".  (See the file
+describing the specification for metafiles).
+
+To actually run a basic simulation, you only have to provide a metafile as in:
+
+./hive -metafile [filename]
+
+where [filename] is the relative or absolute path and name to your metafile.
+
+
+COMMANDLINE OPTIONS
+For most simulations, you will want to set other options as well such as
+options to control what output is generated and how often output is generated.
+In general, the name of the option will be indicated by giving a dash, and the
+value of the option will follow immediately after, as in: '-optionName [optionValue]'
+The available options that are currently implemented (and documented) are as follows:
+
+-metafile   	[filename]		-Required to set the location of the metafile, see the
+								spec of the metafile in META_FILE_SPEC.txt.
+								DEFAULT VALUE = ""
+
+-binary     	[true/false]	-Set to true, this option tells the simulation to output data
+								in binary format, which means you can't open the output
+								in a text file, but you should do this whenever you are
+								expecting a lot of output because binary files are much,
+								much smaller and can be analyzed much, much faster.
+								DEFAULT VALUE = false
+
+-verbose		[true/false]	-Set to true, when starting a simulation, outputs the details
+								of each cell that is created and the contents of its database
+								just before simulation. The first time you run a new parameter
+								file, you should set this to true to make sure you are running
+								what you think you are.
+								DEFAULT VALUE = false
+
+-blockworldoutput	[true/false]	-Set to true, this stops output from the world from being
+									generated.  This should always be set to true unless you are
+									running a PDE simulator in the world and need to plot the
+									concentrations of things in the world.  This output is huge
+									though, so be careful
+									DEFAULT VALUE = false
+
+
+-outputsuffix		[string]	-Provide this input if you are running multiple simulations
+								in the same directory and need to distinguish the outputs.
+								Otherwise, all the simulations will write to the same output
+								file names, and you will lose your data.
+								DEFAULT VALUE = ""
+
+-outputinterval 	[double]	-You should always provide this input, as it tells the simulation
+								how often to output to file (in seconds).  For instance, setting
+								this parameter to 5 will output cell positions every 5 seconds.
+								DEFAULT VALUE = 1.0
+
+
+-generateCellPositionOutput				[true/false]	-Set to true, the simulation will generate output of
+														the cell positions and store results in two files named
+														cell_positions.dat and analysed_cell_positions.dat.
+														DEFAULT VALUE = false
+
+
+-generateCellDataOutput					[true/false]	-Set to true, the simulation will generate output of
+														the internal cell data (eg [CheY-P] and store results 
+                                                        in two files named cell_data.dat and analysed_cell_data.dat
+                                                        DEFAULT VALUE = false
+
+-generateRunTumbleOutput				[true/false]	-Set to true, the simulation will generate output of
+														the time points at which a cell switches between runs
+                                                        and tumbles, and basic information about the state of
+                                                        the cell at the run/tumble timepoint.  The file is
+                                                        called 'runTumbleTimes.dat'
+														DEFAULT VALUE = false
+
+-generateTrajBeforeTumbleOutput			[true/false]	-Set to true, the simulation will generate output of
+														the trajectories of both internal cell parameters and
+                                                        the x component of the direction vector in files named:
+                                                        cellDirectionTrajBeforeTumbles.dat and 
+                                                        cellInternalTrajBeforeTumbles.dat.
+														DEFAULT VALUE = false
+
+-generateTrajBeforeTumbleTimeOffset		[double],[double],[double]		
+                                                        -If generate TrajBeforeTumbleOutput is set to true, then
+                                                        this parameter allows you to set the 1) length of time
+                                                        to record before tumbles (in s), 2) the start time in
+                                                        world time to start collecting data, and 3) the end time
+                                                        in world time to stop collecting data.  Note that there
+                                                        cannot be any spaces between the commas and numbers!!!
+                                                        DEFAULT VALUE = 30,0,1e30
+
+
+
+RUNNING THE HIVE FROM A SHELL SCRIPT
+It is generally easier to just place all your commands in a shell script and
+then just run the script instead of retyping all the parameters into the
+commandline.  There are probably example scripts floating around, but all
+you have to do is create a text file, add the command you would normally
+enter into the commandline, and save the file.  In Linux, you then have
+to change the file to be executable (right click -> properties -> permissions).
+Then run the shell script as you would any other program (./shellScriptName).
+
+
+DETAILS OF THE PARSING
+If you want to modify how items are parsed from the commandline, or add
+new command line options, take a look at the file: 
+'src/projects/chemotaxis_population/chemopopcomposer.cpp'.  In the consctructor
+of ChemoPopComposer (a function named ChemoPopComposer), you will see where
+the variables from the command line are parsed.  This is also where the
+simulation is created, so it is a good place to figure out the organization
+of the code.
+
+
+
+
+
+POSSIBLE OUTPUT FILES AND THIER CONTENTS
+
+cell_positions.dat - a file that has the individual x,y,and z positions of each
+cell in the population at the designated output intervals.  AgentIDs in this
+and all other output files give a unique number for each cell so that each
+cell can be uniquely identified in the output.  The IDs are numbered in the same
+order in which they are created, which is the same order in which they were
+specified in the cell files.  The columns are:
+ 1 AgentID
+ 2 Time
+ 3 X position
+ 4 Y position
+ 5 Z position
+
+analysed_cell_positions.dat - a file that already has computed the mean and moments
+of the distribution of cell positions overall all cells in the population. The columns are:
+ 1 time
+ 2 average travelled distance
+ 3 average squared travelled distance
+ 4 center of mass x
+ 5 center of mass y
+ 6 center of mass z
+ 7 2nd moment of x
+ 8 3rd moment of x
+ 9 4th moment of x
+
+cell_data.dat - contains information on the internal time-dependent state variables
+of the cells in the simulation at the designated output intervals.  The columns are:
+ 1  AgentID
+ 2  Time
+ 3  Swimming State (run or tumble)
+ 4  n_motors in CCW
+ 5  n_motors in CW
+ 6  cheYp (of motor zero if uncoordinated)
+ 7  meth  (of motor zero if uncoordinated)
+ 8  ligand
+ 9  accumulated ligand
+ 10  dLigand (OverLastDT)
+ 11 dCheYP (OverLastDT)
+ 12 dActivity (OverLastDT)
+ 13 dMeth (OverLastDT)
+
+
+analysed_ligand_data.dat - this file outputs information about the total
+accumulated ligand in a population.  Note that accumulated ligand is not
+normalized by the time step.  The columns are:
+ 1 time
+ 2 mean accumulated ligand
+ 3 variance of the accumulated ligand
+
+
+analysed_cell_activity_data.dat - this file outputs the average internal
+parameters of cells in a population.  The columns are:
+ 1 time
+ 2 mean activity
+ 3 mean cheY-P (of motor zero if uncoordinated)
+ 4 mean methylation (of motor zero if uncoordinated)
+
+runTumbleTimes.dat - this file records the exact times of runs and tumbles
+regardless of what the overall output interval is.
+ 1 time
+ 2 AgentID
+ 3 x position at the time of the run/tumble
+ 4 the event (1 or 0 indicating if it is the start of a run or tumble)
+
+
+cellInternalTrajBeforeTumbles.dat - this file records the mean values of key
+variables of the cell triggered by tumbles.  This file is probably the most
+difficult to parse because the number of columns is variable based on the
+length of the offset (the memory time specified) and the simulation time
+step.  Every simulation time step, data is saved, so the simulation dt (and
+not the outputinterval dt) is the one used.  The variance of these parameters
+is also saved, adding another element of confusion.  But here are the columns:
+ 1 AgentID
+ 2 number of tumble events
+ 3 the id of the variable that is recorded in this line
+ 3...x the tumble triggered averages
+ x+1...n the tumble triggered variances
+
+Since each row is the output for just a single variable for the cell, the 3rd column
+is required that identifies what the data actually is.  The ids for the data are:
+ 0: cheyp
+ 1: activity
+ 2: methylation level
+ 3: n_motors in CW
+ 4: runs
+ 5: ligand
+ 6: dlog(Ligand)
+
+To help you out with the parsing, here is some matlab code that does it if the
+binary flag is set to true:
+
+    dt = 0.01; % this is the global simulation timestep
+    memoryLengthInSeconds = 60; % this is the offset provided in the command line input
+    memoryLengthInSteps = memoryLengthInSeconds/dt;
+    timeArray = -[memoryLengthInSeconds:-dt:dt]+memoryLengthInSeconds/2;
+
+    % there are 3 doubles first (cellId, nTrials, values) then the data
+    colCount = 3+memoryLengthInSteps*2;
+    [fid, message] = fopen([folder,'cellInternalTrajBeforeTumbles.dat'],'r'); rowCount = inf;
+    data = fread(fid,[colCount,rowCount],'double')';
+    fclose(fid);
+
+    nData = 7; % nData is the number of columns
+
+    % first get the number of recordings (events) per cell
+    k_recordings = data(1:nData:end,2);
+    total_recordings = sum(k_recordings);
+    [x,k_recordings_matrix]=meshgrid(zeros(memoryLengthInSteps,1),k_recordings);
+
+    % we need to compute a weighted sum based on the number of events per cell
+    cheyp_mean = sum((k_recordings_matrix.*data(1:nData:end,4:3+memoryLengthInSteps)))./total_recordings;
+    % we need to square the std to get the variance, weight it by the number of
+    % recordings so we can then sum the variances. We divide by the total
+    % number of recordings and this gives us the total variance.  Take the
+    % square root to get the final combined std deviation
+    cheyp_std = sqrt(sum((k_recordings_matrix).*(data(1:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings);
+
+    % do the same thing for the other values
+    act_mean = sum((k_recordings_matrix.*data(2:nData:end,4:3+memoryLengthInSteps)))./total_recordings;
+    act_std = sqrt(sum((k_recordings_matrix).*(data(2:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings);
+    meth_mean = sum((k_recordings_matrix.*data(3:nData:end,4:3+memoryLengthInSteps)))./total_recordings;
+    meth_std = sqrt(sum((k_recordings_matrix).*(data(3:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings);
+    mot_mean = sum((k_recordings_matrix.*data(4:nData:end,4:3+memoryLengthInSteps)))./total_recordings;
+    mot_std = sqrt(sum((k_recordings_matrix).*(data(4:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings);
+    runs_mean = sum((k_recordings_matrix.*data(5:nData:end,4:3+memoryLengthInSteps)))./total_recordings;
+    runs_std = sqrt(sum((k_recordings_matrix).*(data(5:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings);
+    lig_mean = sum((k_recordings_matrix.*data(6:nData:end,4:3+memoryLengthInSteps)))./total_recordings;
+    lig_std = sqrt(sum((k_recordings_matrix).*(data(6:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings);
+    dloglig_mean = (1/dt).*(sum((k_recordings_matrix.*data(7:nData:end,4:3+memoryLengthInSteps)))./total_recordings);
+    dloglig_std = (1/dt).*(sqrt(sum((k_recordings_matrix).*(data(7:nData:end,4+memoryLengthInSteps:end).^2))./total_recordings));
+
+For even more help, take a look at the 'yann_test' folder on the Desktop of
+the 'msneddon' user on the claudel machine....
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,153 @@
+# This is an example metafile for specifying chemotaxis simulations using
+# the Hive.  This metafile format is valid as of March 2012 for Hive v0.00a4.2.
+# To build your own meta file, you should extract the particular parameters
+# and conditions you need.  Running this file may or may not work, since some
+# conflicting parameters may be uncommented simply to illustrate a functionality.
+#
+# If you change the input format of this file, please update this documentation
+# for future users by adding a line in the log here, indicating when you made
+# the change and what version the changes are valid for.
+#
+# log March 2012 - sneddon - created first version of this file (v0.00a4.2).
+#
+
+
+
+#######################################
+#
+# In a metafile, any text appearing after a pound sign is considered a comment
+# and is ignored.  You can put comments anywhere and in any line of the file
+#
+# The overall structure of the file is to separate out parameters and options
+# into several main blocks (FLAGS, ENVIRONMENTTYPE, CELL_POSITIONS, and NUM_STEPS)
+# Each of these blocks begin by specifying the name of the block, and end by
+# writing 'END'.
+
+
+# First we have the FLAGS block, which allows us to pass global arguments that
+# will be treated as global parameters which apply to all cells  These parameters
+# are defined by indicating in all caps the name of the parameter, followed by
+# the value of the parameter.  There is no typing of parameters (so they can
+# be double/int/string etc), but particular parameters will require particular
+# arguements, as is documented below.  If a parameter is given that is not
+# recognized, an error is thrown.  If a parameter cannot be properly interpreted,
+# then an error is thrown.  For clarity, you should always define all possible
+# parameters listed below so that later on it will be clear what the simulation 
+# was doing. 
+FLAGS
+   CELLTYPE    ecoli popMot.txt    # 'celltype' 'populationFile'  (celltype should be 'ecoli' for all chemotaxis simulations)
+   DIMENSION   3D                  # either '2D' or '3D' (2D forces all cells to have z=0)
+   ROTDIF      0.062               # in rad^2/s
+   CELLSPEED   20.0                # in um/s
+   TUMBLESTYLE gamma               # either 'random' (random direction after each tumble) or 'gamma' (uses fit to berg's tumble distributions)
+END
+
+
+
+# Next, we have the ENVIRONMENTTYPE block, which defines the parameters of the
+# environment that a cell will be in.  This block is unique in that there are
+# possible sub-blocks (e.g MATH) that determine the broad class of environments
+# that are possible.  Currently, the two available sub-blocks are MATH and 
+ENVIRONMENTTYPE
+
+   # Define the sub-block named MATH.  One cool feature is that you can add
+   # as many math functions to an environment as you want, and they all add
+   # up.  So if you want an environement with two point sources, just add
+   # both of them as separate lines, and they will both be there.
+   MATH
+
+      #  Simple 1D linear gradient in the X dimension, where values below zero are set to zero
+      linear [slope] [offset_at_x=0]
+
+      #  Simple 1D exponential gradient in the form A*exp(
+      #exponential [b] [A]
+      exponential 1e-05 0.001
+
+      #  Two 1D linear gradients with max at x=0, creating a triangle.  Providing a positive
+      #  slope puts the peak at zero, providing a negative slope puts the min at zero (think upside down triangle)
+      #triangle [slope] [offset_at_x=0]
+
+      #  1D linear gradient with a plateau.  At x=0 we have a max, which then decays linearly
+      #  in the negative direction, but stays constant in the positive direction
+      #nick [slope] [offset_at_x=0]
+
+      #  pointsource [DiffusionCoeffecient] [InitialNumberOfMolecules]
+      #gauss [AmplitudeConcentration] [Sigma] [X] [Y] [Z]
+
+
+      # 'step' provides a constant environment that can change at the designated
+      # time points.  Steps are indicated in parantheses as: "(time,concentration)"
+      # the initial concentration at time zero should also be indicated as the first
+      # number.  Finally, any number of steps can be added  For example, the following:
+      #    step 0 (100,0.1e-3) (200,0)
+      # will start a background concentration of zero, increase it to 0.1e-3 at time=100,
+      # then set the concentration back to zero at time=200.
+      step 0 (1000,0.001e-3) (1500,0) (2000,0.0025e-3) (2500,0) (3000,0.005e-3) (3500,0)
+      
+      # Inside the MATH sub-block, boundaries can also be added which create a
+	  # purely reflective boundary condition.  Note that there is no further interaction
+      # between cells and these boundaries.  Boundaries are defined as:
+      # boundary [coordinate] [position] [type]
+      # coordinates should be given as either 'x', 'y', or 'z'
+      # position is in um in the coordinates system used
+      # types of boundaries are:
+      #   0  block any movement across boundary
+	  #   1  block crossings from Plus to Minus, throw an error if a cell makes it past the other side
+	  #   2  block crossings from Minus to Plus, throw an error if a cell makes it past the other side
+	  #   3  block crossings from Plus to Minus, allow crossings in other direction
+	  #   4  block crossings from Minus to Plus, allow crossings in other direction
+      # For example, the following will create a 1000um^3 box centered around (0,0,0) with
+      # boundaries that detects errors if you happen to start cells outside the box
+	  boundary x -500  1
+      boundary x  500  2
+	  boundary y  -500  1
+	  boundary y   500  2
+	  boundary z   -500  1
+	  boundary z    500  2
+   END
+
+
+END
+
+
+# Next, we need to specify where in the world these cells start.  There are several
+# default configurations that can be selected using this file.  See below.
+# Note that one of the hacks that no one has fixed is that you also need to provide
+# the correct number of cells that are in the simulation (which is also specified
+# in the population file).  If these two numbers don't agree, you get an error.
+CELL_POSITIONS
+
+   # Puts all the cells on top of each other in the given X,Y,Z position
+   # ALL_SAME_POSITION [X] [Y] [Z] [number_of_cells]
+   # e.g. ALL_SAME_POSITION 0 0 0 500
+
+   # Distributes cells randomly around an X,Y,Z position with the given radius
+   # AROUND_POSITION [X] [Y] [Z] [number_of_cells]
+   # e.g. AROUND_POSITION 0 0 0 500
+
+RANDOM_ALONG_X_AXIS
+
+FROM_FILE
+
+FROM_FILE_FOR_MICROFLUIDIC
+
+
+END
+
+
+# Finally, the last block defines the cumulative number of simulation steps
+# that the Hive should take (including equilibration time), the time duration
+# of each simulation step, the start-time of the world (so that you can have
+# a time offset in outputting, but pretty much always set that to zero), and
+# an equilibration time which runs all simulations, but simply keeps cells
+# at their current location until the equilibration time is set.  The time-step,
+# start time, and equilibration time are in 'seconds', while the total number
+# of steps is exactly that- the total number of steps.  So yes, you will have
+# to calculate how many steps to get the desired simulation time you want.  One
+# final note: be sure to add one extra step if you plan to have output exactly at
+# the final time point, because the messages are not processed until after the step.
+NUM_STEPS
+   # steps, dt, start time of world, equilibration time
+   400001 0.01 0.0 0
+END
+
