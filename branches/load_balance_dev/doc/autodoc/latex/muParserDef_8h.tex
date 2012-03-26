@@ -1,0 +1,179 @@
+\section{muParserDef.h File Reference}
+\label{muParserDef_8h}\index{muParserDef.h@{muParserDef.h}}
+
+
+\subsection{Detailed Description}
+This file contains standard definitions used by the parser. 
+
+
+
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include \char`\"{}muParserFixes.h\char`\"{}}\par
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace {\bf mu}
+\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf mu::STATIC\_\-ASSERTION\_\-FAILURE$<$ true $>$}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf MUP\_\-BASETYPE}~double
+\begin{CompactList}\small\item\em Define the base datatype for values. \item\end{CompactList}\item 
+\#define {\bf MUP\_\-BYTECODE\_\-TYPE}~long
+\begin{CompactList}\small\item\em Definition of the basic bytecode datatype. \item\end{CompactList}\item 
+\#define {\bf MUP\_\-STRING\_\-TYPE}~std::string
+\begin{CompactList}\small\item\em Definition of the basic parser string type. \item\end{CompactList}\item 
+\#define {\bf MUP\_\-FAIL}(MSG)
+\item 
+\#define {\bf MUP\_\-ASSERT}(COND)
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef MUP\_\-BASETYPE {\bf mu::value\_\-type}
+\begin{CompactList}\small\item\em The numeric datatype used by the parser. \item\end{CompactList}\item 
+typedef MUP\_\-STRING\_\-TYPE {\bf mu::string\_\-type}
+\begin{CompactList}\small\item\em The stringtype used by the parser. \item\end{CompactList}\item 
+typedef MUP\_\-BYTECODE\_\-TYPE {\bf mu::bytecode\_\-type}
+\begin{CompactList}\small\item\em The bytecode type used by the parser. \item\end{CompactList}\item 
+typedef string\_\-type::value\_\-type {\bf mu::char\_\-type}
+\begin{CompactList}\small\item\em The character type used by the parser. \item\end{CompactList}\item 
+typedef std::basic\_\-stringstream$<$ char\_\-type, std::char\_\-traits$<$ char\_\-type $>$, std::allocator$<$ char\_\-type $>$ $>$ {\bf mu::stringstream\_\-type}
+\begin{CompactList}\small\item\em Typedef for easily using stringstream that respect the parser stringtype. \item\end{CompactList}\item 
+typedef std::map$<$ string\_\-type, value\_\-type $\ast$ $>$ {\bf mu::varmap\_\-type}
+\begin{CompactList}\small\item\em Type used for storing variables. \item\end{CompactList}\item 
+typedef std::map$<$ string\_\-type, value\_\-type $>$ {\bf mu::valmap\_\-type}
+\begin{CompactList}\small\item\em Type used for storing constants. \item\end{CompactList}\item 
+typedef std::map$<$ string\_\-type, std::size\_\-t $>$ {\bf mu::strmap\_\-type}
+\begin{CompactList}\small\item\em Type for assigning a string name to an index in the internal string table. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::fun\_\-type0} )()
+\begin{CompactList}\small\item\em Callback type used for functions without arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::fun\_\-type1} )(value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions with a single arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::fun\_\-type2} )(value\_\-type, value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions with two arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::fun\_\-type3} )(value\_\-type, value\_\-type, value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions with three arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::fun\_\-type4} )(value\_\-type, value\_\-type, value\_\-type, value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions with four arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::fun\_\-type5} )(value\_\-type, value\_\-type, value\_\-type, value\_\-type, value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions with five arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::multfun\_\-type} )(const value\_\-type $\ast$, int)
+\begin{CompactList}\small\item\em Callback type used for functions with a variable argument list. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::strfun\_\-type1} )(const char\_\-type $\ast$)
+\begin{CompactList}\small\item\em Callback type used for functions taking a string as an argument. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::strfun\_\-type2} )(const char\_\-type $\ast$, value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions taking a string and a value as arguments. \item\end{CompactList}\item 
+typedef value\_\-type($\ast$ {\bf mu::strfun\_\-type3} )(const char\_\-type $\ast$, value\_\-type, value\_\-type)
+\begin{CompactList}\small\item\em Callback type used for functions taking a string and two values as arguments. \item\end{CompactList}\item 
+typedef int($\ast$ {\bf mu::identfun\_\-type} )(const char\_\-type $\ast$sExpr, int $\ast$nPos, value\_\-type $\ast$fVal)
+\begin{CompactList}\small\item\em Callback used for functions that identify values in a string. \item\end{CompactList}\item 
+typedef value\_\-type $\ast$($\ast$ {\bf mu::facfun\_\-type} )(const char\_\-type $\ast$, void $\ast$)
+\begin{CompactList}\small\item\em Callback used for variable creation factory functions. \item\end{CompactList}\item 
+typedef char {\bf mu::MAP\_\-TYPE\_\-CANT\_\-BE\_\-UNSIGNED} [sizeof(STATIC\_\-ASSERTION\_\-FAILURE$<$ bytecode\_\-type(-1)$<$ 0 $>$)]
+\begin{CompactList}\small\item\em This is a static typecheck. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf mu::ECmdCode} \{ \par
+{\bf mu::cmLE} =  0, 
+{\bf mu::cmGE} =  1, 
+{\bf mu::cmNEQ} =  2, 
+{\bf mu::cmEQ} =  3, 
+\par
+{\bf mu::cmLT} =  4, 
+{\bf mu::cmGT} =  5, 
+{\bf mu::cmADD} =  6, 
+{\bf mu::cmSUB} =  7, 
+\par
+{\bf mu::cmMUL} =  8, 
+{\bf mu::cmDIV} =  9, 
+{\bf mu::cmPOW} =  10, 
+{\bf mu::cmAND} =  11, 
+\par
+{\bf mu::cmOR} =  12, 
+{\bf mu::cmXOR} =  13, 
+{\bf mu::cmASSIGN} =  14, 
+{\bf mu::cmBO} =  15, 
+\par
+{\bf mu::cmBC} =  16, 
+{\bf mu::cmARG\_\-SEP}, 
+{\bf mu::cmVAR}, 
+{\bf mu::cmVAL}, 
+\par
+{\bf mu::cmFUNC}, 
+{\bf mu::cmFUNC\_\-STR}, 
+{\bf mu::cmSTRING}, 
+{\bf mu::cmOPRT\_\-BIN}, 
+\par
+{\bf mu::cmOPRT\_\-POSTFIX}, 
+{\bf mu::cmOPRT\_\-INFIX}, 
+{\bf mu::cmEND}, 
+{\bf mu::cmUNKNOWN}
+ \}
+\begin{CompactList}\small\item\em Bytecode values. \item\end{CompactList}\item 
+enum {\bf mu::ETypeCode} \{ {\bf mu::tpSTR} =  0, 
+{\bf mu::tpDBL} =  1, 
+{\bf mu::tpVOID} =  2
+ \}
+\begin{CompactList}\small\item\em Types internally used by the parser. \item\end{CompactList}\item 
+enum {\bf mu::EPrec} \{ \par
+{\bf mu::prLOGIC} =  1, 
+{\bf mu::prCMP} =  2, 
+{\bf mu::prADD\_\-SUB} =  3, 
+{\bf mu::prMUL\_\-DIV} =  4, 
+\par
+{\bf mu::prPOW} =  5, 
+{\bf mu::prINFIX} =  4, 
+{\bf mu::prPOSTFIX} =  4
+ \}
+\begin{CompactList}\small\item\em Parser operator precedence values. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+std::ostream \& {\bf mu::console} ()
+\begin{CompactList}\small\item\em Encapsulate cout. \item\end{CompactList}\item 
+std::istream \& {\bf mu::console\_\-in} ()
+\begin{CompactList}\small\item\em Encapsulate cin. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{muParserDef.h@{muParserDef.h}!MUP\_\-ASSERT@{MUP\_\-ASSERT}}
+\index{MUP\_\-ASSERT@{MUP\_\-ASSERT}!muParserDef.h@{muParserDef.h}}
+\subsubsection[MUP\_\-ASSERT]{\setlength{\rightskip}{0pt plus 5cm}\#define MUP\_\-ASSERT(COND)}\label{muParserDef_8h_12c08d62c4a278b4e2ca3aad8e7af5e5}
+
+
+\index{muParserDef.h@{muParserDef.h}!MUP\_\-BASETYPE@{MUP\_\-BASETYPE}}
+\index{MUP\_\-BASETYPE@{MUP\_\-BASETYPE}!muParserDef.h@{muParserDef.h}}
+\subsubsection[MUP\_\-BASETYPE]{\setlength{\rightskip}{0pt plus 5cm}\#define MUP\_\-BASETYPE~double}\label{muParserDef_8h_5a22a812cf29b119506daad01152f93a}
+
+
+Define the base datatype for values. 
+
+This datatype must be a built in value type. You can not use custom classes. It has been tested with float, double and long double types, int should work as well. \index{muParserDef.h@{muParserDef.h}!MUP\_\-BYTECODE\_\-TYPE@{MUP\_\-BYTECODE\_\-TYPE}}
+\index{MUP\_\-BYTECODE\_\-TYPE@{MUP\_\-BYTECODE\_\-TYPE}!muParserDef.h@{muParserDef.h}}
+\subsubsection[MUP\_\-BYTECODE\_\-TYPE]{\setlength{\rightskip}{0pt plus 5cm}\#define MUP\_\-BYTECODE\_\-TYPE~long}\label{muParserDef_8h_0f47e11fe6c191d2a956420a3f7174a8}
+
+
+Definition of the basic bytecode datatype. 
+
+This defines the smalles entity used in the bytecode. \index{muParserDef.h@{muParserDef.h}!MUP\_\-FAIL@{MUP\_\-FAIL}}
+\index{MUP\_\-FAIL@{MUP\_\-FAIL}!muParserDef.h@{muParserDef.h}}
+\subsubsection[MUP\_\-FAIL]{\setlength{\rightskip}{0pt plus 5cm}\#define MUP\_\-FAIL(MSG)}\label{muParserDef_8h_b8ab5fe61e39cd4e7e6449ca4361a442}
+
+
+\index{muParserDef.h@{muParserDef.h}!MUP\_\-STRING\_\-TYPE@{MUP\_\-STRING\_\-TYPE}}
+\index{MUP\_\-STRING\_\-TYPE@{MUP\_\-STRING\_\-TYPE}!muParserDef.h@{muParserDef.h}}
+\subsubsection[MUP\_\-STRING\_\-TYPE]{\setlength{\rightskip}{0pt plus 5cm}\#define MUP\_\-STRING\_\-TYPE~std::string}\label{muParserDef_8h_1fc7b0394571c5a372932693798ba658}
+
+
+Definition of the basic parser string type. 
+

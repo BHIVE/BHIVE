@@ -1,0 +1,45 @@
+<?xml version="1.0">
+<opt>
+  <World xLen="100" elementSize="1" yLen="200" zLen="10">
+    <Compound name="cpd1">
+      <Voxel x="5" y="125" z="9">
+        <Concentration>98.10</Concentration>
+      </Voxel>
+    </Compound>
+    <Compound name="cpd2">
+      <Voxel x="74" y="177" z="5">
+        <Concentration>98.57</Concentration>
+      </Voxel>
+      <Voxel x="5" y="86" z="2">
+        <Concentration>96.81</Concentration>
+      </Voxel>
+    </Compound>
+    <Compound name="cpd3">
+      <Voxel x="57" y="23" z="8">
+        <Concentration>6.84</Concentration>
+      </Voxel>
+      <Voxel x="23" y="81" z="1">
+        <Concentration>20.48</Concentration>
+      </Voxel>
+    </Compound>
+    <Compound name="cpd4">
+      <Voxel x="84" y="186" z="2">
+        <Concentration>16.28</Concentration>
+      </Voxel>
+      <Voxel x="97" y="161" z="7">
+        <Concentration>70.36</Concentration>
+      </Voxel>
+      <Voxel x="37" y="49" z="9">
+        <Concentration>32.94</Concentration>
+      </Voxel>
+    </Compound>
+    <Compound name="cpd5">
+      <Voxel x="13" y="3" z="5">
+        <Concentration>13.74</Concentration>
+      </Voxel>
+      <Voxel x="69" y="198" z="0">
+        <Concentration>8.37</Concentration>
+      </Voxel>
+    </Compound>
+  </World>
+</opt>

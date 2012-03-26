@@ -1,0 +1,73 @@
+\section{muParserError.h File Reference}
+\label{muParserError_8h}\index{muParserError.h@{muParserError.h}}
+
+
+\subsection{Detailed Description}
+This file defines the error class used by the parser. 
+
+
+
+{\tt \#include $<$cassert$>$}\par
+{\tt \#include $<$stdexcept$>$}\par
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$vector$>$}\par
+{\tt \#include $<$memory$>$}\par
+{\tt \#include \char`\"{}muParserDef.h\char`\"{}}\par
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace {\bf mu}
+\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf mu::ParserErrorMsg}
+\begin{CompactList}\small\item\em A class that handles the error messages. \item\end{CompactList}\item 
+class {\bf mu::ParserError}
+\begin{CompactList}\small\item\em Error class of the parser. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf mu::EErrorCodes} \{ \par
+{\bf mu::ecUNEXPECTED\_\-OPERATOR} =  0, 
+{\bf mu::ecUNASSIGNABLE\_\-TOKEN} =  1, 
+{\bf mu::ecUNEXPECTED\_\-EOF} =  2, 
+{\bf mu::ecUNEXPECTED\_\-ARG\_\-SEP} =  3, 
+\par
+{\bf mu::ecUNEXPECTED\_\-ARG} =  4, 
+{\bf mu::ecUNEXPECTED\_\-VAL} =  5, 
+{\bf mu::ecUNEXPECTED\_\-VAR} =  6, 
+{\bf mu::ecUNEXPECTED\_\-PARENS} =  7, 
+\par
+{\bf mu::ecUNEXPECTED\_\-STR} =  8, 
+{\bf mu::ecSTRING\_\-EXPECTED} =  9, 
+{\bf mu::ecVAL\_\-EXPECTED} =  10, 
+{\bf mu::ecMISSING\_\-PARENS} =  11, 
+\par
+{\bf mu::ecUNEXPECTED\_\-FUN} =  12, 
+{\bf mu::ecUNTERMINATED\_\-STRING} =  13, 
+{\bf mu::ecTOO\_\-MANY\_\-PARAMS} =  14, 
+{\bf mu::ecTOO\_\-FEW\_\-PARAMS} =  15, 
+\par
+{\bf mu::ecOPRT\_\-TYPE\_\-CONFLICT} =  16, 
+{\bf mu::ecSTR\_\-RESULT} =  17, 
+{\bf mu::ecINVALID\_\-NAME} =  18, 
+{\bf mu::ecBUILTIN\_\-OVERLOAD} =  19, 
+\par
+{\bf mu::ecINVALID\_\-FUN\_\-PTR} =  20, 
+{\bf mu::ecINVALID\_\-VAR\_\-PTR} =  21, 
+{\bf mu::ecEMPTY\_\-EXPRESSION} =  22, 
+{\bf mu::ecNAME\_\-CONFLICT} =  23, 
+\par
+{\bf mu::ecOPT\_\-PRI} =  24, 
+{\bf mu::ecDOMAIN\_\-ERROR} =  25, 
+{\bf mu::ecDIV\_\-BY\_\-ZERO} =  26, 
+{\bf mu::ecGENERIC} =  27, 
+\par
+{\bf mu::ecLOCALE} =  28, 
+{\bf mu::ecINTERNAL\_\-ERROR} =  29, 
+{\bf mu::ecCOUNT}, 
+{\bf mu::ecUNDEFINED} =  -1
+ \}
+\begin{CompactList}\small\item\em Error codes. \item\end{CompactList}\end{CompactItemize}
