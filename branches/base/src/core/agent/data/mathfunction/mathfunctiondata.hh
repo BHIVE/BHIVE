@@ -315,6 +315,7 @@ namespace Hive {
 			double rsquared = (pos[0]-x0)*(pos[0]-x0)+(pos[1]-y0)*(pos[1]-y0)+(pos[2]-z0)*(pos[2]-z0);
 			if (t>t0)
 				return fraction*exp(-rsquared/(2.0*6.0*diff*(t-t0)));
+			return 0;
 		};
 
 		void setDiff(double d) { this->diff = d; };
