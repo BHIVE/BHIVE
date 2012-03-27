@@ -315,12 +315,13 @@ void ConformationModelSimulator::setAgent (Agent *ag) {
 		haMotor_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("motorTumbleAggregator");
 		haRunHistory_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("runHistoryTumbleAggregator");
 		hadlogLig_TUMBLE = (HistoryAggregator *) agent->getDatabase()->getDataItem("dlogligAggregator");
+
+		hcMotor      = (HistoryCollector *) agent->getDatabase()->getDataItem("motorCWHistory");
+		hcRunHistory = (HistoryCollector *) agent->getDatabase()->getDataItem("runHistory");
 	} else {
 		this->collectHistory = false;
 	}
 
-	hcMotor      = (HistoryCollector *) agent->getDatabase()->getDataItem("motorCWHistory");
-	hcRunHistory = (HistoryCollector *) agent->getDatabase()->getDataItem("runHistory");
 
 }
 
